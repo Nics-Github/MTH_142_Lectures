@@ -1,11 +1,52 @@
 ---
-title: "MTH_142_Lectures"
+title: "Lectures from SDS 220 Spring 2024"
+author: "Nic Schwab"
 ---
 
-This is a Quarto website.
+These are the lectures from MTH 142, you can also find the direct links via Canvas. 
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+[Lecture 1 Statistical Thinking](lectures/day-1-statistical-thinking.html)
 
-```{r}
-1 + 1
-```
+[Lecture 2 Study Design and Variables](lectures/2_sampling.qmd)
+
+[Lecture 3 Categorical Data](/lectures/3_categorical_data.qmd)
+
+[Lecture 4 part 2 Numeric Data](/lectures/4_Numeric_Data.qmd)
+
+[Lecture 5 Linear Correlation](lectures/5_linear_regression_1_predictor.qmd)
+
+[Lecture 6 Linear Correlation](lectures/6_Linear_regression_part_2.qmd)
+
+[Lecture 7 Regression math](lectures/7_regression-by-hand.qmd)
+
+[Lecture 8 Probability](lectures/9_Probability_1.qmd)
+
+[Lecture 9 Probability 2](lectures/10_Probability_2.qmd)
+
+[Lecture 10 Conditional Probability](https://nics-github.github.io/SDS-220-lectures-only/lectures/11-Probability_Wrap_Up.html#/title-slide)
+
+[Lecture 11 Continuous Random Variables](lectures/13_continuous_rv.qmd)
+
+[Lecture 12 The Normal Distribution](lectures/14_Normal_Dist.qmd)
+
+[Lecture 13 Hypothesis Testing Proportion](lectures/15_hypothesis_test_prop.qmd)
+
+[Lecture 14 Paraemetric bootstrap Hypothesis Testing](lectures/16_parametric_boot.qmd)
+
+<!-- [Lecture 15 Non-parametric bootstrap Confidence Intervals](lectures/17_bootstrap_CI_proportion.qmd) -->
+
+[Lecture 16 Confidence Intervals with Math](lectures/18__CI_prop_mathematically.qmd)
+
+[Lecture 17 Decision Errors](lectures/19_decision_error_tidying_up.qmd)
+
+[Lecture 18 Distributions and Two Proportions](lectures/20_Two_Proportions.qmd)
+
+[Lecture 19 Hypothesis Test for a single mean](lectures/22_single_mean.qmd)
+
+[Lecture 20 Hypothesis Test for a difference of means (unpaired)](lectures/23_diff-of-means.qmd)
+
+[Lecture 21 ANOVA](lectures/24_ANOVA.qmd)
+
+[Lecture 22 Regression with a Single Predictor](lectures/26_linear_regression.qmd)
+
+[Lecture 23 Prof. Kurtz-Garcia](https://drive.google.com/file/d/1qBB3kJL0HJxSDSy2tWqqBDFLrtgn1YAC/view?usp=sharing)

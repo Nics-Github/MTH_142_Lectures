@@ -1,0 +1,146 @@
+---
+title: "Categorical and Numeric Data"
+subtitle: "IMS, Ch. 4"
+author: "Nic Schwab"
+format:
+  revealjs: 
+    slide-number: true
+execute: 
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+## Read before Lecture
+
+[Chapter 4 Exploring Categorical Data](https://openintro-ims.netlify.app/explore-categorical)
+
+## Confounding Variables
+
+For each of the following pairs of variables, a statistically significant positive relationship has been observed. Identify confounding that might cause the [spurious correlation](https://en.wikipedia.org/wiki/Spurious_relationship).
+
+::: incremental
+-   The amount of ice cream sold in New England and the number of deaths by drowning
+-   The number of doctors in a region and the number of crimes committed in that region
+-   The amount of coffee consumed and the prevalence of lung cancer
+:::
+
+## Explore Categorical Data
+
+## Chapter 4
+
+Exploring Categorical Data:
+
+```{r}
+library(tidyverse)
+library(openintro)
+
+# You should read the documentation of the data as a first step to exploring it. 
+?assortative_mating
+
+```
+
+## Exploring categorical data {#sec-explore-categorical}
+
+Let's explore **categorical** data using summary statistics and visualizations.
+
+```{r loans}
+#Look at the top 6 rows of the assortative mating data
+
+slice_head(.data =  assortative_mating, n = 6)
+
+```
+
+## Tables
+
+Tables are also helpful in understanding categorical data
+
+```{r}
+table(data = assortative_mating)
+```
+
+## Prop tables
+
+```{r}
+# Here I am saving the table as the variable my_table
+# I am telling table I specifically want to look at the male and female variables.
+
+my_table <- table(assortative_mating$self_male, assortative_mating$partner_female)
+
+prop.table(my_table)
+```
+
+## Margins
+
+```{r}
+addmargins(A = my_table)
+```
+
+## Bar graphs
+
+Bar graphs can be helpful for exploring tables
+
+::: columns
+::: {.column width="50%"}
+```{r}
+ggplot(data = assortative_mating, mapping = aes(x=self_male)) +
+  geom_bar()
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+ggplot(data = assortative_mating, mapping = aes(x=partner_female)) +
+  geom_bar()
+```
+:::
+:::
+
+## Mosaic plots
+
+In the case of two categorical variables the mosaic plot is nice.
+
+```{r}
+# Here I am showing that I want to see a relationship between the two variables. 
+mosaicplot(self_male ~ partner_female, data=assortative_mating)
+```
+
+## 2 variables with bar
+
+We can map aes to multiple variables
+
+```{r}
+#| code-line-numbers: "1"
+ggplot(data = assortative_mating, mapping = aes(x=self_male, fill=partner_female)) +
+  geom_bar()+
+  scale_fill_manual( values = c("blue","brown","green"))
+```
+
+## fill
+
+```{r}
+#| code-line-numbers: "2"
+ggplot(data = assortative_mating, mapping = aes(x=self_male,fill=partner_female)) +
+  geom_bar(position = "fill")+
+  scale_fill_manual( values = c("blue","brown","green"))
+```
+
+## dodge
+
+```{r}
+#| code-line-numbers: "3"
+ggplot(data = assortative_mating, mapping = aes(x=self_male,fill=partner_female)) +
+  geom_bar(position = "dodge")+
+  scale_fill_manual( values = c("blue","brown","green"))
+```
+
+## [Problem 4.5](https://openintro-ims.netlify.app/explore-categorical#chp4-exercises)
+
+## Additional Practice exploring Categorical Data
+
+Once you've loaded the openintro and tidyverse libraries there are many dataset to practice with. 
+
+`avandia` is the name of the dataset explore it using the methods above. 
+
+I'll explore it myself in the next video.
+

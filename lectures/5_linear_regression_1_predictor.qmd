@@ -19,14 +19,11 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Lab 1 recap.
+## Read Before Lecture
 
-Do we have enough to reject this hypothesis?
+[Chapter 7 Linear Regression with a single predictor](https://openintro-ims.netlify.app/model-slr)
 
-$$H_0: p_{male} = p_{females} \\ 
-H_a: p_{males} \ne p_{females}$$
-
-# Graph of Arbuthonot
+## Graph of Arbuthonot
 
 ```{r calc-prop-boys-vars}
 #| echo = FALSE
@@ -34,11 +31,9 @@ H_a: p_{males} \ne p_{females}$$
 library(openintro)
 library(tidyverse)
 
-arbuthnot <- arbuthnot |>
-  mutate(total = girls+boys, boy_ratio = boys / total)
+arbuthnot <-  mutate(.data = arbuthnot, total = girls+boys, boy_ratio = boys / total)
 
-present <- present |>
-  mutate(total = girls+boys, boy_ratio = boys / total)
+present <- mutate(.data = present, total = girls+boys, boy_ratio = boys / total)
 ```
 
 ```{r }
@@ -87,12 +82,16 @@ Explanatory variable (aka independent variable, aka predictor): the variable tha
 
 :::
 
-## Example: birthweight of babies
+## You try
+
+From the babies dataset, make a scatter plot of gestation (explanitory) vs bwt (response). 
+
+Copy the code above and give it a try. 
+
+## Solution: birthweight of babies
 
 ```{r}
-library(tidyverse)
-library(openintro)
-ggplot(babies, aes(x = gestation, y = bwt)) +
+ggplot(data = babies, aes(x = gestation, y = bwt)) +
   geom_point()
 ```
 
@@ -114,6 +113,15 @@ ggplot(babies, aes(x = gestation, y = bwt)) +
 
 :::
 
+## Solution: starwars characters height vs. mass.
+
+There is one outlier, it is Jaba the Hut. 
+
+```{r}
+ggplot(data = starwars, aes(x = height, y = mass)) +
+  geom_point()
+```
+
 # Correlation
 
 ## (Pearson Product-Moment) correlation coefficient
@@ -134,32 +142,35 @@ ggplot(babies, aes(x = gestation, y = bwt)) +
 ## Find the correlation for babies
 
 ```{r}
-babies |>
-  summarise(r = cor(gestation,bwt,use="complete.obs"))
+summarise(.data = babies, r = cor(gestation,bwt,use="complete.obs"))
 ```
 
 
 ##  You try
 
-::: incremental
 
-- find the correlation coefficient for starwars
+Find the correlation coefficient for StarWars. Hint: copy and edit the code from above. 
+
+## Solution
+
+
+
+## Filtering out outliers   
+
+We might want to remove Jaba The Hut from the data. This is not something you need to know how to do. But if I filter data you are expected to graph it. 
+
 - `filter()` out the one massive character and create a new df
 - find the new correlation coefficient
-
-:::
 
 ## Graph the new starwars scatter plot
 
 ```{r}
-new_starwars <- starwars |>
-  filter(mass < 500)
+new_starwars <- filter(.data = starwars, mass < 500)
 ```
 
 ```{r}
 #| echo: FALSE
-new_starwars |>
-  ggplot(aes(x=height,y=mass)) +
+ggplot(data = new_starwars, aes(x = height, y = mass)) +
   geom_point() 
 ```
 
@@ -167,11 +178,9 @@ new_starwars |>
 
 ```{r}
 #Filter out the babies born before 259 days they are premature
-babies <- babies |>
-  filter(gestation > 259)
+babies <- filter(.data = babies, gestation > 259)
 
-babies |>
-  ggplot(aes(x=gestation,y=bwt)) +
+ggplot(data=babies, aes(x = gestation, y = bwt)) +
   geom_point()+
   geom_smooth(method = "lm", se=FALSE)
 ```
@@ -179,8 +188,11 @@ babies |>
 ## The equation of that regression. 
 
 ```{r}
+# Save the linear regression object. 
 baby_model <- lm(bwt~gestation,data=babies)
-summary(baby_model)
+
+# Look at the summary output of that object. 
+tidy(baby_model)
 ```
 
 ## Add the regression line to new_starwars
@@ -243,6 +255,6 @@ ggplot(data = ds, aes(x = x, y = y)) +
 
 # [Spurious Correlations](http://www.tylervigen.com/)
 
-# CATS data
+## Reading for next lecture 
 
-In the package called MASS there is data on cats body weight and heart weight. Make a linear model for the cats heart weight from the predictor boydweight.  
+None
