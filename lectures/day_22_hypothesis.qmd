@@ -1,0 +1,304 @@
+---
+title: "Hypothesis Testing"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+---
+
+## Example: Ebola
+
+::: incremental
+-   Pretend: You live in NYC and you all are perfectly representative of denizens there.
+
+-   Do you favor a "mandatory 21-day quarantine for anyone who has come in contact with an Ebola patient?"
+
+-   Class convenience sample. This will give us $\hat{p}$.
+:::
+
+[Ebola in New York City](https://en.wikipedia.org/wiki/Ebola_virus_cases_in_the_United_States)
+
+## Survey Data
+
+Our question: We want to know if New Yorkers have changed their stance on quarantine of Ebola after the COVID-19 pandemic.
+
+## The 2014 data.
+
+We'll use the `ebola_survey` data as the population to test against. This will be our $p$.
+
+```{r}
+library(tidyverse)
+library(openintro)
+count(ebola_survey,quarantine)
+```
+
+This is a reasonable estimate for *p* because...
+
+## p vs $\hat{p}$
+
+::: incremental
+-   $\hat{p}$ - the sample statistic. It is a proportion in this case.
+
+    -   This is how this subset of New Yorkers feel about quarantine.
+
+-   p - The assumed population parameter, also a proportion.
+
+    -   This is how all New Yorkers feel about a quarantine.
+:::
+
+## The question.
+
+\> If the sentiment from 2014 New Yorkers is unchanged to today, what is the probability we would have gotten the $\hat{p}$ we found?
+
+::: incremental
+-   Is it likely or unlikely
+
+    -   Likely will be anything more than $\alpha = 0.05$
+
+    -   If inlikely we reject $H_0$
+:::
+
+## Notation
+
+Hypothesis testing with Proportions
+
+$$
+H_o: p = 0 \\
+H_1: p \ne 0
+$$
+
+Null and Alternative hypotheses.
+
+We assume the null hypothesis is true and build a theoretical sampling distribution from that.
+
+## The Central Limit Theorem
+
+This is how we build the sampling distribution.
+
+> If we look at a proportion (or difference in proportions) and the scenario satisfies certain conditions, then the sample proportion (or difference in proportions) will appear to follow a bell-shaped curve called the *normal distribution*.
+
+## Conditions on $H_0$
+
+Proportions:
+
+-   Success Failure condition: n(p) \> 10 and n(1-p) \> 10
+
+-   Large Independent Samples (n\>30)
+
+## Draw the Sampling Distribution
+
+$$ p \sim N(p,SE)$$
+
+With $$SE= \sqrt{\frac{p(1-p)}{n}}$$
+
+## Conclusion
+
+What is the probability of getting the $\hat{p}$ from our sample?
+
+```{r}
+#| eval: false
+#| echo: true
+
+pnorm(q = p-hat, mean = p, sd = SE, lower.tail = )
+```
+
+# Board work
+
+## Ex 1. Exclusive relationships
+
+What is the proportion of college students that have had more than 1 `exclusive_relationships`?
+
+```{r}
+exclusive_relationship |>
+  count(num > 1)
+
+```
+
+-   Check Conditions.
+
+-   Do the test.
+
+## Problems
+
+[Chapter 16: 13, 14, 15](https://openintro-ims.netlify.app/inference-one-prop#chp16-exercises)
+
+## iPhones
+
+In a sample of 300 students, 68% said they own an iPod and a smart phone. Compute a 97% confidence interval for the true percent of students who own an iPod and a smartphone.[^1]
+
+[^1]: This and the previous problem were from a text called [Introductory Statistics](https://openstax.org/books/introductory-statistics/pages/8-3-a-population-proportion)
+
+<!-- ## z-scores you should know: -->
+
+<!-- | CI    | Z-score          | -->
+
+<!-- |-------|------------------| -->
+
+<!-- | 90%   | $z_{0.05}=1.645$ | -->
+
+<!-- | 95%   | $z_{0.025}=1.96$ | -->
+
+<!-- | 99.7% | $z_{0.005}=$     | -->
+
+<!-- : z-scores you should know. -->
+
+<!-- ## You should know: -->
+
+<!-- How to calculate and interpret the theoretical CI for a single proportion and mean. -->
+
+<!-- The difference between the data, sample and bootstrap distributions. -->
+
+<!-- How to make a bootstrap distribution and use it to find a CI. -->
+
+<!-- ## Hypothesis Testing -->
+
+<!-- This is the last topic on exam 2. -->
+
+<!-- Read chapters 16 and 19 before Monday and Wednesday. -->
+
+<!-- ## Hypothesis Testing -->
+
+<!-- In this talk I'll introduce some hypothesis testing for a single mean and proportion. -->
+
+<!-- We'll also do some examples. -->
+
+<!-- # A single Mean -->
+
+<!-- ## Example 1 -->
+
+<!-- Pretend is known that the average time it take a runner to finish a 5k is 35 minutes. -->
+
+<!-- This is the made up average for all 5ks for which there is data. -->
+
+<!-- We can write: -->
+
+<!-- $H_0: \mu = 35$ -->
+
+<!-- Its the status quo. -->
+
+<!-- ## Alternative Hypothesis -->
+
+<!-- I've run the `get_it_dunn_5k` and it is challenging. -->
+
+<!-- I think the average time will be different. -->
+
+<!-- We can write that as: -->
+
+<!-- $H_a: \mu \ne 35$ -->
+
+## Test the hypothesis
+
+Plan:
+
+-   State Hypothesis, set $\alpha$
+
+-   Collect Data and Check conditions
+
+-   Find Assume the null hypothesis is true
+
+-   Find the p value that goes with $\hat{p}$
+
+-   Conclusion
+
+<!-- ## Conditions -->
+
+<!-- In general when using the Central Limit Theorem to make CIs based on the Theoretical Sampling Distribution we want a few things to be true: -->
+
+<!-- For a mean: -->
+
+<!-- -   Large Independent Samples (n\>30) -->
+
+<!-- -   No particularly extreme outliers. -->
+
+<!-- ## Large Independent Sample? -->
+
+<!-- ```{r} -->
+
+<!-- library(openintro) -->
+
+<!-- library(tidyverse) -->
+
+<!-- get_it_dunn_run |> -->
+
+<!--   filter(race == "5k") |> -->
+
+<!--   group_by(race) |> -->
+
+<!--   summarise( n=n()) -->
+
+<!-- ``` -->
+
+<!-- It is large and extremely likely it is independent, so let's assume that. -->
+
+<!-- ## Check outliers and normality? -->
+
+<!-- ```{r} -->
+
+<!-- get_it_dunn_run |> -->
+
+<!--   filter(race == "5k") |> -->
+
+<!--   ggplot(aes(x=run_time_minutes))+ -->
+
+<!--     geom_boxplot() -->
+
+<!-- ``` -->
+
+<!-- One not extreme outlier. This looks ok enough. -->
+
+<!-- ## Make a 95% CI. -->
+
+<!-- Use $z_{0.025} = 1.96$ -->
+
+<!-- ```{r} -->
+
+<!-- library(openintro) -->
+
+<!-- library(tidyverse) -->
+
+<!-- get_it_dunn_run |> -->
+
+<!--   filter(race == "5k") |> -->
+
+<!--   group_by(race) |> -->
+
+<!--   summarise(mean = mean(run_time_minutes), sd= sd(run_time_minutes), n=n()) -->
+
+<!-- ``` -->
+
+<!-- ## Things to note: -->
+
+<!-- Note: we have not proved anything. Recall our three reasons why -->
+
+<!-- $H_0: \mu$ and 𝑥 could be dissimilar: -->
+
+<!-- -   Sample is not representative. -->
+
+<!-- -   Random chance. -->
+
+<!-- -   H_0 is false. -->
+
+<!-- The first option is unlikely because we are responsible statisticians. We -->
+
+<!-- have found that random chance (second option) is very unlikely (our -->
+
+<!-- confidence level is usually high). So it seems that the last option is the -->
+
+<!-- most plausible. -->
+
+<!-- ## Rejection Region -->
+
+<!-- How big is our rejection region? -->
+
+<!-- This is called our significance level. -->
+
+<!-- It is given the notation $\alpha = 0.05$ -->
+
+<!-- ## Otherways to do hypothesis testing. -->
+
+<!-- -   Confidence Intervals -->
+
+<!-- -   p-values (coming next week) -->
+
+<!-- -   critical values -->

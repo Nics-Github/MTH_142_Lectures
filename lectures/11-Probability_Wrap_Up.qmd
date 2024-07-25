@@ -1,0 +1,28 @@
+---
+title: "Probability Wrap up"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+---
+
+## General Multiplication Rule:
+
+$P(A \text{ and } B) = P(A|B)P(B)$
+
+## Law of Total Probability:
+
+$P(A) = P(A|B_1)P(B_1)+P(A|B_2)P(B_2)+…+P(A|B_k)P(B_k)$
+
+Where each $B_i$ is disjoint.
+
+## Conditional Probability
+
+$P(A|B) = \frac{P(B|A)P(A)}{P(B)}$
+
+# Practice Problems
+
+[Cats and Bayes](/lectures/old-classwork/Cats-and-Bayes.qmd)
+
+3.13, 3.15

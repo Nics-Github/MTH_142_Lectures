@@ -1,0 +1,136 @@
+---
+title: "Digestion Day"
+author: "Schwab"
+format: revealjs
+editor: visual
+execute: 
+  echo: true
+---
+
+# Tons of Vocab:
+
+-   Population
+
+    -   Parameter $\mu$
+
+-   Sample
+
+    -   Statistic $\bar{x}$
+
+-   Variable types (numeric, categorical)
+
+-   Observational Study vs Experiments
+
+# Methods of Sampling
+
+::: incremental
+-   Simple Random
+
+-   Cluster
+
+-   Stratified
+
+-   Convience \<- Don't do this one in real life.
+:::
+
+# Some R Code
+
+::: incremental
+-   `ggplot(data= , aes(x,y)) |> geom_point()`
+
+    -   This makes a point plot
+
+-   `present |> mutate(total = x + y)`
+
+    -   This adds a cloumn
+
+-   `present |> arrange(desc(total))`
+
+    -   This arranges the total colum in descending order.
+
+-   `$` and `?`
+
+    -   Pulls a column out of a df and get the help menu respectively
+:::
+
+# Tutorial R things
+
+::: incremental
+-   `hsb2 |>   count(schtyp)`
+
+-   `hsb2_public <- hsb2 |>   filter(schtyp == "public")`
+
+-   `if_else()` and `case_when()` functions
+
+-   `group_by()`
+
+-   numeric variables are \<int\> and \<dbl\>
+
+-   categorical variables are \<fct\> and \<chr\>
+:::
+
+# Live coding example
+
+Load tidyverse and openintro
+
+Consider the `babies` df
+
+# Don't ruin the surprise
+
+If you click the next slide you will see the code I hope to do.
+
+# Code I hope to do:
+
+```{r}
+#| echo: false
+  library(tidyverse)
+  library(openintro)
+```
+# babies
+```{r}
+#| echo: true
+  babies_lbw <- babies |>
+    mutate(bwt_type= 
+             case_when(
+              bwt < 3.23 ~ "very low birth weight",
+              bwt > 3.23 &  bwt < 5.5 ~ "low birth weight",
+              bwt >= 5.5 ~ "healthy birth weight"
+    )
+    )
+  babies_lbw
+```
+# bargraph?
+```{r}
+babies_lbw |>
+  ggplot(aes(x=smoke)) +
+  geom_bar(aes(fill=bwt_type))
+```
+
+# count
+```{r}
+babies_lbw |>
+  count(bwt)
+```
+
+# Take 2
+```{r}
+
+babies_lbw <- babies |>
+  mutate(bwt_type= 
+           case_when(
+            bwt < 3.23*16 ~ "very low birth weight",
+            bwt > 3.23*16 &  bwt < 5.5*16 ~ "low birth weight",
+            bwt >= 5.5*16 ~ "healthy birth weight"
+    )
+  )
+# Numbers are multiplied by 16 to give ounces from pounds
+  
+  
+```
+
+# new bargraph
+```{r}
+babies_lbw |>
+  ggplot(aes(x=smoke)) +
+  geom_bar(aes(fill=bwt_type), position = "fill")
+```

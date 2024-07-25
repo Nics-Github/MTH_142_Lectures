@@ -1,0 +1,248 @@
+---
+title: "IMS 12 (ish): Sampling Distributions and Bootstrapping"
+ 
+author: 
+- name: "Rebecca. Kurtz-Garcia"
+- name: "Edited by Nic Schwab"
+format: 
+  beamer: 
+    theme: Madrid
+    navigation: horizontal
+    header-includes: |
+       \usepackage{amsmath}
+       \setbeamertemplate{navigation symbols}{}
+       \setbeamertemplate{footline}[page number]
+       \usepackage{colortbl}
+    extra_dependencies: ["amsmath"]
+---
+
+```{r, echo = F, message = F, comment=F}
+library(tidyverse)
+```
+
+## Last Time
+
+Previously, we simulated how many cards we have to draw in a well shuffled deck of cards until we saw two cards that had the same suit. If we pooled the results from all three sections of 220. We would have something like the following:
+
+![](app_results.png){fig-align="center" width="316"}
+
+## Last Time
+
+-   Describe the two distributions: center, shape/skewness, spread.
+
+-   Suppose there where 60 groups in total across the three sections of STAT 220. Use the web-widget online and observe what happens when you change the "*Number of simulations per mean estimated".* Try multiple values: very small, very very large, etc. Which distribution changes? How?
+
+## Recall: Statistics Estimate Parameters
+
+```{=tex}
+\begin{definition}
+A \textbf{statistic} is a numerical summary of sample data.
+A \textbf{parameter} is a numerical summary of a population.
+\end{definition}
+```
+-   A *statistic,* is an estimate for a *parameter.*
+
+-   Common statistics are:
+
+    -   sample proportion ($\hat{p}$)
+
+    -   sample mean ($\overline{x}$ or $\hat{\mu}$).
+
+-   These statistics estimate the
+
+    -   population proportion ($p$)
+
+    -   population mean ($\mu$).
+
+## Sampling Distributions
+
+![](sample_data.png){fig-align="center" width="300"}
+
+```{=tex}
+\begin{definition}
+The \textbf{sampling distribution} of a statistic describes the range of possible values that can be observed for a statistic when taking a random sample of size $n$ from the population, and their associated probabilities. 
+\end{definition}
+```
+<!-- ## Sampling Distributions -->
+
+<!-- ![](sample_data.png){fig-align="center" width="300"} -->
+
+<!-- -   The distribution of individual observations is called the *data distribution*. -->
+
+<!-- -   A *sampling distribution* is the distribution of a statistic. -->
+
+## Sampling Distributions
+
+Sampling distributions help us answer the questions:
+
+-   How much might a *statistic* vary from sample to sample?
+-   How would we describe the shape, center, and variability of the possible values for our *statistic*?
+-   What is the effect of the sample size $n$ on the shape of the *sampling distribution*.
+-   Note: The difference between Data Dist and Sample Dist.
+-   Sampling distributions for means have a particular behavior that *always* happens. 
+
+
+
+## Fund Theorm of Statistics 
+
+The Fundamental Theorem of Statistics (also called the Central Limit Theorem).
+
+```{=tex}
+\begin{alertblock}{Fundamental Theorem of Statistics (for proportions)}
+Suppose we have an independent random sample taken from a given population. The estimated proportion of a particular outcome will converge to the true probaility as the sample size ($n$) increases
+$$\hat{p} \rightarrow p.$$
+
+Furthermore, the sampling distribution of $\hat{p}$ convervges to a \textbf{normal distribution} as $n$ increases. 
+\end{alertblock}
+```
+
+## FTS Revisited
+
+The same is true for a single mean.
+
+```{=tex}
+\begin{alertblock}{Fundamental Theorem of Statistics (for means)}
+Suppose we have an independent random sample taken from a given population. The estimated means of a particular outcome will converge to the true mean as the sample size ($n$) increases
+$$\overline{x} \rightarrow \mu.$$
+
+Furthermore, the sampling distribution of $\overline{x}$ convervges to a \textbf{normal distribution} as $n$ increases. 
+\end{alertblock}
+```
+## Normal Distribution
+
+![](normal_distr.png){fig-align="center" width="223"}
+
+
+- The **normal distribution** is a symmetric, unimodal, bell-shaped continuous probability distribution.
+
+
+- Super famous. 
+
+
+- Note, $\overline{x}$ and $\hat{p}$ will have a sampling distribution that is normally distributed centered around the **parameter** (true population mean/proportion)
+
+
+## Sampling Distributions Continued
+
+- Its expensive to create sampling distributions. 
+
+- For example, we may want the sampling distribution for: 
+
+   - **Political polls**.  How many people voted for a specific candidate?
+   
+   - **Taxi Cab Fares**.  How much would I spend on taxi cabs in NYC?
+  
+   - **Health data**. What percent of patients respond well to new treatment?
+   
+- One sample is possible, many not so much. 
+
+## Bootstrapping
+
+In bootstrapping we simulate drawing a random sample from the *observed data*.  That is, we resample by repeatedly taking samples from the original sample. 
+
+```{=tex}
+\vspace{1cm}
+\begin{definition}
+A \textbf{bootstrap sample} is a sample drawn \textit{with replacement} from the original sample, and of the same sample size as the original sample. 
+\end{definition}
+
+```
+
+
+
+
+## Bootstrap
+
+::: columns
+::: {.column width="50%"}
+![](bootstrap.png){fig-align="center" width="222"}
+:::
+
+::: {.column width="50%"}
+\vspace{2cm}
+
+We can 'pull ourselves up by our bootstraps' to attack the problem by using computer simulations.
+:::
+:::
+
+## Bootstrap Resampling
+
+To use the bootstrap method with your original data set with $n$ observations:
+
+1)  You resample, with replacement, $n$ observations from the data distribution.
+
+2)  For the new bootstrap sample of size $n$, construct the point estimate of the parameter of interest (the proportion).
+
+3)  Repeat the process a very large number of times, $B$ (e.g., selecting $B=$ 10,000 separate samples of size $n$ and calculating the 10,000 corresponding parameter estimates).
+
+## Bootstrap Distribution
+
+For each bootstrap sample, we can compute a statistic of interest, such as a proportion. 
+
+We compute the sample proportion from thousands of bootstrap samples. The distribution of all these means, called the **bootstrap distribution**, will help us estimate the *sampling distribution* of the sample mean without having to take samples over and over again.
+
+## Features of the Bootstrap Distribution
+
+-   **Center**: the observed sample statistic
+
+    -   This differs from the sampling distribution, which is centered around the true population parameter.
+
+-   **Spread**: even though the means of the bootstrap distribution and the sampling distribution are not the same, their spreads are.
+
+    -   The bootstrapped statistic vary about original sample statistic in the same way that the original sample proportions vary about true parameter.
+
+## Features of the Bootstrap Distribution
+
+Suppose when we sampled cards last lecture one of our groups had a mean 5.27, but the *true* mean was 5.7 cards.
+
+```{r, echo = F, fig.align='center', fig.height=3}
+library(tidyverse)
+library(openintro)
+library(infer)
+until_pair <- function(){
+  values <- sample(1:52, 52)
+  new_order <- cards[values, ]
+  num_repeats <- which(duplicated(new_order$value))[1]
+  num_repeats
+}
+
+sims <- 60
+set.seed(1)
+results <-matrix(NA, nrow = sims, ncol = 500)
+
+for(i in 1:500){
+    results[,i] <- replicate(sims, until_pair())
+}
+      #  
+par(mfrow = c(1, 3))
+hist(results, freq = T, main = "Data Distribution", 
+           breaks = 2:14, xlab = "Number of Cards Drawn")
+hist(colMeans(results), freq = F, main = "Sampling Distribution", 
+           xlab = "Mean Number of Cards Drawn", xlim = c(4.5, 7))
+abline(v = 5.7, col = "red", lwd = 3)
+abline(v = 5.27, col = "blue", lwd = 2)
+legend("topright", legend = c("Sample Mean (5.27)", "True Mean (5.7"), 
+       col = c("red", "blue"), lty = 1, cex = .75)
+
+sample_props <- tibble(v = results[,2]) %>%
+                  rep_sample_n(size = 60, reps = 500, replace = TRUE) %>%
+                  mutate(x_bar = mean(v))
+hist(sample_props$x_bar, freq = F, main = "Bootstrap Distribution", 
+           xlab = "Bootstrap Means", xlim = c(4.5, 7))
+abline(v = 5.7, col = "red", lwd = 2)
+abline(v = 5.27, col = "blue", lwd = 3)
+legend("topright", legend = c("Sample Mean (5.27)", "True Mean (5.7)"), 
+       col = c("red", "blue"), lty = 1, cex = .75)
+```
+
+## Limitations of the Bootstrap
+
+-   It is essential that the original sample is a random sample from the population, or at least representative of it.
+
+-   Larger samples (big $n$) are typically better for bootstraps.
+
+-   When the bootstrap distribution consists of only a few values and is highly discrete, it is of limited use and should not be used.
+
+-   We typically need a large number of bootstrap resamples ($B \geq 5000$) to obtain a bootstrap distribution that reasonably approximates the key features of the sampling distribution
+
+Why are these things important?

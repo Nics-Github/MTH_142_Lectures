@@ -1,0 +1,177 @@
+---
+title: "Normal Distribution"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+execute: 
+  echo: true
+---
+
+# Normal Distribution
+
+The normal distribution has a symmetric bell shaped curve
+
+![](https://openintro-ims.netlify.app/13-foundations-mathematical_files/figure-html/simpleNormal-1.png)
+
+## The Standard Normal
+
+Has a mean $\mu = 0$ and standard deviation $\sigma = 1$
+
+> Notation $X\sim N(\mu,\sigma)$ means the random variable X has a normal distribution.
+
+It is where z-score are based on.
+
+## Very Short history lesson.
+
+::: incremental
+-   Long long ago before computers existed people wanted to calculate probabilities from z-scores.
+
+-   The table was first made by [Christian Kramp in 1799.](https://stats.stackexchange.com/questions/233356/who-created-the-first-standard-normal-table)
+
+-   It was improved upon ( [for more read this](https://www.jstor.org/stable/27643700)).
+
+-   The end of the lesson.
+
+-   [Let's use the ancient table](https://ztable.io/)
+:::
+
+## Brushtail possum
+
+[![](https://upload.wikimedia.org/wikipedia/commons/2/22/Trichosurus_vulpecula_1.jpg)](https://commons.wikimedia.org/wiki/User:JJ_Harrison)
+
+## Problem from text:
+
+> Head lengths of brushtail possums follow a nearly normal distribution (it is also a continuous random variable) with mean 92.6 mm and standard deviation 3.6 mm. Compute the Z scores for possums with head lengths of 95.4 mm and 85.8 mm.
+>
+> Which of the two brushtail possum observations in the previous guided practice is more *unusual*?
+
+## Z-scores by hand
+
+$X \sim N(\mu = 92.6 , \sigma = 3.6)$
+
+But there is no table for this distribution.
+
+Use this formula to standardize so we can use the table:
+
+$$Z = \frac{x-\mu}{\sigma}$$ Where x is the value of interest.
+
+Use the z-score to find the value on the table.
+
+## Z-scores with R
+
+We don't need to find a z-score any more, but we still talk about them.
+
+```{r}
+#| echo: TRUE
+
+pnorm(q=95.4 ,m = 92.6, s = 3.6 )
+```
+
+This finds the probability to the left of q.
+
+```{r}
+#| echo: TRUE
+
+pnorm(q=95.4 ,m = 92.6, s = 3.6, lower.tail = FALSE)
+```
+
+## Visualize with `openintro` package
+
+```{r}
+#| echo: TRUE
+
+library(tidyverse)
+library(openintro)
+library(infer)
+pnorm(q=95.4 ,m = 92.6, s = 3.6 )
+normTail(m = 92.6, s= 3.6, L = 95.4)
+```
+
+## Calculus
+
+The function f(x) below defines the pdf of the bell curve.
+
+$$ f(x) = \frac{1}{\sigma \sqrt{2 \pi}}  e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2 } $$
+
+![](https://openintro-ims.netlify.app/13-foundations-mathematical_files/figure-html/simpleNormal-1.png)
+
+## What we really care about:
+
+The probability is the area under the curve and can be represented as:
+
+$$ \int_a^b \frac{1}{\sigma \sqrt{2 \pi}}  e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2 } dx $$
+
+warning: integrating this is tricky.
+
+## Reminder:
+
+Draw the curve and the integral that goes with the possum area under the normal distribution.
+
+## The Empirical rule.
+
+Draw a picture of the standard normal bell curve. Mark -1 and 1 $\sigma$ away from the mean.
+
+Using R find the probability we get values between -1 and 1. shade your picture.
+
+Repeat this process for \[-2,2\] and \[-3,3\].
+
+::: incremental
+-   Note the error in the RQ
+:::
+
+## Practice
+
+From the text:
+
+> SAT scores closely follow the normal model with mean μ=1500 and standard deviation σ=300. About what percent of test takers score 900 to 2100? What percent score between 1500 and 2100
+
+## Practice 2
+
+> Shannon is a randomly selected SAT taker, and nothing is known about Shannon's SAT aptitude. What is the probability that Shannon scores at least 1630 on their SATs?
+
+## Practice 3
+
+> Edward earned a 1400 on their SAT. What is their percentile?
+
+> What percent did better than Edward?
+
+## `qnorm` outputs quantiles from percents.
+
+```{r}
+#|echo: TRUE
+
+pnorm(q = 95.4 ,m = 92.6, s = 3.6 )
+
+qnorm(p = 0.78165, m = 92.6, s = 3.6)
+```
+
+`qnorm()` is for finding quantiles `pnorm()` is for finding percents
+
+## Practice 4
+
+[OI 4.2 OI 4.4](https://www.biostat.jhsph.edu/~iruczins/teaching/books/2019.openintro.statistics.pdf#chapter.4)
+
+## Compute the mean and sd
+
+Note on notation.
+
+$X \sim N(\mu = 92.6 , \sigma = 3.6)$
+
+or
+
+$X \sim N(\bar{x} = 92.6 , s= 3.6)$\
+We estimate $\sigma$ with *s* - The sample proportion.
+
+```{r}
+# Sample standard deviation
+
+possum$head_l |> 
+  sd()
+
+# Sample mean
+possum$head_l |> 
+  mean()
+
+```

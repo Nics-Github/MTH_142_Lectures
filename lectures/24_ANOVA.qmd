@@ -1,0 +1,224 @@
+---
+title: "ANOVA part 1"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+execute: 
+  echo: true
+---
+
+## Libraries
+
+```{r}
+library(openintro)
+library(tidyverse)
+library(kableExtra)
+```
+
+## Comparing multiple groups
+
+We use **An**alysis **o**f **Va**riance for testing if there is a difference between many means.
+
+## New distribution: F
+
+The F distribution looks like:
+
+```{r curve-F}
+#| echo: False
+
+curve(
+  df(x, df1=1, df2=2), 
+  from=0, to=5)
+```
+
+## p-value and CI
+
+We find the p-value in the right tail.
+
+There is no real confidence interval.
+
+## Conditions:
+
+-   **the observations are independent within and between groups,**
+
+<br>
+
+-   the responses within each group are nearly normal, and\*
+
+<br>
+
+-   the variability across the groups is *about* equal.
+
+## Rule of Thumb
+
+<br>
+
+The variance are equal condition has a rule of thumb.
+
+If the largest is not more than four times the smallest all is well.
+
+$$
+\frac{\sigma^2_{max}}{\sigma^2_{min}}\le 4
+$$
+
+or
+
+If the largest SD/ smalest SD is between 0.5 and 2.
+
+
+$$
+\frac{\sigma_{max}}{\sigma_{min}}\le 2
+$$
+
+## A test
+
+There are three classes that took a midterm. We want to know if the exam average for any of the classes is different.
+
+```{r}
+ggplot(data=classdata) +
+  geom_boxplot(
+    aes(x= m1, color = lecture)    )
+```
+
+## Summary stats
+
+Is the variance about the same?
+
+```{r}
+
+classdata |>
+  group_by(lecture) |>
+  summarise(mean = mean(m1), sd = sd(m1), count = n())|>
+  kable(digits = 1, align = "l")
+```
+
+## Notation:
+
+<br>
+
+$H_0: \mu_1 =\mu_2 =\mu_3$
+
+$H_a:$ At least one mean is different.
+
+$\alpha = 0.05$
+
+## The test computation
+
+Is done by R with `aov()` . We will not be doing this test by hand.
+
+```{r}
+results <- aov( m1 ~ lecture, data = classdata )
+summary(results)
+```
+
+## Conclusion:
+
+Reject the null, one of the exam averages is different than the other two.
+
+## Try one:
+
+In the iris data set, would it be appropriate to do ANOVA on `petal.length`? Why or why not?
+
+Make a summary table or boxplot to justifty.
+
+## My code for `petal.length`
+
+For the table:
+
+```{r}
+#| eval: false
+
+iris |>
+   group_by(Species) |>
+   summarise(mean = mean(Petal.Length), standard_dev = sd(Petal.Length), count =n())|>
+   kable(digits = 1, align = "c")
+```
+
+For the graph
+
+```{r}
+#| eval: false
+
+iris |>
+  ggplot(aes(Petal.Length, color = Species))+
+  geom_boxplot()
+
+```
+
+## My summary table and graph
+
+```{r}
+
+
+
+iris |>
+   group_by(Species) |>
+   summarise(mean = mean(Petal.Length), sd = sd(Petal.Length), count =n())|>
+   kable(digits = 1, align = "c")
+```
+
+```{r}
+
+
+iris |>
+  ggplot(aes(Petal.Length, color = Species))+
+  geom_boxplot()
+
+```
+
+## A flower's sepal
+
+![](https://upload.wikimedia.org/wikipedia/commons/7/7f/Mature_flower_diagram.svg)
+
+## Try `Sepal.Length` from iris.
+
+Is it appropriate to do ANOVA on `Sepal.Length`?
+
+```{r}
+#| echo: False
+
+
+iris |>
+   group_by(Species) |>
+   summarise(mean = mean(Sepal.Length), sd = sd(Sepal.Length))|>
+   kable(digits = 1, align = "l")
+```
+
+```{r}
+#| echo: False
+
+iris |>
+  ggplot(aes(Sepal.Length, color = Species))+
+  geom_boxplot()
+
+```
+
+## Look at the graph
+
+Is there one mean that's different?
+
+```{r}
+
+iris |>
+  ggplot(aes(Sepal.Length, color = Species))+
+  geom_boxplot()
+```
+
+## Do the test
+
+-   Notation
+
+-   Test
+
+-   Conclusion
+
+```{r}
+results <- aov( Sepal.Length ~ Species, data = iris )
+summary(results)
+```
+
+## Problem 5, 7, or 9
+
+[Link to exercises](https://openintro-ims.netlify.app/inference-many-means#chp22-exercises)

@@ -1,0 +1,235 @@
+---
+title: "ANOVA 2"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+execute: 
+  echo: true
+---
+
+## ANOVA Details
+
+![](images/anova_annotated.png)
+
+## Degrees of Freedom
+
+Let's consider the `iris` data.
+
+```{r}
+#| echo: false
+library(tidyverse)
+library(openintro)
+library(kableExtra)
+library(broom)
+
+iris |>
+  select(Sepal.Length, Species) |>
+  group_by(Species) |>
+  summarise(mean = mean(Sepal.Length), sd= sd(Sepal.Length), count= n())|>
+  kable(digits = 1 )
+```
+
+$$H_o: \mu_1 = \mu_2 = \mu_3 \\
+H_a: \text{At least one of these is different}$$
+
+## Rule of Thumb
+
+<br>
+
+The variance are equal condition has a rule of thumb.
+
+If the largest is not more than four times the smallest all is well.
+
+$$
+\frac{s^2_{max}}{s^2_{min}}\le 4
+$$
+
+or
+
+If the largest SD/ smallest SD is between 0.5 and 2.
+
+$$
+\frac{s_{max}}{s_{min}}\le 2
+$$
+
+## Variability in ANOVA
+
+There are two types of Variability
+
+1.  The variability between the groups. This is called mean square between groups (MSG).
+2.  The variability within the groups. This is called mean square error (MSE).
+
+## Degrees of Freedom
+
+Let k be the number of groups.
+
+Let n be the total number of observations.
+
+The MSG has $df_G = k-1$ degrees of freedom.
+
+The MSE has $df_E = n-k$ degrees of freedom.
+
+The `aov()` function calculates these for you.
+
+## ANOVA output
+
+```{r}
+library(broom)
+
+results <- aov(Sepal.Length ~ Species, data=iris)
+
+#Note: you can also use summary(results). Then you don't have to load the broom package. 
+tidy(results) |>
+  kable(digits = 1)
+```
+
+## The f statistic
+
+The f statistic arises as a ratio of the MSG and MSE.
+
+If the ratio is large it means that the event is unlikely and we should reject the null hypothesis.
+
+$$f=\frac{MSG}{MSE}$$
+
+(see page 289 to calculate SSG and SSE).
+
+## Post hoc tests
+
+If we reject the null hypothesis we want to be able to identify which mean is different.
+
+Sometimes it is obvious and we can do this graphically.
+
+## Post hoc setup
+
+Let k be the number of groups we are comparing.
+
+Let **K** = the number of possible pairs compared.
+
+$K = \frac{k(k-1)}{2}$
+
+## Adjust the pvalue to reduce type 1 error.
+
+We could do pairwise T-Tests but then we increase the Type 1 error rate.
+
+-   Type 1 Error: Reject the null when it is true.
+
+So we adjust the p-value (Bonferroni Correction )
+
+## **Bonferroni Correction for Multiple Comparisons**
+
+Conduct a t-test for the difference in means for all 𝐾 possible pairs and
+
+collect the p-values (the pairwise p-values). The corrected the pairwise
+
+p-value for multiple comparisons
+
+$\text{p-value}^* = \text{p-value} × 𝐾$
+
+which is equivalent to $\alpha^* = \frac{\alpha}{K}$
+
+You just do one or the other.
+
+## Recall ANOVA of Sepal. Length
+
+```{r}
+results <- aov( Sepal.Length ~ Species, data = iris )
+summary(results)
+
+```
+
+## Post hoc on Sepal.Length
+
+```{r}
+pairwise.t.test(
+  x= iris$Sepal.Length,
+  g = iris$Species,
+  pool.sd = F, 
+  paired = F,
+  p.adjust.method = "bonferroni") 
+```
+
+## Occasional contradictions
+
+Sometimes the post hoc doesn't seem to indicate that any mean is different. That's ok. Let's stick with ANOVA
+
+## Try a test, do a post hoc if necessary.
+
+```{r}
+library(palmerpenguins)
+```
+
+From the `palmerpenguins` package consider the peguins data.
+
+Is there a difference in the avergae flipper length between species.
+
+-   Check conditions (independence,sd, normalish)
+
+    -   make a graph?
+
+-   Set up test
+
+-   Do test
+
+-   post hoc
+
+-   conclusion
+
+## Test output
+
+```{r}
+
+
+results <- aov(flipper_length_mm~species, data=penguins)
+summary(results)
+```
+
+```{r}
+pairwise.t.test(
+  x= penguins$flipper_length_mm,
+  g = penguins$species,
+  pool.sd = F, 
+  paired = F,
+  p.adjust.method = "bonferroni") 
+```
+
+## Example
+
+Consider chickwts. Do a test to see if the average maximum weight of the chicks is dependent on the food type given.
+
+-   check conditions
+
+-   do test
+
+-   do post hoc
+
+```{r}
+chickwts
+```
+
+## ANOVA with Randomization
+
+You'll do this in lab 7.
+
+```{r}
+set.seed(11292023)
+library(infer)
+simulated_data <- chickwts |>
+  specify(weight ~ feed) |>
+  hypothesize(null = "independence") |> 
+  generate(reps = 1000, type = "permute") |> 
+  calculate(stat = "F") 
+```
+
+## Graph of simulated data
+
+```{r}
+simulated_data |>
+  visualise() +
+  shade_p_value( obs_stat= 15.37, direction = "greater")
+```
+
+## Consider the `nba_player_19` data from open intro
+
+Do a hypothesis to see if the average heights are different by team.

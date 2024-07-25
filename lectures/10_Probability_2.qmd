@@ -1,0 +1,107 @@
+---
+title: "Random Variables"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+---
+
+## Probability Functions
+
+$0<P(x_i)<1$
+
+$\sum_i P(x_i) = 1$
+
+## Process vs Variable
+
++-----------------------------+------------------------+
+| Random Process              | Random Variable        |
++=============================+========================+
+| Rolling a two six sided die | X = Sum of faces       |
++-----------------------------+------------------------+
+| Flip a coin 10 times        | X = \# Number of Tails |
++-----------------------------+------------------------+
+| Body Dimensions             | X = Foot size          |
+|                             |                        |
+|                             | Y = Neck Circumference |
+|                             | Z = Height             |
++-----------------------------+------------------------+
+
+## Random variables
+
+::: incremental
+-   Are like functions that map onto the real line
+
+-   Often given the names X, Y, and Z
+
+-   Capital X is the name of the variable
+
+-   Lowercase x is the value the variable takes
+
+-   Type of Random variables:
+
+    -   Continuous Random Variables
+
+    -   Discrete Random Variables
+:::
+
+## Discrete Random Variables
+
+Get a Probability Mass Function
+
+States their probability of any value of x
+
+-   Example: Value of face on a die
+
+## Continuous Random Variables
+
+Get a Probability Density Function
+
+This states there probability for any value less than or grater than little x.
+
+-   Height
+
+# Today Discrete RV Examples.  
+
+## Expectation
+
+Expectation is another word for average.
+
+::: incremental
+-   It is $E[X] = \sum_i P(x_i) x_i$
+
+-   Let's make a probability model for X = The value on the face of a dice.
+
+-   Let's graph the model.
+
+-   Then let's calculate its expectation.
+:::
+
+## Variance
+
+The Variance is given by the following formula.
+
+$V[X] = E[(X-\mu)^2] = \sum_i (x_i-\mu)^2 P(X=x_i)$
+
+Let's calculate the variance of the variable X from the previous slide.
+
+## Board work: the sum of two die.
+
+Write the random variable.
+
+Find the expectation.
+
+Find the variance.
+
+Write the probability model (as a table or graph).
+
+[Here is the sample space](https://spreadsheetsolving.com/wp-content/uploads/2013/06/techsmithwor6cb3.png) for rolling two die [^1]
+
+[^1]: https://spreadsheetsolving.com/probabilities-dice-simulations/
+
+## Examples
+
+Problem 3.30
+
+Problem 3.33

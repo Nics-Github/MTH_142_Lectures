@@ -1,0 +1,135 @@
+---
+title: "Regression Math"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+---
+
+```{r}
+#| include: FALSE
+
+library(tidyverse)
+library(MASS)
+library(broom)
+```
+
+## We will do three things
+
+1.  Find the slope of the linear model using standard deviations
+2.  Make the linear model considering $\overline{x}$ and $\overline{y}$
+3.  Find $R^2$ from a simple ratio of the $s_y$ and $s_e$
+
+## Find slope of the linear model
+
+::: incremental
+-   $b=\frac{s_y}{s_x}r$
+
+-   $s_y$ is the sample standard deviation in the y values.
+
+-   $s_x$ is the sample standard deviation in the x values.
+
+-   $r$ is the correlation coefficient.
+
+-   We know these values from Monday.
+:::
+
+## Recall
+
+We can get our std.errors and r:
+
+```{r tidy-model}
+#| echo: TRUE
+
+cats |>
+  summarize(
+    r = cor( Hwt, Bwt ),
+    r2 =  (cor( Hwt, Bwt ))^2,
+    sd_y = sd(Hwt),
+    sd_x = sd(Bwt)
+  )
+
+```
+
+## We are lucky
+
+To find the sample standard deviation in the past people had to use this:
+
+![](images/sd_equation.png){fig-align="center"}
+
+## Slope calculation
+
+$m = b_1 = \frac{s_y}{s_x} r=\frac{2.434}{0.485}(0.804)=4.035$
+
+We still don't know how to find `r`
+
+## The means are on the regression line.
+
+$\overline{x}$ and $\overline{y}$ are on the regression line $\hat{y}$
+
+```{r}
+#| echo: TRUE
+cats |>
+  summarize(
+    mean_y = mean(Hwt),
+    mean_x = mean(Bwt)
+  )
+```
+
+## Solve for the intercept
+
+Now we plug everything into the equation of a line and solve for $b_0$
+
+I'm rounding for ease.
+
+$\hat{y} = b_0 + b_1 x$
+
+$10.631 = b_0 + 4.035 (2.724)$
+
+$10.631 = b_0 + 10.991$
+
+$- 0.36 = b_0$
+
+So our line is: $\hat{y} = - 0.36 + 4.03 x$ or
+
+$\widehat{Hwt} = -0.36+ 4.03 \text{Bwt}$
+
+## Those are the same numbers we had before
+
+```{r}
+cat_model <-lm(Hwt ~ Bwt , cats)
+cat_model
+
+```
+
+## Standard Deviation of Residuals
+
+```{r}
+#| echo: TRUE
+
+cat_model_aug <- augment(cat_model)
+tidy(cat_model_aug)
+```
+
+## We are lucky again
+
+To find the standard deviation in the past people had to use this:
+
+![](images/sd_equation.png){fig-align="center"}
+
+## To calculate $R^2$
+
+The book shows an equivalent method to do this. Using SST and SSE.
+
+$r^2=0.65=65\%$
+
+"65% in the variation of Heart Weight can be explained by the Body Weight"
+
+Rounding again for ease.
+
+$R^2 = \frac{s_y-s_e}{s_y} = \frac{2.4^2-1.4^2}{2.4^2} \approx 0.65$
+
+$r=\sqrt{0.65}\approx 0.80$
+
+## [Try Problem 22](https://openintro-ims.netlify.app/model-slr#chp7-exercises)

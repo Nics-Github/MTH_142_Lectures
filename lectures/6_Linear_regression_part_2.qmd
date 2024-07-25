@@ -1,0 +1,234 @@
+---
+title: "Linear Regression part 2"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+execute: 
+  echo: TRUE
+---
+
+# Homework notes
+
+Problem 6
+
+![](images/Data_enter_into_r.png)
+
+## Copy and paste into r
+
+Use c() function. Add commas. (Note we all have different numbers)
+
+```{r}
+Colesterol_Lvl <- c(
+244,
+278,
+272,
+160,
+226,
+210,
+318,
+236,
+186,
+142,
+360,
+288,
+220,
+206,
+282,
+270,
+282,
+234,
+266,
+276,
+294,
+224,
+310,
+242,
+236,
+288)
+```
+
+# Cats
+
+![Street Cats](https://www.dailypaws.com/thmb/TLcNyR7775d3BWl4xJh0-x1VjVI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/what-is-a-group-of-cats-called-2-1226896610-2000-808099d67e684dd083617ed5465543de.jpg){fig-align="center"}
+
+## Cats' hearts
+
+![You stole Meow Heart](https://drbillspetnutrition.com/wp-content/uploads/2017/01/1.-Feline-Heart-1.jpg){fig-align="center"}
+
+## A big heart may cause problems
+
+Finding the size of a cat's heart is hard.
+
+Estimate with a model a model.
+
+## Data from the 40s
+
+This data cites [this source,](https://digital.library.adelaide.edu.au/dspace/bitstream/2440/15253/1/211.pdf) which you may be inclined to look over.
+
+```{r}
+#| code-fold: show
+
+#install.packages("MASS")
+library(MASS)
+```
+
+## Look at data
+
+```{r}
+?cats
+tail(cats,6)
+```
+
+## Which variable is which?
+
+Which should be the predictor and response variables?
+
+## Plot
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+
+ggplot(cats, aes(Bwt, Hwt))+
+  geom_point(aes(color=Sex) )+
+  xlab("Body Weight in Kg") +
+  ylab("Heart Weight in Grams")
+
+```
+
+## Describe Trend
+
+-   Shape
+
+-   Direction
+
+-   Strength
+
+## Add a regression line
+
+```{r}
+ggplot(cats, aes(x = Bwt, y = Hwt))+
+  geom_point(aes(color=Sex) )+
+  geom_smooth(method = lm, se = FALSE) +
+  xlab("Body Weight in Kg") +
+  ylab("Heart Weight in Grams")
+```
+
+## Find correlation coefficient .
+
+```{r}
+cats |>
+  summarize(r = cor(Bwt, Hwt, use="complete.obs"))
+```
+
+## Find the coefficents
+
+```{r}
+#install.packages("broom")
+library(broom)
+cat_model <- lm(Hwt ~ Bwt, data= cats)
+tidy(cat_model)
+```
+
+## The Equation
+
+Intercept is the y-intercept of our linear model ($\beta_0 = -0.36$).
+
+The number next to Bwt is the slope ($\beta_1 = 4.03$).
+
+The equations is: $$
+\hat{y} = \beta_0 + \beta_1 x \\
+\text{or} \\
+\widehat{Hwt} = -0.36 + 4.03 \times Bwt $$
+
+## Summary
+
+![](images/lm_cats_1_predictor.png)
+Stolen from Prof KG
+
+## Interpretation
+
+
+
+Slope: For every *kilogram* increase in body weight we expect a 4.03 *gram* increase in the heart weight.
+
+
+
+Intercept: If we found a cat they weighed nothing its heart would be -0.36 grams?
+
+## More Complete outputs
+
+```{r}
+# Alternative to tidy()
+summary(cat_model)
+```
+
+## If a cat weighs:
+
+::: incremental
+-   3.5 kg how large a heart would we expect?
+
+-   Can we estimate the heart size for a 5kg cat?
+
+    -   Caution against extrapolation.
+:::
+
+# Residuals
+
+Residuals are the difference in the observed values and the predicted value.
+
+$$e = y - \hat{y}$$
+
+```{r}
+#| echo: FALSE
+
+ggplot(cats, aes(x = Bwt, y = Hwt))+
+  geom_point(aes(color=Sex) )+
+  geom_smooth(method = lm, se = FALSE) +
+  xlab("Body Weight in Kg") +
+  ylab("Heart Weight in Grams")
+
+```
+
+## Due Diligence
+
+Check for normal residual distribution
+
+Check for residual linearity
+
+## Linearity of the residuals
+
+Are the residuals close to the zero?
+
+```{r}
+#install.packages("broom")
+library(broom)
+
+cat_model_aug <- augment(cat_model)
+
+
+ggplot(data = cat_model_aug, aes(x = .fitted, y = .resid)) +
+  geom_point() +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  xlab("Fitted values") +
+  ylab("Residuals")
+```
+
+## Normal distributions of residuals
+
+```{r}
+ggplot(data = cat_model_aug, aes(x = .resid)) +
+  geom_histogram(binwidth = 0.25) +
+  xlab("Residuals")
+```
+
+The data looks roughly normal.
+
+## Citations
+
+Street cats from https://www.dailypaws.com/cats-kittens/behavior/what-is-a-group-of-cats-called
+
+You stole Meow Heart https://drbillspetnutrition.com/feline-heart-conditions/

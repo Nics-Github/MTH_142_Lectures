@@ -1,0 +1,91 @@
+---
+title: "Hypothesis Testing With p-values"
+format: revealjs
+editor: visual
+---
+
+# Hypothesis Testing with Confidence Intervals
+
+Review:
+
+We've done hypothesis testing with Confidence intervals
+
+1.  Write notation
+
+2.  Check Conditions
+
+3.  Build Confidence Interval around **sample statistic**.
+
+4.  Check if null hypothesis is in confidence interval.
+
+# Hypothesis Testing with p-values
+
+We've done hypothesis testing with Confidence intervals
+
+1.  Write notation
+
+2.  Check Conditions
+
+3.  Build Theoretical Distributions with **assumed parameter**.
+
+4.  Find the probability of such a sample statistic.
+
+# The question we are trying to answer:
+
+If the null hypothesis is true, how likely is it that we would have gotten the statistic from our sample?
+
+# Example 1.
+
+16.1: Do aliens exist? In May 2021, YouGov asked 4,839 adult Great Britain residents whether they think aliens exist, and if so, if they have or have not visited Earth.
+
+-   In the survey 22% responded "I think they exist, and have visited Earth,"
+
+-   28% responded "I think they exist, but have not visited Earth,"
+
+-   29% responded "I do not think they exist," and 22% responded "Don't know."
+
+You want to evaluate if more than a quarter (25%) of Great Britain adults think aliens do not exist.
+
+# Example 2.
+
+16.28 Nearsighted children. Nearsightedness (myopia) is a common vision condition in which you can see objects near to you clearly, but objects farther away are blurry. It is believed that nearsightedness affects about 8% of all children. In a random sample of 194 children, 21 are nearsighted. Using a mathematical model, conduct a hypothesis test for the following question: do these data provide evidence that the 8% value is inaccurate?
+
+# In this class:
+
+-   We'll make confidence intervals from statistics. (Including hypothesis tests with confidence intervals, i.e. use $\hat{p}$ to estimate the SE of a porportion\*)
+
+-   We'll do hypothesis tests with the assumed mean/proportion and sample statistics if needed.
+
+-   We'll default to $\alpha = 0.05$
+
+\*This is not the only option.
+
+# Note on alpha:
+
+-   alpha shows the strength of our evidence.
+
+-   weak evidence $\alpha = 0.1$ or higher.
+
+-   moderate evidence $\alpha =0.05$
+
+-   strong evidence $\alpha = 0.01$
+
+Choosing alpha involves making trade offs that are beyond the scope of this class.
+
+# List of the tests so far.
+
+[List of tests](https://docs.google.com/spreadsheets/d/11OzkNzzFwEGHyEj8LftsOydTd2tYTtibHnpC0OsdMJ8/edit?usp=sharing)
+
+# Type Errors
+
+![](./gfx/test_errors.png)
+
+# Let's go back
+
+Could we have made an error?
+
+# Board work problems
+
+[16.24 and 16.2](https://openintro-ims.netlify.app/inference-one-prop#chp16-exercises)7
+
+# Bring computers tomorrow.

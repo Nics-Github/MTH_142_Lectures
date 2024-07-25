@@ -1,0 +1,39 @@
+project:
+  type: website
+  output-dir: ./docs
+  
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+    toc_depth: 2
+    theme: lumen
+    highlight: tango
+    df_print: paged
+    lib_dir: site_libs
+    self_contained: no
+    
+# All icons were obtained from https://icons.getbootstrap.com/
+website:   
+  title: "SDS 220"
+  favicon: /gfx/220.png
+  
+  navbar:
+    
+    right:
+    - text: lectures
+      href: index.qmd
+  
+  page-footer:
+    right: 
+    - text: credits
+      href: credits.qmd
+
+format:
+  html:
+    theme: lux
+    css: styles.css
+    toc: true
+
+
+

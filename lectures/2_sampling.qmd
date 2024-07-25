@@ -1,0 +1,86 @@
+---
+title: "Studies"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+---
+
+## Read beforehand
+
+[Chapter 2 on Study Design](https://openintro-ims.netlify.app/data-design)
+
+## Classwork
+
+[Problems 1.7 and 1.13](https://openintro-ims.netlify.app/data-hello#chp1-exercises)
+
+## Blue whales
+
+No [In Breeding in blue whales.](https://www.nytimes.com/2024/01/23/science/blue-whale-genome.html)
+
+![New York Times, 1/23/2024 photo cred: Burton Lim](https://static01.nyt.com/images/2024/01/23/multimedia/23tb-blue-whales-tghb/23tb-blue-whales-tghb-jumbo.jpg?quality=75&auto=webp)
+
+## Some info on Blue whales:
+
+n = 3500
+
+Four subspecies[^1]:
+
+[^1]: https://en.wikipedia.org/wiki/Blue_whale
+
+-   Northern
+
+-   Northern Indian Ocean
+
+-   Pygmy blue whale
+
+-   Antarctic subspecies
+
+## Sampling
+
+1.  Simple random sampling
+
+2.  Stratified sampling
+
+3.  Cluster sample
+
+## Experimental Design
+
+1.  Control vs Treatment
+
+2.  Randomization - Effect of Confounding Variables.
+
+3.  Replication - Repeat experiments have the similar results.
+
+## Experiments vs Observational Studies
+
+1.  Experiments have a control
+
+    a.  Use for causal conclusions
+
+2.  Observational Studies often gather information
+
+    a.  Cannot be used for casual conclusions
+
+## Explanatory Variable
+
+If we suspect a causal relationship we have an explanatory and response variable.
+
+-   Negative relationship
+
+-   Positive Relationship
+
+-   No Relationship
+
+## Confounder Variables
+
+Variables that have an unanticipated effect on the study.
+
+## More Problems
+
+[Chapter 2 2.15, 2.17, 2.20](https://openintro-ims.netlify.app/data-design#chp2-exercises)
+
+## Next Reading
+
+[Chapter 4 Exploring Categorical Data](https://openintro-ims.netlify.app/explore-categorical)

@@ -1,0 +1,33 @@
+---
+title: "Goals of Lab 1"
+author: "Schwab"
+format: 
+  revealjs: 
+    theme: beige
+  html:  
+    code-overflow: scroll
+editor: visual
+execute: 
+  echo: true
+---
+
+# Goals: software
+
+To do modern statistic you have to be familiar with modern software.
+
+-   Get you more familiar with R and RStudio
+
+-   mutate() - make new variables
+
+-   ggplot() - make graphs
+
+# Goals: statistics
+
+Idea of a hypothesis test.
+
+**Question: Are babies with female sex born at the same proportion to those born male?**
+
+$$
+H_o: p_{female} = p_{male} \\
+H_a:  p_{female} \ne p_{male}
+$$

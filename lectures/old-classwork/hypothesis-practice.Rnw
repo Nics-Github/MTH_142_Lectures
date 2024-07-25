@@ -1,0 +1,64 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+ \usepackage{graphicx}
+ %\usepackage{titling}
+ \usepackage{float}
+
+ \title{SDS 220 - Practicing Hypothesis Testing}
+%\author{SDS 220}
+%\date{November 2022}
+ 
+
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 1em%
+  \begin{center}%
+    {\LARGE \@title \par}%
+    \vskip 1em%
+    {\small IMS 16, 17 , 19, 20 \par}%
+  \end{center}%
+  \par
+  \vskip 1em}
+\makeatother
+
+%\usepackage{lipsum}  
+%\usepackage{cmbright}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\maketitle
+
+\begin{enumerate}
+    \item Elevated mercury concentrations are an important problem for both dolphins and other animals. We want to investigate the average mercury content in dolphin muscle using a sample of 19 Risso's dolphins from the Taiji area in Japan. Summary statistics: $\overline{x} = 4.4$, $s_x = 2.3$, $min = 1.7$, and $max = 9.2$. Test if the average mercury content for dolphins in the population is 6. 
+    \begin{enumerate}
+    \item Write the hypotheses in symbols.
+    \item Check conditions.
+    \item Find the p-value.
+    \item What is the conclusion of the hypothesis test using $\alpha = .10$?
+  \end{enumerate}
+      \item A Gallup poll surveyed Americans about their employment status and whether they have diabetes. The survey results indicate that 1.5\% of the 47,774 employed (full or part time) and 2.5\% of the 5,855 unemployed 18-29 year olds have diabetes.
+    \begin{enumerate}
+    \item State appropriate hypotheses to test for difference in proportions of diabetes between employed and unemployed Americans.
+    \item Conduct a hypothesis test using $\alpha = 0.05$. 
+    \item The sample difference is about 1\%. The hypothesis test had a p-value that is very small (about 0), meaning the difference is statistically significant. Use this result to explain the difference between statistically significant and practically significant findings.
+    \end{enumerate}
+    \item The mean number of sick days an employee takes per year is believed to be about ten. Members of a personnel department do not believe this figure. They randomly survey eight employees. The number of sick days they took for the past year are as follows: 12; 4; 15; 3; 11; 8; 6; 8. Let $x$ = the number of sick days they took for the past year. Should the personnel team believe that the mean number is ten?
+      \begin{enumerate}
+    \item Write the hypotheses in symbols.
+    \item Check conditions.
+    \item Find the p-value.
+    \item Calculate a 90\% CI and interpret. 
+    \item What is the conclusion of the hypothesis test using $\alpha = .10$?
+  \end{enumerate}
+    \item Suppose a statistics instructor believes that there is no significant difference between the mean class scores for the students that take the course during the day (day students) and night (night students) on Exam 2. She takes random samples from each of the populations. The mean and standard deviation for 35 day students were 75.86 and 16.91, respectively. The mean and standard deviation for 37 night students were 75.41 and 19.73. Assume the data from the two populations is roughly symmetric. 
+    \item A national survey conducted among a simple random sample of 1507 adults shows that 56\% of Americans think the Civil War is still relevant to American politics and political life. Conduct a hypothesis test to determine if these data provide strong evidence that the majority of the Americans think the Civil War is still relevant.
+    \item A 90\% confidence interval for a population mean is (65, 77). The population distribution is approximately normal and the population standard deviation is unknown. This confidence interval is based on a simple random sample of 25 observations. Calculate the sample mean and the standard error. Assume that all conditions necessary for inference are satisfied. Use the $t$-distribution in any calculations.
+\end{enumerate}
+
+
+\end{document}
+

@@ -1,0 +1,29 @@
+---
+title: "Hiding messages"
+author: "Schwab"
+format: revealjs
+editor: visual
+execute: 
+  echo: false
+  warning: false
+---
+
+## Universally hide the code 
+
+![](www/schwabs-lectures/images/echo-false.png)
+
+## Selectively hide code
+
+![](www/schwabs-lectures/images/false-in-code-chunk.png)
+
+## Hide warnings
+
+![](www/schwabs-lectures/images/warnings-false.png)
+
+## Similarly you can hide/ show error messages. 
+
+## A note on include
+
+![](www/schwabs-lectures/images/include.png)
+
+## See the R markdown cheat sheet for more information. 

@@ -1,0 +1,228 @@
+---
+title: "Multiple Predictors"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+execute: 
+  echo: true
+---
+
+## Libraries
+
+```{r}
+#install.packages("GGally")
+library(MASS) # for cats data set
+library(tidyverse) # for ggplot functions/plotting
+library(broom) # for tidy() function
+library(openintro) # for loan data set
+library(GGally) # for ggpairs() function
+library(palmerpenguins) # penguin data set
+library(statsr)
+
+```
+
+## Recall
+
+Cats Heart Weights
+
+```{r}
+head(cats) 
+
+```
+
+## Categorical predictor
+
+Sex is an indicator variable.
+
+```{r}
+lm(Hwt ~ Sex, data = cats) |>
+  tidy() 
+```
+
+## Graph
+
+R decides that F = 0 because its listed first in the data.
+
+```{r}
+ggplot(data= cats, mapping = aes(x=Sex, y=Hwt))+
+  geom_point() +
+  stat_summary(geom = "line", fun = mean, group = 1) +
+  labs(x = "Sex F = 0, M = 1")
+  
+```
+
+## Multiple Predictors
+
+-   We recognize that `Bwt` (body weight) plays a role in `Hwt`
+
+-   We will make a linear function that incorporates both of those variables.
+
+```{r}
+lm(Hwt ~ Sex + Bwt, data = cats) |>
+  tidy() 
+```
+
+## Interpret this table
+
+$$
+y = \beta_0 + \beta_1 x_1 +\beta_2 x_2 + e
+$$
+
+-   $x_1$: sex, M for male or F for female.
+
+-   $x_2$: body weight (Bwt) in kilograms
+
+-   𝑦: heart weight (Hwt) in grams
+
+-   𝑒: error
+
+-   $\beta_i$ : the slope for each variable
+
+## Interpret this table
+
+![](images/lm_multi_cats.png)
+
+## Interpretation
+
+-   The expected mean value of Hwt when Sex = F and Bwt =0 is -0.415.
+
+-   We expect the mean value of Hwt to decreases by −0.0821 grams when Sex = M in comparison to the Sex = F group, holding Bwt constant.
+
+-   For every 1 kilogram increase in Bwt we expect the mean value of Hwt to increase by 4.08 grams, holding Sex constant.
+
+## Domain $x_1$ and $x_2$
+
+When plugging in values for $x_1$ and $x_2$ its important to remember which values those can take.
+
+-   $x_1$ can only be 0 and 1.
+
+    -   It is an indicator variable
+
+-   $x_2$ must be between `min(cats$Bwt)` and `max(cats$Bwt)`
+
+    -   Avoid extrapolation.
+
+## The equation
+
+$$
+\hat{𝑦} = −0.415 − 0.0832𝑥_1 + 4.08𝑥_2
+$$ What is the value of $\hat{y}$ when $x_1 = 1$ and $x_2 = 2.5$?
+
+In a sentence interpret this answer.
+
+## $R^2$ adjusted
+
+For linear regression models with multiple predictors we use Adjusted Coefficient of Determination $R^2_{adj}$ .
+
+Let 𝑛 be the number of observations, and 𝑝 is the number of $\beta$ (not including $\beta_0$ )
+
+$$
+R^2 = 1- \frac{SSE}{SST} ( \frac{n-1}{n-p-1})
+$$
+
+Measures the proportion of the variation in the outcome variable 𝑌 that is explained by the linear regression model with all of the predictors we used.
+
+## $R^2_{adj}$ by R
+
+```{r}
+results <- lm(Hwt ~ Sex + Bwt, data = cats) 
+summary(results)
+```
+
+## To keep in mind:
+
+-   Keep models simple
+
+-   Avoid having two very similar variables (multicollinearity) see below.
+
+-   It is okay to have variables that are not statistically significant, they might be important to the research question anyways.
+
+-   It is okay to have variables in the model not important to the research question, but you want to control for their effect.
+
+## Try one:
+
+Make a model for a `penguins` mass with the four predictor variable: `bill_length`, `bill_depth`, `flipper_length_mm`, `sex`
+
+## Solution
+
+```{r}
+results <- lm(body_mass_g ~ 
+     bill_length_mm +
+     bill_depth_mm +
+     flipper_length_mm +
+     sex , 
+   data = penguins
+   ) 
+  
+results |> tidy()
+
+```
+
+## Interpret
+
+a)  Calculate the residual for a male penguin that weighs 3750 grams with the following body measurements:
+
+-   bill_length_mm = 39.1
+
+-   bill_depth_mm = 18.7
+
+-   flipper_length_mm = 181.
+
+Does the model overpredict or underpredict this penguin's weight?
+
+b)  Interpret the slope for bill_depth_mm in context.
+
+## Multicollinearity
+
+If variables in our prediction equation are themselves correlated it can impact our model. So we should check.
+
+```{r}
+ggpairs(penguins,
+     columns= c("body_mass_g",  
+     "bill_length_mm",
+     "bill_depth_mm",
+     "flipper_length_mm",
+     "sex" ))
+
+```
+
+## Summary Plot
+
+```{r}
+summary(results)
+
+```
+
+## Residuals
+
+```{r}
+results_aug <-augment(results)
+
+ggplot(data= results_aug, aes(.fitted ,.resid ) )+
+  geom_point()+
+  geom_hline(yintercept = 0, color= "red")
+  
+
+```
+
+## For homework 3
+
+Data from question 12.
+
+![](images/HW3_baseball_data.png)
+
+## Input into R
+
+Do this once:
+
+-   Instructions: `install.packages("datapasta")`
+
+-   Restart R
+
+To paste data:
+
+-   Copy data from Homework.
+
+-   In a .qmd file click Addins \> Paste As Tibble

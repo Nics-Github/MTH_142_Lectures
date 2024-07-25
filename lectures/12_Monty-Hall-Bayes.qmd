@@ -1,0 +1,120 @@
+---
+title: "Monty Hall Problem"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+---
+
+## Monty Hall Problem
+
+::: incremental
+-   Suppose there are three doors
+
+-   Behind one is a car
+
+-   Behind the other two are goats
+
+-   You choose a door
+
+-   The host opens another door to show a goat.
+
+-   You can either switch doors or not, which do you choose?
+:::
+
+# Gather Data
+
+We will find the Empirical Probability.
+
+Groups of three.
+
+-   One person to be the contestant,
+
+-   one person to be the host,
+
+-   and one person to keep track.
+
+10 times always staying at the door.
+
+10 times always switching the door.
+
+# Helpful Table
+
+A table like this might help:
+
+|                | Games played | Games Won | Probability of wining? |
+|----------------|--------------|-----------|------------------------|
+| Games stayed   | 10           |           |                        |
+| Games Switched | 10           |           |                        |
+|                |              |           |                        |
+
+# What are the empirical probs?
+
+Combine data and use the law of large numbers.
+
+[Here's a spreadsheet to help us.](https://docs.google.com/spreadsheets/d/1AWPP39P_952i0sh5i1hxkS_ZdvyLr-XXViBxUcTkzVU/edit?usp=sharing)
+
+# Prior Information
+
+Let's find some Probabilities.
+
+Let's find the probabilities before a door is open (prior information):
+
+-   P( The car is behind door A )
+
+-   P( The car is behind door B )
+
+-   P( The car is behind door C )
+
+## The set up
+
+All the doors are equally likely, so say we choose A and the host opens B.
+
+Let's write out the total probability for the host opening B.
+
+$$P(\text{op B}) = P(\text{opB} \vert \text{carA})P(\text{carA}) + P(\text{opB} \vert \text{carB})P(\text{carB}) + P(\text{opC} \vert \text{carC})P(\text{carC})$$
+
+Find the three probabilities on the right of the equation.
+
+# Bayes Theorem
+
+::: incremental
+$P(C|D) = \frac{P(D|C)P(C)}{P(D)} = \frac{P(D|C)P(C)}{P(D|C)P(C)+P(D|\bar{C})P(\bar{C})}$
+:::
+
+We have three probabilities to find:
+
+-   P( Car behind A \| opens B)
+
+-   P( Car behind B \| opens B)
+
+-   P( Car behind C \| opens B)
+
+## Let's do the first one together.
+
+$$P(\text{ Car A } \vert \text{ open B }) = \frac{P( \text{ open B} \vert \text{ car A }) P(\text{ car A })}{P(\text{ open B })}$$
+
+## Do this one with group.
+
+$$P(\text{ Car B} \vert \text{ open B}) = \frac{P( \text{ open B } \vert \text{ car B }) P(\text{ car B })}{P(\text{ open B })}$$
+
+## Do this one with group too.
+
+$$P(\text{ Car C} \vert \text{ open B }) = \frac{P( \text{ open B } \vert \text{ car C }) P(\text{ car C })}{P(\text{ open B })}$$
+
+## So what should we do?
+
+## So what should we do?
+
+## So what should we do?
+
+Always switch doors.
+
+We chose A
+
+$$P(\text{ Car A } \vert \text{ open B }) = \frac{1}{3}$$
+
+We should switch to C
+
+$$P(\text{ Car C } \vert \text{ open B }) = \frac{2}{3}$$

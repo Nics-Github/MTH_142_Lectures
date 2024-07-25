@@ -1,0 +1,136 @@
+---
+title: "Day_19_CLT_CI"
+author: "Schwab"
+format: html
+editor: visual
+---
+
+# The Central Limit Theorem
+
+-   Fundamental Theorem of Statistics.
+
+-   Central Limit Theorem.
+
+# Confidence Intervals
+
+## Note we have been discussing the data distribution so far.
+
+We will now use the Central Limit Theorem to make a confidence interval
+
+Confidence Intervals come from:
+
+-   sampling distributions
+
+-   bootstrap distributions
+
+## The sampling distribution
+
+This is the Central Limit Theorem
+
+> The sampling distribution of a proportion and a mean (and other statistics) is normal if n is large and the observations are independent.
+
+## Consider the possom's sampling distribution?
+
+The possom data is a large independent sample.
+
+Its mean head length is centered at p. Its distribution is $\bar{X} \sim N(\mu,\SE)$
+
+The standard error for a mean in theory is $SE = \frac{\sigma}{\sqrt{n}}$
+
+## Where does the SE come from?
+
+We have the skills to prove this.
+
+$Var(\bar{x})$
+
+## What is the SE?
+
+Here are a few ways to think about the SE:
+
+::: incremental
+-   It measure the variability of a sample statistic. In this case $\bar{x}$
+
+-   The standard deviation goes with the data distribution
+
+-   The standard error goes with the sample (or bootstrap) distributions.
+:::
+
+## Finding the SE with R
+
+The standard error of the bootstrap is a good approximation of the SE for the sample distribution.
+
+Let approximate our SE by sampling from possums:
+
+```{r}
+#| echo: TRUE
+library(tidyverse)
+library(infer)
+library(openintro)
+
+
+possum_sample <- slice_sample(possum, n=104, replace=TRUE)
+
+set.seed(102323)
+possum_head_se<- possum_sample |>
+  specify(response = head_l) |>
+  generate(reps = 5000, type = "bootstrap") |>
+  calculate(stat = "mean") |>
+  pull(stat) |>
+  sd()
+possum_head_se
+```
+
+## Graph the bootstrap
+
+```{r}
+set.seed(102323)
+possum_sample |>
+  specify(response = head_l) |>
+  generate(reps = 5000, type = "bootstrap") |>
+  ggplot() +
+  geom_histogram(aes(x=head_l))
+```
+
+## Let's check it against computing the SE by hand
+
+$$ SE= \frac{\sigma}{\sqrt{n}} \approx \frac{s}{\sqrt{n}}$$ We estimate \$ \sigma \$ with *s* - The sample proportion.
+
+```{r}
+#sample standard deviation
+# s =
+possum$head_l |> 
+  sd()
+```
+
+```{r}
+# sample size
+# n =
+possum |>
+  nrow()
+
+```
+
+## Let's find a 95% CI by hand.
+
+Remember we need to go two standard deviations from the mean which is:
+
+```{r}
+mean(possum$head_l)
+```
+
+$$\bar{x} \pm z* SE $$
+
+## Let's find a 95 % CI with a bootstrap
+
+```{r}
+set.seed(102323)
+possum_sample |>
+  specify(response = head_l) |>
+  generate(reps = 5000, type = "bootstrap") |>
+  calculate(stat = "mean") |>
+  get_ci(level=0.95)
+```
+
+## Practice Problems
+
+IMS 12.7, 13.2, 13.6

@@ -1,0 +1,82 @@
+---
+title: "A Short History of R"
+author: "Schwab"
+format: revealjs
+editor: visual
+---
+
+# A short history of R.
+
+See [this site](https://bookdown.org/rdpeng/rprogdatascience/history-and-overview-of-r.html) for a longer history with fewer pictures.
+
+# Before R there was S
+
+"S is a language that was developed \[in 1976\] by John Chambers and others at the old Bell Telephone Laboratories"
+
+![](https://datascience.stanford.edu/sites/g/files/sbiybj25376/files/styles/medium_square/public/media/image/john-chambers_0.png?h=78b7a964&itok=8v_bN9yZ){fig-align="center"}
+
+# S got bought and sold
+
+TIBCO is the owner of S
+
+Here's a book on S
+
+![](https://i5.walmartimages.com/seo/New-S-Language-Paperback-Used-9780534091934-0534091938_b8bb2a77-c0f5-44a6-8aad-cb27633fd9d3.e3095718acc3e895eb1b86fc70554c78.jpeg?odnHeight=640&odnWidth=640&odnBg=FFFFFF){fig-align="center" width="500"}
+
+# 1996-2000 R is released for free
+
+Ross Ihaka and Robert Gentleman of the university of Auckland Developed it.
+
+# Ross Ihaka
+
+![](https://cdn.auckland.ac.nz/aem/content/auckland/en/science/about-the-faculty/department-of-statistics/ihaka-lecture-series/jcr:content/leftpar/imagecomponent/image.img.1024.medium.jpg/1561079330278.jpg){fig-align="center"}
+
+# Robert Gentleman
+
+![](https://upload.wikimedia.org/wikipedia/commons/c/c6/Rober_Gentleman.png){fig-align="center"}
+
+# Why is it called R?
+
+# CRAN
+
+Comprehensive R Archive Network
+
+They manage all R updates and R packages. There are currently 19897 packages.
+
+They put on the UseR! conference
+
+There's an R magazine
+
+[This is the CRAN team](https://cran.r-project.org/)
+
+# The tidyverse
+
+Hadley Wickham and others made it.
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Hadley-wickham2016-02-04.jpg/800px-Hadley-wickham2016-02-04.jpg){fig-align="center"}
+
+# Who makes RStudio?
+
+::: incremental
+-   Started in 2009 as RStudio
+
+-   The tidyverse comes out in 2016
+
+-   Renamed Posit last year.
+
+-   Offers Python Support
+:::
+
+# Some Credits {.smaller}
+
+-   Photo of John Chambers taken from Stanford's website.
+
+-   Photo of Ross Ihaka - Photo by Kristina D.C. Hoeppner from Wellington, New Zealand - Ross Ihaka, CC BY-SA 2.0, https://commons.wikimedia.org/w/index.php?curid=37005667
+
+-   Photo by Aneesulrehman - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=89993843
+
+-   Photo by By Hadley Wickham - Private correspondence, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=46810731
+
+-   Most of the details of this short history came from chapter 2 of Roger Peng's R Programming for Data Science.
+
+-   https://bookdown.org/rdpeng/rprogdatascience/history-and-overview-of-r.html

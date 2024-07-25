@@ -1,0 +1,40 @@
+---
+title: "Sampling Problems"
+author: "Schwab"
+format: revealjs
+editor: visual
+---
+
+## Classwork 
+
+You are welcome to look at these problems on your phone/laptop
+
+Maybe I'll Print them out. 
+
+## Problem 1.7
+
+## Problem 1.13
+
+## Problem 2.15
+
+## Problem 2.17
+
+## Problem 2.20
+**Vitamin supplements.** 
+To assess the effectiveness of taking large doses of vitamin C in reducing the duration of the common cold, researchers recruited 400 healthy volunteers from staff and students at a university. 
+A quarter of the patients were assigned a placebo, and the rest were evenly divided between 1g Vitamin C, 3g Vitamin C, or 3g Vitamin C plus additives to be taken at onset of a cold for the following two days. 
+All tablets had identical appearance and packaging. 
+The nurses who handed the prescribed pills to the patients knew which patient received which treatment, but the researchers assessing the patients when they were sick did not. 
+No significant differences were observed in any measure of cold duration or severity between the four groups, and the placebo group had the shortest duration of symptoms. [@Audera:2001]
+
+    a.  Was this an experiment or an observational study? Why?
+
+    b.  What are the explanatory and response variables in this study?
+
+    c.  Were the patients blinded to their treatment?
+
+    d.  Was this study double-blind?
+
+    e.  Participants are ultimately able to choose whether to use the pills prescribed to them. We might expect that not all of them will adhere and take their pills. Does this introduce a confounding variable to the study? Explain your reasoning.
+
+## Baumer's Problem

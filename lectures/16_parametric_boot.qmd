@@ -1,0 +1,301 @@
+---
+title: "Bootstrap Hypothesis Test"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+execute: 
+  echo: true
+---
+
+## Load Libraries
+
+```{r}
+#| include: true
+# install.packages("infer")
+
+library(tidyverse)
+library(infer)
+```
+
+## The infer package
+
+Getting to know infer
+
+```{r}
+#| eval: false
+
+vignette("infer")
+```
+
+## Parametric Bootstrap Distribution
+
+::: incremental
+1.  The Parametric Bootstrap simulation assumes the null hypothesis is true then uses the data to construct a bootstrap distribution.
+
+2.  Today this means for each value in our sample R will choose a success or failure with probability `p` for each value of `n`.
+
+3.  We will do this with marbles
+:::
+
+## Problem Statement
+
+Suppose it is known that nationally out of 100 people struggling with drug addiction, 40 of them will have some blood born disease.
+
+A doctor at a clinic decides to test this hypothesis for her locality and samples 20 of her own patients. Of the 20 patients she finds 13 of them have a blood born disease.
+
+Is this evidence enough to say that the locality is different than the proportion nationally?
+
+## Write out hypotheses
+
+$$
+H_0: p = 0.40 \\
+H_a: p \ne 0.40
+$$
+
+$$
+\alpha = 0.05
+$$
+
+## Make some sample data
+
+```{r}
+# This makes a 40% success sample. The rep() function repeats "disease" a number of times
+
+clinic_sample <- c(rep("disease", 13), rep("no-disease", 7)) |>
+  #enframe() makes our vector into a dataframe
+  enframe() |>
+  rename(number= name, has_disease = value)
+
+clinic_sample |>
+  head()
+```
+
+## Calculate p-hat
+
+We already know $\hat{p} = 0.65$. But if we didn't we could do this:
+
+```{r}
+p_hat <- clinic_sample  |>
+  # Telling R what we care about with specify 
+  specify(response = has_disease, success = "disease") |>
+  
+  # Calculating the proportion
+  calculate(stat = "prop")
+p_hat
+```
+
+## Create bootstrap distribution w/ infer()
+
+```{r}
+# setting a seed
+set.seed(2024)
+
+# Saving the df
+clinic_sample  |>
+  
+  # Here we specify() what is a success
+  specify(response = has_disease, success = "disease") |>
+  
+  # This is where we set the null hypothesis
+  hypothesize(null = "point", p = 0.40) |>
+  
+  # This is how many times R will sample from the clinic sample
+  # We are using draw to sample 1 value from a theoretical distribution with p = 0.40. 
+  generate(reps = 1, type = "draw") |>
+  
+  # This groups the reps together to find a proportion. 
+  calculate(stat = "prop")
+
+```
+
+## More replications
+
+We want to do this process a lot to create the bootstrap distribution.
+
+```{r}
+# setting a seed
+set.seed(2024)
+
+# Saving the df
+null_distn_one_prop <- clinic_sample  |>
+  
+  # Here we tell specify what is a success
+  specify(response = has_disease, success = "disease") |>
+  
+  # This is where we set the null hypothesis
+  hypothesize(null = "point", p = 0.4) |>
+  
+  # Choosing 10000 replications
+  generate(reps = 10000, type = "draw") |>
+  
+  # This is 
+  calculate(stat = "prop")
+
+```
+
+## `visualize()` the bootstrap distribution.
+
+```{r}
+null_distn_one_prop |>
+  
+  # cheater function to graph, works like ggplot()
+  visualize()
+
+```
+
+## `shade_p_value()`
+
+```{r}
+# shade the p value
+null_distn_one_prop |>
+  visualize() +
+  shade_p_value(obs_stat = p_hat, direction = "both")
+```
+
+## We can use get_pvalue()
+
+```{r}
+# get the pvalue to use. 
+pvalue <- null_distn_one_prop %>%
+  get_pvalue(obs_stat = p_hat, direction = "both")
+pvalue
+```
+
+# Conclusion.
+
+Reject null.
+
+## Make a parametric bootstrap distribution
+
+You have a bag of marbles
+
+-   Take one out, note its color, and replace it.
+
+-   Do this 20 times. (Don't look at the marbles).
+
+-   Find the proportion of reds in those 20 times. (This is one full repetition).
+
+-   Each person should do this once.
+
+-   Add your proportions to the chalkboard graph.
+
+## Let's do this problem again with a mathematical model.
+
+$$ p \sim N(p,SE)$$
+
+With $$SE= \sqrt{\frac{p(1-p)}{n}}$$
+
+## Let's do problem 11 twice
+
+We'll do it once with the parametric bootstrap and once with a mathematical model.
+
+## Example 2 Problem 11, Ch 16
+
+**Statistics and employment** In a large university where 70% of the full-time students are employed at least 5 hours per week, the members of the Statistics Department wonder if a smaller proportion of their students work at least 5 hours per week. They randomly sample 25 majors and find that 15 of the students work 5 or more hours each week.
+
+## Make sample
+
+Nothing wrong with copying and editing code from above.
+
+```{r}
+major_sample <- c(rep("yes", 15), rep("no", 10)) %>%
+  enframe() %>%
+  rename(work = value)
+```
+
+## Make Hypotheses
+
+$$
+H_0: p = 0.7 \\
+H_a: p < 0.7
+$$
+
+$$
+\alpha = 0.05
+$$\
+
+## Make p-hat
+
+p-hat:
+
+```{r}
+#| echo: TRUE
+
+# There is no simulation happening here.
+p_hat <- major_sample  |>
+  specify(response = work, success = "yes") |>
+  calculate(stat = "prop")
+```
+
+## Create parametric distribution w/ infer()
+
+```{r}
+#| echo: true
+
+set.seed(2018)
+
+
+null_distn_one_prop <- major_sample |>
+  
+  specify(response = work, success = "yes") |>
+  
+  hypothesize(null = "point", p = 0.70) |>
+  
+  generate(reps = 10000) |>
+  
+  calculate(stat = "prop")
+```
+
+## `visualize()`
+
+```{r}
+#|echo: true
+
+
+null_distn_one_prop |>
+  visualise()
+```
+
+## Add the p-value to graph
+
+```{r}
+
+
+null_distn_one_prop |>
+  visualize() +
+  shade_p_value(obs_stat = p_hat, direction = "both")
+```
+
+## `get_pvalue()`
+
+```{r}
+
+
+pvalue <- null_distn_one_prop %>%
+  get_pvalue(obs_stat = p_hat, direction = "less")
+pvalue
+```
+
+## Make conclusion
+
+<!-- Also consider the type of error that may have occurred. -->
+
+<!-- ![](gfx/test_errors.png) -->
+
+## Example 3: Age at Marriage
+
+There is a claim that the majority of women are waiting to get married until after 30. Although it is old and has a response bias use the modified `age_at_mar` to see if the proportion of women getting married after 30 was different in 2010.
+
+```{r}
+library(openintro)
+
+age_at_mar <- age_at_mar |> 
+  mutate(over_30 =
+           case_when(
+             age > 30 ~ "Over_30",
+             TRUE ~ "Under_30"
+           ))
+age_at_mar
+```

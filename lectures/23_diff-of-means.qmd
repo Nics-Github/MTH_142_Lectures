@@ -1,0 +1,120 @@
+---
+title: "Difference of Means"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+execute: 
+  echo: true
+---
+
+## Warm up
+
+Find a partner (or two) and grab some chalkboard
+
+Do this hypothesis test.
+
+The average height of Smith students is thought to be 64 inches. Our class has an average height of 65 inches with a standard deviation of 3.2. There were 34 students in our sample.
+
+Test the hypothesis that the true mean is 64 twice
+
+1.  once using the observed statistic to find a p-value.
+
+2.  once with the test statistic to find the same p-value.
+
+## warm up again with R
+
+```{r}
+library(tidyverse)
+library(googlesheets4)
+
+# Making CI from some sample proportions.
+
+class_heights <- read_sheet("https://docs.google.com/spreadsheets/d/1x9srZXDoYzKGew1f-y4brMbN8dl4QM66pc-dmCBWHQY/edit?usp=sharing",
+                            sheet = "220-01",
+                            range = "1:35")|>
+  select(height)
+
+```
+
+```{r}
+t.test(class_heights$height, mu=64)
+```
+
+## Side note: `prop.test()`
+
+There is also a `prop.test()` function that will test a proportion hypothesis from data based on mathematical formula (as opposed to bootstrapping).
+
+## New test: Difference of two means
+
+Another hypothesis test.
+
+-   Conditions
+
+-   Distributions
+
+-   New Standard Error
+
+-   New df
+
+# Conditions
+
+Independence Extended
+
+Normality (no extreme outliers)
+
+# Compute the df
+
+**with no computer**
+
+t - distribution with the smaller of $n_1-1$ and $n_2-1$ degrees of freedom.
+
+<br>
+
+**with R**
+
+t - distribution, let R find the degrees of freedom with `t.test()`.
+
+# SE
+
+$$
+SE = \sqrt{\frac{\sigma^2_1}{n_1}+\frac{\sigma^2_2}{n_2}}\\
+\text{or}\\
+SE = \sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}
+$$ We rarely know $\sigma$ so the second standard error is more often used.
+
+# Test Statistic
+
+$$
+\text{Test Statisitc} = \frac{\bar{x}_1 - \bar{x}_2 -0}{SE }
+$$
+
+(It looks just like the difference of proportions, but with means)
+
+# Let's do number 18 together.
+
+[Chapter 20](https://openintro-ims.netlify.app/inference-two-means#chp20-exercises)
+
+1.  CI for the difference of means
+2.  Hypothesis Test
+
+# Grab a partner
+
+20.17 on the board.
+
+# Together t.test()
+
+Is there a difference in the absenteeism of students from New South Wales based on reported gender?
+
+-   `absenteeism`
+
+-   check conditions make boxplot
+
+-   write hypothesis
+
+-   use `t.test( y\~x, alternative= "t", data=)`
+
+# A second test
+
+Is there a difference in the absenteeism of students from New South Wales based on ethnicity?

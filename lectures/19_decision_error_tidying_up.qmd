@@ -1,0 +1,74 @@
+---
+title: "Decision Errors"
+format: 
+  revealjs:
+    theme: beige
+author: "Schwab"
+editor: visual
+---
+
+## Hypothesis Testing with p-values
+
+1.  Write notation
+
+2.  Check Conditions
+
+3.  Build Theoretical Distributions with **assumed parameter**.
+
+4.  Find the probability of such a sample statistic.
+
+## The question we are trying to answer:
+
+If the null hypothesis is true, how likely is it that we would have gotten the statistic from our sample?
+
+## Example from lab 4
+
+If $H_0 : p = 0.08$ how likely is it we would have gotten $\widehat{p} = 0.0653$
+
+You all found that to be very unlikely from your bootstrap distribution.
+
+## Note on alpha $\alpha$ :
+
+$\alpha$ is a cut off value. If the p-value is larger than $\alpha$ we say $\widehat{p}$ is likely (Fail to reject $H_0$), smaller than alpha $\widehat{p}$ is unlikely (reject $H_0$).
+
+-   $\alpha$ shows the strength of our evidence.
+
+-   weak evidence $\alpha = 0.1$ or higher.
+
+-   moderate evidence $\alpha =0.05$
+
+-   strong evidence $\alpha = 0.01$
+
+Choosing alpha involves making trade offs that are beyond the scope of this class.
+
+## But we can make the wrong decision
+
+These are just probabilities. They could be wrong.
+
+-   We could reject $H_0$ if it is true. (Type 1)
+
+or
+
+-   We could fail to reject $H_0$ if it is false. (Type 2)
+
+## Decision Errors
+
+![](./gfx/test_errors.png)
+
+## On Lab 4
+
+Could we have made an error?
+
+## Board work problem
+
+[16.3](https://openintro-ims.netlify.app/inference-one-prop#chp16-exercises)
+
+-   ignore d.
+
+-   Make your own bootstrapped null distribution. `set.seed(2024)`
+
+-   Find the pvalue.
+
+-   Make conclusion.
+
+-   Also consider which error could have been reached.

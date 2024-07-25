@@ -1,0 +1,123 @@
+---
+title: "Tailed tests"
+author: "Schwab"
+format: revealjs
+editor: visual
+---
+
+## Let's back up
+
+Today we'll look at 1 and 2 tailed tests.
+
+We'll do very mathematically simple examples.
+
+We'll let $\alpha =0.05$
+
+## Two tailed Test
+
+$$
+H_0: p = 0.5 
+\\
+H_a: p \ne 0.5
+$$
+
+Looking to see if our $\hat{p}$ falls in the yellow area.
+
+```{r}
+#| echo: FALSE
+
+library(mosaic)
+cdist("norm", 0.95)
+```
+
+## Cow's Milk
+
+[![](https://samitivej-prod-new-website.s3.ap-southeast-1.amazonaws.com/public/uploads/descriptions/35b20feac2f36205db7c17dc81bc47a4.jpg)](https://samitivej-prod-new-website.s3.ap-southeast-1.amazonaws.com/public/uploads/descriptions/35b20feac2f36205db7c17dc81bc47a4.jpg)
+
+## Milk two tailed problem
+
+Suppose the proportion of US citizens drink milk is 0.30. A study that took a random sample of 500 US citizens found that 133 of them drink milk.
+
+::: incremental
+-   Does this provide evidence that the amount of people who drink milk has changed?
+
+-   Complete a two sided hypothesis test.
+
+-   With a two tailed test we multiply the p-value by 2.
+:::
+
+## Left Tail
+
+$$
+H_0: p = 0.5 
+\\
+H_a: p < 0.5
+$$
+
+Does our $\hat{p}$ falls in the purple area?
+
+```{r}
+#| echo: FALSE
+
+library(mosaic)
+xqnorm(0.05, verbose = FALSE)
+```
+
+## Milk Left Tailed problem:
+
+Suppose the proportion of US citizens drink milk is 0.30. A study that took a random sample of 500 US citizens found that 133 of them drink milk.
+
+::: incremental
+-   Does this provide evidence that the amount of people who drink milk has decreased?
+
+-   Complete a one sided hypothesis test.
+
+-   With a one tailed test we do not multiply the p-value by 2.
+:::
+
+## Right Tail
+
+$$
+H_0: p = 0.5 
+\\
+H_a: p > 0.5
+$$
+
+Does our $\hat{p}$ falls in the yellow area?
+
+```{r}
+#| echo: FALSE
+
+library(mosaic)
+xqnorm(0.05, verbose = FALSE, lower.tail = FALSE)
+```
+
+## Milk Right Tailed Test.
+
+Suppose the proportion of US citizens drink milk is 0.30. A study that took a random sample of 500 US citizens found that 200 of them drink milk.
+
+::: incremental
+-   Does this provide evidence that the amount of people who drink milk has increased?
+
+-   Complete a one sided hypothesis test.
+
+-   With a one tailed test we do not multiply the p-value by 2.
+:::
+
+## Harder problem 16.25
+
+Some people claim that they can tell the difference between a diet soda and a regular soda in the first sip. A researcher wanting to test this claim randomly sampled 80 such people. He then filled 80 plain white cups with soda, half diet and half regular through random assignment, and asked each person to take one sip from their cup and identify the soda as diet or regular. 53 participants correctly identified the soda.
+
+## Think about it
+
+What is the claim?
+
+What is the null?
+
+Do the test.
+
+Is there evidence to support the claim?
+
+Conclusion?
+
+Possible test errors?

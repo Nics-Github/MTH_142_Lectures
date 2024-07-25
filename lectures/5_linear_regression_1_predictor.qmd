@@ -1,0 +1,248 @@
+---
+title: "Intro to Linear Regression"
+subtitle: "IMS, Ch. 7.1"
+author: "Ben Baumer edited by Nic Schwab "
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    theme: beige
+    logo: https://github.com/SmithCollege-SDS/sds/raw/master/man/figures/logo.png
+    footer: <https://beanumber.github.io/sds220/05_bivariate.html>
+date: |
+  2023-09-22
+execute: 
+  echo: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# Lab 1 recap.
+
+Do we have enough to reject this hypothesis?
+
+$$H_0: p_{male} = p_{females} \\ 
+H_a: p_{males} \ne p_{females}$$
+
+# Graph of Arbuthonot
+
+```{r calc-prop-boys-vars}
+#| echo = FALSE
+
+library(openintro)
+library(tidyverse)
+
+arbuthnot <- arbuthnot |>
+  mutate(total = girls+boys, boy_ratio = boys / total)
+
+present <- present |>
+  mutate(total = girls+boys, boy_ratio = boys / total)
+```
+
+```{r }
+ggplot(data = arbuthnot, aes(x = year, y = boy_ratio)) +
+  geom_line() +
+  labs(title = "Ratio of boys to girls born London",
+       subtitle ="The data comes from `arbuthnot` in the openintro package",
+       caption = "This graph shows the ratio of boys to girls born in the London from the 1600s to the early 1700s")
+```
+
+# Graph from Present
+
+```{r }
+ggplot(data = present, aes(x = year, y = boy_ratio)) +
+  geom_line() +
+  labs(title = "Ratio of boys to girls born US",
+       subtitle ="The data comes from `present` in the openintro package",
+       caption = "This graph shows the ratio of boys to girls born in the US from the 1940s to the early 2000s")
+```
+
+# Bivariate Relationships
+
+- Two variables
+
+- **Response** variable 
+- **Explanatory** variable 
+
+# Response
+
+Response variable (aka dependent variable): the variable that you are trying to understand/model
+
+# Explanatory
+
+Explanatory variable (aka independent variable, aka predictor): the variable that you can measure that you think might be related to the response variable
+
+## Scatterplot for two numerical variables
+
+::: incremental
+
+- response variable on $y$-axis and explanatory variable on $x$-axis
+- `geom_point()`
+- What are we looking for?
+    - Overall patterns and deviations from those patterns
+    - Form (e.g. linear, quadratic, etc.), direction (positive or negative), and strength (how much scatter?)
+    - Outliers
+
+:::
+
+## Example: birthweight of babies
+
+```{r}
+library(tidyverse)
+library(openintro)
+ggplot(babies, aes(x = gestation, y = bwt)) +
+  geom_point()
+```
+
+::: footer
+`help(babies)`
+:::
+
+## Your turn
+
+::: incremental
+
+- Use a scatter plot to analyze the relationship between the `height` and `mass` of characters in the `starwars` data frame
+
+- Characterize the distribution
+    - Form
+    - Direction
+    - Strength
+    - Outliers
+
+:::
+
+# Correlation
+
+## (Pearson Product-Moment) correlation coefficient
+
+::: incremental
+
+- measure of the **strength** and **direction** of the **linear** relationship between two numerical variables 
+- denoted $r$ 
+- measured on the scale of $[-1, 1]$
+- `cor(data1,data2,use = "complete.obs")`
+
+:::
+
+::: footer
+<https://en.wikipedia.org/wiki/Correlation>
+:::
+
+## Find the correlation for babies
+
+```{r}
+babies |>
+  summarise(r = cor(gestation,bwt,use="complete.obs"))
+```
+
+
+##  You try
+
+::: incremental
+
+- find the correlation coefficient for starwars
+- `filter()` out the one massive character and create a new df
+- find the new correlation coefficient
+
+:::
+
+## Graph the new starwars scatter plot
+
+```{r}
+new_starwars <- starwars |>
+  filter(mass < 500)
+```
+
+```{r}
+#| echo: FALSE
+new_starwars |>
+  ggplot(aes(x=height,y=mass)) +
+  geom_point() 
+```
+
+## Add the regression line to babies.
+
+```{r}
+#Filter out the babies born before 259 days they are premature
+babies <- babies |>
+  filter(gestation > 259)
+
+babies |>
+  ggplot(aes(x=gestation,y=bwt)) +
+  geom_point()+
+  geom_smooth(method = "lm", se=FALSE)
+```
+
+## The equation of that regression. 
+
+```{r}
+baby_model <- lm(bwt~gestation,data=babies)
+summary(baby_model)
+```
+
+## Add the regression line to new_starwars
+
+::: incremental
+- Do you think it is fair to remove the outlier from starwars? 
+
+- Can we remove outliers from babies? 
+:::
+
+## [Anscombe](http://en.wikipedia.org/wiki/Anscombe%27s_quartet)
+
+```{r}
+#| echo: false
+ds <- anscombe %>%
+  mutate(id = row_number()) %>%
+  pivot_longer(-id, names_to = "key", values_to = "val") %>%
+  separate(key, into = c("variable", "set"), sep = 1) %>%
+  pivot_wider(names_from = variable, values_from = val)
+ds %>%
+  group_by(set) %>%
+  summarize(N = n(), mean(x), mean(y), cor(x,y))
+```
+
+::: incremental
+
+- same mean
+- same standard deviation
+- same correlation coefficient is the same (up to three digits)!
+
+:::
+
+## Anscombe plots
+
+```{r}
+ggplot(data = ds, aes(x = x, y = y)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = 0) + 
+  facet_wrap(~set)
+```
+
+
+## Datasaurus
+
+<iframe width="1024" height="576" src="https://www.youtube.com/embed/It4UA75z_KQ" title="Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical ..." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## More examples
+
+![](http://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Correlation_examples2.svg/1000px-Correlation_examples2.svg.png)
+
+## Beware
+
+::: incremental
+
+- Note that correlation only measures the strength of a **linear** relationship 
+
+- **Always** graph your data!
+
+:::
+
+# [Spurious Correlations](http://www.tylervigen.com/)
+
+# CATS data
+
+In the package called MASS there is data on cats body weight and heart weight. Make a linear model for the cats heart weight from the predictor boydweight.  

@@ -1,0 +1,216 @@
+---
+title: "Two proportions"
+subtitle: "And a demonstration with one proportion"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+library(openintro)
+```
+
+# Clarifying
+
+1 Distributions
+
+2 Confidence Intervals
+
+3 Confidence Interval (activity)
+
+4 Then on to two proportions
+
+## Distributions
+
+-   Data Distribution
+
+    -   How does the sample data look?
+
+-   Sampling distribution
+
+    -   A theoretical distribution (math model) of proportions from many samples
+
+    -   centered around the true propotion p.
+
+-   Bootstrapped Distribution
+
+    -   If parametric its the same as the Null Distribution, center at p.
+
+    -   If non-parametric it is centered around $\widehat{p}.$
+
+## Central Limit Theorem for a proportion.
+
+This is how we build the sampling distribution.
+
+If we consider many proportions from many samples and the conditions are satisfied, then the distribution of the sample proportions will be Normal.
+
+## Assumptions for a single proportion
+
+Independent and "large" sample.
+
+Success-Failure Condition
+
+$$
+\widehat{p} \sim N(p,se)
+$$
+
+## Notation
+
+$$ \widehat{p} \sim N(p,SE)$$
+
+With $SE= \sqrt{\frac{p(1-p)}{n}}$
+
+or estimate with.
+
+$SE= \sqrt{\frac{\widehat{p}(1-\widehat{p})}{n}}$
+
+We often use $\widehat{p}$ as an estimator for $p$.
+
+## Confidence intervals.
+
+If we make a 95% CI and we get 100 $\widehat{p}$ from 100 samples we expect 95 of those to contain the true proportion.
+
+## Demonstration
+
+Make 30ish samples (n=25) and see how many 95% CI capture the true proportion. (How many do we expect to capture p?)
+
+-   Note the number of red marbles of 25.
+
+Put your p-hats [here](https://docs.google.com/spreadsheets/d/1rtcthdCWxSeNad71l5oDQOn13Et9ORbIUuyF6InGu4M/edit?usp=sharing) (round to the hundredth place)
+
+-   Make your CI using a math model.
+
+-   I'll put all the CIs on the board. to see if they capture the true proportion.
+
+$p = \frac{400}{2200} = 0.1818182$
+
+## Code for demonstration
+
+```{r}
+#| echo: TRUE
+
+library(tidyverse)
+library(googlesheets4)
+
+# Making CI from some sample proportions.
+
+class_p_hats <- unlist(read_sheet("https://docs.google.com/spreadsheets/d/1rtcthdCWxSeNad71l5oDQOn13Et9ORbIUuyF6InGu4M/edit?usp=sharing"))
+p <- 0.181818
+n <- length(class_p_hats)
+
+#Make the DF, for every p-hat it finds a CI and makes the plot. 
+sims <- tibble(
+  p_hat = class_p_hats,
+  se = sqrt(p_hat * (1 - p_hat) / n),
+  lower = p_hat - 1.96 * se,
+  upper = p_hat + 1.96 * se,
+  covers = lower <= p & upper >= p
+) |>
+  mutate(id = row_number())
+
+# Make the plot
+ggplot(data = sims) +
+  geom_vline(xintercept = p, linetype = 3) +
+  geom_segment(aes(x = lower, xend = upper, y = id, yend = id, color = covers)) +
+  annotate("text", x = p, y = 50, label = paste("Coverage rate:", sum(sims$covers) / nrow(sims)))
+
+```
+
+## Questions
+
+# More proportions!
+
+Maybe we want to directly compare two proportions.
+
+Consider a difference of proportions.
+
+-   Confidence Interval
+
+-   Hypothesis Test
+
+## Compare two proportions
+
+Is there a difference between the two proportions?
+
+## Similar to CI for one prop.
+
+The following is from chapter 17 in the text:
+
+The difference $\hat{p}_1−\hat{p}_2$ can be modeled using a normal distribution when
+
+-   *Independence Extended:* The data are independent within and between the two groups.
+
+-   *Success-failure condition.* The success-failure condition holds for both groups, where we check successes and failures in each group separately.
+
+## Mean and SE
+
+$\hat{p}_1−\hat{p}_2 \sim N({p}_1−{p}_2,\sqrt{\frac{\hat{p}_1(1−\hat{p}_1)}{n_1} +\frac{\hat{p}_2(1−\hat{p}_2)}{n_2}})$
+
+mean = $\hat{p}_1−\hat{p}_2$
+
+Standard Error = $\sqrt{\frac{\hat{p}_1(1−\hat{p}_1)}{n} +\frac{\hat{p}_2(1−\hat{p}_2)}{n}}$
+
+## Consider the cpr data.
+
+```{r}
+#| include: FALSE
+library(tidyverse)
+library(openintro)
+```
+
+![](gfx/cpr.png)
+
+## Two groups
+
+```{r}
+ggplot(cpr, aes(x = group, fill = outcome))+
+  geom_bar(position = "fill")
+```
+
+## Let's make a 95% CI
+
+We want to try to capture the true difference in proportions.
+
+$$
+\hat{p}_1−\hat{p}_2  \pm z_{\frac{\alpha}{2}} \times SE
+$$
+
+We expect 95% of the CI to capture the true difference.
+
+Check conditions first:
+
+-   *Independence Extended*
+
+-   *Success-failure condition*
+
+## Let's do a Hypothesis Test
+
+$$
+H_0: p_1 = p_2 \\
+H_a:p_1 \ne p_2 
+$$
+
+Check conditions:
+
+-   *Independence Extended*
+
+-   *Success-failure condition*
+
+## pooled groups
+
+There is one difference when doing the hypothesis test. We use a pooled statistic when calculating the standard error.
+
+The book uses $\widehat{p}_{pool} = \frac{\text{total successes from both groups}}{\text{total from both groups}}$
+
+If conditions with the pooled group then
+
+$\hat{p}_1−\hat{p}_2 \sim N({p}_1−{p}_2,\sqrt{\hat{p}_{pool}(1−\hat{p}_{pool})(\frac{1}{n_1} +\frac{1}{n_2}}))$
+
+## Finish our hypothesis test from Monday
+
+## Try some
+
+[10 and 12 from chapter 17](https://openintro-ims.netlify.app/inference-two-props#chp17-exercises)
