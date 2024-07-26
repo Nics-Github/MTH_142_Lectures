@@ -7,25 +7,25 @@ format:
 editor: visual
 ---
 
+I started falling asleep go back an rework this?
+
 ## Example: Ebola
 
 ::: incremental
--   Pretend: You live in NYC and you all are perfectly representative of denizens there.
+-   Pretend: We are studying how New Yorkers feel about a mandatory 14 day quarantine for Ebola exposure.
 
--   Do you favor a "mandatory 21-day quarantine for anyone who has come in contact with an Ebola patient?"
-
--   Class convenience sample. This will give us $\hat{p}$.
+-   We ask: do you favor a "mandatory 14-day quarantine for anyone who has come in contact with an Ebola patient?"
 :::
 
 [Ebola in New York City](https://en.wikipedia.org/wiki/Ebola_virus_cases_in_the_United_States)
 
 ## Survey Data
 
-Our question: We want to know if New Yorkers have changed their stance on quarantine of Ebola after the COVID-19 pandemic.
+Our question: We want to know how New Yorkers feel on quarantine of Ebola after the COVID-19 pandemic.
 
-## The 2014 data.
+## The 2014 data
 
-We'll use the `ebola_survey` data as the population to test against. This will be our $p$.
+We have past data to compare to from 2014. Its called `ebola_survey` and is our best guess as how New Yorkers felt about mandatory quarantine pre pandemic. This will be our assumed $p$.
 
 ```{r}
 library(tidyverse)
@@ -33,30 +33,45 @@ library(openintro)
 count(ebola_survey,quarantine)
 ```
 
-This is a reasonable estimate for *p* because...
+$p= 854/1042 \approx 0.82$ This is a reasonable estimate for *p* because we have not other data to the contrary.
+
+## Let's now assume we did a follow up:
+
+We ask 1000 people if they favor a mandatory 14 day quarantine for individuals that have been in contact with Ebola.
+
+Here are the results.
+
+```{r}
+tribble(
+  ~against, ~favor,
+  486, 514
+)
+```
+
+And so $\hat{p} = 514/1000 = 0.514$ Which seems very different from $p=0.82$
 
 ## p vs $\hat{p}$
 
 ::: incremental
 -   $\hat{p}$ - the sample statistic. It is a proportion in this case.
 
-    -   This is how this subset of New Yorkers feel about quarantine.
+    -   This is how the current sample of New Yorkers feel about a mandatory quarantine.
 
 -   p - The assumed population parameter, also a proportion.
 
-    -   This is how all New Yorkers feel about a quarantine.
+    -   We assume this is how all New Yorkers feel about a mandatory quarantine.
 :::
 
 ## The question.
 
-\> If the sentiment from 2014 New Yorkers is unchanged to today, what is the probability we would have gotten the $\hat{p}$ we found?
+\> If the sentiment from 2014 New Yorkers is unchanged today, what is the probability we would have gotten $\hat{p} = 0.514$ ?
 
 ::: incremental
 -   Is it likely or unlikely
 
     -   Likely will be anything more than $\alpha = 0.05$
 
-    -   If unlikely we reject $H_0$
+    -   If less than 0.0, we reject $H_0$
 :::
 
 ## Notation
