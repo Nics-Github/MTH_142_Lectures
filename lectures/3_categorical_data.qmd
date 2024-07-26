@@ -5,6 +5,7 @@ author: "Nic Schwab"
 format:
   revealjs: 
     slide-number: true
+    theme: beige
 execute: 
   echo: true
 editor_options: 
