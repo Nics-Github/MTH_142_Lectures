@@ -5,7 +5,13 @@ format:
   revealjs: 
     theme: beige
 editor: visual
+execute: 
+  echo: true
 ---
+
+## Read before hand:
+
+[Open Intro Statistics](https://www.biostat.jhsph.edu/~iruczins/teaching/books/2019.openintro.statistics.pdf) Chapter 3.1.
 
 ## The Law of Large numbers
 
@@ -17,11 +23,11 @@ Let's test it empirically.
 
 [Visualize the law of large numbers](https://docs.google.com/spreadsheets/d/1pWXdJkCfo8P-oiseqJ7tAh9sXHuDjTPK3SKWNWvx_Bk/edit?usp=sharing)
 
-## Empirical Probability
+## Empirical vs Theoretical Probabilities
 
 -   We just found the probability of flipping a coin empirically.
 
--   We know what it was in theory. ( 0.5)
+-   We know what it is in theory. ( 0.5)
 
 -   Today we will discuss theoretical probabilities.
 
@@ -57,6 +63,30 @@ $\Omega = \{1,2,3,4,5,6 \}$
 
 This is called the complement and is denoted $\bar{A}$
 
+## Simulate die rolling in R
+
+(optional code)
+
+```{r}
+# This is to get consistent answers. 
+set.seed(1)
+
+# Roll the die once
+sample(x = c(1,2,3,4,5,6), size = 1, replace = TRUE)
+
+# Roll the die 1000 times and keep the number of 4s. 
+thousand_rolls = sample(x = c(1,2,3,4,5,6), size = 10000, replace = TRUE)
+
+# Check to see if each value equals 4. If it does equal 4 a 1 is returned, if not a zero.
+sum(thousand_rolls == 4)
+
+# Number of fours from our simulation
+1701/10000
+
+#Theoredical probability
+1/6
+```
+
 ## An event and its complement
 
 An event and its complement sum to 1.
@@ -67,7 +97,7 @@ $P(A) + P(\bar{A}) = 1$
 
 [We are rolling two fair die.](https://www.google.com/search?client=firefox-b-1-d&q=six+sided+die)
 
-1.  What is the theortical probability their sum is 7? Call this event B.
+1.  What is the theoretical probability their sum is 7? Call this event B.
 
 [Here is the sample space](https://spreadsheetsolving.com/wp-content/uploads/2013/06/techsmithwor6cb3.png) [^1]
 
@@ -76,6 +106,8 @@ $P(A) + P(\bar{A}) = 1$
 2.  Write the event and the probability notation.
 
 3.  Find the compliment of the value above.
+
+Do this by hand.
 
 ## Disjoint (Mutually Exclusive) Events
 
@@ -129,6 +161,6 @@ B = Rolling an even number
 
 You've read chapter 3.1 and made note of these formulas.
 
-## Classwork:
+## Try some for practice:
 
 [OI:](https://www.biostat.jhsph.edu/~iruczins/teaching/books/2019.openintro.statistics.pdf) 3.2, 3.5, 3.11

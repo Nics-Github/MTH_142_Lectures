@@ -12,7 +12,7 @@
   <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Schwab">
-  <title>SDS 220 - Linear Regression part 2</title>
+  <title>SDS 220 - Probability part 1</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -392,7 +392,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Linear Regression part 2</h1>
+  <h1 class="title">Probability part 1</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -403,247 +403,169 @@ Schwab
 </div>
 
 </section>
-<section id="homework-notes" class="slide level2">
-<h2>Homework notes</h2>
-<p>Problem 6</p>
-
-<img data-src="images/Data_enter_into_r.png" class="r-stretch"></section>
-<section id="copy-and-paste-into-r" class="slide level2">
-<h2>Copy and paste into r</h2>
-<p>Use c() function. Add commas. (Note we all have different numbers)</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>Colesterol_Lvl <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb1-2"><a></a><span class="dv">244</span>,</span>
-<span id="cb1-3"><a></a><span class="dv">278</span>,</span>
-<span id="cb1-4"><a></a><span class="dv">272</span>,</span>
-<span id="cb1-5"><a></a><span class="dv">160</span>,</span>
-<span id="cb1-6"><a></a><span class="dv">226</span>,</span>
-<span id="cb1-7"><a></a><span class="dv">210</span>,</span>
-<span id="cb1-8"><a></a><span class="dv">318</span>,</span>
-<span id="cb1-9"><a></a><span class="dv">236</span>,</span>
-<span id="cb1-10"><a></a><span class="dv">186</span>,</span>
-<span id="cb1-11"><a></a><span class="dv">142</span>,</span>
-<span id="cb1-12"><a></a><span class="dv">360</span>,</span>
-<span id="cb1-13"><a></a><span class="dv">288</span>,</span>
-<span id="cb1-14"><a></a><span class="dv">220</span>,</span>
-<span id="cb1-15"><a></a><span class="dv">206</span>,</span>
-<span id="cb1-16"><a></a><span class="dv">282</span>,</span>
-<span id="cb1-17"><a></a><span class="dv">270</span>,</span>
-<span id="cb1-18"><a></a><span class="dv">282</span>,</span>
-<span id="cb1-19"><a></a><span class="dv">234</span>,</span>
-<span id="cb1-20"><a></a><span class="dv">266</span>,</span>
-<span id="cb1-21"><a></a><span class="dv">276</span>,</span>
-<span id="cb1-22"><a></a><span class="dv">294</span>,</span>
-<span id="cb1-23"><a></a><span class="dv">224</span>,</span>
-<span id="cb1-24"><a></a><span class="dv">310</span>,</span>
-<span id="cb1-25"><a></a><span class="dv">242</span>,</span>
-<span id="cb1-26"><a></a><span class="dv">236</span>,</span>
-<span id="cb1-27"><a></a><span class="dv">288</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="read-before-hand" class="slide level2">
+<h2>Read before hand:</h2>
+<p><a href="https://www.biostat.jhsph.edu/~iruczins/teaching/books/2019.openintro.statistics.pdf">Open Intro Statistics</a> Chapter 3.1.</p>
 </section>
-<section>
-<section id="cats" class="title-slide slide level1 center">
-<h1>Cats</h1>
-
-<img data-src="https://www.dailypaws.com/thmb/TLcNyR7775d3BWl4xJh0-x1VjVI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/what-is-a-group-of-cats-called-2-1226896610-2000-808099d67e684dd083617ed5465543de.jpg" class="r-stretch quarto-figure-center"><p class="caption">Street Cats</p></section>
-<section id="cats-hearts" class="slide level2">
-<h2>Cats’ hearts</h2>
-
-<img data-src="https://drbillspetnutrition.com/wp-content/uploads/2017/01/1.-Feline-Heart-1.jpg" class="r-stretch quarto-figure-center"><p class="caption">You stole Meow Heart</p></section>
-<section id="a-big-heart-may-cause-problems" class="slide level2">
-<h2>A big heart may cause problems</h2>
-<p>Finding the size of a cat’s heart is hard.</p>
-<p>Estimate with a model a model.</p>
+<section id="the-law-of-large-numbers" class="slide level2">
+<h2>The Law of Large numbers</h2>
+<p>The theoretical probability of getting a heads is 0.5 on a coin.</p>
+<p>Let’s test it empirically.</p>
+<p><a href="https://www.random.org/coins/">Flip a coin</a></p>
+<p><a href="https://docs.google.com/spreadsheets/d/1pWXdJkCfo8P-oiseqJ7tAh9sXHuDjTPK3SKWNWvx_Bk/edit?usp=sharing">Visualize the law of large numbers</a></p>
 </section>
-<section id="data-from-the-40s" class="slide level2">
-<h2>Data from the 40s</h2>
-<p>This data cites <a href="https://digital.library.adelaide.edu.au/dspace/bitstream/2440/15253/1/211.pdf">this source,</a> which you may be inclined to look over.</p>
-<div class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co">#install.packages("MASS")</span></span>
-<span id="cb2-2"><a></a><span class="fu">library</span>(MASS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="look-at-data" class="slide level2">
-<h2>Look at data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>?cats</span>
-<span id="cb3-2"><a></a><span class="fu">tail</span>(cats,<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    Sex Bwt  Hwt
-139   M 3.6 15.0
-140   M 3.7 11.0
-141   M 3.8 14.8
-142   M 3.8 16.8
-143   M 3.9 14.4
-144   M 3.9 20.5</code></pre>
-</div>
-</div>
-</section>
-<section id="which-variable-is-which" class="slide level2">
-<h2>Which variable is which?</h2>
-<p>Which should be the predictor and response variables?</p>
-</section>
-<section id="plot" class="slide level2">
-<h2>Plot</h2>
-
-<img data-src="6_Linear_regression_part_2_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
-<section id="describe-trend" class="slide level2">
-<h2>Describe Trend</h2>
+<section id="empirical-vs-theoretical-probabilities" class="slide level2">
+<h2>Empirical vs Theoretical Probabilities</h2>
 <ul>
-<li><p>Shape</p></li>
-<li><p>Direction</p></li>
-<li><p>Strength</p></li>
+<li><p>We just found the probability of flipping a coin empirically.</p></li>
+<li><p>We know what it is in theory. ( 0.5)</p></li>
+<li><p>Today we will discuss theoretical probabilities.</p></li>
 </ul>
 </section>
-<section id="add-a-regression-line" class="slide level2">
-<h2>Add a regression line</h2>
-<p>and some labels.</p>
+<section id="probability" class="slide level2">
+<h2>Probability</h2>
+<blockquote>
+<p>The probability of an event is the proportion of times we would see the event occur if the process could happen an infinite number of times.</p>
+</blockquote>
+<p><a href="https://www.google.com/search?client=firefox-b-1-d&amp;q=six+sided+die">Consider a fair six sided die.</a></p>
+<p>Event A = Rolling a 4.</p>
+<p>A random variable X might be:</p>
+<ul>
+<li>X~The number that shows up on a die.</li>
+</ul>
+</section>
+<section id="rolling-a-4" class="slide level2">
+<h2>Rolling a 4</h2>
+<p>There are 6 possible outcomes so the</p>
+<ul>
+<li>Sample space = {1,2,3,4,5,6 } = <span class="math inline">\(\Omega\)</span></li>
+</ul>
+<p>We want 1 outcome of the 6.</p>
+<ul>
+<li>P(Rolling a 4) = P( X = 4) = <span class="math inline">\(\frac{1}{6}\)</span></li>
+</ul>
+</section>
+<section id="not-rolling-a-4." class="slide level2">
+<h2>Not rolling a 4.</h2>
+<p>We want 5 outcomes of the 6.</p>
+<p><span class="math inline">\(\Omega = \{1,2,3,4,5,6 \}\)</span></p>
+<ul>
+<li>P(Not Rolling a 4) = <span class="math inline">\(P( X \ne 4) = \frac{5}{6}\)</span></li>
+</ul>
+<p>This is called the complement and is denoted <span class="math inline">\(\bar{A}\)</span></p>
+</section>
+<section id="simulate-die-rolling-in-r" class="slide level2">
+<h2>Simulate die rolling in R</h2>
+<p>(optional code)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> cats, <span class="fu">aes</span>(<span class="at">x =</span> Bwt, <span class="at">y =</span> Hwt))<span class="sc">+</span></span>
-<span id="cb5-2"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>Sex) )<span class="sc">+</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb5-4"><a></a>  <span class="fu">xlab</span>(<span class="st">"Body Weight in Kg"</span>) <span class="sc">+</span></span>
-<span id="cb5-5"><a></a>  <span class="fu">ylab</span>(<span class="st">"Heart Weight in Grams"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="6_Linear_regression_part_2_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
-<section id="find-correlation-coefficient" class="slide level2">
-<h2>Find correlation coefficient</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">summarize</span>(<span class="at">.data=</span> cats , <span class="at">r =</span> <span class="fu">cor</span>(Bwt, Hwt, <span class="at">use=</span><span class="st">"complete.obs"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># This is to get consistent answers. </span></span>
+<span id="cb1-2"><a></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb1-3"><a></a></span>
+<span id="cb1-4"><a></a><span class="co"># Roll the die once</span></span>
+<span id="cb1-5"><a></a><span class="fu">sample</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">size =</span> <span class="dv">1</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          r
-1 0.8041274</code></pre>
+<pre><code>[1] 1</code></pre>
 </div>
-</div>
-</section>
-<section id="find-the-coefficents" class="slide level2">
-<h2>Find the coefficents</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co">#install.packages("broom")</span></span>
-<span id="cb8-2"><a></a><span class="fu">library</span>(broom)</span>
-<span id="cb8-3"><a></a>cat_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Hwt <span class="sc">~</span> Bwt, <span class="at">data =</span> cats)</span>
-<span id="cb8-4"><a></a><span class="fu">tidy</span>(cat_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># Roll the die 1000 times and keep the number of 4s. </span></span>
+<span id="cb3-2"><a></a>thousand_rolls <span class="ot">=</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">size =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-3"><a></a></span>
+<span id="cb3-4"><a></a><span class="co"># Check to see if each value equals 4. If it does equal 4 a 1 is returned, if not a zero.</span></span>
+<span id="cb3-5"><a></a><span class="fu">sum</span>(thousand_rolls <span class="sc">==</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 5
-  term        estimate std.error statistic  p.value
-  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-1 (Intercept)   -0.357     0.692    -0.515 6.07e- 1
-2 Bwt            4.03      0.250    16.1   6.97e-34</code></pre>
+<pre><code>[1] 1701</code></pre>
 </div>
-</div>
-</section>
-<section id="the-equation" class="slide level2">
-<h2>The Equation</h2>
-<p>Intercept is the y-intercept of our linear model (<span class="math inline">\(\beta_0 = -0.36\)</span>).</p>
-<p>The number next to Bwt is the slope (<span class="math inline">\(\beta_1 = 4.03\)</span>).</p>
-<p>The equations is: <span class="math display">\[
-\hat{y} = \beta_0 + \beta_1 x \\
-\text{or} \\
-\widehat{Hwt} = -0.36 + 4.03 \times Bwt \]</span></p>
-</section>
-<section id="summary" class="slide level2">
-<h2>Summary</h2>
-<p><img data-src="images/lm_cats_1_predictor.png"> Stolen from Prof Kurtz Garcia at Smith College</p>
-</section>
-<section id="interpretation" class="slide level2">
-<h2>Interpretation</h2>
-<p>Slope: For every <em>kilogram</em> increase in body weight we expect a 4.03 <em>gram</em> increase in the heart weight.</p>
-<p>Intercept: If we found a cat they weighed nothing its heart would be -0.36 grams?</p>
-</section>
-<section id="more-complete-outputs" class="slide level2">
-<h2>More Complete outputs</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="co"># Alternative to tidy()</span></span>
-<span id="cb10-2"><a></a><span class="fu">summary</span>(cat_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># Number of fours from our simulation</span></span>
+<span id="cb5-2"><a></a><span class="dv">1701</span><span class="sc">/</span><span class="dv">10000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = Hwt ~ Bwt, data = cats)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--3.5694 -0.9634 -0.0921  1.0426  5.1238 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  -0.3567     0.6923  -0.515    0.607    
-Bwt           4.0341     0.2503  16.119   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 1.452 on 142 degrees of freedom
-Multiple R-squared:  0.6466,    Adjusted R-squared:  0.6441 
-F-statistic: 259.8 on 1 and 142 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre><code>[1] 0.1701</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co">#Theoredical probability</span></span>
+<span id="cb7-2"><a></a><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1666667</code></pre>
 </div>
 </div>
 </section>
-<section id="if-a-cat-weighs" class="slide level2">
-<h2>If a cat weighs:</h2>
+<section id="an-event-and-its-complement" class="slide level2">
+<h2>An event and its complement</h2>
+<p>An event and its complement sum to 1.</p>
+<p><span class="math inline">\(P(A) + P(\bar{A}) = 1\)</span></p>
+</section>
+<section id="you-try" class="slide level2">
+<h2>You try</h2>
+<p><a href="https://www.google.com/search?client=firefox-b-1-d&amp;q=six+sided+die">We are rolling two fair die.</a></p>
+<ol type="1">
+<li>What is the theoretical probability their sum is 7? Call this event B.</li>
+</ol>
+<p><a href="https://spreadsheetsolving.com/wp-content/uploads/2013/06/techsmithwor6cb3.png">Here is the sample space</a> <sup>1</sup></p>
+<ol start="2" type="1">
+<li><p>Write the event and the probability notation.</p></li>
+<li><p>Find the compliment of the value above.</p></li>
+</ol>
+<p>Do this by hand.</p>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>https://spreadsheetsolving.com/probabilities-dice-simulations/</p></li></ol></aside></section>
+<section id="disjoint-mutually-exclusive-events" class="slide level2">
+<h2>Disjoint (Mutually Exclusive) Events</h2>
+<blockquote>
+<p>Two events that cannot happen simultaneously.</p>
+</blockquote>
+<p>Consider the single six sided die.</p>
+<p>A = Rolling a 3</p>
+<p>B = Rolling an even number</p>
+<ul>
+<li><p><span class="math inline">\(P(A \text{ and } B) = 0\)</span></p></li>
+<li><p><span class="math inline">\(P(A \text{ or } B) = \frac{1}{6}+\frac{3}{6}\)</span></p></li>
+</ul>
+</section>
+<section id="what-is-disjoint-with" class="slide level2">
+<h2>What is disjoint with?</h2>
 <div>
 <ul>
-<li class="fragment"><p>3.5 kg how large a heart would we expect?</p></li>
-<li class="fragment"><p>Can we estimate the heart size for a 5kg cat?</p>
-<ul>
-<li class="fragment">Caution against extrapolation.</li>
-</ul></li>
+<li class="fragment"><p>A = Flipping heads on a coin</p></li>
+<li class="fragment"><p>B = Going to class</p></li>
+<li class="fragment"><p>C = Eating a cheeseburger</p></li>
 </ul>
 </div>
-</section></section>
-<section>
-<section id="residuals" class="title-slide slide level1 center">
-<h1>Residuals</h1>
-<p>Residuals are the difference in the observed values and the predicted value.</p>
-<p><span class="math display">\[e = y - \hat{y}\]</span></p>
-
-<img data-src="6_Linear_regression_part_2_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
-<section id="due-diligence" class="slide level2">
-<h2>Due Diligence</h2>
-<p>Check for normal residual distribution</p>
-<p>Check for residual linearity</p>
 </section>
-<section id="linearity-of-the-residuals" class="slide level2">
-<h2>Linearity of the residuals</h2>
-<p>Are the residuals close to the zero?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co">#install.packages("broom")</span></span>
-<span id="cb12-2"><a></a><span class="fu">library</span>(broom)</span>
-<span id="cb12-3"><a></a></span>
-<span id="cb12-4"><a></a>cat_model_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(cat_model)</span>
-<span id="cb12-5"><a></a></span>
-<span id="cb12-6"><a></a></span>
-<span id="cb12-7"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> cat_model_aug, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
-<span id="cb12-8"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb12-9"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb12-10"><a></a>  <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) <span class="sc">+</span></span>
-<span id="cb12-11"><a></a>  <span class="fu">ylab</span>(<span class="st">"Residuals"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="6_Linear_regression_part_2_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
-<section id="normal-distributions-of-residuals" class="slide level2">
-<h2>Normal distributions of residuals</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> cat_model_aug, <span class="fu">aes</span>(<span class="at">x =</span> .resid)) <span class="sc">+</span></span>
-<span id="cb13-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb13-3"><a></a>  <span class="fu">xlab</span>(<span class="st">"Residuals"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="6_Linear_regression_part_2_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"><p>The data looks roughly normal.</p>
+<section id="what-is-not-disjoint-with" class="slide level2">
+<h2>What is not disjoint with?</h2>
+<ul>
+<li><p>A = Flipping heads on a coin</p></li>
+<li><p>B = Going to class</p></li>
+<li><p>C = Eating a cheeseburger</p></li>
+</ul>
 </section>
-<section id="citations" class="slide level2">
-<h2>Citations</h2>
-<p>Street cats from https://www.dailypaws.com/cats-kittens/behavior/what-is-a-group-of-cats-called</p>
-<p>You stole Meow Heart https://drbillspetnutrition.com/feline-heart-conditions/</p>
+<section id="independence" class="slide level2">
+<h2>Independence</h2>
+<blockquote>
+<p>Two outcomes are independent if knowing the outcome of one gives no useful information about the other.</p>
+</blockquote>
+<ul>
+<li><p>I flip a tails on a coin. Does that tell me the probability of the next flip?</p></li>
+<li><p>I pull an Ace of Spades from a deck but don’t replace it. Does that tell me about the probability of the next card I pull?</p></li>
+<li><p>One person in class is left handed does that effect the probability of another person being left handed.</p></li>
+</ul>
+</section>
+<section id="an-incomplete-list-of-formulas" class="slide level2">
+<h2>An incomplete list of formulas</h2>
+<ul>
+<li><p>Addition Rule <span class="math inline">\(P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B)\)</span></p></li>
+<li><p>Rules for probability distributions.</p></li>
+<li><p>Multiplication rule for independence. <span class="math inline">\(P(A \text{ and } B) = P(A) \times P(B)\)</span></p></li>
+</ul>
+<p>You’ve read chapter 3.1 and made note of these formulas.</p>
+</section>
+<section id="try-some-for-practice" class="slide level2">
+<h2>Try some for practice:</h2>
+<p><a href="https://www.biostat.jhsph.edu/~iruczins/teaching/books/2019.openintro.statistics.pdf">OI:</a> 3.2, 3.5, 3.11</p>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section></section>
+</section>
+
     </div>
   </div>
 

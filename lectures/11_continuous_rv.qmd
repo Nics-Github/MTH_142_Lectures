@@ -35,13 +35,11 @@ Who is 65 inches tall?
 
 None of us really know how tall we are exactly.
 
-## Convience Sample on heights
+## Convenience Sample on heights
 
-Remember when you all told me your heights? I made them into a histogram.
+Last semester my in person class told me how tall they are. I made a histogram of their heights.
 
 ```{r}
-#| echo: FALSE
-
 library(tidyverse)
 
 heights <- c(65L, 62L, 69L, 68L, 63L, 61L, 61L, 64L, 63L, 62L, 71L, 66L, 63L, 68L, 67L, 70L, 65L, 61L, 64L, 69L, 67L, 67L, 70L, 64L, 61L, 64L, 64L, 69L, 69L, 59L, 63L, 66L, 64L, 62L)
@@ -50,23 +48,21 @@ heights <- data_frame(heights)
 
 
 ggplot(data = heights)+
-  geom_histogram(aes(heights), bins=12,color="orange", fill= "gray40")+
+  geom_histogram(mapping = aes(heights), bins=12, color="orange", fill= "gray40")+
   theme_classic()+
   xlab("Heights Inches")+
   ylab("Number of Students")+
-  labs(title = "Heights from SDS 220 Fall 2023")
+  labs(title = "Heights from students Fall 2023")
 ```
 
 ## Probabilities from our sample
 
-Hint: n = 34 students responded to the survey.
+The sample of students it n = 34.
 
 ::: incremental
 -   P( X \< 65 )
 -   P( 60 \< X \< 63 )
 -   P( X = 65 )
-
-Cannot be equal to exactly 1 number with continuous distributions. $\inf$ number of values.
 :::
 
 ## Cont. Height Histogram
@@ -74,17 +70,17 @@ Cannot be equal to exactly 1 number with continuous distributions. $\inf$ number
 ```{r}
 
 ggplot(data = heights)+
-  geom_histogram(aes(heights), stat = "density", bins=10,color="orange", fill= "gray40")+
+  geom_density(mapping = aes(heights), fill= "gray40")+
   theme_classic()+
   xlab("Heights Inches")+
   ylab("Number of Students")+
-  labs(title = "Heights from SDS 220 Fall 2023")
+  labs(title = "Heights from students Fall 2023")
 
 ```
 
 ## Probability Height Questions
 
-Let's pretend our sample is representative of all Smithies
+Let's pretend our sample is representative of all students
 
 ::: incremental
 -   P( X \< 65 )
@@ -94,6 +90,6 @@ Let's pretend our sample is representative of all Smithies
 Cannot be equal to exactly 1 number with continuous distributions. $\inf$ number of values.
 :::
 
-# Just one problem
+## You try.
 
-[3.37](https://www.biostat.jhsph.edu/~iruczins/teaching/books/2019.openintro.statistics.pdf#chapter.3)
+## [3.37](https://www.biostat.jhsph.edu/~iruczins/teaching/books/2019.openintro.statistics.pdf#chapter.3)

@@ -9,7 +9,7 @@ execute:
   echo: TRUE
 ---
 
-# Homework notes
+## Homework notes
 
 Problem 6
 
@@ -109,6 +109,8 @@ ggplot(data = cats, aes(Bwt, Hwt))+
 
 ## Add a regression line
 
+and some labels.
+
 ```{r}
 ggplot(data = cats, aes(x = Bwt, y = Hwt))+
   geom_point(aes(color=Sex) )+
@@ -117,7 +119,7 @@ ggplot(data = cats, aes(x = Bwt, y = Hwt))+
   ylab("Heart Weight in Grams")
 ```
 
-## Find correlation coefficient .
+## Find correlation coefficient
 
 ```{r}
 summarize(.data= cats , r = cor(Bwt, Hwt, use="complete.obs"))
@@ -128,7 +130,7 @@ summarize(.data= cats , r = cor(Bwt, Hwt, use="complete.obs"))
 ```{r}
 #install.packages("broom")
 library(broom)
-cat_model <- lm(Hwt ~ Bwt, data= cats)
+cat_model <- lm(Hwt ~ Bwt, data = cats)
 tidy(cat_model)
 ```
 
@@ -145,7 +147,7 @@ The equations is: $$
 
 ## Summary
 
-![](images/lm_cats_1_predictor.png) Stolen from Prof Kurtz Garcia
+![](images/lm_cats_1_predictor.png) Stolen from Prof Kurtz Garcia at Smith College
 
 ## Interpretation
 

@@ -5,5 +5,502 @@
     "title": "Lectures from SDS 220 Spring 2024",
     "section": "",
     "text": "These are the lectures from MTH 142, you can also find the direct links via Canvas.\nLecture 1 Statistical Thinking\nLecture 2 Study Design and Variables\nLecture 3 Categorical Data\nLecture 4 part 2 Numeric Data\nLecture 5 Linear Correlation\nLecture 6 Linear Correlation\nLecture 7 Regression math\nLecture 8 Probability\nLecture 9 Probability 2\nLecture 10 Conditional Probability\nLecture 11 Continuous Random Variables\nLecture 12 The Normal Distribution\nLecture 13 Hypothesis Testing Proportion\nLecture 14 Paraemetric bootstrap Hypothesis Testing\n\nLecture 16 Confidence Intervals with Math\nLecture 17 Decision Errors\nLecture 18 Distributions and Two Proportions\nLecture 19 Hypothesis Test for a single mean\nLecture 20 Hypothesis Test for a difference of means (unpaired)\nLecture 21 ANOVA\nLecture 22 Regression with a Single Predictor\nLecture 23 Prof. Kurtz-Garcia"
+  },
+  {
+    "objectID": "lectures/7_regression-by-hand.html#this-is-a-bonus-lecture",
+    "href": "lectures/7_regression-by-hand.html#this-is-a-bonus-lecture",
+    "title": "Regression Math",
+    "section": "This is a bonus lecture",
+    "text": "This is a bonus lecture\nThis is a lecture to explain the math behind linear regression.\nIt is not necessary to watch it and you do not need it to complete the course."
+  },
+  {
+    "objectID": "lectures/7_regression-by-hand.html#we-will-do-three-things",
+    "href": "lectures/7_regression-by-hand.html#we-will-do-three-things",
+    "title": "Regression Math",
+    "section": "We will do three things",
+    "text": "We will do three things\n\nFind the slope of the linear model using standard deviations\nMake the linear model considering \\(\\overline{x}\\) and \\(\\overline{y}\\)\nFind \\(R^2\\) from a simple ratio of the \\(s_y\\) and \\(s_e\\)"
+  },
+  {
+    "objectID": "lectures/7_regression-by-hand.html#find-slope-of-the-linear-model",
+    "href": "lectures/7_regression-by-hand.html#find-slope-of-the-linear-model",
+    "title": "Regression Math",
+    "section": "Find slope of the linear model",
+    "text": "Find slope of the linear model\n\n\n\\(b=\\frac{s_y}{s_x}r\\)\n\\(s_y\\) is the sample standard deviation in the y values.\n\\(s_x\\) is the sample standard deviation in the x values.\n\\(r\\) is the correlation coefficient.\nWe know these values from the last video."
+  },
+  {
+    "objectID": "lectures/7_regression-by-hand.html#recall",
+    "href": "lectures/7_regression-by-hand.html#recall",
+    "title": "Regression Math",
+    "section": "Recall",
+    "text": "Recall\nWe can get our std.errors and r:\n\ncats |&gt;\n  summarize(\n    r = cor( Hwt, Bwt ),\n    r2 =  (cor( Hwt, Bwt ))^2,\n    sd_y = sd(Hwt),\n    sd_x = sd(Bwt)\n  )\n\n          r        r2     sd_y      sd_x\n1 0.8041274 0.6466209 2.434636 0.4853066"
+  },
+  {
+    "objectID": "lectures/7_regression-by-hand.html#we-are-lucky",
+    "href": "lectures/7_regression-by-hand.html#we-are-lucky",
+    "title": "Regression Math",
+    "section": "We are lucky",
+    "text": "We are lucky\nTo find the sample standard deviation in the past people had to use this:"
+  },
+  {
+    "objectID": "lectures/7_regression-by-hand.html#slope-calculation",
+    "href": "lectures/7_regression-by-hand.html#slope-calculation",
+    "title": "Regression Math",
+    "section": "Slope calculation",
+    "text": "Slope calculation\n\\(m = b_1 = \\frac{s_y}{s_x} r=\\frac{2.434}{0.485}(0.804)=4.035\\)\nWe still don’t know how to find r"
+  },
+  {
+    "objectID": "lectures/7_regression-by-hand.html#the-means-are-on-the-regression-line.",
+    "href": "lectures/7_regression-by-hand.html#the-means-are-on-the-regression-line.",
+    "title": "Regression Math",
+    "section": "The means are on the regression line.",
+    "text": "The means are on the regression line.\n\\(\\overline{x}\\) and \\(\\overline{y}\\) are on the regression line \\(\\hat{y}\\)\n\ncats |&gt;\n  summarize(\n    mean_y = mean(Hwt),\n    mean_x = mean(Bwt)\n  )\n\n    mean_y   mean_x\n1 10.63056 2.723611"
+  },
+  {
+    "objectID": "lectures/7_regression-by-hand.html#solve-for-the-intercept",
+    "href": "lectures/7_regression-by-hand.html#solve-for-the-intercept",
+    "title": "Regression Math",
+    "section": "Solve for the intercept",
+    "text": "Solve for the intercept\nNow we plug everything into the equation of a line and solve for \\(b_0\\)\nI’m rounding for ease.\n\\(\\hat{y} = b_0 + b_1 x\\)\n\\(10.631 = b_0 + 4.035 (2.724)\\)\n\\(10.631 = b_0 + 10.991\\)\n\\(- 0.36 = b_0\\)\nSo our line is: \\(\\hat{y} = - 0.36 + 4.03 x\\) or\n\\(\\widehat{Hwt} = -0.36+ 4.03 \\text{Bwt}\\)"
+  },
+  {
+    "objectID": "lectures/7_regression-by-hand.html#those-are-the-same-numbers-we-had-before",
+    "href": "lectures/7_regression-by-hand.html#those-are-the-same-numbers-we-had-before",
+    "title": "Regression Math",
+    "section": "Those are the same numbers we had before",
+    "text": "Those are the same numbers we had before\n\n\n\nCall:\nlm(formula = Hwt ~ Bwt, data = cats)\n\nCoefficients:\n(Intercept)          Bwt  \n    -0.3567       4.0341"
+  },
+  {
+    "objectID": "lectures/7_regression-by-hand.html#standard-deviation-of-residuals",
+    "href": "lectures/7_regression-by-hand.html#standard-deviation-of-residuals",
+    "title": "Regression Math",
+    "section": "Standard Deviation of Residuals",
+    "text": "Standard Deviation of Residuals\n\ncat_model_aug &lt;- augment(cat_model)\ntidy(cat_model_aug)\n\n# A tibble: 8 × 13\n  column         n     mean      sd   median  trimmed     mad        min     max\n  &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;\n1 Hwt          144 1.06e+ 1 2.43    10.1     10.5     1.55       6.3 e+0 20.5   \n2 Bwt          144 2.72e+ 0 0.485    2.7      2.69    0.4        2   e+0  3.9   \n3 .fitted      144 1.06e+ 1 1.96    10.5     10.5     1.61       7.71e+0 15.4   \n4 .resid       144 7.55e-15 1.45    -0.0921  -0.0473  1.04      -3.57e+0  5.12  \n5 .hat         144 1.39e- 2 0.00797  0.0117   0.0125  0.00384    6.96e-3  0.0480\n6 .sigma       144 1.45e+ 0 0.00789  1.46     1.45    0.00203    1.39e+0  1.46  \n7 .cooksd      144 9.15e- 3 0.0298   0.00307  0.00448 0.00253    1.01e-6  0.330 \n8 .std.resid   144 5.37e- 4 1.01    -0.0637  -0.0325  0.719     -2.50e+0  3.62  \n# ℹ 4 more variables: range &lt;dbl&gt;, skew &lt;dbl&gt;, kurtosis &lt;dbl&gt;, se &lt;dbl&gt;"
+  },
+  {
+    "objectID": "lectures/7_regression-by-hand.html#we-are-lucky-again",
+    "href": "lectures/7_regression-by-hand.html#we-are-lucky-again",
+    "title": "Regression Math",
+    "section": "We are lucky again",
+    "text": "We are lucky again\nTo find the standard deviation in the past people had to use this:"
+  },
+  {
+    "objectID": "lectures/7_regression-by-hand.html#to-calculate-r2",
+    "href": "lectures/7_regression-by-hand.html#to-calculate-r2",
+    "title": "Regression Math",
+    "section": "To calculate \\(R^2\\)",
+    "text": "To calculate \\(R^2\\)\nThe book shows an equivalent method to do this. Using SST and SSE.\n\\(r^2=0.65=65\\%\\)\n“65% in the variation of Heart Weight can be explained by the Body Weight”\nRounding again for ease.\n\\(R^2 = \\frac{s_y-s_e}{s_y} = \\frac{2.4^2-1.4^2}{2.4^2} \\approx 0.65\\)\n\\(r=\\sqrt{0.65}\\approx 0.80\\)"
+  },
+  {
+    "objectID": "lectures/7_regression-by-hand.html#try-problem-22",
+    "href": "lectures/7_regression-by-hand.html#try-problem-22",
+    "title": "Regression Math",
+    "section": "Try Problem 22",
+    "text": "Try Problem 22"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#homework-notes",
+    "href": "lectures/6_Linear_regression_part_2.html#homework-notes",
+    "title": "Linear Regression part 2",
+    "section": "Homework notes",
+    "text": "Homework notes\nProblem 6"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#copy-and-paste-into-r",
+    "href": "lectures/6_Linear_regression_part_2.html#copy-and-paste-into-r",
+    "title": "Linear Regression part 2",
+    "section": "Copy and paste into r",
+    "text": "Copy and paste into r\nUse c() function. Add commas. (Note we all have different numbers)\n\nColesterol_Lvl &lt;- c(\n244,\n278,\n272,\n160,\n226,\n210,\n318,\n236,\n186,\n142,\n360,\n288,\n220,\n206,\n282,\n270,\n282,\n234,\n266,\n276,\n294,\n224,\n310,\n242,\n236,\n288)"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#cats-hearts",
+    "href": "lectures/6_Linear_regression_part_2.html#cats-hearts",
+    "title": "Linear Regression part 2",
+    "section": "Cats’ hearts",
+    "text": "Cats’ hearts\n\nYou stole Meow Heart"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#a-big-heart-may-cause-problems",
+    "href": "lectures/6_Linear_regression_part_2.html#a-big-heart-may-cause-problems",
+    "title": "Linear Regression part 2",
+    "section": "A big heart may cause problems",
+    "text": "A big heart may cause problems\nFinding the size of a cat’s heart is hard.\nEstimate with a model a model."
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#data-from-the-40s",
+    "href": "lectures/6_Linear_regression_part_2.html#data-from-the-40s",
+    "title": "Linear Regression part 2",
+    "section": "Data from the 40s",
+    "text": "Data from the 40s\nThis data cites this source, which you may be inclined to look over.\n\n\nCode\n#install.packages(\"MASS\")\nlibrary(MASS)"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#look-at-data",
+    "href": "lectures/6_Linear_regression_part_2.html#look-at-data",
+    "title": "Linear Regression part 2",
+    "section": "Look at data",
+    "text": "Look at data\n\n?cats\ntail(cats,6)\n\n    Sex Bwt  Hwt\n139   M 3.6 15.0\n140   M 3.7 11.0\n141   M 3.8 14.8\n142   M 3.8 16.8\n143   M 3.9 14.4\n144   M 3.9 20.5"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#which-variable-is-which",
+    "href": "lectures/6_Linear_regression_part_2.html#which-variable-is-which",
+    "title": "Linear Regression part 2",
+    "section": "Which variable is which?",
+    "text": "Which variable is which?\nWhich should be the predictor and response variables?"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#plot",
+    "href": "lectures/6_Linear_regression_part_2.html#plot",
+    "title": "Linear Regression part 2",
+    "section": "Plot",
+    "text": "Plot"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#describe-trend",
+    "href": "lectures/6_Linear_regression_part_2.html#describe-trend",
+    "title": "Linear Regression part 2",
+    "section": "Describe Trend",
+    "text": "Describe Trend\n\nShape\nDirection\nStrength"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#add-a-regression-line",
+    "href": "lectures/6_Linear_regression_part_2.html#add-a-regression-line",
+    "title": "Linear Regression part 2",
+    "section": "Add a regression line",
+    "text": "Add a regression line\nand some labels.\n\nggplot(data = cats, aes(x = Bwt, y = Hwt))+\n  geom_point(aes(color=Sex) )+\n  geom_smooth(method = lm, se = FALSE) +\n  xlab(\"Body Weight in Kg\") +\n  ylab(\"Heart Weight in Grams\")"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#find-correlation-coefficient",
+    "href": "lectures/6_Linear_regression_part_2.html#find-correlation-coefficient",
+    "title": "Linear Regression part 2",
+    "section": "Find correlation coefficient",
+    "text": "Find correlation coefficient\n\nsummarize(.data= cats , r = cor(Bwt, Hwt, use=\"complete.obs\"))\n\n          r\n1 0.8041274"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#find-the-coefficents",
+    "href": "lectures/6_Linear_regression_part_2.html#find-the-coefficents",
+    "title": "Linear Regression part 2",
+    "section": "Find the coefficents",
+    "text": "Find the coefficents\n\n#install.packages(\"broom\")\nlibrary(broom)\ncat_model &lt;- lm(Hwt ~ Bwt, data = cats)\ntidy(cat_model)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)   -0.357     0.692    -0.515 6.07e- 1\n2 Bwt            4.03      0.250    16.1   6.97e-34"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#the-equation",
+    "href": "lectures/6_Linear_regression_part_2.html#the-equation",
+    "title": "Linear Regression part 2",
+    "section": "The Equation",
+    "text": "The Equation\nIntercept is the y-intercept of our linear model (\\(\\beta_0 = -0.36\\)).\nThe number next to Bwt is the slope (\\(\\beta_1 = 4.03\\)).\nThe equations is: \\[\n\\hat{y} = \\beta_0 + \\beta_1 x \\\\\n\\text{or} \\\\\n\\widehat{Hwt} = -0.36 + 4.03 \\times Bwt \\]"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#summary",
+    "href": "lectures/6_Linear_regression_part_2.html#summary",
+    "title": "Linear Regression part 2",
+    "section": "Summary",
+    "text": "Summary\n Stolen from Prof Kurtz Garcia at Smith College"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#interpretation",
+    "href": "lectures/6_Linear_regression_part_2.html#interpretation",
+    "title": "Linear Regression part 2",
+    "section": "Interpretation",
+    "text": "Interpretation\nSlope: For every kilogram increase in body weight we expect a 4.03 gram increase in the heart weight.\nIntercept: If we found a cat they weighed nothing its heart would be -0.36 grams?"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#more-complete-outputs",
+    "href": "lectures/6_Linear_regression_part_2.html#more-complete-outputs",
+    "title": "Linear Regression part 2",
+    "section": "More Complete outputs",
+    "text": "More Complete outputs\n\n# Alternative to tidy()\nsummary(cat_model)\n\n\nCall:\nlm(formula = Hwt ~ Bwt, data = cats)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-3.5694 -0.9634 -0.0921  1.0426  5.1238 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  -0.3567     0.6923  -0.515    0.607    \nBwt           4.0341     0.2503  16.119   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.452 on 142 degrees of freedom\nMultiple R-squared:  0.6466,    Adjusted R-squared:  0.6441 \nF-statistic: 259.8 on 1 and 142 DF,  p-value: &lt; 2.2e-16"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#if-a-cat-weighs",
+    "href": "lectures/6_Linear_regression_part_2.html#if-a-cat-weighs",
+    "title": "Linear Regression part 2",
+    "section": "If a cat weighs:",
+    "text": "If a cat weighs:\n\n\n3.5 kg how large a heart would we expect?\nCan we estimate the heart size for a 5kg cat?\n\nCaution against extrapolation."
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#due-diligence",
+    "href": "lectures/6_Linear_regression_part_2.html#due-diligence",
+    "title": "Linear Regression part 2",
+    "section": "Due Diligence",
+    "text": "Due Diligence\nCheck for normal residual distribution\nCheck for residual linearity"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#linearity-of-the-residuals",
+    "href": "lectures/6_Linear_regression_part_2.html#linearity-of-the-residuals",
+    "title": "Linear Regression part 2",
+    "section": "Linearity of the residuals",
+    "text": "Linearity of the residuals\nAre the residuals close to the zero?\n\n#install.packages(\"broom\")\nlibrary(broom)\n\ncat_model_aug &lt;- augment(cat_model)\n\n\nggplot(data = cat_model_aug, aes(x = .fitted, y = .resid)) +\n  geom_point() +\n  geom_hline(yintercept = 0, linetype = \"dashed\", color = \"red\") +\n  xlab(\"Fitted values\") +\n  ylab(\"Residuals\")"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#normal-distributions-of-residuals",
+    "href": "lectures/6_Linear_regression_part_2.html#normal-distributions-of-residuals",
+    "title": "Linear Regression part 2",
+    "section": "Normal distributions of residuals",
+    "text": "Normal distributions of residuals\n\nggplot(data = cat_model_aug, aes(x = .resid)) +\n  geom_histogram(binwidth = 0.25) +\n  xlab(\"Residuals\")\n\n\nThe data looks roughly normal."
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#citations",
+    "href": "lectures/6_Linear_regression_part_2.html#citations",
+    "title": "Linear Regression part 2",
+    "section": "Citations",
+    "text": "Citations\nStreet cats from https://www.dailypaws.com/cats-kittens/behavior/what-is-a-group-of-cats-called\nYou stole Meow Heart https://drbillspetnutrition.com/feline-heart-conditions/"
+  },
+  {
+    "objectID": "lectures/8_Probability_1.html#read-before-hand",
+    "href": "lectures/8_Probability_1.html#read-before-hand",
+    "title": "Probability part 1",
+    "section": "Read before hand:",
+    "text": "Read before hand:\nOpen Intro Statistics Chapter 3.1."
+  },
+  {
+    "objectID": "lectures/8_Probability_1.html#the-law-of-large-numbers",
+    "href": "lectures/8_Probability_1.html#the-law-of-large-numbers",
+    "title": "Probability part 1",
+    "section": "The Law of Large numbers",
+    "text": "The Law of Large numbers\nThe theoretical probability of getting a heads is 0.5 on a coin.\nLet’s test it empirically.\nFlip a coin\nVisualize the law of large numbers"
+  },
+  {
+    "objectID": "lectures/8_Probability_1.html#empirical-vs-theoretical-probabilities",
+    "href": "lectures/8_Probability_1.html#empirical-vs-theoretical-probabilities",
+    "title": "Probability part 1",
+    "section": "Empirical vs Theoretical Probabilities",
+    "text": "Empirical vs Theoretical Probabilities\n\nWe just found the probability of flipping a coin empirically.\nWe know what it is in theory. ( 0.5)\nToday we will discuss theoretical probabilities."
+  },
+  {
+    "objectID": "lectures/8_Probability_1.html#probability",
+    "href": "lectures/8_Probability_1.html#probability",
+    "title": "Probability part 1",
+    "section": "Probability",
+    "text": "Probability\n\nThe probability of an event is the proportion of times we would see the event occur if the process could happen an infinite number of times.\n\nConsider a fair six sided die.\nEvent A = Rolling a 4.\nA random variable X might be:\n\nX~The number that shows up on a die."
+  },
+  {
+    "objectID": "lectures/8_Probability_1.html#rolling-a-4",
+    "href": "lectures/8_Probability_1.html#rolling-a-4",
+    "title": "Probability part 1",
+    "section": "Rolling a 4",
+    "text": "Rolling a 4\nThere are 6 possible outcomes so the\n\nSample space = {1,2,3,4,5,6 } = \\(\\Omega\\)\n\nWe want 1 outcome of the 6.\n\nP(Rolling a 4) = P( X = 4) = \\(\\frac{1}{6}\\)"
+  },
+  {
+    "objectID": "lectures/8_Probability_1.html#not-rolling-a-4.",
+    "href": "lectures/8_Probability_1.html#not-rolling-a-4.",
+    "title": "Probability part 1",
+    "section": "Not rolling a 4.",
+    "text": "Not rolling a 4.\nWe want 5 outcomes of the 6.\n\\(\\Omega = \\{1,2,3,4,5,6 \\}\\)\n\nP(Not Rolling a 4) = \\(P( X \\ne 4) = \\frac{5}{6}\\)\n\nThis is called the complement and is denoted \\(\\bar{A}\\)"
+  },
+  {
+    "objectID": "lectures/8_Probability_1.html#simulate-die-rolling-in-r",
+    "href": "lectures/8_Probability_1.html#simulate-die-rolling-in-r",
+    "title": "Probability part 1",
+    "section": "Simulate die rolling in R",
+    "text": "Simulate die rolling in R\n(optional code)\n\n# This is to get consistent answers. \nset.seed(1)\n\n# Roll the die once\nsample(x = c(1,2,3,4,5,6), size = 1, replace = TRUE)\n\n[1] 1\n\n# Roll the die 1000 times and keep the number of 4s. \nthousand_rolls = sample(x = c(1,2,3,4,5,6), size = 10000, replace = TRUE)\n\n# Check to see if each value equals 4. If it does equal 4 a 1 is returned, if not a zero.\nsum(thousand_rolls == 4)\n\n[1] 1701\n\n# Number of fours from our simulation\n1701/10000\n\n[1] 0.1701\n\n#Theoredical probability\n1/6\n\n[1] 0.1666667"
+  },
+  {
+    "objectID": "lectures/8_Probability_1.html#an-event-and-its-complement",
+    "href": "lectures/8_Probability_1.html#an-event-and-its-complement",
+    "title": "Probability part 1",
+    "section": "An event and its complement",
+    "text": "An event and its complement\nAn event and its complement sum to 1.\n\\(P(A) + P(\\bar{A}) = 1\\)"
+  },
+  {
+    "objectID": "lectures/8_Probability_1.html#you-try",
+    "href": "lectures/8_Probability_1.html#you-try",
+    "title": "Probability part 1",
+    "section": "You try",
+    "text": "You try\nWe are rolling two fair die.\n\nWhat is the theoretical probability their sum is 7? Call this event B.\n\nHere is the sample space 1\n\nWrite the event and the probability notation.\nFind the compliment of the value above.\n\nDo this by hand.\nhttps://spreadsheetsolving.com/probabilities-dice-simulations/"
+  },
+  {
+    "objectID": "lectures/8_Probability_1.html#disjoint-mutually-exclusive-events",
+    "href": "lectures/8_Probability_1.html#disjoint-mutually-exclusive-events",
+    "title": "Probability part 1",
+    "section": "Disjoint (Mutually Exclusive) Events",
+    "text": "Disjoint (Mutually Exclusive) Events\n\nTwo events that cannot happen simultaneously.\n\nConsider the single six sided die.\nA = Rolling a 3\nB = Rolling an even number\n\n\\(P(A \\text{ and } B) = 0\\)\n\\(P(A \\text{ or } B) = \\frac{1}{6}+\\frac{3}{6}\\)"
+  },
+  {
+    "objectID": "lectures/8_Probability_1.html#what-is-disjoint-with",
+    "href": "lectures/8_Probability_1.html#what-is-disjoint-with",
+    "title": "Probability part 1",
+    "section": "What is disjoint with?",
+    "text": "What is disjoint with?\n\n\nA = Flipping heads on a coin\nB = Going to class\nC = Eating a cheeseburger"
+  },
+  {
+    "objectID": "lectures/8_Probability_1.html#what-is-not-disjoint-with",
+    "href": "lectures/8_Probability_1.html#what-is-not-disjoint-with",
+    "title": "Probability part 1",
+    "section": "What is not disjoint with?",
+    "text": "What is not disjoint with?\n\nA = Flipping heads on a coin\nB = Going to class\nC = Eating a cheeseburger"
+  },
+  {
+    "objectID": "lectures/8_Probability_1.html#independence",
+    "href": "lectures/8_Probability_1.html#independence",
+    "title": "Probability part 1",
+    "section": "Independence",
+    "text": "Independence\n\nTwo outcomes are independent if knowing the outcome of one gives no useful information about the other.\n\n\nI flip a tails on a coin. Does that tell me the probability of the next flip?\nI pull an Ace of Spades from a deck but don’t replace it. Does that tell me about the probability of the next card I pull?\nOne person in class is left handed does that effect the probability of another person being left handed."
+  },
+  {
+    "objectID": "lectures/8_Probability_1.html#an-incomplete-list-of-formulas",
+    "href": "lectures/8_Probability_1.html#an-incomplete-list-of-formulas",
+    "title": "Probability part 1",
+    "section": "An incomplete list of formulas",
+    "text": "An incomplete list of formulas\n\nAddition Rule \\(P(A \\text{ or } B) = P(A) + P(B) - P(A \\text{ and } B)\\)\nRules for probability distributions.\nMultiplication rule for independence. \\(P(A \\text{ and } B) = P(A) \\times P(B)\\)\n\nYou’ve read chapter 3.1 and made note of these formulas."
+  },
+  {
+    "objectID": "lectures/8_Probability_1.html#try-some-for-practice",
+    "href": "lectures/8_Probability_1.html#try-some-for-practice",
+    "title": "Probability part 1",
+    "section": "Try some for practice:",
+    "text": "Try some for practice:\nOI: 3.2, 3.5, 3.11"
+  },
+  {
+    "objectID": "lectures/9_Probability_2.html#probability-functions",
+    "href": "lectures/9_Probability_2.html#probability-functions",
+    "title": "Random Variables",
+    "section": "Probability Functions",
+    "text": "Probability Functions\n\\(0&lt;P(x_i)&lt;1\\)\n\\(\\sum_i P(x_i) = 1\\)"
+  },
+  {
+    "objectID": "lectures/9_Probability_2.html#process-vs-variable",
+    "href": "lectures/9_Probability_2.html#process-vs-variable",
+    "title": "Random Variables",
+    "section": "Process vs Variable",
+    "text": "Process vs Variable\n\n\n\n\n\n\n\nRandom Process\nRandom Variable\n\n\n\n\nRolling a two six sided die\nX = Sum of faces\n\n\nFlip a coin 10 times\nX = # Number of Tails\n\n\nBody Dimensions\nX = Foot size\nY = Neck Circumference Z = Height"
+  },
+  {
+    "objectID": "lectures/9_Probability_2.html#random-variables",
+    "href": "lectures/9_Probability_2.html#random-variables",
+    "title": "Random Variables",
+    "section": "Random variables",
+    "text": "Random variables\n\n\nAre like functions that map onto the real line\nOften given the names X, Y, and Z\nCapital X is the name of the variable\nLowercase x is the value the variable takes\nType of Random variables:\n\nContinuous Random Variables\nDiscrete Random Variables"
+  },
+  {
+    "objectID": "lectures/9_Probability_2.html#discrete-random-variables",
+    "href": "lectures/9_Probability_2.html#discrete-random-variables",
+    "title": "Random Variables",
+    "section": "Discrete Random Variables",
+    "text": "Discrete Random Variables\nGet a Probability Mass Function\nStates their probability of any value of x\n\nExample: Value of face on a die"
+  },
+  {
+    "objectID": "lectures/9_Probability_2.html#continuous-random-variables",
+    "href": "lectures/9_Probability_2.html#continuous-random-variables",
+    "title": "Random Variables",
+    "section": "Continuous Random Variables",
+    "text": "Continuous Random Variables\nGet a Probability Density Function\nThis states there probability for any value less than or grater than little x.\n\nHeight"
+  },
+  {
+    "objectID": "lectures/9_Probability_2.html#optional-material",
+    "href": "lectures/9_Probability_2.html#optional-material",
+    "title": "Random Variables",
+    "section": "Optional Material",
+    "text": "Optional Material\nIf you are interested in further studying statistics, data science or math you should go through the next few slides with me.\nIt is not required for this course."
+  },
+  {
+    "objectID": "lectures/9_Probability_2.html#expectation",
+    "href": "lectures/9_Probability_2.html#expectation",
+    "title": "Random Variables",
+    "section": "Expectation",
+    "text": "Expectation\nExpectation is another word for average.\n\n\nIt is \\(E[X] = \\sum_i P(x_i) x_i\\)\nLet’s make a probability model for X = The value on the face of a dice.\nLet’s graph the model.\nThen let’s calculate its expectation."
+  },
+  {
+    "objectID": "lectures/9_Probability_2.html#variance",
+    "href": "lectures/9_Probability_2.html#variance",
+    "title": "Random Variables",
+    "section": "Variance",
+    "text": "Variance\nThe Variance is given by the following formula.\n\\(V[X] = E[(X-\\mu)^2] = \\sum_i (x_i-\\mu)^2 P(X=x_i)\\)\nLet’s calculate the variance of the variable X from the previous slide."
+  },
+  {
+    "objectID": "lectures/9_Probability_2.html#you-try",
+    "href": "lectures/9_Probability_2.html#you-try",
+    "title": "Random Variables",
+    "section": "You try",
+    "text": "You try\nWrite the random variable.\nFind the expectation.\nFind the variance.\nWrite the probability model (as a table or graph).\nHere is the sample space for rolling two die 1\nhttps://spreadsheetsolving.com/probabilities-dice-simulations/"
+  },
+  {
+    "objectID": "lectures/9_Probability_2.html#examples",
+    "href": "lectures/9_Probability_2.html#examples",
+    "title": "Random Variables",
+    "section": "Examples",
+    "text": "Examples\nProblem 3.30\nProblem 3.33"
+  },
+  {
+    "objectID": "lectures/10-Probability_Wrap_Up.html#general-multiplication-rule",
+    "href": "lectures/10-Probability_Wrap_Up.html#general-multiplication-rule",
+    "title": "Probability Wrap up",
+    "section": "General Multiplication Rule:",
+    "text": "General Multiplication Rule:\n\\(P(A \\text{ and } B) = P(A|B)P(B)\\)"
+  },
+  {
+    "objectID": "lectures/10-Probability_Wrap_Up.html#law-of-total-probability",
+    "href": "lectures/10-Probability_Wrap_Up.html#law-of-total-probability",
+    "title": "Probability Wrap up",
+    "section": "Law of Total Probability:",
+    "text": "Law of Total Probability:\n\\(P(A) = P(A|B_1)P(B_1)+P(A|B_2)P(B_2)+…+P(A|B_k)P(B_k)\\)\nWhere each \\(B_i\\) is disjoint."
+  },
+  {
+    "objectID": "lectures/10-Probability_Wrap_Up.html#conditional-probability",
+    "href": "lectures/10-Probability_Wrap_Up.html#conditional-probability",
+    "title": "Probability Wrap up",
+    "section": "Conditional Probability",
+    "text": "Conditional Probability\n\\(P(A|B) = \\frac{P(B|A)P(A)}{P(B)}\\)"
+  },
+  {
+    "objectID": "lectures/11_continuous_rv.html#continuous-rv",
+    "href": "lectures/11_continuous_rv.html#continuous-rv",
+    "title": "Continuous RV",
+    "section": "Continuous RV",
+    "text": "Continuous RV\n\n\nRemember continuous means we can take any numeric value.\n(Discrete means we can take integers.)\nX- Face value of a die\nY- Sum of two die.\nX and Y are discrete because they deal while whole numbers"
+  },
+  {
+    "objectID": "lectures/11_continuous_rv.html#height",
+    "href": "lectures/11_continuous_rv.html#height",
+    "title": "Continuous RV",
+    "section": "Height",
+    "text": "Height\nX- height (inches)\nX is a continuous random variable.\n(people usually report is as a discrete RV.)"
+  },
+  {
+    "objectID": "lectures/11_continuous_rv.html#tanget-precision-matters",
+    "href": "lectures/11_continuous_rv.html#tanget-precision-matters",
+    "title": "Continuous RV",
+    "section": "Tanget: Precision matters",
+    "text": "Tanget: Precision matters\nWho is 65 inches tall?\nNone of us really know how tall we are exactly."
+  },
+  {
+    "objectID": "lectures/11_continuous_rv.html#convenience-sample-on-heights",
+    "href": "lectures/11_continuous_rv.html#convenience-sample-on-heights",
+    "title": "Continuous RV",
+    "section": "Convenience Sample on heights",
+    "text": "Convenience Sample on heights\nLast semester my in person class told me how tall they are. I made a histogram of their heights."
+  },
+  {
+    "objectID": "lectures/11_continuous_rv.html#probabilities-from-our-sample",
+    "href": "lectures/11_continuous_rv.html#probabilities-from-our-sample",
+    "title": "Continuous RV",
+    "section": "Probabilities from our sample",
+    "text": "Probabilities from our sample\nThe sample of students it n = 34.\n\n\nP( X &lt; 65 )\nP( 60 &lt; X &lt; 63 )\nP( X = 65 )"
+  },
+  {
+    "objectID": "lectures/11_continuous_rv.html#cont.-height-histogram",
+    "href": "lectures/11_continuous_rv.html#cont.-height-histogram",
+    "title": "Continuous RV",
+    "section": "Cont. Height Histogram",
+    "text": "Cont. Height Histogram"
+  },
+  {
+    "objectID": "lectures/11_continuous_rv.html#probability-height-questions",
+    "href": "lectures/11_continuous_rv.html#probability-height-questions",
+    "title": "Continuous RV",
+    "section": "Probability Height Questions",
+    "text": "Probability Height Questions\nLet’s pretend our sample is representative of all students\n\n\nP( X &lt; 65 )\nP( 60 &lt; X &lt; 63 )\nP( X = 65 )\n\nCannot be equal to exactly 1 number with continuous distributions. \\(\\inf\\) number of values."
+  },
+  {
+    "objectID": "lectures/11_continuous_rv.html#you-try.",
+    "href": "lectures/11_continuous_rv.html#you-try.",
+    "title": "Continuous RV",
+    "section": "You try.",
+    "text": "You try."
+  },
+  {
+    "objectID": "lectures/11_continuous_rv.html#section",
+    "href": "lectures/11_continuous_rv.html#section",
+    "title": "Continuous RV",
+    "section": "3.37",
+    "text": "3.37"
   }
 ]

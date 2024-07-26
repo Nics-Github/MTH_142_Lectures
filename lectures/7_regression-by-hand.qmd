@@ -15,6 +15,12 @@ library(MASS)
 library(broom)
 ```
 
+## This is a bonus lecture
+
+This is a lecture to explain the math behind linear regression. 
+
+It is not necessary to watch it and you do not need it to complete the course. 
+
 ## We will do three things
 
 1.  Find the slope of the linear model using standard deviations
@@ -32,7 +38,7 @@ library(broom)
 
 -   $r$ is the correlation coefficient.
 
--   We know these values from Monday.
+-   We know these values from the last video.
 :::
 
 ## Recall

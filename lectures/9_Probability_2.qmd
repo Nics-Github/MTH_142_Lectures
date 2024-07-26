@@ -15,18 +15,17 @@ $\sum_i P(x_i) = 1$
 
 ## Process vs Variable
 
-+-----------------------------+------------------------+
-| Random Process              | Random Variable        |
-+=============================+========================+
-| Rolling a two six sided die | X = Sum of faces       |
-+-----------------------------+------------------------+
-| Flip a coin 10 times        | X = \# Number of Tails |
-+-----------------------------+------------------------+
-| Body Dimensions             | X = Foot size          |
-|                             |                        |
-|                             | Y = Neck Circumference |
-|                             | Z = Height             |
-+-----------------------------+------------------------+
++-----------------------------+-----------------------------------+
+| Random Process              | Random Variable                   |
++=============================+===================================+
+| Rolling a two six sided die | X = Sum of faces                  |
++-----------------------------+-----------------------------------+
+| Flip a coin 10 times        | X = \# Number of Tails            |
++-----------------------------+-----------------------------------+
+| Body Dimensions             | X = Foot size                     |
+|                             |                                   |
+|                             | Y = Neck Circumference Z = Height |
++-----------------------------+-----------------------------------+
 
 ## Random variables
 
@@ -62,7 +61,11 @@ This states there probability for any value less than or grater than little x.
 
 -   Height
 
-# Today Discrete RV Examples.  
+## Optional Material
+
+If you are interested in further studying statistics, data science or math you should go through the next few slides with me. 
+
+It is not required for this course. 
 
 ## Expectation
 
@@ -86,7 +89,7 @@ $V[X] = E[(X-\mu)^2] = \sum_i (x_i-\mu)^2 P(X=x_i)$
 
 Let's calculate the variance of the variable X from the previous slide.
 
-## Board work: the sum of two die.
+## You try
 
 Write the random variable.
 

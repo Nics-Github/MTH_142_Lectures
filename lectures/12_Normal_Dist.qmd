@@ -9,11 +9,18 @@ execute:
   echo: true
 ---
 
-# Normal Distribution
+## Read before lecture
+
+[Open Intro Statistics 3.5 Normal Distribution](https://www.biostat.jhsph.edu/~iruczins/teaching/books/2019.openintro.statistics.pdf)
+
+## Normal Distribution
 
 The normal distribution has a symmetric bell shaped curve
 
-![](https://openintro-ims.netlify.app/13-foundations-mathematical_files/figure-html/simpleNormal-1.png)
+```{r}
+library(openintro)
+normTail()
+```
 
 ## The Standard Normal
 
@@ -21,7 +28,7 @@ Has a mean $\mu = 0$ and standard deviation $\sigma = 1$
 
 > Notation $X\sim N(\mu,\sigma)$ means the random variable X has a normal distribution.
 
-It is where z-score are based on.
+It is what z-scores are based on.
 
 ## Very Short history lesson.
 
@@ -32,9 +39,7 @@ It is where z-score are based on.
 
 -   It was improved upon ( [for more read this](https://www.jstor.org/stable/27643700)).
 
--   The end of the lesson.
-
--   [Let's use the ancient table](https://ztable.io/)
+-   [We will not use the ancient table](https://ztable.io/)
 :::
 
 ## Brushtail possum
@@ -47,17 +52,14 @@ It is where z-score are based on.
 >
 > Which of the two brushtail possum observations in the previous guided practice is more *unusual*?
 
-## Z-scores by hand
+## Picture the distribution
 
 $X \sim N(\mu = 92.6 , \sigma = 3.6)$
 
-But there is no table for this distribution.
-
-Use this formula to standardize so we can use the table:
-
-$$Z = \frac{x-\mu}{\sigma}$$ Where x is the value of interest.
-
-Use the z-score to find the value on the table.
+```{r}
+normTail(m=92.6,s=3.6)
+normTail(m=92.6,s=3.6, U =85.8)
+```
 
 ## Z-scores with R
 
