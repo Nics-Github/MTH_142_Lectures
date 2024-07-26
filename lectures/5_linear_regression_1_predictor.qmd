@@ -30,6 +30,7 @@ editor_options:
 
 library(openintro)
 library(tidyverse)
+library(broom)
 
 arbuthnot <-  mutate(.data = arbuthnot, total = girls+boys, boy_ratio = boys / total)
 

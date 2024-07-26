@@ -15,7 +15,7 @@ output:
     
 # All icons were obtained from https://icons.getbootstrap.com/
 website:   
-  title: "SDS 220"
+  title: "MTH 142 Online"
   favicon: /gfx/220.png
   
   navbar:

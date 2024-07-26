@@ -11,13 +11,9 @@ editor: visual
 
 [Chapter 2 on Study Design](https://openintro-ims.netlify.app/data-design)
 
-## Classwork
-
-[Problems 1.7 and 1.13](https://openintro-ims.netlify.app/data-hello#chp1-exercises)
-
 ## Blue whales
 
-No [In Breeding in blue whales.](https://www.nytimes.com/2024/01/23/science/blue-whale-genome.html)
+Study: [In Breeding in blue whales.](https://www.nytimes.com/2024/01/23/science/blue-whale-genome.html)
 
 ![New York Times, 1/23/2024 photo cred: Burton Lim](https://static01.nyt.com/images/2024/01/23/multimedia/23tb-blue-whales-tghb/23tb-blue-whales-tghb-jumbo.jpg?quality=75&auto=webp)
 
@@ -37,13 +33,19 @@ Four subspecies[^1]:
 
 -   Antarctic subspecies
 
-## Sampling
+## Population vs Sample
+
+The *population* is all the Blue Whale left in the world
+
+The *sample* is the 26 Blue whale that have washed ashore.
+
+## Sampling Strategies
 
 1.  Simple random sampling
 
 2.  Stratified sampling
 
-3.  Cluster sample
+3.  Convience sample
 
 ## Experimental Design
 
@@ -63,9 +65,9 @@ Four subspecies[^1]:
 
     a.  Cannot be used for casual conclusions
 
-## Explanatory Variable
+## Explanatory and Response
 
-If we suspect a causal relationship we have an explanatory and response variable.
+If we suspect a causal relationship we have an explanatory (independent) and response variable (dependent).
 
 -   Negative relationship
 
@@ -77,9 +79,29 @@ If we suspect a causal relationship we have an explanatory and response variable
 
 Variables that have an unanticipated effect on the study.
 
-## More Problems
+## You try
 
-[Chapter 2 2.15, 2.17, 2.20](https://openintro-ims.netlify.app/data-design#chp2-exercises)
+[Chapter 2 2.1](https://openintro-ims.netlify.app/data-design#chp2-exercises)[2 and 2.20](https://openintro-ims.netlify.app/data-design#sec-chp2-exercises)
+
+## Solution 2.12
+
+a\. Observational Study. There is no control group.
+
+b\. No we cannot see for sure if there is a link between stress and muscle cramps.
+
+c\. It could be that (perhaps) there is a link between excess coffee and lack of sleep that causes cramps
+
+## Solution 2.20
+
+a\. This was an experiment there is a control group (placebo).
+
+b\. Explanatory is the quantity of vitamin C. The response is cold duration
+
+c\. The patients were blind during their treatment, all pills look the same
+
+d\. The study is not double blind as the nurses knew which patient got which pill
+
+e\. A Confounding variable is whether a patient takes the pill.
 
 ## Next Reading
 

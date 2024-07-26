@@ -502,5 +502,831 @@
     "title": "Continuous RV",
     "section": "3.37",
     "text": "3.37"
+  },
+  {
+    "objectID": "lectures/2_sampling.html#read-beforehand",
+    "href": "lectures/2_sampling.html#read-beforehand",
+    "title": "Studies",
+    "section": "Read beforehand",
+    "text": "Read beforehand\nChapter 2 on Study Design"
+  },
+  {
+    "objectID": "lectures/2_sampling.html#blue-whales",
+    "href": "lectures/2_sampling.html#blue-whales",
+    "title": "Studies",
+    "section": "Blue whales",
+    "text": "Blue whales\nStudy: In Breeding in blue whales.\n\nNew York Times, 1/23/2024 photo cred: Burton Lim"
+  },
+  {
+    "objectID": "lectures/2_sampling.html#some-info-on-blue-whales",
+    "href": "lectures/2_sampling.html#some-info-on-blue-whales",
+    "title": "Studies",
+    "section": "Some info on Blue whales:",
+    "text": "Some info on Blue whales:\nn = 3500\nFour subspecies1:\n\nNorthern\nNorthern Indian Ocean\nPygmy blue whale\nAntarctic subspecies\n\nhttps://en.wikipedia.org/wiki/Blue_whale"
+  },
+  {
+    "objectID": "lectures/2_sampling.html#population-vs-sample",
+    "href": "lectures/2_sampling.html#population-vs-sample",
+    "title": "Studies",
+    "section": "Population vs Sample",
+    "text": "Population vs Sample\nThe population is all the Blue Whale left in the world\nThe sample is the 26 Blue whale that have washed ashore."
+  },
+  {
+    "objectID": "lectures/2_sampling.html#sampling-some",
+    "href": "lectures/2_sampling.html#sampling-some",
+    "title": "Studies",
+    "section": "Sampling some",
+    "text": "Sampling some\n\nSimple random sampling\nStratified sampling\nConvience sample"
+  },
+  {
+    "objectID": "lectures/2_sampling.html#experimental-design",
+    "href": "lectures/2_sampling.html#experimental-design",
+    "title": "Studies",
+    "section": "Experimental Design",
+    "text": "Experimental Design\n\nControl vs Treatment\nRandomization - Effect of Confounding Variables.\nReplication - Repeat experiments have the similar results."
+  },
+  {
+    "objectID": "lectures/2_sampling.html#experiments-vs-observational-studies",
+    "href": "lectures/2_sampling.html#experiments-vs-observational-studies",
+    "title": "Studies",
+    "section": "Experiments vs Observational Studies",
+    "text": "Experiments vs Observational Studies\n\nExperiments have a control\n\nUse for causal conclusions\n\nObservational Studies often gather information\n\nCannot be used for casual conclusions"
+  },
+  {
+    "objectID": "lectures/2_sampling.html#variables",
+    "href": "lectures/2_sampling.html#variables",
+    "title": "Studies",
+    "section": "Variables",
+    "text": "Variables\nIf we suspect a causal relationship we have an explanatory (independent) and response variable (dependent).\n\nNegative relationship\nPositive Relationship\nNo Relationship"
+  },
+  {
+    "objectID": "lectures/2_sampling.html#confounder-variables",
+    "href": "lectures/2_sampling.html#confounder-variables",
+    "title": "Studies",
+    "section": "Confounder Variables",
+    "text": "Confounder Variables\nVariables that have an unanticipated effect on the study."
+  },
+  {
+    "objectID": "lectures/2_sampling.html#you-try",
+    "href": "lectures/2_sampling.html#you-try",
+    "title": "Studies",
+    "section": "You try",
+    "text": "You try\nChapter 2 2.12 and 2.20"
+  },
+  {
+    "objectID": "lectures/2_sampling.html#solution-2.12",
+    "href": "lectures/2_sampling.html#solution-2.12",
+    "title": "Studies",
+    "section": "Solution 2.12",
+    "text": "Solution 2.12\na. Observational Study. There is no control group.\nb. No we cannot see for sure if there is a link between stress and muscle cramps.\nc. It could be that (perhaps) there is a link between excess coffee and lack of sleep that causes cramps"
+  },
+  {
+    "objectID": "lectures/2_sampling.html#solution-2.20",
+    "href": "lectures/2_sampling.html#solution-2.20",
+    "title": "Studies",
+    "section": "Solution 2.20",
+    "text": "Solution 2.20\na. This was an experiment there is a control group (placebo).\nb. Explanatory is the quantity of vitamin C. The response is cold duration\nc. The patients were blind during their treatment, all pills look the same\nd. The study is not double blind as the nurses knew which patient got which pill\ne. A Confounding variable is whether a patient takes the pill."
+  },
+  {
+    "objectID": "lectures/2_sampling.html#next-reading",
+    "href": "lectures/2_sampling.html#next-reading",
+    "title": "Studies",
+    "section": "Next Reading",
+    "text": "Next Reading\nChapter 4 Exploring Categorical Data"
+  },
+  {
+    "objectID": "lectures/2_sampling.html#sampling-strategies",
+    "href": "lectures/2_sampling.html#sampling-strategies",
+    "title": "Studies",
+    "section": "Sampling Strategies",
+    "text": "Sampling Strategies\n\nSimple random sampling\nStratified sampling\nConvience sample"
+  },
+  {
+    "objectID": "lectures/2_sampling.html#explanatory-and-response",
+    "href": "lectures/2_sampling.html#explanatory-and-response",
+    "title": "Studies",
+    "section": "Explanatory and Response",
+    "text": "Explanatory and Response\nIf we suspect a causal relationship we have an explanatory (independent) and response variable (dependent).\n\nNegative relationship\nPositive Relationship\nNo Relationship"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#read-before-lecture",
+    "href": "lectures/5_linear_regression_1_predictor.html#read-before-lecture",
+    "title": "Intro to Linear Regression",
+    "section": "Read Before Lecture",
+    "text": "Read Before Lecture\nChapter 7 Linear Regression with a single predictor"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#graph-of-arbuthonot",
+    "href": "lectures/5_linear_regression_1_predictor.html#graph-of-arbuthonot",
+    "title": "Intro to Linear Regression",
+    "section": "Graph of Arbuthonot",
+    "text": "Graph of Arbuthonot\n\nggplot(data = arbuthnot, aes(x = year, y = boy_ratio)) +\n  geom_line() +\n  labs(title = \"Ratio of boys to girls born London\",\n       subtitle =\"The data comes from `arbuthnot` in the openintro package\",\n       caption = \"This graph shows the ratio of boys to girls born in the London from the 1600s to the early 1700s\")"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#scatterplot-for-two-numerical-variables",
+    "href": "lectures/5_linear_regression_1_predictor.html#scatterplot-for-two-numerical-variables",
+    "title": "Intro to Linear Regression",
+    "section": "Scatterplot for two numerical variables",
+    "text": "Scatterplot for two numerical variables\n\n\nresponse variable on \\(y\\)-axis and explanatory variable on \\(x\\)-axis\ngeom_point()\nWhat are we looking for?\n\nOverall patterns and deviations from those patterns\nForm (e.g. linear, quadratic, etc.), direction (positive or negative), and strength (how much scatter?)\nOutliers"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#you-try",
+    "href": "lectures/5_linear_regression_1_predictor.html#you-try",
+    "title": "Intro to Linear Regression",
+    "section": "You try",
+    "text": "You try\nFrom the babies dataset, make a scatter plot of gestation (explanitory) vs bwt (response).\nCopy the code above and give it a try."
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#solution-birthweight-of-babies",
+    "href": "lectures/5_linear_regression_1_predictor.html#solution-birthweight-of-babies",
+    "title": "Intro to Linear Regression",
+    "section": "Solution: birthweight of babies",
+    "text": "Solution: birthweight of babies\n\nggplot(data = babies, aes(x = gestation, y = bwt)) +\n  geom_point()\n\n\n\nhelp(babies)"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#your-turn",
+    "href": "lectures/5_linear_regression_1_predictor.html#your-turn",
+    "title": "Intro to Linear Regression",
+    "section": "Your turn",
+    "text": "Your turn\n\n\nUse a scatter plot to analyze the relationship between the height and mass of characters in the starwars data frame\nCharacterize the distribution\n\nForm\nDirection\nStrength\nOutliers"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#solution-starwars-characters-height-vs.-mass.",
+    "href": "lectures/5_linear_regression_1_predictor.html#solution-starwars-characters-height-vs.-mass.",
+    "title": "Intro to Linear Regression",
+    "section": "Solution: starwars characters height vs. mass.",
+    "text": "Solution: starwars characters height vs. mass.\nThere is one outlier, it is Jaba the Hut.\n\nggplot(data = starwars, aes(x = height, y = mass)) +\n  geom_point()"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#pearson-product-moment-correlation-coefficient",
+    "href": "lectures/5_linear_regression_1_predictor.html#pearson-product-moment-correlation-coefficient",
+    "title": "Intro to Linear Regression",
+    "section": "(Pearson Product-Moment) correlation coefficient",
+    "text": "(Pearson Product-Moment) correlation coefficient\n\n\nmeasure of the strength and direction of the linear relationship between two numerical variables\ndenoted \\(r\\)\nmeasured on the scale of \\([-1, 1]\\)\ncor(data1,data2,use = \"complete.obs\")\n\n\n\nhttps://en.wikipedia.org/wiki/Correlation"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#find-the-correlation-for-babies",
+    "href": "lectures/5_linear_regression_1_predictor.html#find-the-correlation-for-babies",
+    "title": "Intro to Linear Regression",
+    "section": "Find the correlation for babies",
+    "text": "Find the correlation for babies\n\nsummarise(.data = babies, r = cor(gestation,bwt,use=\"complete.obs\"))\n\n# A tibble: 1 × 1\n      r\n  &lt;dbl&gt;\n1 0.408"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#you-try-1",
+    "href": "lectures/5_linear_regression_1_predictor.html#you-try-1",
+    "title": "Intro to Linear Regression",
+    "section": "You try",
+    "text": "You try\nFind the correlation coefficient for StarWars. Hint: copy and edit the code from above."
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#solution",
+    "href": "lectures/5_linear_regression_1_predictor.html#solution",
+    "title": "Intro to Linear Regression",
+    "section": "Solution",
+    "text": "Solution"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#filtering-out-outliers",
+    "href": "lectures/5_linear_regression_1_predictor.html#filtering-out-outliers",
+    "title": "Intro to Linear Regression",
+    "section": "Filtering out outliers",
+    "text": "Filtering out outliers\nWe might want to remove Jaba The Hut from the data. This is not something you need to know how to do. But if I filter data you are expected to graph it.\n\nfilter() out the one massive character and create a new df\nfind the new correlation coefficient"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#graph-the-new-starwars-scatter-plot",
+    "href": "lectures/5_linear_regression_1_predictor.html#graph-the-new-starwars-scatter-plot",
+    "title": "Intro to Linear Regression",
+    "section": "Graph the new starwars scatter plot",
+    "text": "Graph the new starwars scatter plot\n\nnew_starwars &lt;- filter(.data = starwars, mass &lt; 500)"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#add-the-regression-line-to-babies.",
+    "href": "lectures/5_linear_regression_1_predictor.html#add-the-regression-line-to-babies.",
+    "title": "Intro to Linear Regression",
+    "section": "Add the regression line to babies.",
+    "text": "Add the regression line to babies.\n\n#Filter out the babies born before 259 days they are premature\nbabies &lt;- filter(.data = babies, gestation &gt; 259)\n\nggplot(data=babies, aes(x = gestation, y = bwt)) +\n  geom_point()+\n  geom_smooth(method = \"lm\", se=FALSE)"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#the-equation-of-that-regression.",
+    "href": "lectures/5_linear_regression_1_predictor.html#the-equation-of-that-regression.",
+    "title": "Intro to Linear Regression",
+    "section": "The equation of that regression.",
+    "text": "The equation of that regression.\n\n# Save the linear regression object. \nbaby_model &lt;- lm(bwt~gestation,data=babies)\n\n# Look at the summary output of that object. \ntidy(baby_model)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    3.14    11.4        0.277 7.82e- 1\n2 gestation      0.419    0.0402    10.4   2.46e-24"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#add-the-regression-line-to-new_starwars",
+    "href": "lectures/5_linear_regression_1_predictor.html#add-the-regression-line-to-new_starwars",
+    "title": "Intro to Linear Regression",
+    "section": "Add the regression line to new_starwars",
+    "text": "Add the regression line to new_starwars\n\n\nDo you think it is fair to remove the outlier from starwars?\nCan we remove outliers from babies?"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#anscombe",
+    "href": "lectures/5_linear_regression_1_predictor.html#anscombe",
+    "title": "Intro to Linear Regression",
+    "section": "Anscombe",
+    "text": "Anscombe\n\n\n# A tibble: 4 × 5\n  set       N `mean(x)` `mean(y)` `cor(x, y)`\n  &lt;chr&gt; &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n1 1        11         9      7.50       0.816\n2 2        11         9      7.50       0.816\n3 3        11         9      7.5        0.816\n4 4        11         9      7.50       0.817\n\n\n\n\nsame mean\nsame standard deviation\nsame correlation coefficient is the same (up to three digits)!"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#anscombe-plots",
+    "href": "lectures/5_linear_regression_1_predictor.html#anscombe-plots",
+    "title": "Intro to Linear Regression",
+    "section": "Anscombe plots",
+    "text": "Anscombe plots\n\nggplot(data = ds, aes(x = x, y = y)) + \n  geom_point() + \n  geom_smooth(method = \"lm\", se = 0) + \n  facet_wrap(~set)"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#datasaurus",
+    "href": "lectures/5_linear_regression_1_predictor.html#datasaurus",
+    "title": "Intro to Linear Regression",
+    "section": "Datasaurus",
+    "text": "Datasaurus"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#more-examples",
+    "href": "lectures/5_linear_regression_1_predictor.html#more-examples",
+    "title": "Intro to Linear Regression",
+    "section": "More examples",
+    "text": "More examples"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#beware",
+    "href": "lectures/5_linear_regression_1_predictor.html#beware",
+    "title": "Intro to Linear Regression",
+    "section": "Beware",
+    "text": "Beware\n\n\nNote that correlation only measures the strength of a linear relationship\nAlways graph your data!"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#reading-for-next-lecture",
+    "href": "lectures/5_linear_regression_1_predictor.html#reading-for-next-lecture",
+    "title": "Intro to Linear Regression",
+    "section": "Reading for next lecture",
+    "text": "Reading for next lecture\nNone\n\n\n\n\nhttps://beanumber.github.io/sds220/05_bivariate.html"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#degrees-of-freedom",
+    "href": "lectures/22_ANOVA2.html#degrees-of-freedom",
+    "title": "ANOVA 2",
+    "section": "Degrees of Freedom",
+    "text": "Degrees of Freedom\nLet’s consider the iris data.\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\nLoading required package: airports\n\nLoading required package: cherryblossom\n\nLoading required package: usdata\n\n\nAttaching package: 'kableExtra'\n\n\nThe following object is masked from 'package:dplyr':\n\n    group_rows\n\n\n\n\n\nSpecies\nmean\nsd\ncount\n\n\n\n\nsetosa\n5.0\n0.4\n50\n\n\nversicolor\n5.9\n0.5\n50\n\n\nvirginica\n6.6\n0.6\n50\n\n\n\n\n\n\\[H_o: \\mu_1 = \\mu_2 = \\mu_3 \\\\\nH_a: \\text{At least one of these is different}\\]"
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#rule-of-thumb",
+    "href": "lectures/22_ANOVA2.html#rule-of-thumb",
+    "title": "ANOVA 2",
+    "section": "Rule of Thumb",
+    "text": "Rule of Thumb\n\nThe variance are equal condition has a rule of thumb.\nIf the largest is not more than four times the smallest all is well.\n\\[\n\\frac{s^2_{max}}{s^2_{min}}\\le 4\n\\]\nor\nIf the largest SD/ smallest SD is between 0.5 and 2.\n\\[\n\\frac{s_{max}}{s_{min}}\\le 2\n\\]"
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#variability-in-anova",
+    "href": "lectures/22_ANOVA2.html#variability-in-anova",
+    "title": "ANOVA 2",
+    "section": "Variability in ANOVA",
+    "text": "Variability in ANOVA\nThere are two types of Variability\n\nThe variability between the groups. This is called mean square between groups (MSG).\nThe variability within the groups. This is called mean square error (MSE)."
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#degrees-of-freedom-1",
+    "href": "lectures/22_ANOVA2.html#degrees-of-freedom-1",
+    "title": "ANOVA 2",
+    "section": "Degrees of Freedom",
+    "text": "Degrees of Freedom\nLet k be the number of groups.\nLet n be the total number of observations.\nThe MSG has \\(df_G = k-1\\) degrees of freedom.\nThe MSE has \\(df_E = n-k\\) degrees of freedom.\nThe aov() function calculates these for you."
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#anova-output",
+    "href": "lectures/22_ANOVA2.html#anova-output",
+    "title": "ANOVA 2",
+    "section": "ANOVA output",
+    "text": "ANOVA output\n\nlibrary(broom)\n\nresults &lt;- aov(Sepal.Length ~ Species, data=iris)\n\n#Note: you can also use summary(results). Then you don't have to load the broom package. \ntidy(results) |&gt;\n  kable(digits = 1)\n\n\n\n\nterm\ndf\nsumsq\nmeansq\nstatistic\np.value\n\n\n\n\nSpecies\n2\n63.2\n31.6\n119.3\n0\n\n\nResiduals\n147\n39.0\n0.3\nNA\nNA"
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#the-f-statistic",
+    "href": "lectures/22_ANOVA2.html#the-f-statistic",
+    "title": "ANOVA 2",
+    "section": "The f statistic",
+    "text": "The f statistic\nThe f statistic arises as a ratio of the MSG and MSE.\nIf the ratio is large it means that the event is unlikely and we should reject the null hypothesis.\n\\[f=\\frac{MSG}{MSE}\\]\n(see page 289 to calculate SSG and SSE)."
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#post-hoc-tests",
+    "href": "lectures/22_ANOVA2.html#post-hoc-tests",
+    "title": "ANOVA 2",
+    "section": "Post hoc tests",
+    "text": "Post hoc tests\nIf we reject the null hypothesis we want to be able to identify which mean is different.\nSometimes it is obvious and we can do this graphically."
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#post-hoc-setup",
+    "href": "lectures/22_ANOVA2.html#post-hoc-setup",
+    "title": "ANOVA 2",
+    "section": "Post hoc setup",
+    "text": "Post hoc setup\nLet k be the number of groups we are comparing.\nLet K = the number of possible pairs compared.\n\\(K = \\frac{k(k-1)}{2}\\)"
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#adjust-the-pvalue-to-reduce-type-1-error.",
+    "href": "lectures/22_ANOVA2.html#adjust-the-pvalue-to-reduce-type-1-error.",
+    "title": "ANOVA 2",
+    "section": "Adjust the pvalue to reduce type 1 error.",
+    "text": "Adjust the pvalue to reduce type 1 error.\nWe could do pairwise T-Tests but then we increase the Type 1 error rate.\n\nType 1 Error: Reject the null when it is true.\n\nSo we adjust the p-value (Bonferroni Correction )"
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#bonferroni-correction-for-multiple-comparisons",
+    "href": "lectures/22_ANOVA2.html#bonferroni-correction-for-multiple-comparisons",
+    "title": "ANOVA 2",
+    "section": "Bonferroni Correction for Multiple Comparisons",
+    "text": "Bonferroni Correction for Multiple Comparisons\nConduct a t-test for the difference in means for all 𝐾 possible pairs and\ncollect the p-values (the pairwise p-values). The corrected the pairwise\np-value for multiple comparisons\n\\(\\text{p-value}^* = \\text{p-value} × 𝐾\\)\nwhich is equivalent to \\(\\alpha^* = \\frac{\\alpha}{K}\\)\nYou just do one or the other."
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#recall-anova-of-sepal.-length",
+    "href": "lectures/22_ANOVA2.html#recall-anova-of-sepal.-length",
+    "title": "ANOVA 2",
+    "section": "Recall ANOVA of Sepal. Length",
+    "text": "Recall ANOVA of Sepal. Length\n\nresults &lt;- aov( Sepal.Length ~ Species, data = iris )\nsummary(results)\n\n             Df Sum Sq Mean Sq F value Pr(&gt;F)    \nSpecies       2  63.21  31.606   119.3 &lt;2e-16 ***\nResiduals   147  38.96   0.265                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#post-hoc-on-sepal.length",
+    "href": "lectures/22_ANOVA2.html#post-hoc-on-sepal.length",
+    "title": "ANOVA 2",
+    "section": "Post hoc on Sepal.Length",
+    "text": "Post hoc on Sepal.Length\n\npairwise.t.test(\n  x= iris$Sepal.Length,\n  g = iris$Species,\n  pool.sd = F, \n  paired = F,\n  p.adjust.method = \"bonferroni\") \n\n\n    Pairwise comparisons using t tests with non-pooled SD \n\ndata:  iris$Sepal.Length and iris$Species \n\n           setosa  versicolor\nversicolor &lt; 2e-16 -         \nvirginica  &lt; 2e-16 5.6e-07   \n\nP value adjustment method: bonferroni"
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#occasional-contradictions",
+    "href": "lectures/22_ANOVA2.html#occasional-contradictions",
+    "title": "ANOVA 2",
+    "section": "Occasional contradictions",
+    "text": "Occasional contradictions\nSometimes the post hoc doesn’t seem to indicate that any mean is different. That’s ok. Let’s stick with ANOVA"
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#try-a-test-do-a-post-hoc-if-necessary.",
+    "href": "lectures/22_ANOVA2.html#try-a-test-do-a-post-hoc-if-necessary.",
+    "title": "ANOVA 2",
+    "section": "Try a test, do a post hoc if necessary.",
+    "text": "Try a test, do a post hoc if necessary.\n\nlibrary(palmerpenguins)\n\nFrom the palmerpenguins package consider the peguins data.\nIs there a difference in the avergae flipper length between species.\n\nCheck conditions (independence,sd, normalish)\n\nmake a graph?\n\nSet up test\nDo test\npost hoc\nconclusion"
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#test-output",
+    "href": "lectures/22_ANOVA2.html#test-output",
+    "title": "ANOVA 2",
+    "section": "Test output",
+    "text": "Test output\n\nresults &lt;- aov(flipper_length_mm~species, data=penguins)\nsummary(results)\n\n             Df Sum Sq Mean Sq F value Pr(&gt;F)    \nspecies       2  52473   26237   594.8 &lt;2e-16 ***\nResiduals   339  14953      44                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n2 observations deleted due to missingness\n\n\n\npairwise.t.test(\n  x= penguins$flipper_length_mm,\n  g = penguins$species,\n  pool.sd = F, \n  paired = F,\n  p.adjust.method = \"bonferroni\") \n\n\n    Pairwise comparisons using t tests with non-pooled SD \n\ndata:  penguins$flipper_length_mm and penguins$species \n\n          Adelie  Chinstrap\nChinstrap 1.8e-07 -        \nGentoo    &lt; 2e-16 &lt; 2e-16  \n\nP value adjustment method: bonferroni"
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#example",
+    "href": "lectures/22_ANOVA2.html#example",
+    "title": "ANOVA 2",
+    "section": "Example",
+    "text": "Example\nConsider chickwts. Do a test to see if the average maximum weight of the chicks is dependent on the food type given.\n\ncheck conditions\ndo test\ndo post hoc\n\n\nchickwts\n\n   weight      feed\n1     179 horsebean\n2     160 horsebean\n3     136 horsebean\n4     227 horsebean\n5     217 horsebean\n6     168 horsebean\n7     108 horsebean\n8     124 horsebean\n9     143 horsebean\n10    140 horsebean\n11    309   linseed\n12    229   linseed\n13    181   linseed\n14    141   linseed\n15    260   linseed\n16    203   linseed\n17    148   linseed\n18    169   linseed\n19    213   linseed\n20    257   linseed\n21    244   linseed\n22    271   linseed\n23    243   soybean\n24    230   soybean\n25    248   soybean\n26    327   soybean\n27    329   soybean\n28    250   soybean\n29    193   soybean\n30    271   soybean\n31    316   soybean\n32    267   soybean\n33    199   soybean\n34    171   soybean\n35    158   soybean\n36    248   soybean\n37    423 sunflower\n38    340 sunflower\n39    392 sunflower\n40    339 sunflower\n41    341 sunflower\n42    226 sunflower\n43    320 sunflower\n44    295 sunflower\n45    334 sunflower\n46    322 sunflower\n47    297 sunflower\n48    318 sunflower\n49    325  meatmeal\n50    257  meatmeal\n51    303  meatmeal\n52    315  meatmeal\n53    380  meatmeal\n54    153  meatmeal\n55    263  meatmeal\n56    242  meatmeal\n57    206  meatmeal\n58    344  meatmeal\n59    258  meatmeal\n60    368    casein\n61    390    casein\n62    379    casein\n63    260    casein\n64    404    casein\n65    318    casein\n66    352    casein\n67    359    casein\n68    216    casein\n69    222    casein\n70    283    casein\n71    332    casein"
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#anova-with-randomization",
+    "href": "lectures/22_ANOVA2.html#anova-with-randomization",
+    "title": "ANOVA 2",
+    "section": "ANOVA with Randomization",
+    "text": "ANOVA with Randomization\nYou’ll do this in lab 7.\n\nset.seed(11292023)\nlibrary(infer)\nsimulated_data &lt;- chickwts |&gt;\n  specify(weight ~ feed) |&gt;\n  hypothesize(null = \"independence\") |&gt; \n  generate(reps = 1000, type = \"permute\") |&gt; \n  calculate(stat = \"F\")"
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#graph-of-simulated-data",
+    "href": "lectures/22_ANOVA2.html#graph-of-simulated-data",
+    "title": "ANOVA 2",
+    "section": "Graph of simulated data",
+    "text": "Graph of simulated data\n\nsimulated_data |&gt;\n  visualise() +\n  shade_p_value( obs_stat= 15.37, direction = \"greater\")"
+  },
+  {
+    "objectID": "lectures/22_ANOVA2.html#consider-the-nba_player_19-data-from-open-intro",
+    "href": "lectures/22_ANOVA2.html#consider-the-nba_player_19-data-from-open-intro",
+    "title": "ANOVA 2",
+    "section": "Consider the nba_player_19 data from open intro",
+    "text": "Consider the nba_player_19 data from open intro\nDo a hypothesis to see if the average heights are different by team."
+  },
+  {
+    "objectID": "lectures/day_26_difference_CI.html",
+    "href": "lectures/day_26_difference_CI.html",
+    "title": "Difference of Two Prop CI",
+    "section": "",
+    "text": "Is there a difference between the two proportions?\n\n\nThe following is from chapter 17 in the text:\nThe difference \\(\\hat{p}_1−\\hat{p}_2\\) can be modeled using a normal distribution when\nIndependence Extended: The data are independent within and between the two groups.\nSuccess-failure condition. The success-failure condition holds for both groups, where we check successes and failures in each group separately.\n\n\n\n\\(\\hat{p}_1−\\hat{p}_2 \\sim N(\\hat{p}_1−\\hat{p}_2,\\sqrt{\\frac{\\hat{p}_1(1−\\hat{p}_1)}{n_1} +\\frac{\\hat{p}_2(1−\\hat{p}_2)}{n_2}})\\)\nmean = \\(\\hat{p}_1−\\hat{p}_2\\)\nStandard Error = \\(\\sqrt{\\frac{\\hat{p}_1(1−\\hat{p}_1)}{n} +\\frac{\\hat{p}_2(1−\\hat{p}_2)}{n}}\\)\n\n\n\n ## Two groups\n\nggplot(cpr, aes(x = group, fill = outcome))+\ngeom_bar(position = \"fill\")"
+  },
+  {
+    "objectID": "lectures/day_26_difference_CI.html#similar-to-ci-for-one-prop.",
+    "href": "lectures/day_26_difference_CI.html#similar-to-ci-for-one-prop.",
+    "title": "Difference of Two Prop CI",
+    "section": "",
+    "text": "The following is from chapter 17 in the text:\nThe difference \\(\\hat{p}_1−\\hat{p}_2\\) can be modeled using a normal distribution when\nIndependence Extended: The data are independent within and between the two groups.\nSuccess-failure condition. The success-failure condition holds for both groups, where we check successes and failures in each group separately."
+  },
+  {
+    "objectID": "lectures/day_26_difference_CI.html#mean-and-se",
+    "href": "lectures/day_26_difference_CI.html#mean-and-se",
+    "title": "Difference of Two Prop CI",
+    "section": "",
+    "text": "\\(\\hat{p}_1−\\hat{p}_2 \\sim N(\\hat{p}_1−\\hat{p}_2,\\sqrt{\\frac{\\hat{p}_1(1−\\hat{p}_1)}{n_1} +\\frac{\\hat{p}_2(1−\\hat{p}_2)}{n_2}})\\)\nmean = \\(\\hat{p}_1−\\hat{p}_2\\)\nStandard Error = \\(\\sqrt{\\frac{\\hat{p}_1(1−\\hat{p}_1)}{n} +\\frac{\\hat{p}_2(1−\\hat{p}_2)}{n}}\\)"
+  },
+  {
+    "objectID": "lectures/day_26_difference_CI.html#consider-the-cpr-data.",
+    "href": "lectures/day_26_difference_CI.html#consider-the-cpr-data.",
+    "title": "Difference of Two Prop CI",
+    "section": "",
+    "text": "## Two groups\n\nggplot(cpr, aes(x = group, fill = outcome))+\ngeom_bar(position = \"fill\")"
+  },
+  {
+    "objectID": "lectures/day-16-the-bootstrap/SamplingDistr.html",
+    "href": "lectures/day-16-the-bootstrap/SamplingDistr.html",
+    "title": "IMS 12 (ish): Sampling Distributions and Bootstrapping",
+    "section": "",
+    "text": "Previously, we simulated how many cards we have to draw in a well shuffled deck of cards until we saw two cards that had the same suit. If we pooled the results from all three sections of 220. We would have something like the following:"
+  },
+  {
+    "objectID": "lectures/day-16-the-bootstrap/SamplingDistr.html#last-time",
+    "href": "lectures/day-16-the-bootstrap/SamplingDistr.html#last-time",
+    "title": "IMS 12 (ish): Sampling Distributions and Bootstrapping",
+    "section": "",
+    "text": "Previously, we simulated how many cards we have to draw in a well shuffled deck of cards until we saw two cards that had the same suit. If we pooled the results from all three sections of 220. We would have something like the following:"
+  },
+  {
+    "objectID": "lectures/day-16-the-bootstrap/SamplingDistr.html#last-time-1",
+    "href": "lectures/day-16-the-bootstrap/SamplingDistr.html#last-time-1",
+    "title": "IMS 12 (ish): Sampling Distributions and Bootstrapping",
+    "section": "Last Time",
+    "text": "Last Time\n\nDescribe the two distributions: center, shape/skewness, spread.\nSuppose there where 60 groups in total across the three sections of STAT 220. Use the web-widget online and observe what happens when you change the “Number of simulations per mean estimated”. Try multiple values: very small, very very large, etc. Which distribution changes? How?"
+  },
+  {
+    "objectID": "lectures/day-16-the-bootstrap/SamplingDistr.html#recall-statistics-estimate-parameters",
+    "href": "lectures/day-16-the-bootstrap/SamplingDistr.html#recall-statistics-estimate-parameters",
+    "title": "IMS 12 (ish): Sampling Distributions and Bootstrapping",
+    "section": "Recall: Statistics Estimate Parameters",
+    "text": "Recall: Statistics Estimate Parameters\n\nA statistic, is an estimate for a parameter.\nCommon statistics are:\n\nsample proportion (\\(\\hat{p}\\))\nsample mean (\\(\\overline{x}\\) or \\(\\hat{\\mu}\\)).\n\nThese statistics estimate the\n\npopulation proportion (\\(p\\))\npopulation mean (\\(\\mu\\))."
+  },
+  {
+    "objectID": "lectures/day-16-the-bootstrap/SamplingDistr.html#sampling-distributions",
+    "href": "lectures/day-16-the-bootstrap/SamplingDistr.html#sampling-distributions",
+    "title": "IMS 12 (ish): Sampling Distributions and Bootstrapping",
+    "section": "Sampling Distributions",
+    "text": "Sampling Distributions"
+  },
+  {
+    "objectID": "lectures/day-16-the-bootstrap/SamplingDistr.html#sampling-distributions-1",
+    "href": "lectures/day-16-the-bootstrap/SamplingDistr.html#sampling-distributions-1",
+    "title": "IMS 12 (ish): Sampling Distributions and Bootstrapping",
+    "section": "Sampling Distributions",
+    "text": "Sampling Distributions\nSampling distributions help us answer the questions:\n\nHow much might a statistic vary from sample to sample?\nHow would we describe the shape, center, and variability of the possible values for our statistic?\nWhat is the effect of the sample size \\(n\\) on the shape of the sampling distribution.\nNote: The difference between Data Dist and Sample Dist.\nSampling distributions for means have a particular behavior that always happens."
+  },
+  {
+    "objectID": "lectures/day-16-the-bootstrap/SamplingDistr.html#fund-theorm-of-statistics",
+    "href": "lectures/day-16-the-bootstrap/SamplingDistr.html#fund-theorm-of-statistics",
+    "title": "IMS 12 (ish): Sampling Distributions and Bootstrapping",
+    "section": "Fund Theorm of Statistics",
+    "text": "Fund Theorm of Statistics\nThe Fundamental Theorem of Statistics (also called the Central Limit Theorem)."
+  },
+  {
+    "objectID": "lectures/day-16-the-bootstrap/SamplingDistr.html#fts-revisited",
+    "href": "lectures/day-16-the-bootstrap/SamplingDistr.html#fts-revisited",
+    "title": "IMS 12 (ish): Sampling Distributions and Bootstrapping",
+    "section": "FTS Revisited",
+    "text": "FTS Revisited\nThe same is true for a single mean."
+  },
+  {
+    "objectID": "lectures/day-16-the-bootstrap/SamplingDistr.html#normal-distribution",
+    "href": "lectures/day-16-the-bootstrap/SamplingDistr.html#normal-distribution",
+    "title": "IMS 12 (ish): Sampling Distributions and Bootstrapping",
+    "section": "Normal Distribution",
+    "text": "Normal Distribution\n\n\n\n\n\n\nThe normal distribution is a symmetric, unimodal, bell-shaped continuous probability distribution.\nSuper famous.\nNote, \\(\\overline{x}\\) and \\(\\hat{p}\\) will have a sampling distribution that is normally distributed centered around the parameter (true population mean/proportion)"
+  },
+  {
+    "objectID": "lectures/day-16-the-bootstrap/SamplingDistr.html#sampling-distributions-continued",
+    "href": "lectures/day-16-the-bootstrap/SamplingDistr.html#sampling-distributions-continued",
+    "title": "IMS 12 (ish): Sampling Distributions and Bootstrapping",
+    "section": "Sampling Distributions Continued",
+    "text": "Sampling Distributions Continued\n\nIts expensive to create sampling distributions.\nFor example, we may want the sampling distribution for:\n\nPolitical polls. How many people voted for a specific candidate?\nTaxi Cab Fares. How much would I spend on taxi cabs in NYC?\nHealth data. What percent of patients respond well to new treatment?\n\nOne sample is possible, many not so much."
+  },
+  {
+    "objectID": "lectures/day-16-the-bootstrap/SamplingDistr.html#bootstrapping",
+    "href": "lectures/day-16-the-bootstrap/SamplingDistr.html#bootstrapping",
+    "title": "IMS 12 (ish): Sampling Distributions and Bootstrapping",
+    "section": "Bootstrapping",
+    "text": "Bootstrapping\nIn bootstrapping we simulate drawing a random sample from the observed data. That is, we resample by repeatedly taking samples from the original sample."
+  },
+  {
+    "objectID": "lectures/day-16-the-bootstrap/SamplingDistr.html#bootstrap",
+    "href": "lectures/day-16-the-bootstrap/SamplingDistr.html#bootstrap",
+    "title": "IMS 12 (ish): Sampling Distributions and Bootstrapping",
+    "section": "Bootstrap",
+    "text": "Bootstrap\n\n\n\n\n\n\n\n\nWe can ‘pull ourselves up by our bootstraps’ to attack the problem by using computer simulations."
+  },
+  {
+    "objectID": "lectures/day-16-the-bootstrap/SamplingDistr.html#bootstrap-resampling",
+    "href": "lectures/day-16-the-bootstrap/SamplingDistr.html#bootstrap-resampling",
+    "title": "IMS 12 (ish): Sampling Distributions and Bootstrapping",
+    "section": "Bootstrap Resampling",
+    "text": "Bootstrap Resampling\nTo use the bootstrap method with your original data set with \\(n\\) observations:\n\nYou resample, with replacement, \\(n\\) observations from the data distribution.\nFor the new bootstrap sample of size \\(n\\), construct the point estimate of the parameter of interest (the proportion).\nRepeat the process a very large number of times, \\(B\\) (e.g., selecting \\(B=\\) 10,000 separate samples of size \\(n\\) and calculating the 10,000 corresponding parameter estimates)."
+  },
+  {
+    "objectID": "lectures/day-16-the-bootstrap/SamplingDistr.html#bootstrap-distribution",
+    "href": "lectures/day-16-the-bootstrap/SamplingDistr.html#bootstrap-distribution",
+    "title": "IMS 12 (ish): Sampling Distributions and Bootstrapping",
+    "section": "Bootstrap Distribution",
+    "text": "Bootstrap Distribution\nFor each bootstrap sample, we can compute a statistic of interest, such as a proportion.\nWe compute the sample proportion from thousands of bootstrap samples. The distribution of all these means, called the bootstrap distribution, will help us estimate the sampling distribution of the sample mean without having to take samples over and over again."
+  },
+  {
+    "objectID": "lectures/day-16-the-bootstrap/SamplingDistr.html#features-of-the-bootstrap-distribution",
+    "href": "lectures/day-16-the-bootstrap/SamplingDistr.html#features-of-the-bootstrap-distribution",
+    "title": "IMS 12 (ish): Sampling Distributions and Bootstrapping",
+    "section": "Features of the Bootstrap Distribution",
+    "text": "Features of the Bootstrap Distribution\n\nCenter: the observed sample statistic\n\nThis differs from the sampling distribution, which is centered around the true population parameter.\n\nSpread: even though the means of the bootstrap distribution and the sampling distribution are not the same, their spreads are.\n\nThe bootstrapped statistic vary about original sample statistic in the same way that the original sample proportions vary about true parameter."
+  },
+  {
+    "objectID": "lectures/day-16-the-bootstrap/SamplingDistr.html#features-of-the-bootstrap-distribution-1",
+    "href": "lectures/day-16-the-bootstrap/SamplingDistr.html#features-of-the-bootstrap-distribution-1",
+    "title": "IMS 12 (ish): Sampling Distributions and Bootstrapping",
+    "section": "Features of the Bootstrap Distribution",
+    "text": "Features of the Bootstrap Distribution\nSuppose when we sampled cards last lecture one of our groups had a mean 5.27, but the true mean was 5.7 cards.\n\n\nLoading required package: airports\n\n\nLoading required package: cherryblossom\n\n\nLoading required package: usdata"
+  },
+  {
+    "objectID": "lectures/day-16-the-bootstrap/SamplingDistr.html#limitations-of-the-bootstrap",
+    "href": "lectures/day-16-the-bootstrap/SamplingDistr.html#limitations-of-the-bootstrap",
+    "title": "IMS 12 (ish): Sampling Distributions and Bootstrapping",
+    "section": "Limitations of the Bootstrap",
+    "text": "Limitations of the Bootstrap\n\nIt is essential that the original sample is a random sample from the population, or at least representative of it.\nLarger samples (big \\(n\\)) are typically better for bootstraps.\nWhen the bootstrap distribution consists of only a few values and is highly discrete, it is of limited use and should not be used.\nWe typically need a large number of bootstrap resamples (\\(B \\geq 5000\\)) to obtain a bootstrap distribution that reasonably approximates the key features of the sampling distribution\n\nWhy are these things important?"
+  },
+  {
+    "objectID": "lectures/16__CI_prop_mathematically.html#find-the-confidence-interval-for",
+    "href": "lectures/16__CI_prop_mathematically.html#find-the-confidence-interval-for",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Find the confidence interval for:",
+    "text": "Find the confidence interval for:\n\nThe true number of US women who were married before age 30.\n\n\n\nCode\nlibrary(openintro)\n\nage_at_mar &lt;- age_at_mar |&gt; \n  mutate(over_30 =\n           case_when(\n             age &gt; 30 ~ \"Over_30\",\n             TRUE ~ \"Under_30\"\n           ))\nhead(age_at_mar, 2)\n\n\n# A tibble: 2 × 2\n    age over_30 \n  &lt;int&gt; &lt;chr&gt;   \n1    32 Over_30 \n2    25 Under_30\n\n\n\nThe true proportion of women who smoke while pregnant in the US.\n\n\nhead(births14)\n\n# A tibble: 6 × 13\n   fage  mage mature      weeks premie visits gained weight lowbirthweight sex  \n  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;\n1    34    34 younger mom    37 full …     14     28   6.96 not low        male \n2    36    31 younger mom    41 full …     12     41   8.86 not low        fema…\n3    37    36 mature mom     37 full …     10     28   7.51 not low        fema…\n4    NA    16 younger mom    38 full …     NA     29   6.19 not low        male \n5    32    31 younger mom    36 premie     12     48   6.75 not low        fema…\n6    32    26 younger mom    39 full …     14     45   6.69 not low        fema…\n# ℹ 3 more variables: habit &lt;chr&gt;, marital &lt;chr&gt;, whitemom &lt;chr&gt;"
+  },
+  {
+    "objectID": "lectures/16__CI_prop_mathematically.html#ci-mathematically",
+    "href": "lectures/16__CI_prop_mathematically.html#ci-mathematically",
+    "title": "Confidence Intervals with a proportion",
+    "section": "CI mathematically",
+    "text": "CI mathematically\nWe build the CI around the sample proportion.\nAssume\n\\[\n\\hat{p} \\sim N(p,se)\n\\]\n\nWe need \\(\\hat{p}\\) and \\(\\text{se}= \\sqrt{\\frac{p(1-p)}{n}}\\)\nWe also need the z score that goes with the confidence interval we are looking for.\n\\(\\hat{p} \\pm z_{score} \\times se\\)"
+  },
+  {
+    "objectID": "lectures/16__CI_prop_mathematically.html#remember-these-z-scores",
+    "href": "lectures/16__CI_prop_mathematically.html#remember-these-z-scores",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Remember these z-scores",
+    "text": "Remember these z-scores\n\nz-scores you should know\n\n\nCI\nZ-score\n\n\n\n\n90%\n\\(z_{0.05}=1.645\\)\n\n\n95%\n\\(z_{0.025}=1.96\\)\n\n\n99.7%\n\\(z_{0.005}=2.968\\)"
+  },
+  {
+    "objectID": "lectures/16__CI_prop_mathematically.html#how-to-find-zscore-with-qnorm",
+    "href": "lectures/16__CI_prop_mathematically.html#how-to-find-zscore-with-qnorm",
+    "title": "Confidence Intervals with a proportion",
+    "section": "How to find zscore with qnorm()",
+    "text": "How to find zscore with qnorm()\nqnorm() finds the quantile that goes with a pvalue (probability)\n\nqnorm(p = 0.975, mean = 0, sd = 1 )\n\n[1] 1.959964\n\n\npnorm() finds a pvalue from a quantile.\n\npnorm(q=1.959964 , mean = 0, sd = 1 )\n\n[1] 0.975"
+  },
+  {
+    "objectID": "lectures/16__CI_prop_mathematically.html#the-distribution-of-sampling-proportions",
+    "href": "lectures/16__CI_prop_mathematically.html#the-distribution-of-sampling-proportions",
+    "title": "Confidence Intervals with a proportion",
+    "section": "The distribution of sampling proportions",
+    "text": "The distribution of sampling proportions\nCompare vs. bootstrap distributions."
+  },
+  {
+    "objectID": "lectures/16__CI_prop_mathematically.html#lets-make-a-95-ci",
+    "href": "lectures/16__CI_prop_mathematically.html#lets-make-a-95-ci",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Let’s make a 95% CI",
+    "text": "Let’s make a 95% CI\nFind these: \\(\\hat{p}\\) and \\(\\text{se}= \\sqrt{\\frac{p(1-p)}{n}}\\)\n\\(\\hat{p} \\pm z_{score} \\times se\\)"
+  },
+  {
+    "objectID": "lectures/16__CI_prop_mathematically.html#assumptions-for-a-single-parameter",
+    "href": "lectures/16__CI_prop_mathematically.html#assumptions-for-a-single-parameter",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Assumptions for a single parameter",
+    "text": "Assumptions for a single parameter\nIndependent and “large” sample.\nSuccess-Failure Condition\nWhy do we need to assume this:\n\\[\n\\hat{p} \\sim N(p,se)\n\\]"
+  },
+  {
+    "objectID": "lectures/16__CI_prop_mathematically.html#board-practice",
+    "href": "lectures/16__CI_prop_mathematically.html#board-practice",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Board Practice",
+    "text": "Board Practice\nWe found these with simulation, find them now with a mathematical model. Use a 88% CI.\n\nThe true number of US women who were married before age 30.\nThe true proportion of women who smoke while pregnant in the US."
+  },
+  {
+    "objectID": "lectures/16__CI_prop_mathematically.html#quarantine",
+    "href": "lectures/16__CI_prop_mathematically.html#quarantine",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Quarantine",
+    "text": "Quarantine\nWe ask 1042 New Yorkers if they are for quarantining peope who have been exposed to ebola. The results are below.\n\ncount(ebola_survey,quarantine)\n\n# A tibble: 2 × 2\n  quarantine     n\n  &lt;fct&gt;      &lt;int&gt;\n1 against      188\n2 favor        854\n\n\n\nWrite the notation for the theoretical sampling distribution.\nMake a 90, 95 and 99.7% CI for those against and interpret."
+  },
+  {
+    "objectID": "lectures/16__CI_prop_mathematically.html#exclusive-relationships",
+    "href": "lectures/16__CI_prop_mathematically.html#exclusive-relationships",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Exclusive relationships",
+    "text": "Exclusive relationships\nWhat is the proportion of college students that have had more than 1 exclusive_relationships?\n\nexclusive_relationship |&gt;\n  count(num &gt; 1)\n\n# A tibble: 3 × 2\n  `num &gt; 1`     n\n  &lt;lgl&gt;     &lt;int&gt;\n1 FALSE        51\n2 TRUE        152\n3 NA           15\n\n\n\nCheck Conditions.\nWrite the notation for the theoretical sampling distribution.\nMake a 90, 95 and 99.7% CI for those against and interpret."
+  },
+  {
+    "objectID": "lectures/16__CI_prop_mathematically.html#iphones",
+    "href": "lectures/16__CI_prop_mathematically.html#iphones",
+    "title": "Confidence Intervals with a proportion",
+    "section": "iphones",
+    "text": "iphones\n\nIn a sample of 300 students, 68% said they own an iPod and a smart phone. Compute a 97% confidence interval for the true percent of students who own an iPod and a smartphone.1"
+  },
+  {
+    "objectID": "lectures/16__CI_prop_mathematically.html#worse-off",
+    "href": "lectures/16__CI_prop_mathematically.html#worse-off",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Worse off?",
+    "text": "Worse off?\nEvery week the Yougov/The Economist do a survey from a representative sample of about 1500 adults. methodology On March 4, 2024 people were asked about their personal finances. See the results here.\nFind a CI for the true proportion of Americans who feel they are worse off financially than a year ago.\n\nnumber_worse_off &lt;- round(0.42*1556)\nnot_worse_off &lt;- 1556 -number_worse_off\n\n# This makes a data frame that mirrors the number of people who were worse off or not from the poll. \npoll &lt;- tibble(\n  worse_off = c(rep(\"Yes\", number_worse_off), rep(\"No\", not_worse_off))\n)"
+  },
+  {
+    "objectID": "lectures/16__CI_prop_mathematically.html#problems-from-the-text",
+    "href": "lectures/16__CI_prop_mathematically.html#problems-from-the-text",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Problems from the text",
+    "text": "Problems from the text\nDo these with simulation and then with math. Chapter 6: 20, 21, 22"
+  },
+  {
+    "objectID": "lectures/16__CI_prop_mathematically.html#footnotes",
+    "href": "lectures/16__CI_prop_mathematically.html#footnotes",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nThis and the previous problem were from a text called Introductory Statistics↩︎"
+  },
+  {
+    "objectID": "lectures/20_diff-of-means.html",
+    "href": "lectures/20_diff-of-means.html",
+    "title": "Difference of Means",
+    "section": "",
+    "text": "Find a partner (or two) and grab some chalkboard\nDo this hypothesis test.\nThe average height of Smith students is thought to be 64 inches. Our class has an average height of 65 inches with a standard deviation of 3.2. There were 34 students in our sample.\nTest the hypothesis that the true mean is 64 twice\n\nonce using the observed statistic to find a p-value.\nonce with the test statistic to find the same p-value."
+  },
+  {
+    "objectID": "lectures/20_diff-of-means.html#warm-up",
+    "href": "lectures/20_diff-of-means.html#warm-up",
+    "title": "Difference of Means",
+    "section": "",
+    "text": "Find a partner (or two) and grab some chalkboard\nDo this hypothesis test.\nThe average height of Smith students is thought to be 64 inches. Our class has an average height of 65 inches with a standard deviation of 3.2. There were 34 students in our sample.\nTest the hypothesis that the true mean is 64 twice\n\nonce using the observed statistic to find a p-value.\nonce with the test statistic to find the same p-value."
+  },
+  {
+    "objectID": "lectures/20_diff-of-means.html#warm-up-again-with-r",
+    "href": "lectures/20_diff-of-means.html#warm-up-again-with-r",
+    "title": "Difference of Means",
+    "section": "warm up again with R",
+    "text": "warm up again with R\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(googlesheets4)\n\n# Making CI from some sample proportions.\n\nclass_heights &lt;- read_sheet(\"https://docs.google.com/spreadsheets/d/1x9srZXDoYzKGew1f-y4brMbN8dl4QM66pc-dmCBWHQY/edit?usp=sharing\",\n                            sheet = \"220-01\",\n                            range = \"1:35\")|&gt;\n  select(height)\n\n! Using an auto-discovered, cached token.\n  To suppress this message, modify your code or options to clearly consent to\n  the use of a cached token.\n  See gargle's \"Non-interactive auth\" vignette for more details:\n  &lt;https://gargle.r-lib.org/articles/non-interactive-auth.html&gt;\nℹ The googlesheets4 package is using a cached token for 'nschwab@smith.edu'.\nAuto-refreshing stale OAuth token.\n✔ Reading from \"Schwab SDS 220 Fall 23 Pre-Course Questionnaire (Responses)\".\n✔ Range ''220-01'!1:35'.\n\n\n\nt.test(class_heights$height, mu=64)\n\n\n    One Sample t-test\n\ndata:  class_heights$height\nt = 1.8954, df = 33, p-value = 0.06683\nalternative hypothesis: true mean is not equal to 64\n95 percent confidence interval:\n 63.92442 66.13440\nsample estimates:\nmean of x \n 65.02941"
+  },
+  {
+    "objectID": "lectures/20_diff-of-means.html#side-note-prop.test",
+    "href": "lectures/20_diff-of-means.html#side-note-prop.test",
+    "title": "Difference of Means",
+    "section": "Side note: prop.test()",
+    "text": "Side note: prop.test()\nThere is also a prop.test() function that will test a proportion hypothesis from data based on mathematical formula (as opposed to bootstrapping)."
+  },
+  {
+    "objectID": "lectures/20_diff-of-means.html#new-test-difference-of-two-means",
+    "href": "lectures/20_diff-of-means.html#new-test-difference-of-two-means",
+    "title": "Difference of Means",
+    "section": "New test: Difference of two means",
+    "text": "New test: Difference of two means\nAnother hypothesis test.\n\nConditions\nDistributions\nNew Standard Error\nNew df"
+  },
+  {
+    "objectID": "4_Numeric_Data.html",
+    "href": "4_Numeric_Data.html",
+    "title": "Numeric Data",
+    "section": "",
+    "text": "Chapter 5 Numeric Data"
+  },
+  {
+    "objectID": "4_Numeric_Data.html#read-before-lecture",
+    "href": "4_Numeric_Data.html#read-before-lecture",
+    "title": "Numeric Data",
+    "section": "",
+    "text": "Chapter 5 Numeric Data"
+  },
+  {
+    "objectID": "4_Numeric_Data.html#summarizing-distributions",
+    "href": "4_Numeric_Data.html#summarizing-distributions",
+    "title": "Numeric Data",
+    "section": "Summarizing distributions",
+    "text": "Summarizing distributions\nNumeric Data\n\n\nShape, Center, and Spread"
+  },
+  {
+    "objectID": "4_Numeric_Data.html#load-the-libraries",
+    "href": "4_Numeric_Data.html#load-the-libraries",
+    "title": "Numeric Data",
+    "section": "Load the libraries",
+    "text": "Load the libraries\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(palmerpenguins)"
+  },
+  {
+    "objectID": "4_Numeric_Data.html#histogram",
+    "href": "4_Numeric_Data.html#histogram",
+    "title": "Numeric Data",
+    "section": "Histogram",
+    "text": "Histogram\nSummarize the shape of the distribution of one variable\n\nggplot(data = penguins, mapping = aes(x = body_mass_g)) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_bin()`)."
+  },
+  {
+    "objectID": "4_Numeric_Data.html#density-plot",
+    "href": "4_Numeric_Data.html#density-plot",
+    "title": "Numeric Data",
+    "section": "Density plot",
+    "text": "Density plot\nSummarize the shape of the distribution of one variable\n\nggplot(data = penguins, mapping = aes(x = body_mass_g)) +\n  geom_density()\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_density()`)."
+  },
+  {
+    "objectID": "4_Numeric_Data.html#box-plot",
+    "href": "4_Numeric_Data.html#box-plot",
+    "title": "Numeric Data",
+    "section": "Box plot",
+    "text": "Box plot\nSummarize the shape of the distribution of one variable\n\nggplot(data = penguins, mapping = aes(x = body_mass_g)) +\n  geom_boxplot()\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_boxplot()`)."
+  },
+  {
+    "objectID": "4_Numeric_Data.html#your-turn",
+    "href": "4_Numeric_Data.html#your-turn",
+    "title": "Numeric Data",
+    "section": "Your turn",
+    "text": "Your turn\n\nUse a data graphic to summarize the distribution of the height variable in the starwars data frame."
+  },
+  {
+    "objectID": "4_Numeric_Data.html#histogram-two-variables",
+    "href": "4_Numeric_Data.html#histogram-two-variables",
+    "title": "Numeric Data",
+    "section": "Histogram: two variables",
+    "text": "Histogram: two variables\n\nggplot(data = penguins, mapping = aes(x = body_mass_g, fill = species)) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_bin()`)."
+  },
+  {
+    "objectID": "4_Numeric_Data.html#density-plot-two-variables",
+    "href": "4_Numeric_Data.html#density-plot-two-variables",
+    "title": "Numeric Data",
+    "section": "Density plot: two variables",
+    "text": "Density plot: two variables\n\nggplot(data = penguins, mapping = aes(x = body_mass_g, fill = species)) +\n  geom_density(alpha = 0.4)\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_density()`)."
+  },
+  {
+    "objectID": "4_Numeric_Data.html#boxplot-two-variables",
+    "href": "4_Numeric_Data.html#boxplot-two-variables",
+    "title": "Numeric Data",
+    "section": "Boxplot: two variables",
+    "text": "Boxplot: two variables\n\nggplot(data = penguins, mapping = aes(x = body_mass_g, fill = species)) +\n  geom_boxplot()\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_boxplot()`)."
+  },
+  {
+    "objectID": "4_Numeric_Data.html#measures-of-center",
+    "href": "4_Numeric_Data.html#measures-of-center",
+    "title": "Numeric Data",
+    "section": "Measures of center",
+    "text": "Measures of center\n\n\nmean: mean()\nmedian: median()\n\n\n\n# When using summarize functions like n() and mean() the words to the left of the = are the column headers.\n\n  summarize(\n    .data = penguins,\n    number_of_penguins = n(),\n    mean_mass = mean(body_mass_g, na.rm = TRUE),\n    median_mass = median(body_mass_g, na.rm = TRUE)\n  )\n\n# A tibble: 1 × 3\n  number_of_penguins mean_mass median_mass\n               &lt;int&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n1                344     4202.        4050"
+  },
+  {
+    "objectID": "4_Numeric_Data.html#measures-of-spread",
+    "href": "4_Numeric_Data.html#measures-of-spread",
+    "title": "Numeric Data",
+    "section": "Measures of spread",
+    "text": "Measures of spread\n\n\nstandard deviation: sd()\nvariance: var()\nrange: range()\nIQR: IQR()\n\n\n\n  summarize(\n    .data = penguins,\n    number_of_penguins = n(),\n    sd_mass = sd(body_mass_g, na.rm = TRUE),\n    var_mass = var(body_mass_g, na.rm = TRUE)\n  )\n\n# A tibble: 1 × 3\n  number_of_penguins sd_mass var_mass\n               &lt;int&gt;   &lt;dbl&gt;    &lt;dbl&gt;\n1                344    802.  643131."
+  },
+  {
+    "objectID": "4_Numeric_Data.html#quantiles",
+    "href": "4_Numeric_Data.html#quantiles",
+    "title": "Numeric Data",
+    "section": "Quantiles",
+    "text": "Quantiles\nMost summary information can be found with the fivnum() or summary() function.\n\n# This is just the five number summary\nfive_number_pengiuns &lt;-fivenum(penguins$body_mass_g)\nfive_number_pengiuns\n\n[1] 2700 3550 4050 4750 6300\n\n#This is the five number plus summary\nsummary(penguins$body_mass_g)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n   2700    3550    4050    4202    4750    6300       2 \n\n\n\n# This is how you can get the exact quantile. \nquantile(x= penguins$body_mass_g, probs = c(0.25,0.5), na.rm=TRUE)\n\n 25%  50% \n3550 4050"
+  },
+  {
+    "objectID": "4_Numeric_Data.html#graphed-quantiles",
+    "href": "4_Numeric_Data.html#graphed-quantiles",
+    "title": "Numeric Data",
+    "section": "Graphed Quantiles",
+    "text": "Graphed Quantiles\n\n# Note the vertical line showing the 25th percentile. \nggplot(data = penguins, aes(x = body_mass_g)) +\n  geom_density()+\n  geom_vline(xintercept = 3550, color = \"purple\") \n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_density()`)."
+  },
+  {
+    "objectID": "4_Numeric_Data.html#your-turn-1",
+    "href": "4_Numeric_Data.html#your-turn-1",
+    "title": "Numeric Data",
+    "section": "Your turn",
+    "text": "Your turn\n\nSummarize the distribution of the height variable in the starwars data frame by computing:\n\nthe number of observations\nthe mean\nthe standard deviation\n\nFind the 80th quantile for the height variable in the starwars data."
+  },
+  {
+    "objectID": "4_Numeric_Data.html#answer-here.",
+    "href": "4_Numeric_Data.html#answer-here.",
+    "title": "Numeric Data",
+    "section": "Answer here.",
+    "text": "Answer here."
+  },
+  {
+    "objectID": "4_Numeric_Data.html#outliers",
+    "href": "4_Numeric_Data.html#outliers",
+    "title": "Numeric Data",
+    "section": "Outliers",
+    "text": "Outliers\nAlong a number line to locate outliers we first calculate the two bounds\n\n\\[\nL = Q1 - 1.5 \\times IQR \\\\\nU = Q3 + 1.5 \\times IQR\n\\]\nAny values outside that range are considered outliers.\nLet’s do this with penguins mass."
+  },
+  {
+    "objectID": "4_Numeric_Data.html#calculate-outlier-bounds-in-r",
+    "href": "4_Numeric_Data.html#calculate-outlier-bounds-in-r",
+    "title": "Numeric Data",
+    "section": "Calculate outlier bounds in R",
+    "text": "Calculate outlier bounds in R\n\n# This is the IQR of the penguin's mass\niqr_mass &lt;- IQR(x= penguins$body_mass_g, na.rm = TRUE)\n\nq1 &lt;- five_number_pengiuns[2]\nq3 &lt;- five_number_pengiuns[4]\n\n# This is the lower bound\nq1 - 1.5*iqr_mass \n\n[1] 1750\n\n# This is the upper bound\nq3 + 1.5*iqr_mass\n\n[1] 6550\n\nmin(penguins$body_mass_g, na.rm = TRUE)\n\n[1] 2700\n\nmax(penguins$body_mass_g, na.rm = TRUE)\n\n[1] 6300"
+  },
+  {
+    "objectID": "4_Numeric_Data.html#your-turn-2",
+    "href": "4_Numeric_Data.html#your-turn-2",
+    "title": "Numeric Data",
+    "section": "Your turn",
+    "text": "Your turn\n\nMake a boxplot of mass of the starwars characters\nCalculate the outlier range (by hand or in the computer).\nWho are the outliers?"
+  },
+  {
+    "objectID": "4_Numeric_Data.html#answer-here",
+    "href": "4_Numeric_Data.html#answer-here",
+    "title": "Numeric Data",
+    "section": "Answer here",
+    "text": "Answer here"
   }
 ]
