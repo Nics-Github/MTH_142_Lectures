@@ -1,5 +1,5 @@
 ---
-title: "Studies"
+title: "Intro to Study Vocabulary"
 author: "Schwab"
 format: 
   revealjs:
@@ -10,6 +10,10 @@ editor: visual
 ## Read beforehand
 
 [Chapter 2 on Study Design](https://openintro-ims.netlify.app/data-design)
+
+## Overview
+
+In this lecture I'll go over the vocabulary from the text and present some examples.
 
 ## Blue whales
 
@@ -45,7 +49,7 @@ The *sample* is the 35 Blue whale that have washed ashore.
 
 2.  Stratified sampling
 
-3.  Convience sample
+3.  Convenience sample
 
 ## Experimental Design
 

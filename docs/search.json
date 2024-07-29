@@ -506,28 +506,28 @@
   {
     "objectID": "lectures/2_sampling.html#read-beforehand",
     "href": "lectures/2_sampling.html#read-beforehand",
-    "title": "Studies",
+    "title": "Intro to Study Vocabulary",
     "section": "Read beforehand",
     "text": "Read beforehand\nChapter 2 on Study Design"
   },
   {
     "objectID": "lectures/2_sampling.html#blue-whales",
     "href": "lectures/2_sampling.html#blue-whales",
-    "title": "Studies",
+    "title": "Intro to Study Vocabulary",
     "section": "Blue whales",
     "text": "Blue whales\nStudy: In Breeding in blue whales.\n\nNew York Times, 1/23/2024 photo cred: Burton Lim"
   },
   {
     "objectID": "lectures/2_sampling.html#some-info-on-blue-whales",
     "href": "lectures/2_sampling.html#some-info-on-blue-whales",
-    "title": "Studies",
+    "title": "Intro to Study Vocabulary",
     "section": "Some info on Blue whales:",
     "text": "Some info on Blue whales:\nn = 3500\nFour subspecies1:\n\nNorthern\nNorthern Indian Ocean\nPygmy blue whale\nAntarctic subspecies\n\nhttps://en.wikipedia.org/wiki/Blue_whale"
   },
   {
     "objectID": "lectures/2_sampling.html#population-vs-sample",
     "href": "lectures/2_sampling.html#population-vs-sample",
-    "title": "Studies",
+    "title": "Intro to Study Vocabulary",
     "section": "Population vs Sample",
     "text": "Population vs Sample\nThe population is all the Blue Whale left in the world\nThe sample is the 35 Blue whale that have washed ashore."
   },
@@ -541,14 +541,14 @@
   {
     "objectID": "lectures/2_sampling.html#experimental-design",
     "href": "lectures/2_sampling.html#experimental-design",
-    "title": "Studies",
+    "title": "Intro to Study Vocabulary",
     "section": "Experimental Design",
     "text": "Experimental Design\n\nControl vs Treatment\nRandomization - Effect of Confounding Variables.\nReplication - Repeat experiments have the similar results."
   },
   {
     "objectID": "lectures/2_sampling.html#experiments-vs-observational-studies",
     "href": "lectures/2_sampling.html#experiments-vs-observational-studies",
-    "title": "Studies",
+    "title": "Intro to Study Vocabulary",
     "section": "Experiments vs Observational Studies",
     "text": "Experiments vs Observational Studies\n\nExperiments have a control\n\nUse for causal conclusions\n\nObservational Studies often gather information\n\nCannot be used for casual conclusions"
   },
@@ -562,49 +562,49 @@
   {
     "objectID": "lectures/2_sampling.html#confounder-variables",
     "href": "lectures/2_sampling.html#confounder-variables",
-    "title": "Studies",
+    "title": "Intro to Study Vocabulary",
     "section": "Confounder Variables",
     "text": "Confounder Variables\nVariables that have an unanticipated effect on the study."
   },
   {
     "objectID": "lectures/2_sampling.html#you-try",
     "href": "lectures/2_sampling.html#you-try",
-    "title": "Studies",
+    "title": "Intro to Study Vocabulary",
     "section": "You try",
     "text": "You try\nChapter 2 2.12 and 2.20"
   },
   {
     "objectID": "lectures/2_sampling.html#solution-2.12",
     "href": "lectures/2_sampling.html#solution-2.12",
-    "title": "Studies",
+    "title": "Intro to Study Vocabulary",
     "section": "Solution 2.12",
     "text": "Solution 2.12\na. Observational Study. There is no control group.\nb. No we cannot see for sure if there is a link between stress and muscle cramps.\nc. It could be that (perhaps) there is a link between excess coffee and lack of sleep that causes cramps"
   },
   {
     "objectID": "lectures/2_sampling.html#solution-2.20",
     "href": "lectures/2_sampling.html#solution-2.20",
-    "title": "Studies",
+    "title": "Intro to Study Vocabulary",
     "section": "Solution 2.20",
     "text": "Solution 2.20\na. This was an experiment there is a control group (placebo).\nb. Explanatory is the quantity of vitamin C. The response is cold duration\nc. The patients were blind during their treatment, all pills look the same\nd. The study is not double blind as the nurses knew which patient got which pill\ne. A Confounding variable is whether a patient takes the pill."
   },
   {
     "objectID": "lectures/2_sampling.html#next-reading",
     "href": "lectures/2_sampling.html#next-reading",
-    "title": "Studies",
+    "title": "Intro to Study Vocabulary",
     "section": "Next Reading",
     "text": "Next Reading\nChapter 4 Exploring Categorical Data"
   },
   {
     "objectID": "lectures/2_sampling.html#sampling-strategies",
     "href": "lectures/2_sampling.html#sampling-strategies",
-    "title": "Studies",
+    "title": "Intro to Study Vocabulary",
     "section": "Sampling Strategies",
-    "text": "Sampling Strategies\n\nSimple random sampling\nStratified sampling\nConvience sample"
+    "text": "Sampling Strategies\n\nSimple random sampling\nStratified sampling\nConvenience sample"
   },
   {
     "objectID": "lectures/2_sampling.html#explanatory-and-response",
     "href": "lectures/2_sampling.html#explanatory-and-response",
-    "title": "Studies",
+    "title": "Intro to Study Vocabulary",
     "section": "Explanatory and Response",
     "text": "Explanatory and Response\nIf we suspect a causal relationship we have an explanatory (independent) and response variable (dependent).\n\nNegative relationship\nPositive Relationship\nNo Relationship"
   },
@@ -1433,5 +1433,12 @@
     "title": "Categorical and Numeric Data",
     "section": "Additional Practice exploring Categorical Data",
     "text": "Additional Practice exploring Categorical Data\nOnce you’ve loaded the openintro and tidyverse libraries there are many dataset to practice with.\navandia is the name of the dataset explore it using the methods above.\nI’ll explore it myself in the next video."
+  },
+  {
+    "objectID": "lectures/2_sampling.html#overview",
+    "href": "lectures/2_sampling.html#overview",
+    "title": "Intro to Study Vocabulary",
+    "section": "Overview",
+    "text": "Overview\nIn this lecture I’ll go over the vocabulary from the text and present some examples."
   }
 ]
