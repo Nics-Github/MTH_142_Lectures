@@ -7,7 +7,7 @@ format:
 editor: visual
 ---
 
-## Read beforehand
+## Read before hand
 
 [Chapter 2 on Study Design](https://openintro-ims.netlify.app/data-design)
 
@@ -95,7 +95,7 @@ b\. No we cannot see for sure if there is a link between stress and muscle cramp
 
 c\. It could be that (perhaps) there is a link between excess coffee and lack of sleep that causes cramps
 
-## Solution 2.20
+## Solution 2.20 
 
 a\. This was an experiment there is a control group (placebo).
 
