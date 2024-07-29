@@ -1332,105 +1332,105 @@
   {
     "objectID": "lectures/3_categorical_data.html#read-before-lecture",
     "href": "lectures/3_categorical_data.html#read-before-lecture",
-    "title": "Categorical and Numeric Data",
+    "title": "Exploring Categorical Data",
     "section": "Read before Lecture",
     "text": "Read before Lecture\nChapter 4 Exploring Categorical Data"
   },
   {
     "objectID": "lectures/3_categorical_data.html#confounding-variables",
     "href": "lectures/3_categorical_data.html#confounding-variables",
-    "title": "Categorical and Numeric Data",
+    "title": "Exploring Categorical Data",
     "section": "Confounding Variables",
-    "text": "Confounding Variables\nFor each of the following pairs of variables, a statistically significant positive relationship has been observed. Identify confounding that might cause the spurious correlation.\n\n\nThe amount of ice cream sold in New England and the number of deaths by drowning\nThe number of doctors in a region and the number of crimes committed in that region\nThe amount of coffee consumed and the prevalence of lung cancer"
+    "text": "Confounding Variables\nFor each of the following pairs of variables, a statistically significant positive relationship has been observed. Identify confounding that might cause the spurious correlation.\n\n\nThe amount of ice cream sold in New England and the number of deaths by drowning\nThe number of doctors in a region and the number of crimes committed in that region"
   },
   {
     "objectID": "lectures/3_categorical_data.html#explore-categorical-data",
     "href": "lectures/3_categorical_data.html#explore-categorical-data",
-    "title": "Categorical and Numeric Data",
+    "title": "Exploring Categorical Data",
     "section": "Explore Categorical Data",
-    "text": "Explore Categorical Data"
+    "text": "Explore Categorical Data\nWe’ll be exploring categorical data using R"
   },
   {
     "objectID": "lectures/3_categorical_data.html#chapter-4",
     "href": "lectures/3_categorical_data.html#chapter-4",
-    "title": "Categorical and Numeric Data",
+    "title": "Exploring Categorical Data",
     "section": "Chapter 4",
-    "text": "Chapter 4\nExploring Categorical Data:\n\nlibrary(tidyverse)\nlibrary(openintro)\n\n# You should read the documentation of the data as a first step to exploring it. \n?assortative_mating"
+    "text": "Chapter 4\nExploring Categorical Data:\n\nlibrary(tidyverse)\nlibrary(openintro)\n\n# You should read and view the documentation of the data as a first step to exploring it. \n?assortive_mating\nassortive_mating\n\n# A tibble: 204 × 2\n   self_male partner_female\n   &lt;fct&gt;     &lt;fct&gt;         \n 1 blue      blue          \n 2 blue      blue          \n 3 blue      blue          \n 4 blue      blue          \n 5 blue      blue          \n 6 blue      blue          \n 7 blue      blue          \n 8 blue      blue          \n 9 blue      blue          \n10 blue      blue          \n# ℹ 194 more rows"
   },
   {
     "objectID": "lectures/3_categorical_data.html#sec-explore-categorical",
     "href": "lectures/3_categorical_data.html#sec-explore-categorical",
-    "title": "Categorical and Numeric Data",
+    "title": "Exploring Categorical Data",
     "section": "Exploring categorical data",
-    "text": "Exploring categorical data\nLet’s explore categorical data using summary statistics and visualizations.\n\n#Look at the top 6 rows of the assortative mating data\n\nslice_head(.data =  assortative_mating, n = 6)\n\n# A tibble: 6 × 2\n  self_male partner_female\n  &lt;fct&gt;     &lt;fct&gt;         \n1 blue      blue          \n2 blue      blue          \n3 blue      blue          \n4 blue      blue          \n5 blue      blue          \n6 blue      blue"
+    "text": "Exploring categorical data\nLet’s explore categorical data using summary statistics and visualizations."
   },
   {
     "objectID": "lectures/3_categorical_data.html#tables",
     "href": "lectures/3_categorical_data.html#tables",
-    "title": "Categorical and Numeric Data",
+    "title": "Exploring Categorical Data",
     "section": "Tables",
-    "text": "Tables\nTables are also helpful in understanding categorical data\n\ntable(data = assortative_mating)\n\n         partner_female\nself_male blue brown green\n    blue    78    23    13\n    brown   19    23    12\n    green   11     9    16"
+    "text": "Tables\nTables are also helpful in understanding categorical data\n\ntable(data = assortive_mating)\n\n         partner_female\nself_male blue brown green\n    blue    78    23    13\n    brown   19    23    12\n    green   11     9    16"
   },
   {
     "objectID": "lectures/3_categorical_data.html#prop-tables",
     "href": "lectures/3_categorical_data.html#prop-tables",
-    "title": "Categorical and Numeric Data",
+    "title": "Exploring Categorical Data",
     "section": "Prop tables",
-    "text": "Prop tables\n\n# Here I am saving the table as the variable my_table\n# I am telling table I specifically want to look at the male and female variables.\n\nmy_table &lt;- table(assortative_mating$self_male, assortative_mating$partner_female)\n\nprop.table(my_table)\n\n       \n              blue      brown      green\n  blue  0.38235294 0.11274510 0.06372549\n  brown 0.09313725 0.11274510 0.05882353\n  green 0.05392157 0.04411765 0.07843137"
+    "text": "Prop tables\n\n# Here I am saving the table as the variable my_table\n# I am telling table I specifically want to look at the male and female variables.\n\nmy_table &lt;- table(assortive_mating$self_male, assortive_mating$partner_female)\n\nprop.table(my_table)\n\n       \n              blue      brown      green\n  blue  0.38235294 0.11274510 0.06372549\n  brown 0.09313725 0.11274510 0.05882353\n  green 0.05392157 0.04411765 0.07843137"
   },
   {
     "objectID": "lectures/3_categorical_data.html#margins",
     "href": "lectures/3_categorical_data.html#margins",
-    "title": "Categorical and Numeric Data",
+    "title": "Exploring Categorical Data",
     "section": "Margins",
     "text": "Margins\n\naddmargins(A = my_table)\n\n       \n        blue brown green Sum\n  blue    78    23    13 114\n  brown   19    23    12  54\n  green   11     9    16  36\n  Sum    108    55    41 204"
   },
   {
     "objectID": "lectures/3_categorical_data.html#bar-graphs",
     "href": "lectures/3_categorical_data.html#bar-graphs",
-    "title": "Categorical and Numeric Data",
+    "title": "Exploring Categorical Data",
     "section": "Bar graphs",
-    "text": "Bar graphs\nBar graphs can be helpful for exploring tables\n\n\n\nggplot(data = assortative_mating, mapping = aes(x=self_male)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\n\nggplot(data = assortative_mating, mapping = aes(x=partner_female)) +\n  geom_bar()"
+    "text": "Bar graphs\nBar graphs can be helpful for exploring tables\n\n\n\nggplot(data = assortive_mating, mapping = aes(x=self_male)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\n\nggplot(data = assortive_mating, mapping = aes(x=partner_female)) +\n  geom_bar()"
   },
   {
     "objectID": "lectures/3_categorical_data.html#mosaic-plots",
     "href": "lectures/3_categorical_data.html#mosaic-plots",
-    "title": "Categorical and Numeric Data",
+    "title": "Exploring Categorical Data",
     "section": "Mosaic plots",
-    "text": "Mosaic plots\nIn the case of two categorical variables the mosaic plot is nice.\n\n# Here I am showing that I want to see a relationship between the two variables. \nmosaicplot(self_male ~ partner_female, data=assortative_mating)"
+    "text": "Mosaic plots\nIn the case of two categorical variables the mosaic plot is nice.\n\n# Here I am showing that I want to see a relationship between the two variables. \nmosaicplot(self_male ~ partner_female, data=assortive_mating)"
   },
   {
     "objectID": "lectures/3_categorical_data.html#variables-with-bar",
     "href": "lectures/3_categorical_data.html#variables-with-bar",
-    "title": "Categorical and Numeric Data",
+    "title": "Exploring Categorical Data",
     "section": "2 variables with bar",
-    "text": "2 variables with bar\nWe can map aes to multiple variables\n\nggplot(data = assortative_mating, mapping = aes(x=self_male, fill=partner_female)) +\n  geom_bar()+\n  scale_fill_manual( values = c(\"blue\",\"brown\",\"green\"))"
+    "text": "2 variables with bar\nWe can map aes to multiple variables\n\nggplot(data = assortive_mating, mapping = aes(x=self_male, fill=partner_female)) +\n  geom_bar()"
   },
   {
     "objectID": "lectures/3_categorical_data.html#fill",
     "href": "lectures/3_categorical_data.html#fill",
-    "title": "Categorical and Numeric Data",
+    "title": "Exploring Categorical Data",
     "section": "fill",
-    "text": "fill\n\nggplot(data = assortative_mating, mapping = aes(x=self_male,fill=partner_female)) +\n  geom_bar(position = \"fill\")+\n  scale_fill_manual( values = c(\"blue\",\"brown\",\"green\"))"
+    "text": "fill\n\nggplot(data = assortive_mating, mapping = aes(x=self_male,fill=partner_female)) +\n  geom_bar(position = \"fill\")"
   },
   {
     "objectID": "lectures/3_categorical_data.html#dodge",
     "href": "lectures/3_categorical_data.html#dodge",
-    "title": "Categorical and Numeric Data",
+    "title": "Exploring Categorical Data",
     "section": "dodge",
-    "text": "dodge\n\nggplot(data = assortative_mating, mapping = aes(x=self_male,fill=partner_female)) +\n  geom_bar(position = \"dodge\")+\n  scale_fill_manual( values = c(\"blue\",\"brown\",\"green\"))"
+    "text": "dodge\n\nggplot(data = assortive_mating, mapping = aes(x=self_male,fill=partner_female)) +\n  geom_bar(position = \"dodge\")"
   },
   {
     "objectID": "lectures/3_categorical_data.html#problem-4.5",
     "href": "lectures/3_categorical_data.html#problem-4.5",
-    "title": "Categorical and Numeric Data",
+    "title": "Exploring Categorical Data",
     "section": "Problem 4.5",
     "text": "Problem 4.5"
   },
   {
     "objectID": "lectures/3_categorical_data.html#additional-practice-exploring-categorical-data",
     "href": "lectures/3_categorical_data.html#additional-practice-exploring-categorical-data",
-    "title": "Categorical and Numeric Data",
+    "title": "Exploring Categorical Data",
     "section": "Additional Practice exploring Categorical Data",
     "text": "Additional Practice exploring Categorical Data\nOnce you’ve loaded the openintro and tidyverse libraries there are many dataset to practice with.\navandia is the name of the dataset explore it using the methods above.\nI’ll explore it myself in the next video."
   },

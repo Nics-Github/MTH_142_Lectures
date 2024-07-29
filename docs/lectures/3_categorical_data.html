@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Nic Schwab">
-  <title>MTH 142 Online - Categorical and Numeric Data</title>
+  <title>MTH 142 Online - Exploring Categorical Data</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -391,7 +391,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Categorical and Numeric Data</h1>
+  <h1 class="title">Exploring Categorical Data</h1>
   <p class="subtitle">IMS, Ch. 4</p>
 
 <div class="quarto-title-authors">
@@ -414,12 +414,12 @@ Nic Schwab
 <ul>
 <li class="fragment">The amount of ice cream sold in New England and the number of deaths by drowning</li>
 <li class="fragment">The number of doctors in a region and the number of crimes committed in that region</li>
-<li class="fragment">The amount of coffee consumed and the prevalence of lung cancer</li>
 </ul>
 </div>
 </section>
 <section id="explore-categorical-data" class="slide level2">
 <h2>Explore Categorical Data</h2>
+<p>We’ll be exploring categorical data using R</p>
 </section>
 <section id="chapter-4" class="slide level2">
 <h2>Chapter 4</h2>
@@ -428,35 +428,36 @@ Nic Schwab
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a></a><span class="fu">library</span>(openintro)</span>
 <span id="cb1-3"><a></a></span>
-<span id="cb1-4"><a></a><span class="co"># You should read the documentation of the data as a first step to exploring it. </span></span>
-<span id="cb1-5"><a></a>?assortative_mating</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a></a><span class="co"># You should read and view the documentation of the data as a first step to exploring it. </span></span>
+<span id="cb1-5"><a></a>?assortive_mating</span>
+<span id="cb1-6"><a></a>assortive_mating</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 204 × 2
+   self_male partner_female
+   &lt;fct&gt;     &lt;fct&gt;         
+ 1 blue      blue          
+ 2 blue      blue          
+ 3 blue      blue          
+ 4 blue      blue          
+ 5 blue      blue          
+ 6 blue      blue          
+ 7 blue      blue          
+ 8 blue      blue          
+ 9 blue      blue          
+10 blue      blue          
+# ℹ 194 more rows</code></pre>
+</div>
 </div>
 </section>
 <section id="sec-explore-categorical" class="slide level2">
 <h2>Exploring categorical data</h2>
 <p>Let’s explore <strong>categorical</strong> data using summary statistics and visualizations.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co">#Look at the top 6 rows of the assortative mating data</span></span>
-<span id="cb2-2"><a></a></span>
-<span id="cb2-3"><a></a><span class="fu">slice_head</span>(<span class="at">.data =</span>  assortative_mating, <span class="at">n =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  self_male partner_female
-  &lt;fct&gt;     &lt;fct&gt;         
-1 blue      blue          
-2 blue      blue          
-3 blue      blue          
-4 blue      blue          
-5 blue      blue          
-6 blue      blue          </code></pre>
-</div>
-</div>
 </section>
 <section id="tables" class="slide level2">
 <h2>Tables</h2>
 <p>Tables are also helpful in understanding categorical data</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">table</span>(<span class="at">data =</span> assortative_mating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">table</span>(<span class="at">data =</span> assortive_mating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         partner_female
 self_male blue brown green
@@ -469,12 +470,12 @@ self_male blue brown green
 <section id="prop-tables" class="slide level2">
 <h2>Prop tables</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># Here I am saving the table as the variable my_table</span></span>
-<span id="cb6-2"><a></a><span class="co"># I am telling table I specifically want to look at the male and female variables.</span></span>
-<span id="cb6-3"><a></a></span>
-<span id="cb6-4"><a></a>my_table <span class="ot">&lt;-</span> <span class="fu">table</span>(assortative_mating<span class="sc">$</span>self_male, assortative_mating<span class="sc">$</span>partner_female)</span>
-<span id="cb6-5"><a></a></span>
-<span id="cb6-6"><a></a><span class="fu">prop.table</span>(my_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># Here I am saving the table as the variable my_table</span></span>
+<span id="cb5-2"><a></a><span class="co"># I am telling table I specifically want to look at the male and female variables.</span></span>
+<span id="cb5-3"><a></a></span>
+<span id="cb5-4"><a></a>my_table <span class="ot">&lt;-</span> <span class="fu">table</span>(assortive_mating<span class="sc">$</span>self_male, assortive_mating<span class="sc">$</span>partner_female)</span>
+<span id="cb5-5"><a></a></span>
+<span id="cb5-6"><a></a><span class="fu">prop.table</span>(my_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       
               blue      brown      green
@@ -487,7 +488,7 @@ self_male blue brown green
 <section id="margins" class="slide level2">
 <h2>Margins</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">addmargins</span>(<span class="at">A =</span> my_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">addmargins</span>(<span class="at">A =</span> my_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       
         blue brown green Sum
@@ -504,8 +505,8 @@ self_male blue brown green
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> assortative_mating, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>self_male)) <span class="sc">+</span></span>
-<span id="cb10-2"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> assortive_mating, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>self_male)) <span class="sc">+</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -516,8 +517,8 @@ self_male blue brown green
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> assortative_mating, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>partner_female)) <span class="sc">+</span></span>
-<span id="cb11-2"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> assortive_mating, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>partner_female)) <span class="sc">+</span></span>
+<span id="cb10-2"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -533,8 +534,8 @@ self_male blue brown green
 <h2>Mosaic plots</h2>
 <p>In the case of two categorical variables the mosaic plot is nice.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co"># Here I am showing that I want to see a relationship between the two variables. </span></span>
-<span id="cb12-2"><a></a><span class="fu">mosaicplot</span>(self_male <span class="sc">~</span> partner_female, <span class="at">data=</span>assortative_mating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Here I am showing that I want to see a relationship between the two variables. </span></span>
+<span id="cb11-2"><a></a><span class="fu">mosaicplot</span>(self_male <span class="sc">~</span> partner_female, <span class="at">data=</span>assortive_mating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="3_categorical_data_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
@@ -542,27 +543,24 @@ self_male blue brown green
 <h2>2 variables with bar</h2>
 <p>We can map aes to multiple variables</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> assortative_mating, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>self_male, <span class="at">fill=</span>partner_female)) <span class="sc">+</span></span>
-<span id="cb13-2"><a></a>  <span class="fu">geom_bar</span>()<span class="sc">+</span></span>
-<span id="cb13-3"><a></a>  <span class="fu">scale_fill_manual</span>( <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>,<span class="st">"brown"</span>,<span class="st">"green"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> assortive_mating, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>self_male, <span class="at">fill=</span>partner_female)) <span class="sc">+</span></span>
+<span id="cb12-2"><a></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="3_categorical_data_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
 <section id="fill" class="slide level2">
 <h2>fill</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> assortative_mating, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>self_male,<span class="at">fill=</span>partner_female)) <span class="sc">+</span></span>
-<span id="cb14-2"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>)<span class="sc">+</span></span>
-<span id="cb14-3"><a></a>  <span class="fu">scale_fill_manual</span>( <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>,<span class="st">"brown"</span>,<span class="st">"green"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> assortive_mating, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>self_male,<span class="at">fill=</span>partner_female)) <span class="sc">+</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="3_categorical_data_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
 <section id="dodge" class="slide level2">
 <h2>dodge</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> assortative_mating, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>self_male,<span class="at">fill=</span>partner_female)) <span class="sc">+</span></span>
-<span id="cb15-2"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>)<span class="sc">+</span></span>
-<span id="cb15-3"><a></a>  <span class="fu">scale_fill_manual</span>( <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>,<span class="st">"brown"</span>,<span class="st">"green"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> assortive_mating, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>self_male,<span class="at">fill=</span>partner_female)) <span class="sc">+</span></span>
+<span id="cb14-2"><a></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="3_categorical_data_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
