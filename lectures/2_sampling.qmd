@@ -39,9 +39,9 @@ Four subspecies[^1]:
 
 ## Population vs Sample
 
-The *population* is all the Blue Whale left in the world
+The *population* is all the Blue Whales left in the world
 
-The *sample* is the 35 Blue whale that have washed ashore.
+The *sample* is the 35 Blue Whales that have washed ashore.
 
 ## Sampling Strategies
 
