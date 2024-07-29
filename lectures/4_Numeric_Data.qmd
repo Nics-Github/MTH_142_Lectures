@@ -165,7 +165,7 @@ ggplot(data = penguins, aes(x = body_mass_g)) +
     -   the standard deviation
 -   Find the 80th quantile for the `height` variable in the `starwars` data.
 
-## Answer here. 
+## Answer here.
 
 ## Outliers
 

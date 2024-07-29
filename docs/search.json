@@ -1447,5 +1447,145 @@
     "title": "Intro to Study Vocabulary",
     "section": "Read before hand",
     "text": "Read before hand\nChapter 2 on Study Design"
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#read-before-lecture",
+    "href": "lectures/4_Numeric_Data.html#read-before-lecture",
+    "title": "Numeric Data",
+    "section": "Read before lecture",
+    "text": "Read before lecture\nChapter 5 Numeric Data"
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#summarizing-distributions",
+    "href": "lectures/4_Numeric_Data.html#summarizing-distributions",
+    "title": "Numeric Data",
+    "section": "Summarizing distributions",
+    "text": "Summarizing distributions\nNumeric Data\n\n\nShape, Center, and Spread"
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#load-the-libraries",
+    "href": "lectures/4_Numeric_Data.html#load-the-libraries",
+    "title": "Numeric Data",
+    "section": "Load the libraries",
+    "text": "Load the libraries\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)"
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#histogram",
+    "href": "lectures/4_Numeric_Data.html#histogram",
+    "title": "Numeric Data",
+    "section": "Histogram",
+    "text": "Histogram\nSummarize the shape of the distribution of one variable\n\nggplot(data = penguins, mapping = aes(x = body_mass_g)) +\n  geom_histogram()"
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#density-plot",
+    "href": "lectures/4_Numeric_Data.html#density-plot",
+    "title": "Numeric Data",
+    "section": "Density plot",
+    "text": "Density plot\nSummarize the shape of the distribution of one variable\n\nggplot(data = penguins, mapping = aes(x = body_mass_g)) +\n  geom_density()"
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#box-plot",
+    "href": "lectures/4_Numeric_Data.html#box-plot",
+    "title": "Numeric Data",
+    "section": "Box plot",
+    "text": "Box plot\nSummarize the shape of the distribution of one variable\n\nggplot(data = penguins, mapping = aes(x = body_mass_g)) +\n  geom_boxplot()"
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#your-turn",
+    "href": "lectures/4_Numeric_Data.html#your-turn",
+    "title": "Numeric Data",
+    "section": "Your turn",
+    "text": "Your turn\n\nUse a data graphic to summarize the distribution of the height variable in the starwars data frame."
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#histogram-two-variables",
+    "href": "lectures/4_Numeric_Data.html#histogram-two-variables",
+    "title": "Numeric Data",
+    "section": "Histogram: two variables",
+    "text": "Histogram: two variables\n\nggplot(data = penguins, mapping = aes(x = body_mass_g, fill = species)) +\n  geom_histogram()"
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#density-plot-two-variables",
+    "href": "lectures/4_Numeric_Data.html#density-plot-two-variables",
+    "title": "Numeric Data",
+    "section": "Density plot: two variables",
+    "text": "Density plot: two variables\n\nggplot(data = penguins, mapping = aes(x = body_mass_g, fill = species)) +\n  geom_density(alpha = 0.4)"
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#boxplot-two-variables",
+    "href": "lectures/4_Numeric_Data.html#boxplot-two-variables",
+    "title": "Numeric Data",
+    "section": "Boxplot: two variables",
+    "text": "Boxplot: two variables\n\nggplot(data = penguins, mapping = aes(x = body_mass_g, fill = species)) +\n  geom_boxplot()"
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#measures-of-center",
+    "href": "lectures/4_Numeric_Data.html#measures-of-center",
+    "title": "Numeric Data",
+    "section": "Measures of center",
+    "text": "Measures of center\n\n\nmean: mean()\nmedian: median()\n\n\n\n# When using summarize functions like n() and mean() the words to the left of the = are the column headers.\n\n  summarize(\n    .data = penguins,\n    number_of_penguins = n(),\n    mean_mass = mean(body_mass_g, na.rm = TRUE),\n    median_mass = median(body_mass_g, na.rm = TRUE)\n  )\n\n# A tibble: 1 × 3\n  number_of_penguins mean_mass median_mass\n               &lt;int&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n1                344     4202.        4050"
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#measures-of-spread",
+    "href": "lectures/4_Numeric_Data.html#measures-of-spread",
+    "title": "Numeric Data",
+    "section": "Measures of spread",
+    "text": "Measures of spread\n\n\nstandard deviation: sd()\nvariance: var()\nrange: range()\nIQR: IQR()\n\n\n\n  summarize(\n    .data = penguins,\n    number_of_penguins = n(),\n    sd_mass = sd(body_mass_g, na.rm = TRUE),\n    var_mass = var(body_mass_g, na.rm = TRUE)\n  )\n\n# A tibble: 1 × 3\n  number_of_penguins sd_mass var_mass\n               &lt;int&gt;   &lt;dbl&gt;    &lt;dbl&gt;\n1                344    802.  643131."
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#quantiles",
+    "href": "lectures/4_Numeric_Data.html#quantiles",
+    "title": "Numeric Data",
+    "section": "Quantiles",
+    "text": "Quantiles\nMost summary information can be found with the fivnum() or summary() function.\n\n# This is just the five number summary\nfive_number_pengiuns &lt;-fivenum(penguins$body_mass_g)\nfive_number_pengiuns\n\n[1] 2700 3550 4050 4750 6300\n\n#This is the five number plus summary\nsummary(penguins$body_mass_g)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's \n   2700    3550    4050    4202    4750    6300       2 \n\n\n\n# This is how you can get the exact quantile. \nquantile(x= penguins$body_mass_g, probs = c(0.25,0.5), na.rm=TRUE)\n\n 25%  50% \n3550 4050"
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#graphed-quantiles",
+    "href": "lectures/4_Numeric_Data.html#graphed-quantiles",
+    "title": "Numeric Data",
+    "section": "Graphed Quantiles",
+    "text": "Graphed Quantiles\n\n# Note the vertical line showing the 25th percentile. \nggplot(data = penguins, aes(x = body_mass_g)) +\n  geom_density()+\n  geom_vline(xintercept = 3550, color = \"purple\")"
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#your-turn-1",
+    "href": "lectures/4_Numeric_Data.html#your-turn-1",
+    "title": "Numeric Data",
+    "section": "Your turn",
+    "text": "Your turn\n\nSummarize the distribution of the height variable in the starwars data frame by computing:\n\nthe number of observations\nthe mean\nthe standard deviation\n\nFind the 80th quantile for the height variable in the starwars data."
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#answer-here.",
+    "href": "lectures/4_Numeric_Data.html#answer-here.",
+    "title": "Numeric Data",
+    "section": "Answer here.",
+    "text": "Answer here."
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#outliers",
+    "href": "lectures/4_Numeric_Data.html#outliers",
+    "title": "Numeric Data",
+    "section": "Outliers",
+    "text": "Outliers\nAlong a number line to locate outliers we first calculate the two bounds\n\n\\[\nL = Q1 - 1.5 \\times IQR \\\\\nU = Q3 + 1.5 \\times IQR\n\\]\nAny values outside that range are considered outliers.\nLet’s do this with penguins mass."
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#calculate-outlier-bounds-in-r",
+    "href": "lectures/4_Numeric_Data.html#calculate-outlier-bounds-in-r",
+    "title": "Numeric Data",
+    "section": "Calculate outlier bounds in R",
+    "text": "Calculate outlier bounds in R\n\n# This is the IQR of the penguin's mass\niqr_mass &lt;- IQR(x= penguins$body_mass_g, na.rm = TRUE)\n\nq1 &lt;- five_number_pengiuns[2]\nq3 &lt;- five_number_pengiuns[4]\n\n# This is the lower bound\nq1 - 1.5*iqr_mass \n\n[1] 1750\n\n# This is the upper bound\nq3 + 1.5*iqr_mass\n\n[1] 6550\n\nmin(penguins$body_mass_g, na.rm = TRUE)\n\n[1] 2700\n\nmax(penguins$body_mass_g, na.rm = TRUE)\n\n[1] 6300"
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#your-turn-2",
+    "href": "lectures/4_Numeric_Data.html#your-turn-2",
+    "title": "Numeric Data",
+    "section": "Your turn",
+    "text": "Your turn\n\nMake a boxplot of mass of the starwars characters\nCalculate the outlier range (by hand or in the computer).\nWho are the outliers?"
+  },
+  {
+    "objectID": "lectures/4_Numeric_Data.html#answer-here",
+    "href": "lectures/4_Numeric_Data.html#answer-here",
+    "title": "Numeric Data",
+    "section": "Answer here",
+    "text": "Answer here"
   }
 ]
