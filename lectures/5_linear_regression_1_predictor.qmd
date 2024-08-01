@@ -9,8 +9,6 @@ format:
       buttons: false
     preview-links: auto
     theme: beige
-    logo: https://github.com/SmithCollege-SDS/sds/raw/master/man/figures/logo.png
-    footer: <https://beanumber.github.io/sds220/05_bivariate.html>
 date: |
   2023-09-22
 execute: 
@@ -29,28 +27,6 @@ execute:
 library(openintro)
 library(tidyverse)
 library(broom)
-
-arbuthnot <-  mutate(.data = arbuthnot, total = girls+boys, boy_ratio = boys / total)
-
-present <- mutate(.data = present, total = girls+boys, boy_ratio = boys / total)
-```
-
-```{r }
-ggplot(data = arbuthnot, aes(x = year, y = boy_ratio)) +
-  geom_point() +
-  labs(title = "Ratio of boys to girls born London",
-       subtitle ="The data comes from `arbuthnot` in the openintro package",
-       caption = "This graph shows the ratio of boys to girls born in the London from the 1600s to the early 1700s")
-```
-
-## Graph from Present
-
-```{r }
-ggplot(data = present, aes(x = year, y = boy_ratio)) +
-  geom_point() +
-  labs(title = "Ratio of boys to girls born US",
-       subtitle ="The data comes from `present` in the openintro package",
-       caption = "This graph shows the ratio of boys to girls born in the US from the 1940s to the early 2000s")
 ```
 
 ## Bivariate Relationships
@@ -81,13 +57,17 @@ Explanatory variable (aka independent variable, aka predictor): the variable tha
 
 :::
 
-## You try
+## Examine the babies data
 
-From the babies dataset, make a scatter plot of gestation (explanatory) vs bwt (response). 
+From the babies dataset, let's make a scatter plot of gestation (explanatory) vs bwt (response). 
 
-Copy the code above and give it a try. 
+- Characterize the distribution
+    - Form
+    - Direction
+    - Strength
+    - Outliers
 
-## Solution: birthweight of babies
+## Birthweight of babies
 
 ```{r}
 ggplot(data = babies, aes(x = gestation, y = bwt)) +

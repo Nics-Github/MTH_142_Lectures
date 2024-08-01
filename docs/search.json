@@ -620,7 +620,7 @@
     "href": "lectures/5_linear_regression_1_predictor.html#graph-of-arbuthonot",
     "title": "Intro to Linear Regression",
     "section": "Graph of Arbuthonot",
-    "text": "Graph of Arbuthonot\n\nggplot(data = arbuthnot, aes(x = year, y = boy_ratio)) +\n  geom_point() +\n  labs(title = \"Ratio of boys to girls born London\",\n       subtitle =\"The data comes from `arbuthnot` in the openintro package\",\n       caption = \"This graph shows the ratio of boys to girls born in the London from the 1600s to the early 1700s\")"
+    "text": "Graph of Arbuthonot"
   },
   {
     "objectID": "lectures/5_linear_regression_1_predictor.html#scatterplot-for-two-numerical-variables",
@@ -634,7 +634,7 @@
     "href": "lectures/5_linear_regression_1_predictor.html#you-try",
     "title": "Intro to Linear Regression",
     "section": "You try",
-    "text": "You try\nFrom the babies dataset, make a scatter plot of gestation (explanatory) vs bwt (response).\nCopy the code above and give it a try."
+    "text": "You try\nFind the correlation coefficient for StarWars height vs mass. Hint: copy and edit the code from above."
   },
   {
     "objectID": "lectures/5_linear_regression_1_predictor.html#solution-birthweight-of-babies",
@@ -760,7 +760,7 @@
     "href": "lectures/5_linear_regression_1_predictor.html#reading-for-next-lecture",
     "title": "Intro to Linear Regression",
     "section": "Reading for next lecture",
-    "text": "Reading for next lecture\nNo additional reading\n\n\n\n\nhttps://beanumber.github.io/sds220/05_bivariate.html"
+    "text": "Reading for next lecture\nNo additional reading"
   },
   {
     "objectID": "about.html",
@@ -1678,5 +1678,19 @@
     "title": "Intro to Study Vocabulary",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nhttps://en.wikipedia.org/wiki/Blue_whale↩︎"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#examine-the-babies-data",
+    "href": "lectures/5_linear_regression_1_predictor.html#examine-the-babies-data",
+    "title": "Intro to Linear Regression",
+    "section": "Examine the babies data",
+    "text": "Examine the babies data\nFrom the babies dataset, let’s make a scatter plot of gestation (explanatory) vs bwt (response).\n\nCharacterize the distribution\n\nForm\nDirection\nStrength\nOutliers"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#birthweight-of-babies",
+    "href": "lectures/5_linear_regression_1_predictor.html#birthweight-of-babies",
+    "title": "Intro to Linear Regression",
+    "section": "Birthweight of babies",
+    "text": "Birthweight of babies\n\nggplot(data = babies, aes(x = gestation, y = bwt)) +\n  geom_point()\n\n\n\nhelp(babies)"
   }
 ]
