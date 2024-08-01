@@ -17,11 +17,13 @@ execute:
   echo: true
 ---
 
+
 ## Read Before Lecture
 
 [Chapter 7 Linear Regression with a single predictor](https://openintro-ims.netlify.app/model-slr)
 
 ## Graph of Arbuthonot
+
 
 ```{r calc-prop-boys-vars}
 #| echo = FALSE
@@ -43,7 +45,9 @@ ggplot(data = arbuthnot, aes(x = year, y = boy_ratio)) +
        caption = "This graph shows the ratio of boys to girls born in the London from the 1600s to the early 1700s")
 ```
 
+
 ## Graph from Present
+
 
 ```{r }
 ggplot(data = present, aes(x = year, y = boy_ratio)) +
@@ -52,6 +56,7 @@ ggplot(data = present, aes(x = year, y = boy_ratio)) +
        subtitle ="The data comes from `present` in the openintro package",
        caption = "This graph shows the ratio of boys to girls born in the US from the 1940s to the early 2000s")
 ```
+
 
 ## Bivariate Relationships
 
@@ -89,10 +94,12 @@ Copy the code above and give it a try.
 
 ## Solution: birthweight of babies
 
+
 ```{r}
 ggplot(data = babies, aes(x = gestation, y = bwt)) +
   geom_point()
 ```
+
 
 ::: footer
 `help(babies)`
@@ -116,10 +123,12 @@ ggplot(data = babies, aes(x = gestation, y = bwt)) +
 
 There is one outlier, it is Jaba the Hut. 
 
+
 ```{r}
 ggplot(data = starwars, aes(x = height, y = mass)) +
   geom_point()
 ```
+
 
 # Correlation
 
@@ -140,9 +149,11 @@ ggplot(data = starwars, aes(x = height, y = mass)) +
 
 ## Find the correlation for babies
 
+
 ```{r}
 summarise(.data = babies, r = cor(gestation,bwt,use="complete.obs"))
 ```
+
 
 
 ##  You try
@@ -151,9 +162,11 @@ Find the correlation coefficient for StarWars `height` vs `mass`. Hint: copy and
 
 ## Solution
 
+
 ```{r}
 summarise(.data = starwars, r = cor(height, mass ,use="complete.obs"))
 ```
+
 
 ## Filtering out outliers   
 
@@ -163,6 +176,7 @@ We might want to remove Jaba The Hut from the data. This is not something you ne
 - find the new correlation coefficient
 
 ## Graph the new starwars scatter plot
+
 
 ```{r}
 new_starwars <- filter(.data = starwars, mass < 500)
@@ -175,7 +189,9 @@ ggplot(data = new_starwars, aes(x = height, y = mass)) +
   geom_point() 
 ```
 
+
 ## Add the regression line to babies.
+
 
 ```{r}
 #Filter out the babies born before 259 days. They are premature
@@ -186,7 +202,9 @@ ggplot(data=babies, aes(x = gestation, y = bwt)) +
   geom_smooth(method = "lm", se=FALSE)
 ```
 
+
 ## The equation of that regression. 
+
 
 ```{r}
 # Save the linear regression object. 
@@ -195,6 +213,7 @@ baby_model <- lm(bwt~gestation,data=babies)
 # Look at the summary output of that object. 
 tidy(baby_model)
 ```
+
 
 ## Add the regression line to new_starwars
 
@@ -205,6 +224,7 @@ tidy(baby_model)
 :::
 
 ## [Anscombe](http://en.wikipedia.org/wiki/Anscombe%27s_quartet)
+
 
 ```{r}
 #| echo: false
@@ -218,6 +238,7 @@ ds %>%
   summarize(N = n(), mean(x), mean(y), cor(x,y))
 ```
 
+
 ::: incremental
 
 - same mean
@@ -228,12 +249,14 @@ ds %>%
 
 ## Anscombe plots
 
+
 ```{r}
 ggplot(data = ds, aes(x = x, y = y)) + 
   geom_point() + 
   geom_smooth(method = "lm", se = 0) + 
   facet_wrap(~set)
 ```
+
 
 
 ## Datasaurus
@@ -259,3 +282,4 @@ ggplot(data = ds, aes(x = x, y = y)) +
 ## Reading for next lecture 
 
 No additional reading
+

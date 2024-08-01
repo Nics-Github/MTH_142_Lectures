@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<link href="..//gfx/220.png" rel="icon" type="image/png">
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -13,7 +12,7 @@
 
   <meta name="author" content="Ben Baumer edited by Nic Schwab">
   <meta name="dcterms.date" content="2023-09-22">
-  <title>SDS 220 - Intro to Linear Regression</title>
+  <title>MTH 142 Online - Intro to Linear Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -471,7 +470,7 @@ Ben Baumer edited by Nic Schwab
 </section>
 <section id="you-try" class="slide level2">
 <h2>You try</h2>
-<p>From the babies dataset, make a scatter plot of gestation (explanitory) vs bwt (response).</p>
+<p>From the babies dataset, make a scatter plot of gestation (explanatory) vs bwt (response).</p>
 <p>Copy the code above and give it a try.</p>
 </section>
 <section id="solution-birthweight-of-babies" class="slide level2">
@@ -542,10 +541,19 @@ Ben Baumer edited by Nic Schwab
 </section>
 <section id="you-try-1" class="slide level2">
 <h2>You try</h2>
-<p>Find the correlation coefficient for StarWars. Hint: copy and edit the code from above.</p>
+<p>Find the correlation coefficient for StarWars height vs mass. Hint: copy and edit the code from above.</p>
 </section>
 <section id="solution" class="slide level2">
 <h2>Solution</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">summarise</span>(<span class="at">.data =</span> starwars, <span class="at">r =</span> <span class="fu">cor</span>(height, mass ,<span class="at">use=</span><span class="st">"complete.obs"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+      r
+  &lt;dbl&gt;
+1 0.131</code></pre>
+</div>
+</div>
 </section>
 <section id="filtering-out-outliers" class="slide level2">
 <h2>Filtering out outliers</h2>
@@ -558,30 +566,37 @@ Ben Baumer edited by Nic Schwab
 <section id="graph-the-new-starwars-scatter-plot" class="slide level2">
 <h2>Graph the new starwars scatter plot</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>new_starwars <span class="ot">&lt;-</span> <span class="fu">filter</span>(<span class="at">.data =</span> starwars, mass <span class="sc">&lt;</span> <span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>new_starwars <span class="ot">&lt;-</span> <span class="fu">filter</span>(<span class="at">.data =</span> starwars, mass <span class="sc">&lt;</span> <span class="dv">500</span>)</span>
+<span id="cb9-2"><a></a><span class="fu">summarise</span>(<span class="at">.data =</span> new_starwars, <span class="at">r =</span> <span class="fu">cor</span>(height, mass ,<span class="at">use=</span><span class="st">"complete.obs"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+      r
+  &lt;dbl&gt;
+1 0.751</code></pre>
+</div>
 </div>
 
-<img data-src="5_linear_regression_1_predictor_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
+<img data-src="5_linear_regression_1_predictor_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
 <section id="add-the-regression-line-to-babies." class="slide level2">
 <h2>Add the regression line to babies.</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co">#Filter out the babies born before 259 days they are premature</span></span>
-<span id="cb8-2"><a></a>babies <span class="ot">&lt;-</span> <span class="fu">filter</span>(<span class="at">.data =</span> babies, gestation <span class="sc">&gt;</span> <span class="dv">259</span>)</span>
-<span id="cb8-3"><a></a></span>
-<span id="cb8-4"><a></a><span class="fu">ggplot</span>(<span class="at">data=</span>babies, <span class="fu">aes</span>(<span class="at">x =</span> gestation, <span class="at">y =</span> bwt)) <span class="sc">+</span></span>
-<span id="cb8-5"><a></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb8-6"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co">#Filter out the babies born before 259 days. They are premature</span></span>
+<span id="cb11-2"><a></a>babies <span class="ot">&lt;-</span> <span class="fu">filter</span>(<span class="at">.data =</span> babies, gestation <span class="sc">&gt;</span> <span class="dv">259</span>)</span>
+<span id="cb11-3"><a></a></span>
+<span id="cb11-4"><a></a><span class="fu">ggplot</span>(<span class="at">data=</span>babies, <span class="fu">aes</span>(<span class="at">x =</span> gestation, <span class="at">y =</span> bwt)) <span class="sc">+</span></span>
+<span id="cb11-5"><a></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb11-6"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="5_linear_regression_1_predictor_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<img data-src="5_linear_regression_1_predictor_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
 <section id="the-equation-of-that-regression." class="slide level2">
 <h2>The equation of that regression.</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># Save the linear regression object. </span></span>
-<span id="cb9-2"><a></a>baby_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(bwt<span class="sc">~</span>gestation,<span class="at">data=</span>babies)</span>
-<span id="cb9-3"><a></a></span>
-<span id="cb9-4"><a></a><span class="co"># Look at the summary output of that object. </span></span>
-<span id="cb9-5"><a></a><span class="fu">tidy</span>(baby_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co"># Save the linear regression object. </span></span>
+<span id="cb12-2"><a></a>baby_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(bwt<span class="sc">~</span>gestation,<span class="at">data=</span>babies)</span>
+<span id="cb12-3"><a></a></span>
+<span id="cb12-4"><a></a><span class="co"># Look at the summary output of that object. </span></span>
+<span id="cb12-5"><a></a><span class="fu">tidy</span>(baby_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   term        estimate std.error statistic  p.value
@@ -624,13 +639,13 @@ Ben Baumer edited by Nic Schwab
 <section id="anscombe-plots" class="slide level2">
 <h2>Anscombe plots</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> ds, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
-<span id="cb12-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb12-3"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
-<span id="cb12-4"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>set)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> ds, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb15-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb15-3"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb15-4"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>set)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="5_linear_regression_1_predictor_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
+<img data-src="5_linear_regression_1_predictor_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
 <section id="datasaurus" class="slide level2">
 <h2>Datasaurus</h2>
 <iframe width="1024" height="576" src="https://www.youtube.com/embed/It4UA75z_KQ" title="Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical ..." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
@@ -656,7 +671,7 @@ Ben Baumer edited by Nic Schwab
 </section>
 <section id="reading-for-next-lecture" class="slide level2">
 <h2>Reading for next lecture</h2>
-<p>None</p>
+<p>No additional reading</p>
 
 <div class="quarto-auto-generated-content">
 <p><img src="https://github.com/SmithCollege-SDS/sds/raw/master/man/figures/logo.png" class="slide-logo"></p>

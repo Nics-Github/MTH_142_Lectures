@@ -102,7 +102,7 @@
     "href": "lectures/6_Linear_regression_part_2.html#homework-notes",
     "title": "Linear Regression part 2",
     "section": "Homework notes",
-    "text": "Homework notes\nProblem 6"
+    "text": "Homework notes"
   },
   {
     "objectID": "lectures/6_Linear_regression_part_2.html#copy-and-paste-into-r",
@@ -242,7 +242,7 @@
     "href": "lectures/6_Linear_regression_part_2.html#citations",
     "title": "Linear Regression part 2",
     "section": "Citations",
-    "text": "Citations\nStreet cats from https://www.dailypaws.com/cats-kittens/behavior/what-is-a-group-of-cats-called\nYou stole Meow Heart https://drbillspetnutrition.com/feline-heart-conditions/"
+    "text": "Citations\nStreet cats from https://petlifesa.com/wp-content/uploads/2019/08/SA0057-Petlifesa-health-conditions-diseases-heart-disease-facts-about-your-cats-heart-Header-FA.jpg\nYou stole Meow Heart https://drbillspetnutrition.com/feline-heart-conditions/"
   },
   {
     "objectID": "lectures/8_Probability_1.html#read-before-hand",
@@ -634,7 +634,7 @@
     "href": "lectures/5_linear_regression_1_predictor.html#you-try",
     "title": "Intro to Linear Regression",
     "section": "You try",
-    "text": "You try\nFrom the babies dataset, make a scatter plot of gestation (explanitory) vs bwt (response).\nCopy the code above and give it a try."
+    "text": "You try\nFrom the babies dataset, make a scatter plot of gestation (explanatory) vs bwt (response).\nCopy the code above and give it a try."
   },
   {
     "objectID": "lectures/5_linear_regression_1_predictor.html#solution-birthweight-of-babies",
@@ -676,14 +676,14 @@
     "href": "lectures/5_linear_regression_1_predictor.html#you-try-1",
     "title": "Intro to Linear Regression",
     "section": "You try",
-    "text": "You try\nFind the correlation coefficient for StarWars. Hint: copy and edit the code from above."
+    "text": "You try\nFind the correlation coefficient for StarWars height vs mass. Hint: copy and edit the code from above."
   },
   {
     "objectID": "lectures/5_linear_regression_1_predictor.html#solution",
     "href": "lectures/5_linear_regression_1_predictor.html#solution",
     "title": "Intro to Linear Regression",
     "section": "Solution",
-    "text": "Solution"
+    "text": "Solution\n\nsummarise(.data = starwars, r = cor(height, mass ,use=\"complete.obs\"))\n\n# A tibble: 1 × 1\n      r\n  &lt;dbl&gt;\n1 0.131"
   },
   {
     "objectID": "lectures/5_linear_regression_1_predictor.html#filtering-out-outliers",
@@ -697,14 +697,14 @@
     "href": "lectures/5_linear_regression_1_predictor.html#graph-the-new-starwars-scatter-plot",
     "title": "Intro to Linear Regression",
     "section": "Graph the new starwars scatter plot",
-    "text": "Graph the new starwars scatter plot\n\nnew_starwars &lt;- filter(.data = starwars, mass &lt; 500)"
+    "text": "Graph the new starwars scatter plot\n\nnew_starwars &lt;- filter(.data = starwars, mass &lt; 500)\nsummarise(.data = new_starwars, r = cor(height, mass ,use=\"complete.obs\"))\n\n# A tibble: 1 × 1\n      r\n  &lt;dbl&gt;\n1 0.751"
   },
   {
     "objectID": "lectures/5_linear_regression_1_predictor.html#add-the-regression-line-to-babies.",
     "href": "lectures/5_linear_regression_1_predictor.html#add-the-regression-line-to-babies.",
     "title": "Intro to Linear Regression",
     "section": "Add the regression line to babies.",
-    "text": "Add the regression line to babies.\n\n#Filter out the babies born before 259 days they are premature\nbabies &lt;- filter(.data = babies, gestation &gt; 259)\n\nggplot(data=babies, aes(x = gestation, y = bwt)) +\n  geom_point()+\n  geom_smooth(method = \"lm\", se=FALSE)"
+    "text": "Add the regression line to babies.\n\n#Filter out the babies born before 259 days. They are premature\nbabies &lt;- filter(.data = babies, gestation &gt; 259)\n\nggplot(data=babies, aes(x = gestation, y = bwt)) +\n  geom_point()+\n  geom_smooth(method = \"lm\", se=FALSE)"
   },
   {
     "objectID": "lectures/5_linear_regression_1_predictor.html#the-equation-of-that-regression.",
@@ -760,7 +760,7 @@
     "href": "lectures/5_linear_regression_1_predictor.html#reading-for-next-lecture",
     "title": "Intro to Linear Regression",
     "section": "Reading for next lecture",
-    "text": "Reading for next lecture\nNone\n\n\n\n\nhttps://beanumber.github.io/sds220/05_bivariate.html"
+    "text": "Reading for next lecture\nNo additional reading\n\n\n\n\nhttps://beanumber.github.io/sds220/05_bivariate.html"
   },
   {
     "objectID": "about.html",
@@ -1587,5 +1587,47 @@
     "title": "Numeric Data",
     "section": "Answer here",
     "text": "Answer here"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#cats",
+    "href": "lectures/6_Linear_regression_part_2.html#cats",
+    "title": "Linear Regression part 2",
+    "section": "Cats",
+    "text": "Cats\n\nCat’s hearts"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#you-try",
+    "href": "lectures/6_Linear_regression_part_2.html#you-try",
+    "title": "Linear Regression part 2",
+    "section": "You try:",
+    "text": "You try:\n\n\nIf a cat weighs 3.5 kg how large a heart would we expect?\nCan we estimate the heart size for a 5kg cat?\n\nCaution against extrapolation."
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#solution",
+    "href": "lectures/6_Linear_regression_part_2.html#solution",
+    "title": "Linear Regression part 2",
+    "section": "Solution:",
+    "text": "Solution:\nThe equation for the line is\n$ = -0.36 + 4.03 Bwt $\nPlug in 3.5 we get\n\\(\\widehat{Hwt} = -0.36 + 4.03 \\times 3.5 \\\\\n\\widehat{Hwt} = 13.745 \\approx 13.7\\)"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#you-try-calculate-a-residual",
+    "href": "lectures/6_Linear_regression_part_2.html#you-try-calculate-a-residual",
+    "title": "Linear Regression part 2",
+    "section": "You try: calculate a residual",
+    "text": "You try: calculate a residual\nThere is a cat in this data that has a heart weight of 11.7 grams and a body weight of 3.5 grams. Calculate the residual for this cat."
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#solution-1",
+    "href": "lectures/6_Linear_regression_part_2.html#solution-1",
+    "title": "Linear Regression part 2",
+    "section": "Solution:",
+    "text": "Solution:\nThe residual is calculated \\[e = y - \\hat{y}\\]\nWe previously found the value of \\(\\hat{y} = 13.7\\) and we are told \\(y=11.7\\) So we need to subtract those two values to get\n\\[e = y - \\hat{y}\\\\\ne = 11.7-13.7\\\\\ne = -2\\]"
+  },
+  {
+    "objectID": "lectures/6_Linear_regression_part_2.html#solution-with-r-functions",
+    "href": "lectures/6_Linear_regression_part_2.html#solution-with-r-functions",
+    "title": "Linear Regression part 2",
+    "section": "Solution with R functions",
+    "text": "Solution with R functions\n\npredict(object =  cat_model, \n        newdata = data.frame(Bwt = 3.5)\n        )\n\n       1 \n13.76256"
   }
 ]

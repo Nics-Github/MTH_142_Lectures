@@ -9,49 +9,9 @@ execute:
   echo: TRUE
 ---
 
-## Homework notes
+## Cats
 
-Problem 6
-
-![](images/Data_enter_into_r.png)
-
-## Copy and paste into r
-
-Use c() function. Add commas. (Note we all have different numbers)
-
-```{r}
-Colesterol_Lvl <- c(
-244,
-278,
-272,
-160,
-226,
-210,
-318,
-236,
-186,
-142,
-360,
-288,
-220,
-206,
-282,
-270,
-282,
-234,
-266,
-276,
-294,
-224,
-310,
-242,
-236,
-288)
-```
-
-# Cats
-
-![Street Cats](https://www.dailypaws.com/thmb/TLcNyR7775d3BWl4xJh0-x1VjVI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/what-is-a-group-of-cats-called-2-1226896610-2000-808099d67e684dd083617ed5465543de.jpg){fig-align="center"}
+![Cat's hearts](https://petlifesa.com/wp-content/uploads/2019/08/SA0057-Petlifesa-health-conditions-diseases-heart-disease-facts-about-your-cats-heart-Header-FA.jpg){fig-align="center"}
 
 ## Cats' hearts
 
@@ -162,15 +122,27 @@ Intercept: If we found a cat they weighed nothing its heart would be -0.36 grams
 summary(cat_model)
 ```
 
-## If a cat weighs:
+## You try: 
 
 ::: incremental
--   3.5 kg how large a heart would we expect?
+-   If a cat weighs 3.5 kg how large a heart would we expect?
 
 -   Can we estimate the heart size for a 5kg cat?
 
     -   Caution against extrapolation.
 :::
+
+## Solution: 
+
+The equation for the line is
+
+$\widehat{Hwt} = -0.36 + 4.03 \times Bwt $
+
+Plug in 3.5 we get
+
+$\widehat{Hwt} = -0.36 + 4.03 \times 3.5 \\
+\widehat{Hwt} = 13.745 \approx 13.7
+$
 
 # Residuals
 
@@ -189,42 +161,30 @@ ggplot(cats, aes(x = Bwt, y = Hwt))+
 
 ```
 
-## Due Diligence
+## You try:  calculate a residual
 
-Check for normal residual distribution
+There is a cat in this data that has a heart weight of 11.7 grams and a body weight of 3.5 grams. Calculate the residual for this cat.
 
-Check for residual linearity
+## Solution: 
 
-## Linearity of the residuals
+The residual is calculated $$e = y - \hat{y}$$
 
-Are the residuals close to the zero?
+We previously found the value of $\hat{y} = 13.7$ and we are told $y=11.7$ So we need to subtract those two values to get
 
-```{r}
-#install.packages("broom")
-library(broom)
+$$e = y - \hat{y}\\
+e = 11.7-13.7\\
+e = -2$$
 
-cat_model_aug <- augment(cat_model)
-
-
-ggplot(data = cat_model_aug, aes(x = .fitted, y = .resid)) +
-  geom_point() +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
-  xlab("Fitted values") +
-  ylab("Residuals")
-```
-
-## Normal distributions of residuals
+## Solution with R functions
 
 ```{r}
-ggplot(data = cat_model_aug, aes(x = .resid)) +
-  geom_histogram(binwidth = 0.25) +
-  xlab("Residuals")
+predict(object =  cat_model, 
+        newdata = data.frame(Bwt = 3.5)
+        )
 ```
-
-The data looks roughly normal.
 
 ## Citations
 
-Street cats from https://www.dailypaws.com/cats-kittens/behavior/what-is-a-group-of-cats-called
+Street cats from <https://petlifesa.com/wp-content/uploads/2019/08/SA0057-Petlifesa-health-conditions-diseases-heart-disease-facts-about-your-cats-heart-Header-FA.jpg>
 
 You stole Meow Heart https://drbillspetnutrition.com/feline-heart-conditions/
