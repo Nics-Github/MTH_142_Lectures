@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Lectures from SDS 220 Spring 2024",
+    "title": "Lectures from MTH 142 Fall 2024",
     "section": "",
-    "text": "These are the lectures from MTH 142, you can also find the direct links via Canvas.\nLecture 1 Statistical Thinking\nLecture 2 Study Design and Variables\nLecture 3 Categorical Data\nLecture 4 part 2 Numeric Data\nLecture 5 Linear Correlation\nLecture 6 Linear Correlation\nLecture 7 Regression math\nLecture 8 Probability\nLecture 9 Probability 2\nLecture 10 Conditional Probability\nLecture 11 Continuous Random Variables\nLecture 12 The Normal Distribution\nLecture 13 Hypothesis Testing Proportion\nLecture 14 Paraemetric bootstrap Hypothesis Testing\n\nLecture 16 Confidence Intervals with Math\nLecture 17 Decision Errors\nLecture 18 Distributions and Two Proportions\nLecture 19 Hypothesis Test for a single mean\nLecture 20 Hypothesis Test for a difference of means (unpaired)\nLecture 21 ANOVA\nLecture 22 Regression with a Single Predictor\nLecture 23 Prof. Kurtz-Garcia"
+    "text": "These are the lectures from MTH 142, you can also find the direct links via Canvas.\nLecture 1 Statistical Thinking\nLecture 2 Study Design and Variables\nLecture 3 Categorical Data\nLecture 4 Numeric Data\nLecture 5 Linear Correlation\nLecture 6 Linear Correlation\nLecture 7 Regression math\nLecture 8 Probability\nLecture 9 Probability 2\nLecture 10 Conditional Probability\nLecture 11 Continuous Random Variables\nLecture 12 The Normal Distribution\nLecture 13 Hypothesis Testing Proportion\nLecture 14 Paraemetric bootstrap Hypothesis Testing\n\nLecture 16 Confidence Intervals with Math\nLecture 17 Decision Errors\nLecture 18 Distributions and Two Proportions\nLecture 19 Hypothesis Test for a single mean\nLecture 20 Hypothesis Test for a difference of means (unpaired)\nLecture 21 ANOVA\nLecture 22 Regression with a Single Predictor\nLecture 23 Prof. Kurtz-Garcia"
   },
   {
     "objectID": "lectures/7_regression-by-hand.html#this-is-a-bonus-lecture",
@@ -515,14 +515,14 @@
     "href": "lectures/2_sampling.html#blue-whales",
     "title": "Intro to Study Vocabulary",
     "section": "Blue whales",
-    "text": "Blue whales\nStudy: In Breeding in blue whales.\n\nNew York Times, 1/23/2024 photo cred: Burton Lim"
+    "text": "Blue whales\nStudy: In Breeding in blue whales.\n\n\n\nNew York Times, 1/23/2024 photo cred: Burton Lim"
   },
   {
     "objectID": "lectures/2_sampling.html#some-info-on-blue-whales",
     "href": "lectures/2_sampling.html#some-info-on-blue-whales",
     "title": "Intro to Study Vocabulary",
     "section": "Some info on Blue whales:",
-    "text": "Some info on Blue whales:\nn = 3500\nFour subspecies1:\n\nNorthern\nNorthern Indian Ocean\nPygmy blue whale\nAntarctic subspecies\n\nhttps://en.wikipedia.org/wiki/Blue_whale"
+    "text": "Some info on Blue whales:\nn = 3500\nFour subspecies1:\n\nNorthern\nNorthern Indian Ocean\nPygmy blue whale\nAntarctic subspecies"
   },
   {
     "objectID": "lectures/2_sampling.html#population-vs-sample",
@@ -620,7 +620,7 @@
     "href": "lectures/5_linear_regression_1_predictor.html#graph-of-arbuthonot",
     "title": "Intro to Linear Regression",
     "section": "Graph of Arbuthonot",
-    "text": "Graph of Arbuthonot\n\nggplot(data = arbuthnot, aes(x = year, y = boy_ratio)) +\n  geom_line() +\n  labs(title = \"Ratio of boys to girls born London\",\n       subtitle =\"The data comes from `arbuthnot` in the openintro package\",\n       caption = \"This graph shows the ratio of boys to girls born in the London from the 1600s to the early 1700s\")"
+    "text": "Graph of Arbuthonot\n\nggplot(data = arbuthnot, aes(x = year, y = boy_ratio)) +\n  geom_point() +\n  labs(title = \"Ratio of boys to girls born London\",\n       subtitle =\"The data comes from `arbuthnot` in the openintro package\",\n       caption = \"This graph shows the ratio of boys to girls born in the London from the 1600s to the early 1700s\")"
   },
   {
     "objectID": "lectures/5_linear_regression_1_predictor.html#scatterplot-for-two-numerical-variables",
@@ -1445,8 +1445,8 @@
     "objectID": "lectures/2_sampling.html#read-before-hand",
     "href": "lectures/2_sampling.html#read-before-hand",
     "title": "Intro to Study Vocabulary",
-    "section": "Read before hand",
-    "text": "Read before hand\nChapter 2 on Study Design"
+    "section": "",
+    "text": "Chapter 2 on Study Design"
   },
   {
     "objectID": "lectures/4_Numeric_Data.html#read-before-lecture",
@@ -1629,5 +1629,54 @@
     "title": "Linear Regression part 2",
     "section": "Solution with R functions",
     "text": "Solution with R functions\n\npredict(object =  cat_model, \n        newdata = data.frame(Bwt = 3.5)\n        )\n\n       1 \n13.76256"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html",
+    "href": "lectures/5_linear_regression_1_predictor.html",
+    "title": "Intro to Linear Regression",
+    "section": "",
+    "text": "Chapter 7 Linear Regression with a single predictor"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#graph-from-present",
+    "href": "lectures/5_linear_regression_1_predictor.html#graph-from-present",
+    "title": "Intro to Linear Regression",
+    "section": "Graph from Present",
+    "text": "Graph from Present\n\nggplot(data = present, aes(x = year, y = boy_ratio)) +\n  geom_point() +\n  labs(title = \"Ratio of boys to girls born US\",\n       subtitle =\"The data comes from `present` in the openintro package\",\n       caption = \"This graph shows the ratio of boys to girls born in the US from the 1940s to the early 2000s\")"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#bivariate-relationships",
+    "href": "lectures/5_linear_regression_1_predictor.html#bivariate-relationships",
+    "title": "Intro to Linear Regression",
+    "section": "Bivariate Relationships",
+    "text": "Bivariate Relationships\n\nTwo variables\nResponse variable\nExplanatory variable"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#response",
+    "href": "lectures/5_linear_regression_1_predictor.html#response",
+    "title": "Intro to Linear Regression",
+    "section": "Response",
+    "text": "Response\nResponse variable (aka dependent variable): the variable that you are trying to understand/model"
+  },
+  {
+    "objectID": "lectures/5_linear_regression_1_predictor.html#explanatory",
+    "href": "lectures/5_linear_regression_1_predictor.html#explanatory",
+    "title": "Intro to Linear Regression",
+    "section": "Explanatory",
+    "text": "Explanatory\nExplanatory variable (aka independent variable, aka predictor): the variable that you can measure that you think might be related to the response variable"
+  },
+  {
+    "objectID": "lectures/2_sampling.html",
+    "href": "lectures/2_sampling.html",
+    "title": "Intro to Study Vocabulary",
+    "section": "",
+    "text": "Chapter 2 on Study Design"
+  },
+  {
+    "objectID": "lectures/2_sampling.html#footnotes",
+    "href": "lectures/2_sampling.html#footnotes",
+    "title": "Intro to Study Vocabulary",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nhttps://en.wikipedia.org/wiki/Blue_whale↩︎"
   }
 ]

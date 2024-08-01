@@ -1,5 +1,5 @@
 ---
-title: "Lectures from SDS 220 Spring 2024"
+title: "Lectures from MTH 142 Fall 2024"
 author: "Nic Schwab"
 ---
 
@@ -11,7 +11,7 @@ These are the lectures from MTH 142, you can also find the direct links via Canv
 
 [Lecture 3 Categorical Data](/lectures/3_categorical_data.qmd)
 
-[Lecture 4 part 2 Numeric Data](/lectures/4_Numeric_Data.qmd)
+[Lecture 4 Numeric Data](/lectures/4_Numeric_Data.qmd)
 
 [Lecture 5 Linear Correlation](lectures/5_linear_regression_1_predictor.qmd)
 

@@ -415,42 +415,38 @@ Ben Baumer edited by Nic Schwab
 <h2>Graph of Arbuthonot</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> arbuthnot, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> boy_ratio)) <span class="sc">+</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb1-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb1-3"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Ratio of boys to girls born London"</span>,</span>
 <span id="cb1-4"><a></a>       <span class="at">subtitle =</span><span class="st">"The data comes from `arbuthnot` in the openintro package"</span>,</span>
 <span id="cb1-5"><a></a>       <span class="at">caption =</span> <span class="st">"This graph shows the ratio of boys to girls born in the London from the 1600s to the early 1700s"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="5_linear_regression_1_predictor_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
-<section id="graph-from-present" class="title-slide slide level1 center">
-<h1>Graph from Present</h1>
+<section id="graph-from-present" class="slide level2">
+<h2>Graph from Present</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> present, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> boy_ratio)) <span class="sc">+</span></span>
-<span id="cb2-2"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb2-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb2-3"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Ratio of boys to girls born US"</span>,</span>
 <span id="cb2-4"><a></a>       <span class="at">subtitle =</span><span class="st">"The data comes from `present` in the openintro package"</span>,</span>
 <span id="cb2-5"><a></a>       <span class="at">caption =</span> <span class="st">"This graph shows the ratio of boys to girls born in the US from the 1940s to the early 2000s"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="5_linear_regression_1_predictor_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
-
-<section id="bivariate-relationships" class="title-slide slide level1 center">
-<h1>Bivariate Relationships</h1>
+<section id="bivariate-relationships" class="slide level2">
+<h2>Bivariate Relationships</h2>
 <ul>
 <li><p>Two variables</p></li>
 <li><p><strong>Response</strong> variable</p></li>
 <li><p><strong>Explanatory</strong> variable</p></li>
 </ul>
 </section>
-
-<section id="response" class="title-slide slide level1 center">
-<h1>Response</h1>
+<section id="response" class="slide level2">
+<h2>Response</h2>
 <p>Response variable (aka dependent variable): the variable that you are trying to understand/model</p>
 </section>
-
-<section>
-<section id="explanatory" class="title-slide slide level1 center">
-<h1>Explanatory</h1>
+<section id="explanatory" class="slide level2">
+<h2>Explanatory</h2>
 <p>Explanatory variable (aka independent variable, aka predictor): the variable that you can measure that you think might be related to the response variable</p>
 </section>
 <section id="scatterplot-for-two-numerical-variables" class="slide level2">
@@ -507,7 +503,7 @@ Ben Baumer edited by Nic Schwab
 <span id="cb4-2"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="5_linear_regression_1_predictor_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section></section>
+<img data-src="5_linear_regression_1_predictor_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
 <section>
 <section id="correlation" class="title-slide slide level1 center">
 <h1>Correlation</h1>
@@ -541,7 +537,7 @@ Ben Baumer edited by Nic Schwab
 </section>
 <section id="you-try-1" class="slide level2">
 <h2>You try</h2>
-<p>Find the correlation coefficient for StarWars height vs mass. Hint: copy and edit the code from above.</p>
+<p>Find the correlation coefficient for StarWars <code>height</code> vs <code>mass</code>. Hint: copy and edit the code from above.</p>
 </section>
 <section id="solution" class="slide level2">
 <h2>Solution</h2>
