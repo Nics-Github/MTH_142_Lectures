@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Lectures from MTH 142 Fall 2024",
     "section": "",
-    "text": "These are the lectures from MTH 142, you can also find the direct links via Canvas.\nLecture 1 Statistical Thinking\nLecture 2 Study Design and Variables\nLecture 3 Categorical Data\nLecture 4 Numeric Data\nLecture 5 Linear Correlation\nLecture 6 Linear Correlation\nLecture 7 Regression math\nLecture 8 Probability\nLecture 9 Probability 2\nLecture 10 Conditional Probability\nLecture 11 Continuous Random Variables\nLecture 12 The Normal Distribution\nLecture 13 Hypothesis Testing Proportion\nLecture 14 Paraemetric bootstrap Hypothesis Testing\n\nLecture 16 Confidence Intervals with Math\nLecture 17 Decision Errors\nLecture 18 Distributions and Two Proportions\nLecture 19 Hypothesis Test for a single mean\nLecture 20 Hypothesis Test for a difference of means (unpaired)\nLecture 21 ANOVA\nLecture 22 Regression with a Single Predictor\nLecture 23 Prof. Kurtz-Garcia"
+    "text": "These are the lectures from MTH 142, you can also find the direct links via Canvas.\nLecture 1 Statistical Thinking\nLecture 2 Study Design and Variables\nLecture 3 Categorical Data\nLecture 4 Numeric Data\nLecture 5 Linear Correlation\nLecture 6 Linear Correlation\nLecture 7 Regression math\nLecture 8 Probability\nLecture 9 Probability 2\nLecture 10 Conditional Probability\nLecture 11 Continuous Random Variables\nLecture 12 The Normal Distribution\nLecture 13 Hypothesis Testing Proportion\nLecture 14 Paraemetric bootstrap Hypothesis Testing\n\nLecture 16 Confidence Intervals with Math\nLecture 17 Decision Errors\nLecture 18 Distributions and Two Proportions\nLecture 19 Hypothesis Test for a single mean\nLecture 20 Hypothesis Test for a difference of means (unpaired)\nLecture 21 ANOVA\nLecture 22 Regression with a Single Predictor"
   },
   {
     "objectID": "lectures/7_regression-by-hand.html#this-is-a-bonus-lecture",
@@ -410,7 +410,7 @@
     "href": "lectures/9_Probability_2.html#you-try",
     "title": "Random Variables",
     "section": "You try",
-    "text": "You try\nWrite the random variable.\nFind the expectation.\nWrite the probability model (as a table or graph).\nHere is the sample space for rolling two die 1\nhttps://spreadsheetsolving.com/probabilities-dice-simulations/"
+    "text": "You try\nWrite the random variable.\nFind the expectation for the sum of two die.\nWrite the probability model (as a table or graph).\nHere is the sample space for rolling two die 1\nhttps://spreadsheetsolving.com/probabilities-dice-simulations/"
   },
   {
     "objectID": "lectures/9_Probability_2.html#examples",
@@ -1692,5 +1692,19 @@
     "title": "Intro to Linear Regression",
     "section": "Birthweight of babies",
     "text": "Birthweight of babies\n\nggplot(data = babies, aes(x = gestation, y = bwt)) +\n  geom_point()\n\n\n\nhelp(babies)"
+  },
+  {
+    "objectID": "lectures/9_Probability_2.html#some-formula.",
+    "href": "lectures/9_Probability_2.html#some-formula.",
+    "title": "Random Variables",
+    "section": "Some formula.",
+    "text": "Some formula.\nGeneral Multiplication Rule:\n\\(P(A \\text{ and } B) = P(A|B)P(B)\\)\nLaw of Total Probability:\n\\(P(A) = P(A|B_1)P(B_1)+P(A|B_2)P(B_2)+…+P(A|B_k)P(B_k)\\)\nWhere each \\(B_i\\) is disjoint.\nConditional Probability\n\\(P(A|B) = \\frac{P(B|A)P(A)}{P(B)}\\)"
+  },
+  {
+    "objectID": "lectures/9_Probability_2.html#practice-problems",
+    "href": "lectures/9_Probability_2.html#practice-problems",
+    "title": "Random Variables",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n3.14, 3.15"
   }
 ]
