@@ -61,12 +61,6 @@ This states there probability for any value less than or grater than little x.
 
 -   Height
 
-## Optional Material
-
-If you are interested in further studying statistics, data science or math you should go through the next few slides with me. 
-
-It is not required for this course. 
-
 ## Expectation
 
 Expectation is another word for average.
@@ -81,21 +75,11 @@ Expectation is another word for average.
 -   Then let's calculate its expectation.
 :::
 
-## Variance
-
-The Variance is given by the following formula.
-
-$V[X] = E[(X-\mu)^2] = \sum_i (x_i-\mu)^2 P(X=x_i)$
-
-Let's calculate the variance of the variable X from the previous slide.
-
 ## You try
 
 Write the random variable.
 
 Find the expectation.
-
-Find the variance.
 
 Write the probability model (as a table or graph).
 
@@ -106,5 +90,3 @@ Write the probability model (as a table or graph).
 ## Examples
 
 Problem 3.30
-
-Problem 3.33

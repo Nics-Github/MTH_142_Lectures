@@ -31,7 +31,8 @@ This data cites [this source,](https://digital.library.adelaide.edu.au/dspace/bi
 #| code-fold: show
 
 #install.packages("MASS")
-library(MASS)
+#library(MASS)
+cats <- read_csv("cats.csv")
 ```
 
 ## Look at data
@@ -163,7 +164,7 @@ ggplot(cats, aes(x = Bwt, y = Hwt))+
 
 ## You try:  calculate a residual
 
-There is a cat in this data that has a heart weight of 11.7 grams and a body weight of 3.5 grams. Calculate the residual for this cat.
+There is a cat in this data that has a heart weight of 11.7 grams and a body weight of 3.5 kilograms. Calculate the residual for this cat.
 
 ## Solution: 
 

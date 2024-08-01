@@ -19,8 +19,6 @@ execute:
 
 [Chapter 7 Linear Regression with a single predictor](https://openintro-ims.netlify.app/model-slr)
 
-## Graph of Arbuthonot
-
 ```{r calc-prop-boys-vars}
 #| echo = FALSE
 
