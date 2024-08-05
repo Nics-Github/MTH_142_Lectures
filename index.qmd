@@ -23,8 +23,6 @@ These are the lectures from MTH 142, you can also find the direct links via Canv
 
 [Lecture 9 Probability 2](lectures/9_Probability_2.qmd)
 
-[Lecture 10 Conditional Probability](https://nics-github.github.io/SDS-220-lectures-only/lectures/10-Probability_Wrap_Up.html#/title-slide)
-
 [Lecture 11 Continuous Random Variables](lectures/11_continuous_rv.qmd)
 
 [Lecture 12 The Normal Distribution](lectures/12_Normal_Dist.qmd)

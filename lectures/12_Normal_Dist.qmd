@@ -11,7 +11,7 @@ execute:
 
 ## Read before lecture
 
-[Open Intro Statistics 3.5 Normal Distribution](https://www.biostat.jhsph.edu/~iruczins/teaching/books/2019.openintro.statistics.pdf)
+[Open Intro Statistics 4.1 Normal Distribution](https://nics-github.github.io/MTH_142_Lectures/2019.openintro.statistics.pdf)
 
 ## Normal Distribution
 
@@ -20,7 +20,10 @@ The normal distribution has a symmetric bell shaped curve
 ```{r}
 library(openintro)
 normTail()
+
 ```
+
+The picture above is for the so called standard normal distribution.
 
 ## The Standard Normal
 
@@ -28,7 +31,7 @@ Has a mean $\mu = 0$ and standard deviation $\sigma = 1$
 
 > Notation $X\sim N(\mu,\sigma)$ means the random variable X has a normal distribution.
 
-It is what z-scores are based on.
+It is what z-scores are based on. (There are other distributions).
 
 ## Very Short history lesson.
 
@@ -68,7 +71,7 @@ We don't need to find a z-score any more, but we still talk about them.
 ```{r}
 #| echo: TRUE
 
-pnorm(q=95.4 ,m = 92.6, s = 3.6 )
+pnorm(q=85.8 ,m = 92.6, s = 3.6 )
 ```
 
 This finds the probability to the left of q.
@@ -76,7 +79,7 @@ This finds the probability to the left of q.
 ```{r}
 #| echo: TRUE
 
-pnorm(q=95.4 ,m = 92.6, s = 3.6, lower.tail = FALSE)
+pnorm(q=85.8 ,m = 92.6, s = 3.6, lower.tail = FALSE)
 ```
 
 ## Visualize with `openintro` package
@@ -86,9 +89,9 @@ pnorm(q=95.4 ,m = 92.6, s = 3.6, lower.tail = FALSE)
 
 library(tidyverse)
 library(openintro)
-library(infer)
-pnorm(q=95.4 ,m = 92.6, s = 3.6 )
-normTail(m = 92.6, s= 3.6, L = 95.4)
+
+pnorm(q=85.8 ,m = 92.6, s = 3.6, lower.tail = FALSE )
+normTail(m = 92.6, s= 3.6, U = 85.8)
 ```
 
 ## Calculus
@@ -97,7 +100,7 @@ The function f(x) below defines the pdf of the bell curve.
 
 $$ f(x) = \frac{1}{\sigma \sqrt{2 \pi}}  e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2 } $$
 
-![](https://openintro-ims.netlify.app/13-foundations-mathematical_files/figure-html/simpleNormal-1.png)
+![](https://openintro-ims.netlify.app/foundations-mathematical_files/figure-html/fig-simpleNormal-1.png)
 
 ## What we really care about:
 
@@ -105,7 +108,7 @@ The probability is the area under the curve and can be represented as:
 
 $$ \int_a^b \frac{1}{\sigma \sqrt{2 \pi}}  e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2 } dx $$
 
-warning: integrating this is tricky.
+We will not be computing these values by hand.
 
 ## Reminder:
 
@@ -118,10 +121,6 @@ Draw a picture of the standard normal bell curve. Mark -1 and 1 $\sigma$ away fr
 Using R find the probability we get values between -1 and 1. shade your picture.
 
 Repeat this process for \[-2,2\] and \[-3,3\].
-
-::: incremental
--   Note the error in the RQ
-:::
 
 ## Practice
 
@@ -144,16 +143,16 @@ From the text:
 ```{r}
 #|echo: TRUE
 
-pnorm(q = 95.4 ,m = 92.6, s = 3.6 )
+pnorm(q = 85.8 ,m = 92.6, s = 3.6 )
 
-qnorm(p = 0.78165, m = 92.6, s = 3.6)
+qnorm(p = 0.02945336, m = 92.6, s = 3.6)
 ```
 
 `qnorm()` is for finding quantiles `pnorm()` is for finding percents
 
 ## Practice 4
 
-[OI 4.2 OI 4.4](https://www.biostat.jhsph.edu/~iruczins/teaching/books/2019.openintro.statistics.pdf#chapter.4)
+[OI 4.2](https://www.biostat.jhsph.edu/~iruczins/teaching/books/2019.openintro.statistics.pdf#chapter.4) d
 
 ## Compute the mean and sd
 
@@ -169,11 +168,10 @@ We estimate $\sigma$ with *s* - The sample proportion.
 ```{r}
 # Sample standard deviation
 
-possum$head_l |> 
-  sd()
+sd(possum$head_l)
 
 # Sample mean
-possum$head_l |> 
-  mean()
+mean(possum$head_l)
+  
 
 ```

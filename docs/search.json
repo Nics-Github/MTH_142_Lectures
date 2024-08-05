@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Lectures from MTH 142 Fall 2024",
     "section": "",
-    "text": "These are the lectures from MTH 142, you can also find the direct links via Canvas.\nLecture 1 Statistical Thinking\nLecture 2 Study Design and Variables\nLecture 3 Categorical Data\nLecture 4 Numeric Data\nLecture 5 Linear Correlation\nLecture 6 Linear Correlation\nLecture 7 Regression math\nLecture 8 Probability\nLecture 9 Probability 2\nLecture 10 Conditional Probability\nLecture 11 Continuous Random Variables\nLecture 12 The Normal Distribution\nLecture 13 Hypothesis Testing Proportion\nLecture 14 Paraemetric bootstrap Hypothesis Testing\n\nLecture 16 Confidence Intervals with Math\nLecture 17 Decision Errors\nLecture 18 Distributions and Two Proportions\nLecture 19 Hypothesis Test for a single mean\nLecture 20 Hypothesis Test for a difference of means (unpaired)\nLecture 21 ANOVA\nLecture 22 Regression with a Single Predictor"
+    "text": "These are the lectures from MTH 142, you can also find the direct links via Canvas.\nLecture 1 Statistical Thinking\nLecture 2 Study Design and Variables\nLecture 3 Categorical Data\nLecture 4 Numeric Data\nLecture 5 Linear Correlation\nLecture 6 Linear Correlation\nLecture 7 Regression math\nLecture 8 Probability\nLecture 9 Probability 2\nLecture 11 Continuous Random Variables\nLecture 12 The Normal Distribution\nLecture 13 Hypothesis Testing Proportion\nLecture 14 Paraemetric bootstrap Hypothesis Testing\n\nLecture 16 Confidence Intervals with Math\nLecture 17 Decision Errors\nLecture 18 Distributions and Two Proportions\nLecture 19 Hypothesis Test for a single mean\nLecture 20 Hypothesis Test for a difference of means (unpaired)\nLecture 21 ANOVA\nLecture 22 Regression with a Single Predictor"
   },
   {
     "objectID": "lectures/7_regression-by-hand.html#this-is-a-bonus-lecture",
@@ -494,7 +494,7 @@
     "href": "lectures/11_continuous_rv.html#you-try.",
     "title": "Continuous RV",
     "section": "You try.",
-    "text": "You try."
+    "text": "You try.\n3.37"
   },
   {
     "objectID": "lectures/11_continuous_rv.html#section",
@@ -1726,6 +1726,146 @@
     "href": "lectures/11_continuous_rv.html#cont.-height-density-plot",
     "title": "Continuous RV",
     "section": "Cont. Height Density Plot",
-    "text": "Cont. Height Density Plot\nWe get slightly different answers if we think about the data as continuous."
+    "text": "Cont. Height Density Plot\nWe get slightly different answers if we think about the data as continuous.\nLet X - A Student’s Height"
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#read-before-lecture",
+    "href": "lectures/12_Normal_Dist.html#read-before-lecture",
+    "title": "Normal Distribution",
+    "section": "Read before lecture",
+    "text": "Read before lecture\nOpen Intro Statistics 4.1 Normal Distribution"
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#normal-distribution",
+    "href": "lectures/12_Normal_Dist.html#normal-distribution",
+    "title": "Normal Distribution",
+    "section": "Normal Distribution",
+    "text": "Normal Distribution\nThe normal distribution has a symmetric bell shaped curve\n\nlibrary(openintro)\nnormTail()\n\n\nThe picture above is for the so called standard normal distribution."
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#the-standard-normal",
+    "href": "lectures/12_Normal_Dist.html#the-standard-normal",
+    "title": "Normal Distribution",
+    "section": "The Standard Normal",
+    "text": "The Standard Normal\nHas a mean \\(\\mu = 0\\) and standard deviation \\(\\sigma = 1\\)\n\nNotation \\(X\\sim N(\\mu,\\sigma)\\) means the random variable X has a normal distribution.\n\nIt is what z-scores are based on. (There are other distributions)."
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#very-short-history-lesson.",
+    "href": "lectures/12_Normal_Dist.html#very-short-history-lesson.",
+    "title": "Normal Distribution",
+    "section": "Very Short history lesson.",
+    "text": "Very Short history lesson.\n\n\nLong long ago before computers existed people wanted to calculate probabilities from z-scores.\nThe table was first made by Christian Kramp in 1799.\nIt was improved upon ( for more read this).\nWe will not use the ancient table"
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#brushtail-possum",
+    "href": "lectures/12_Normal_Dist.html#brushtail-possum",
+    "title": "Normal Distribution",
+    "section": "Brushtail possum",
+    "text": "Brushtail possum"
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#problem-from-text",
+    "href": "lectures/12_Normal_Dist.html#problem-from-text",
+    "title": "Normal Distribution",
+    "section": "Problem from text:",
+    "text": "Problem from text:\n\nHead lengths of brushtail possums follow a nearly normal distribution (it is also a continuous random variable) with mean 92.6 mm and standard deviation 3.6 mm. Compute the Z scores for possums with head lengths of 95.4 mm and 85.8 mm.\nWhich of the two brushtail possum observations in the previous guided practice is more unusual?"
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#picture-the-distribution",
+    "href": "lectures/12_Normal_Dist.html#picture-the-distribution",
+    "title": "Normal Distribution",
+    "section": "Picture the distribution",
+    "text": "Picture the distribution\n\\(X \\sim N(\\mu = 92.6 , \\sigma = 3.6)\\)\n\nnormTail(m=92.6,s=3.6)\n\n\n\n\n\n\n\nnormTail(m=92.6,s=3.6, U =85.8)"
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#z-scores-with-r",
+    "href": "lectures/12_Normal_Dist.html#z-scores-with-r",
+    "title": "Normal Distribution",
+    "section": "Z-scores with R",
+    "text": "Z-scores with R\nWe don’t need to find a z-score any more, but we still talk about them.\n\npnorm(q=85.8 ,m = 92.6, s = 3.6 )\n\n[1] 0.02945336\n\n\nThis finds the probability to the left of q.\n\npnorm(q=85.8 ,m = 92.6, s = 3.6, lower.tail = FALSE)\n\n[1] 0.9705466"
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#visualize-with-openintro-package",
+    "href": "lectures/12_Normal_Dist.html#visualize-with-openintro-package",
+    "title": "Normal Distribution",
+    "section": "Visualize with openintro package",
+    "text": "Visualize with openintro package\n\nlibrary(tidyverse)\nlibrary(openintro)\n\npnorm(q=85.8 ,m = 92.6, s = 3.6, lower.tail = FALSE )\n\n[1] 0.9705466\n\nnormTail(m = 92.6, s= 3.6, U = 85.8)"
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#calculus",
+    "href": "lectures/12_Normal_Dist.html#calculus",
+    "title": "Normal Distribution",
+    "section": "Calculus",
+    "text": "Calculus\nThe function f(x) below defines the pdf of the bell curve.\n\\[ f(x) = \\frac{1}{\\sigma \\sqrt{2 \\pi}}  e^{-\\frac{1}{2}(\\frac{x-\\mu}{\\sigma})^2 } \\]"
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#what-we-really-care-about",
+    "href": "lectures/12_Normal_Dist.html#what-we-really-care-about",
+    "title": "Normal Distribution",
+    "section": "What we really care about:",
+    "text": "What we really care about:\nThe probability is the area under the curve and can be represented as:\n\\[ \\int_a^b \\frac{1}{\\sigma \\sqrt{2 \\pi}}  e^{-\\frac{1}{2}(\\frac{x-\\mu}{\\sigma})^2 } dx \\]\nWe will not be computing these values by hand."
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#reminder",
+    "href": "lectures/12_Normal_Dist.html#reminder",
+    "title": "Normal Distribution",
+    "section": "Reminder:",
+    "text": "Reminder:\nDraw the curve and the integral that goes with the possum area under the normal distribution."
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#the-empirical-rule.",
+    "href": "lectures/12_Normal_Dist.html#the-empirical-rule.",
+    "title": "Normal Distribution",
+    "section": "The Empirical rule.",
+    "text": "The Empirical rule.\nDraw a picture of the standard normal bell curve. Mark -1 and 1 \\(\\sigma\\) away from the mean.\nUsing R find the probability we get values between -1 and 1. shade your picture.\nRepeat this process for [-2,2] and [-3,3]."
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#practice",
+    "href": "lectures/12_Normal_Dist.html#practice",
+    "title": "Normal Distribution",
+    "section": "Practice",
+    "text": "Practice\nFrom the text:\n\nSAT scores closely follow the normal model with mean μ=1500 and standard deviation σ=300. About what percent of test takers score 900 to 2100? What percent score between 1500 and 2100"
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#practice-2",
+    "href": "lectures/12_Normal_Dist.html#practice-2",
+    "title": "Normal Distribution",
+    "section": "Practice 2",
+    "text": "Practice 2\n\nShannon is a randomly selected SAT taker, and nothing is known about Shannon’s SAT aptitude. What is the probability that Shannon scores at least 1630 on their SATs?"
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#practice-3",
+    "href": "lectures/12_Normal_Dist.html#practice-3",
+    "title": "Normal Distribution",
+    "section": "Practice 3",
+    "text": "Practice 3\n\nEdward earned a 1400 on their SAT. What is their percentile?\n\n\nWhat percent did better than Edward?"
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#qnorm-outputs-quantiles-from-percents.",
+    "href": "lectures/12_Normal_Dist.html#qnorm-outputs-quantiles-from-percents.",
+    "title": "Normal Distribution",
+    "section": "qnorm outputs quantiles from percents.",
+    "text": "qnorm outputs quantiles from percents.\n\n#|echo: TRUE\n\npnorm(q = 85.8 ,m = 92.6, s = 3.6 )\n\n[1] 0.02945336\n\nqnorm(p = 0.02945336, m = 92.6, s = 3.6)\n\n[1] 85.8\n\n\nqnorm() is for finding quantiles pnorm() is for finding percents"
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#practice-4",
+    "href": "lectures/12_Normal_Dist.html#practice-4",
+    "title": "Normal Distribution",
+    "section": "Practice 4",
+    "text": "Practice 4\nOI 4.2 d"
+  },
+  {
+    "objectID": "lectures/12_Normal_Dist.html#compute-the-mean-and-sd",
+    "href": "lectures/12_Normal_Dist.html#compute-the-mean-and-sd",
+    "title": "Normal Distribution",
+    "section": "Compute the mean and sd",
+    "text": "Compute the mean and sd\nNote on notation.\n\\(X \\sim N(\\mu = 92.6 , \\sigma = 3.6)\\)\nor\n\\(X \\sim N(\\bar{x} = 92.6 , s= 3.6)\\)\nWe estimate \\(\\sigma\\) with s - The sample proportion.\n\n# Sample standard deviation\n\nsd(possum$head_l)\n\n[1] 3.573349\n\n# Sample mean\nmean(possum$head_l)\n\n[1] 92.60288"
+  },
+  {
+    "objectID": "lectures/9_Probability_2.html#reading",
+    "href": "lectures/9_Probability_2.html#reading",
+    "title": "Random Variables",
+    "section": "Reading",
+    "text": "Reading\nOpen Intro Statistics 3.2 and 3.4"
   }
 ]
