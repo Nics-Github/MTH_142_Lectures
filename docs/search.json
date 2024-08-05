@@ -445,7 +445,7 @@
     "href": "lectures/11_continuous_rv.html#continuous-rv",
     "title": "Continuous RV",
     "section": "Continuous RV",
-    "text": "Continuous RV\n\n\nRemember continuous means we can take any numeric value.\n(Discrete means we can take integers.)\nX- Face value of a die\nY- Sum of two die.\nX and Y are discrete because they deal while whole numbers"
+    "text": "Continuous RV\n\n\nA continuous random variable can take any numeric value.\n(Discrete can only take integers.)\nX- Face value of a die\nY- Sum of two die.\nX and Y are discrete r.v. because their outcomes are whole numbers."
   },
   {
     "objectID": "lectures/11_continuous_rv.html#height",
@@ -473,7 +473,7 @@
     "href": "lectures/11_continuous_rv.html#probabilities-from-our-sample",
     "title": "Continuous RV",
     "section": "Probabilities from our sample",
-    "text": "Probabilities from our sample\nThe sample of students it n = 34.\n\n\nP( X &lt; 65 )\nP( 60 &lt; X &lt; 63 )\nP( X = 65 )"
+    "text": "Probabilities from our sample\nThere are 34 students in my sample (n = 34).\nTreat the data as discrete.\n\nEstimate the following probabilities.\n\nP( X &lt; 65 )\nP( 60 &lt; X &lt; 63 )\nP( X = 65 )\n\n\n\n\nheights\n59 61 62 63 64 65 66 67 68 69 70 71 \n 1  4  3  4  6  2  2  3  2  4  2  1"
   },
   {
     "objectID": "lectures/11_continuous_rv.html#cont.-height-histogram",
@@ -487,7 +487,7 @@
     "href": "lectures/11_continuous_rv.html#probability-height-questions",
     "title": "Continuous RV",
     "section": "Probability Height Questions",
-    "text": "Probability Height Questions\nLet’s pretend our sample is representative of all students\n\n\nP( X &lt; 65 )\nP( 60 &lt; X &lt; 63 )\nP( X = 65 )\n\nCannot be equal to exactly 1 number with continuous distributions. \\(\\inf\\) number of values."
+    "text": "Probability Height Questions\nLet’s pretend our sample is representative of all students\n\n\nP( X &lt; 65 )\nP( 60 &lt; X &lt; 63 )\nP( X = 65 )\n\nCannot be equal to exactly 1 number with continuous distributions. There is an \\(\\infty\\) number of values."
   },
   {
     "objectID": "lectures/11_continuous_rv.html#you-try.",
@@ -1713,5 +1713,19 @@
     "title": "Continuous RV",
     "section": "Reading",
     "text": "Reading\nRead chapter 3.5 from Openintro statistics."
+  },
+  {
+    "objectID": "lectures/11_continuous_rv.html#tangent-precision-matters",
+    "href": "lectures/11_continuous_rv.html#tangent-precision-matters",
+    "title": "Continuous RV",
+    "section": "Tangent: Precision matters",
+    "text": "Tangent: Precision matters\nWho is 65 inches tall?\nNone of us really know how tall we are exactly."
+  },
+  {
+    "objectID": "lectures/11_continuous_rv.html#cont.-height-density-plot",
+    "href": "lectures/11_continuous_rv.html#cont.-height-density-plot",
+    "title": "Continuous RV",
+    "section": "Cont. Height Density Plot",
+    "text": "Cont. Height Density Plot\nWe get slightly different answers if we think about the data as continuous."
   }
 ]

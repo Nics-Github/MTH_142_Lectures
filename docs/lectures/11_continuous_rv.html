@@ -345,11 +345,11 @@ Schwab
 <h2>Continuous RV</h2>
 <div>
 <ul>
-<li class="fragment"><p>Remember continuous means we can take any numeric value.</p></li>
-<li class="fragment"><p>(Discrete means we can take integers.)</p></li>
+<li class="fragment"><p>A continuous random variable can take any numeric value.</p></li>
+<li class="fragment"><p>(Discrete can only take integers.)</p></li>
 <li class="fragment"><p>X- Face value of a die</p></li>
 <li class="fragment"><p>Y- Sum of two die.</p></li>
-<li class="fragment"><p>X and Y are <strong>discrete</strong> because they deal while whole numbers</p></li>
+<li class="fragment"><p>X and Y are <strong>discrete</strong> r.v. because their outcomes are whole numbers.</p></li>
 </ul>
 </div>
 </section>
@@ -359,8 +359,8 @@ Schwab
 <p>X is a continuous random variable.</p>
 <p>(people usually report is as a discrete RV.)</p>
 </section>
-<section id="tanget-precision-matters" class="slide level2">
-<h2>Tanget: Precision matters</h2>
+<section id="tangent-precision-matters" class="slide level2">
+<h2>Tangent: Precision matters</h2>
 <p>Who is 65 inches tall?</p>
 <p>None of us really know how tall we are exactly.</p>
 </section>
@@ -371,19 +371,29 @@ Schwab
 <img data-src="11_continuous_rv_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
 <section id="probabilities-from-our-sample" class="slide level2">
 <h2>Probabilities from our sample</h2>
-<p>The sample of students it n = 34.</p>
+<p>There are 34 students in my sample (n = 34).</p>
+<p>Treat the data as discrete.</p>
 <div>
+<p>Estimate the following probabilities.</p>
 <ul>
 <li class="fragment">P( X &lt; 65 )</li>
 <li class="fragment">P( 60 &lt; X &lt; 63 )</li>
 <li class="fragment">P( X = 65 )</li>
 </ul>
 </div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>heights
+59 61 62 63 64 65 66 67 68 69 70 71 
+ 1  4  3  4  6  2  2  3  2  4  2  1 </code></pre>
+</div>
+</div>
 </section>
-<section id="cont.-height-histogram" class="slide level2">
-<h2>Cont. Height Histogram</h2>
+<section id="cont.-height-density-plot" class="slide level2">
+<h2>Cont. Height Density Plot</h2>
+<p>We get slightly different answers if we think about the data as continuous.</p>
 
-<img data-src="11_continuous_rv_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
+<img data-src="11_continuous_rv_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
 <section id="probability-height-questions" class="slide level2">
 <h2>Probability Height Questions</h2>
 <p>Let’s pretend our sample is representative of all students</p>
@@ -393,7 +403,7 @@ Schwab
 <li class="fragment">P( 60 &lt; X &lt; 63 )</li>
 <li class="fragment">P( X = 65 )</li>
 </ul>
-<p>Cannot be equal to exactly 1 number with continuous distributions. <span class="math inline">\(\inf\)</span> number of values.</p>
+<p>Cannot be equal to exactly 1 number with continuous distributions. There is an <span class="math inline">\(\infty\)</span> number of values.</p>
 </div>
 </section>
 <section id="you-try." class="slide level2">

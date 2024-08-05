@@ -14,15 +14,15 @@ editor: visual
 ## Continuous RV
 
 ::: incremental
--   Remember continuous means we can take any numeric value.
+-   A continuous random variable can take any numeric value.
 
--   (Discrete means we can take integers.)
+-   (Discrete can only take integers.)
 
 -   X- Face value of a die
 
 -   Y- Sum of two die.
 
--   X and Y are **discrete** because they deal while whole numbers
+-   X and Y are **discrete** r.v. because their outcomes are whole numbers.
 :::
 
 ## Height
@@ -33,7 +33,7 @@ X is a continuous random variable.
 
 (people usually report is as a discrete RV.)
 
-## Tanget: Precision matters
+## Tangent: Precision matters
 
 Who is 65 inches tall?
 
@@ -61,20 +61,30 @@ ggplot(data = heights)+
 
 ## Probabilities from our sample
 
-The sample of students it n = 34.
+There are 34 students in my sample (n = 34).
+
+Treat the data as discrete.
 
 ::: incremental
+Estimate the following probabilities.
+
 -   P( X \< 65 )
 -   P( 60 \< X \< 63 )
 -   P( X = 65 )
 :::
 
-## Cont. Height Histogram
+```{r}
+table(heights)
+```
+
+## Cont. Height Density Plot
+
+We get slightly different answers if we think about the data as continuous.
 
 ```{r}
 
 ggplot(data = heights)+
-  geom_density(mapping = aes(heights), fill= "gray40")+
+  geom_density(mapping = aes(heights), fill= "gray40", alpha = 0.4)+
   theme_classic()+
   xlab("Heights Inches")+
   ylab("Number of Students")+
@@ -91,7 +101,7 @@ Let's pretend our sample is representative of all students
 -   P( 60 \< X \< 63 )
 -   P( X = 65 )
 
-Cannot be equal to exactly 1 number with continuous distributions. $\inf$ number of values.
+Cannot be equal to exactly 1 number with continuous distributions. There is an $\infty$ number of values.
 :::
 
 ## You try.
