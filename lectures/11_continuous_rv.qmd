@@ -7,6 +7,10 @@ format:
 editor: visual
 ---
 
+## Reading
+
+[Read chapter 3.5 from Openintro statistics.](/2019.openintro.statistics.pdf)
+
 ## Continuous RV
 
 ::: incremental
