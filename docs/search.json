@@ -1859,7 +1859,7 @@
     "href": "lectures/12_Normal_Dist.html#compute-the-mean-and-sd",
     "title": "Normal Distribution",
     "section": "Compute the mean and sd",
-    "text": "Compute the mean and sd\nNote on notation.\n\\(X \\sim N(\\mu = 92.6 , \\sigma = 3.6)\\)\nor\n\\(X \\sim N(\\bar{x} = 92.6 , s= 3.6)\\)\nWe estimate \\(\\sigma\\) with s - The sample proportion.\n\n# Sample standard deviation\n\nsd(possum$head_l)\n\n[1] 3.573349\n\n# Sample mean\nmean(possum$head_l)\n\n[1] 92.60288"
+    "text": "Compute the mean and sd\nNote on notation.\n\\(X \\sim N(\\mu = 92.6 , \\sigma = 3.6)\\)\nor\n\\(X \\sim N(\\bar{x} = 92.6 , s= 3.6)\\)\nWe estimate \\(\\sigma\\) with s - The sample proportion.\n\n# Sample standard deviation\n\nsd(possum$head_l)\n\n[1] 3.573349\n\n# Sample mean\nmean(possum$head_l, na.rm = TRUE)\n\n[1] 92.60288"
   },
   {
     "objectID": "lectures/9_Probability_2.html#reading",

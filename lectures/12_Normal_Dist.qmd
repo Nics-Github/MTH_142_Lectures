@@ -25,7 +25,7 @@ normTail()
 
 The picture above is for the so called standard normal distribution.
 
-## The Standard Normal
+## The Standard Normal 
 
 Has a mean $\mu = 0$ and standard deviation $\sigma = 1$
 
@@ -187,7 +187,7 @@ We estimate $\sigma$ with *s* - The sample proportion.
 sd(possum$head_l)
 
 # Sample mean
-mean(possum$head_l)
+mean(possum$head_l, na.rm = TRUE)
   
 
 ```
