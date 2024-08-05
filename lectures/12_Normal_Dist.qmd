@@ -51,7 +51,7 @@ It is what z-scores are based on. (There are other distributions).
 
 ## Problem from text:
 
-> Head lengths of brushtail possums follow a nearly normal distribution (it is also a continuous random variable) with mean 92.6 mm and standard deviation 3.6 mm. Compute the Z scores for possums with head lengths of 95.4 mm and 85.8 mm.
+> Head lengths of brushtail possums follow a nearly normal distribution (it is also a continuous random variable) with mean 92.6 mm and standard deviation 3.6 mm. Compute the \[percentiles\] for possums with head lengths of 95.4 mm and 85.8 mm.
 >
 > Which of the two brushtail possum observations in the previous guided practice is more *unusual*?
 
@@ -61,12 +61,28 @@ $X \sim N(\mu = 92.6 , \sigma = 3.6)$
 
 ```{r}
 normTail(m=92.6,s=3.6)
-normTail(m=92.6,s=3.6, U =85.8)
+
 ```
 
-## Z-scores with R
+## The graph for the first possum
 
-We don't need to find a z-score any more, but we still talk about them.
+```{r}
+#| echo: TRUE
+
+normTail(m=92.6,s=3.6, L = 95.4)
+```
+
+## The graph for the second possum
+
+```{r}
+#| echo: TRUE
+
+normTail(m=92.6,s=3.6, L = 85.8)
+```
+
+## Calculate percentiles with R
+
+We use `pnorm()` to find percentiles.
 
 ```{r}
 #| echo: TRUE
@@ -148,7 +164,7 @@ pnorm(q = 85.8 ,m = 92.6, s = 3.6 )
 qnorm(p = 0.02945336, m = 92.6, s = 3.6)
 ```
 
-`qnorm()` is for finding quantiles `pnorm()` is for finding percents
+`qnorm()` is for finding quantiles `pnorm()` is for finding percentiles.
 
 ## Practice 4
 

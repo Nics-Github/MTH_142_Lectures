@@ -442,7 +442,7 @@ Schwab
 <section id="problem-from-text" class="slide level2">
 <h2>Problem from text:</h2>
 <blockquote>
-<p>Head lengths of brushtail possums follow a nearly normal distribution (it is also a continuous random variable) with mean 92.6 mm and standard deviation 3.6 mm. Compute the Z scores for possums with head lengths of 95.4 mm and 85.8 mm.</p>
+<p>Head lengths of brushtail possums follow a nearly normal distribution (it is also a continuous random variable) with mean 92.6 mm and standard deviation 3.6 mm. Compute the [percentiles] for possums with head lengths of 95.4 mm and 85.8 mm.</p>
 <p>Which of the two brushtail possum observations in the previous guided practice is more <em>unusual</em>?</p>
 </blockquote>
 </section>
@@ -451,35 +451,35 @@ Schwab
 <p><span class="math inline">\(X \sim N(\mu = 92.6 , \sigma = 3.6)\)</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">normTail</span>(<span class="at">m=</span><span class="fl">92.6</span>,<span class="at">s=</span><span class="fl">3.6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="12_Normal_Dist_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
-</figure>
+
 </div>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">normTail</span>(<span class="at">m=</span><span class="fl">92.6</span>,<span class="at">s=</span><span class="fl">3.6</span>, <span class="at">U =</span><span class="fl">85.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="12_Normal_Dist_files/figure-revealjs/unnamed-chunk-2-2.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="z-scores-with-r" class="slide level2">
-<h2>Z-scores with R</h2>
-<p>We don’t need to find a z-score any more, but we still talk about them.</p>
+<img data-src="12_Normal_Dist_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
+<section id="the-graph-for-the-first-possum" class="slide level2">
+<h2>The graph for the first possum</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">pnorm</span>(<span class="at">q=</span><span class="fl">85.8</span> ,<span class="at">m =</span> <span class="fl">92.6</span>, <span class="at">s =</span> <span class="fl">3.6</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">normTail</span>(<span class="at">m=</span><span class="fl">92.6</span>,<span class="at">s=</span><span class="fl">3.6</span>, <span class="at">L =</span> <span class="fl">95.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="12_Normal_Dist_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
+<section id="the-graph-for-the-second-possum" class="slide level2">
+<h2>The graph for the second possum</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">normTail</span>(<span class="at">m=</span><span class="fl">92.6</span>,<span class="at">s=</span><span class="fl">3.6</span>, <span class="at">L =</span> <span class="fl">85.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="12_Normal_Dist_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<section id="calculate-percentiles-with-r" class="slide level2">
+<h2>Calculate percentiles with R</h2>
+<p>We use <code>pnorm()</code> to find percentiles.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">pnorm</span>(<span class="at">q=</span><span class="fl">85.8</span> ,<span class="at">m =</span> <span class="fl">92.6</span>, <span class="at">s =</span> <span class="fl">3.6</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.02945336</code></pre>
 </div>
 </div>
 <p>This finds the probability to the left of q.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">pnorm</span>(<span class="at">q=</span><span class="fl">85.8</span> ,<span class="at">m =</span> <span class="fl">92.6</span>, <span class="at">s =</span> <span class="fl">3.6</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">pnorm</span>(<span class="at">q=</span><span class="fl">85.8</span> ,<span class="at">m =</span> <span class="fl">92.6</span>, <span class="at">s =</span> <span class="fl">3.6</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9705466</code></pre>
 </div>
@@ -488,17 +488,17 @@ Schwab
 <section id="visualize-with-openintro-package" class="slide level2">
 <h2>Visualize with <code>openintro</code> package</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb8-2"><a></a><span class="fu">library</span>(openintro)</span>
-<span id="cb8-3"><a></a></span>
-<span id="cb8-4"><a></a><span class="fu">pnorm</span>(<span class="at">q=</span><span class="fl">85.8</span> ,<span class="at">m =</span> <span class="fl">92.6</span>, <span class="at">s =</span> <span class="fl">3.6</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-2"><a></a><span class="fu">library</span>(openintro)</span>
+<span id="cb9-3"><a></a></span>
+<span id="cb9-4"><a></a><span class="fu">pnorm</span>(<span class="at">q=</span><span class="fl">85.8</span> ,<span class="at">m =</span> <span class="fl">92.6</span>, <span class="at">s =</span> <span class="fl">3.6</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9705466</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">normTail</span>(<span class="at">m =</span> <span class="fl">92.6</span>, <span class="at">s=</span> <span class="fl">3.6</span>, <span class="at">U =</span> <span class="fl">85.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">normTail</span>(<span class="at">m =</span> <span class="fl">92.6</span>, <span class="at">s=</span> <span class="fl">3.6</span>, <span class="at">U =</span> <span class="fl">85.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="12_Normal_Dist_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<img data-src="12_Normal_Dist_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
 <section id="calculus" class="slide level2">
 <h2>Calculus</h2>
 <p>The function f(x) below defines the pdf of the bell curve.</p>
@@ -546,18 +546,18 @@ Schwab
 <section id="qnorm-outputs-quantiles-from-percents." class="slide level2">
 <h2><code>qnorm</code> outputs quantiles from percents.</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co">#|echo: TRUE</span></span>
-<span id="cb11-2"><a></a></span>
-<span id="cb11-3"><a></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">85.8</span> ,<span class="at">m =</span> <span class="fl">92.6</span>, <span class="at">s =</span> <span class="fl">3.6</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co">#|echo: TRUE</span></span>
+<span id="cb12-2"><a></a></span>
+<span id="cb12-3"><a></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">85.8</span> ,<span class="at">m =</span> <span class="fl">92.6</span>, <span class="at">s =</span> <span class="fl">3.6</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.02945336</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">qnorm</span>(<span class="at">p =</span> <span class="fl">0.02945336</span>, <span class="at">m =</span> <span class="fl">92.6</span>, <span class="at">s =</span> <span class="fl">3.6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">qnorm</span>(<span class="at">p =</span> <span class="fl">0.02945336</span>, <span class="at">m =</span> <span class="fl">92.6</span>, <span class="at">s =</span> <span class="fl">3.6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 85.8</code></pre>
 </div>
 </div>
-<p><code>qnorm()</code> is for finding quantiles <code>pnorm()</code> is for finding percents</p>
+<p><code>qnorm()</code> is for finding quantiles <code>pnorm()</code> is for finding percentiles.</p>
 </section>
 <section id="practice-4" class="slide level2">
 <h2>Practice 4</h2>
@@ -571,14 +571,14 @@ Schwab
 <p><span class="math inline">\(X \sim N(\bar{x} = 92.6 , s= 3.6)\)</span><br>
 We estimate <span class="math inline">\(\sigma\)</span> with <em>s</em> - The sample proportion.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="co"># Sample standard deviation</span></span>
-<span id="cb15-2"><a></a></span>
-<span id="cb15-3"><a></a><span class="fu">sd</span>(possum<span class="sc">$</span>head_l)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co"># Sample standard deviation</span></span>
+<span id="cb16-2"><a></a></span>
+<span id="cb16-3"><a></a><span class="fu">sd</span>(possum<span class="sc">$</span>head_l)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.573349</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co"># Sample mean</span></span>
-<span id="cb17-2"><a></a><span class="fu">mean</span>(possum<span class="sc">$</span>head_l)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># Sample mean</span></span>
+<span id="cb18-2"><a></a><span class="fu">mean</span>(possum<span class="sc">$</span>head_l)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 92.60288</code></pre>
 </div>

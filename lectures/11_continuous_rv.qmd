@@ -81,7 +81,7 @@ table(heights)
 
 We get slightly different answers if we think about the data as continuous.
 
-Let X  - A Student's Height
+Let X - A Student's Height
 
 ```{r}
 
