@@ -5,6 +5,8 @@ format:
   revealjs:
     theme: beige
 editor: visual
+editor_options: 
+  chunk_output_type: console
 ---
 
 I started falling asleep go back an rework this?
@@ -64,14 +66,14 @@ And so $\hat{p} = 514/1000 = 0.514$ Which seems very different from $p=0.82$
 
 ## The question.
 
-\> If the sentiment from 2014 New Yorkers is unchanged today, what is the probability we would have gotten $\hat{p} = 0.514$ ?
+\> If the sentiment from 2014 New Yorkers is unchanged today, what is the probability we would have gotten $\hat{p} = 0.514$ based on the 2014 sample?
 
 ::: incremental
 -   Is it likely or unlikely
 
     -   Likely will be anything more than $\alpha = 0.05$
 
-    -   If less than 0.0, we reject $H_0$
+    -   If less than 0.05, we reject $H_0$
 :::
 
 ## Notation
@@ -91,13 +93,19 @@ We assume the null hypothesis is true and build a theoretical sampling distribut
 
 This is how we build the sampling distribution.
 
-> If we look at a proportion (or difference in proportions) and the scenario satisfies certain conditions, then the sample proportion (or difference in proportions) will appear to follow a bell-shaped curve called the *normal distribution*.
+> If we look at a proportion and the scenario satisfies certain conditions, then the distribution of sample proportions will appear to follow a bell-shaped curve called the *normal distribution*.
+
+This is the point of R Assignment 2. If we could sample repeatedly from a population, the shape of all those samples would be normal.
 
 ## Condition on $H_0$
 
 Proportions:
 
--   Success Failure condition: $n(p_0) > 10$ and $n(1-p_0) > 10$
+-   Success Failure condition
+
+    -   30 successes or $n(p_0) > 10$
+
+    -   30 failures or $n(1-p_0) > 10$
 
 -   Large Independent Samples (n\>30)
 
@@ -118,202 +126,189 @@ What is the probability of getting the $\hat{p}$ from our sample?
 pnorm(q = p-hat, mean = p, sd = SE, lower.tail = )
 ```
 
-# Board work
+## Practice 1. Exclusive relationships
 
-## Ex 1. Exclusive relationships
-
-What is the proportion of college students that have had more than 1 `exclusive_relationships`?
+Have a majority of college students had more than 1 `exclusive_relationship`?
 
 ```{r}
-exclusive_relationship |>
-  count(num > 1)
+count(exclusive_relationship, num > 1)
 
 ```
 
 -   Check Conditions.
 
--   Do the test.
+-   Do the test with math.
 
-## Problems
+-   Do the test with simulation.
 
-[Chapter 16: 13, 14, 15](https://openintro-ims.netlify.app/inference-one-prop#chp16-exercises)
+## With math. 
 
-## iPhones
+We are testing against 50%. We've already checked the conditions for the mathematical test. Now we:
 
-In a sample of 300 students, 68% said they own an iPod and a smart phone. Compute a 97% confidence interval for the true percent of students who own an iPod and a smartphone.[^1]
+1.  ~~Check conditions~~
+2.  Write hypothesis notation.
+3.  Write the notation for the distribution of sample proportions.
+    i.  find the theoretical mean
+    ii. find the standard error
+4.  Find the probability we would get $\hat{p} = 152/203 = 0.749$ based on the null hypothesis.
+5.  Make the conclusion.
 
-[^1]: This and the previous problem were from a text called [Introductory Statistics](https://openstax.org/books/introductory-statistics/pages/8-3-a-population-proportion)
+## Hypothesis notation
 
-<!-- ## z-scores you should know: -->
+$$
+H_0: p = 0.5 \\
+H_A: p > 0.5
+$$
 
-<!-- | CI    | Z-score          | -->
+$$
+\alpha = 0.05
+$$
 
-<!-- |-------|------------------| -->
+## Notation for the sampling distribution
 
-<!-- | 90%   | $z_{0.05}=1.645$ | -->
+We have $\mu =0.5$ We need to find the standard error.
 
-<!-- | 95%   | $z_{0.025}=1.96$ | -->
+$$
+SE = \sqrt{\frac{(p)(1-p)}{n}}=\sqrt{\frac{(0.5)(0.5)}{203}} = 0.03509312
+$$
 
-<!-- | 99.7% | $z_{0.005}=$     | -->
+$$
+p \sim N(\mu = 0.5, SE = 0.035)
+$$
 
-<!-- : z-scores you should know. -->
+## Probability of $\hat{p}$
 
-<!-- ## You should know: -->
+If the distribution from the last slide is correct what is the probability we would find $\hat{p}=0.749$ from our sample. 
 
-<!-- How to calculate and interpret the theoretical CI for a single proportion and mean. -->
+```{r}
+#| echo: true
+normTail(m = 0.5, s = 0.03509312, U = 0.7487685)
+pnorm(q = 0.7487685 , mean=0.5,sd = 0.03509312, lower.tail = FALSE)
 
-<!-- The difference between the data, sample and bootstrap distributions. -->
+```
 
-<!-- How to make a bootstrap distribution and use it to find a CI. -->
+## Conclusion
 
-<!-- ## Hypothesis Testing -->
+We get 6.763449e-13 (0.0000000000006), which is much smaller than 0.05. 
+We reject the null hypothesis and state that its very likely that a majority of students have been in more than one exclusive relationship. 
 
-<!-- This is the last topic on exam 2. -->
+## Decision Error
 
-<!-- Read chapters 16 and 19 before Monday and Wednesday. -->
+We could have made a type 1 error, and rejected the null hypothesis if it were actually true. 
 
-<!-- ## Hypothesis Testing -->
+More on decision errors later. 
 
-<!-- In this talk I'll introduce some hypothesis testing for a single mean and proportion. -->
+## Same problem with simulation. 
 
-<!-- We'll also do some examples. -->
+1.  Make sample
+2.  Write hypothesis notation.
+3.  Create the simulated distribution.
+4.  Find the probability we would get $\hat{p} = 152/203 = 0.749$ based on the null hypothesis.
+5.  Make the conclusion.
 
-<!-- # A single Mean -->
+## Make sample
 
-<!-- ## Example 1 -->
+```{r}
+# This creates a vector of 152 "Trues" and 51 "Falses"
+more_than_1_relationship <- c(
+  rep(TRUE, 152),
+  rep(FALSE, 51)
+) 
 
-<!-- Pretend is known that the average time it take a runner to finish a 5k is 35 minutes. -->
+#This takes the vector and saves it as a data frame so we can us it. 
+more_than_1_relationship <- as.data.frame(more_than_1_relationship)
+```
 
-<!-- This is the made up average for all 5ks for which there is data. -->
+## Hypothesis notation
 
-<!-- We can write: -->
+This part is the same. 
 
-<!-- $H_0: \mu = 35$ -->
+$$
+H_0: p = 0.5 \\
+H_A: p > 0.5
+$$
 
-<!-- Its the status quo. -->
+$$
+\alpha = 0.05
+$$
 
-<!-- ## Alternative Hypothesis -->
+## Side note the pipe |>
 
-<!-- I've run the `get_it_dunn_5k` and it is challenging. -->
+You may have noticed the occasional symbols `|>` or `%>%`.
 
-<!-- I think the average time will be different. -->
+This is called a pipe and it is an R operator that takes the output of the previous line of code and puts it into the first argument of the next line of code. 
 
-<!-- We can write that as: -->
+It often makes code easier to read, but can be confusing for first time programmers. 
 
-<!-- $H_a: \mu \ne 35$ -->
+For this reason I have been avoiding it, until now. 
 
-## Test the hypothesis
 
-Plan:
+## Create simulated distribution
 
--   State Hypothesis, set $\alpha$
+```{r}
+library(infer)
 
--   Collect Data and Check conditions
+# Saving all the proportions we'll make
+null_distn_one_prop <- more_than_1_relationship  |>
+  
+  # Here we tell specify what is a success
+  specify(response = more_than_1_relationship, success = "TRUE") |>
+  
+  # This is where we set the null hypothesis
+  hypothesize(null = "point", p = 0.5) |>
+  
+  # Choosing 10000 replications
+  generate(reps = 5000, type = "draw") |>
+  
+  # This is 
+  calculate(stat = "prop")
+```
 
--   Find Assume the null hypothesis is true
+## Examine the samples.
 
--   Find the p value that goes with $\hat{p}$
+```{r}
+#visualize is a graphing function, based on ggplot, for the infer package. 
 
--   Conclusion
+visualise(data = null_distn_one_prop)
 
-<!-- ## Conditions -->
+```
 
-<!-- In general when using the Central Limit Theorem to make CIs based on the Theoretical Sampling Distribution we want a few things to be true: -->
+## Calculate the p-value based on simulation
 
-<!-- For a mean: -->
+Visualize the pvalue
 
-<!-- -   Large Independent Samples (n\>30) -->
+```{r}
 
-<!-- -   No particularly extreme outliers. -->
+visualise(data = null_distn_one_prop) +
+  shade_p_value(obs_stat = 0.749, direction = "greater")
+```
 
-<!-- ## Large Independent Sample? -->
+Calculate the p-value
 
-<!-- ```{r} -->
+```{r}
+get_p_value(x = null_distn_one_prop, 
+            obs_stat = 0.749,
+            direction = 'greater')
+```
 
-<!-- library(openintro) -->
+## Conclusion
 
-<!-- library(tidyverse) -->
+The conclusion is the same. The pvalue is much smaller than 0.05 so it is likely that a majority of students have had more than 1 exclusive relationship. 
 
-<!-- get_it_dunn_run |> -->
+## Mathematical vs. simulation
 
-<!--   filter(race == "5k") |> -->
+Both methods are valid and often end at the same conclusion
 
-<!--   group_by(race) |> -->
+Math uses formula based on conditions which must be checked. A theoretical distribution is built and probabilities calculates.
 
-<!--   summarise( n=n()) -->
+Alternatively a simulated distribution is built, which makes a simulated sampling distribution which is very similar to the theoretical distribution, conditions can be relaxed because we can visibly verify that the distribution is normal. 
 
-<!-- ``` -->
+## Homework
 
-<!-- It is large and extremely likely it is independent, so let's assume that. -->
+On your homework you will use the math formula to make a theoretical distribution and calculate probabilities. 
 
-<!-- ## Check outliers and normality? -->
+## R Assignment 
 
-<!-- ```{r} -->
+You will make a simulated distribution of your own and find pvalues in a future R Assignment. 
 
-<!-- get_it_dunn_run |> -->
-
-<!--   filter(race == "5k") |> -->
-
-<!--   ggplot(aes(x=run_time_minutes))+ -->
-
-<!--     geom_boxplot() -->
-
-<!-- ``` -->
-
-<!-- One not extreme outlier. This looks ok enough. -->
-
-<!-- ## Make a 95% CI. -->
-
-<!-- Use $z_{0.025} = 1.96$ -->
-
-<!-- ```{r} -->
-
-<!-- library(openintro) -->
-
-<!-- library(tidyverse) -->
-
-<!-- get_it_dunn_run |> -->
-
-<!--   filter(race == "5k") |> -->
-
-<!--   group_by(race) |> -->
-
-<!--   summarise(mean = mean(run_time_minutes), sd= sd(run_time_minutes), n=n()) -->
-
-<!-- ``` -->
-
-<!-- ## Things to note: -->
-
-<!-- Note: we have not proved anything. Recall our three reasons why -->
-
-<!-- $H_0: \mu$ and 𝑥 could be dissimilar: -->
-
-<!-- -   Sample is not representative. -->
-
-<!-- -   Random chance. -->
-
-<!-- -   H_0 is false. -->
-
-<!-- The first option is unlikely because we are responsible statisticians. We -->
-
-<!-- have found that random chance (second option) is very unlikely (our -->
-
-<!-- confidence level is usually high). So it seems that the last option is the -->
-
-<!-- most plausible. -->
-
-<!-- ## Rejection Region -->
-
-<!-- How big is our rejection region? -->
-
-<!-- This is called our significance level. -->
-
-<!-- It is given the notation $\alpha = 0.05$ -->
-
-<!-- ## Otherways to do hypothesis testing. -->
-
-<!-- -   Confidence Intervals -->
-
-<!-- -   p-values (coming next week) -->
-
-<!-- -   critical values -->
+We'll look at another example in the next video. 
