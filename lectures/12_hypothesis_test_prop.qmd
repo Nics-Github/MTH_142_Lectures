@@ -81,7 +81,7 @@ And so $\hat{p} = 514/1000 = 0.514$ Which seems very different from $p=0.82$
 Hypothesis testing with Proportions
 
 $$
-H_1: p = 0.82 \\
+H_0: p = 0.82 \\
 H_A: p \ne 0.82
 $$
 

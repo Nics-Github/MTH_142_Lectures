@@ -2125,7 +2125,7 @@
     "href": "lectures/12_hypothesis_test_prop.html#notation",
     "title": "Hypothesis Testing",
     "section": "Notation",
-    "text": "Notation\nHypothesis testing with Proportions\n\\[\nH_1: p = 0.82 \\\\\nH_A: p \\ne 0.82\n\\]\nNull and Alternative hypotheses.\nWe assume the null hypothesis is true and build a theoretical sampling distribution from that."
+    "text": "Notation\nHypothesis testing with Proportions\n\\[\nH_0: p = 0.82 \\\\\nH_A: p \\ne 0.82\n\\]\nNull and Alternative hypotheses.\nWe assume the null hypothesis is true and build a theoretical sampling distribution from that."
   },
   {
     "objectID": "lectures/12_hypothesis_test_prop.html#the-central-limit-theorem",
