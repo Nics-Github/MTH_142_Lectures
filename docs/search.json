@@ -1908,7 +1908,7 @@
     "href": "lectures/13_parametric_boot.html#parametric-bootstrap-distribution",
     "title": "Bootstrap Hypothesis Test",
     "section": "Parametric Bootstrap Distribution",
-    "text": "Parametric Bootstrap Distribution\n\n\nThe Parametric Bootstrap simulation assumes the null hypothesis is true then uses the data to construct a bootstrap distribution.\nToday this means for each value in our sample R will choose a success or failure with probability p for each value of n.\nWe will do this with marbles"
+    "text": "Parametric Bootstrap Distribution\n\n\nThe Parametric Bootstrap simulation assumes the null hypothesis is true then uses the data to construct a bootstrap distribution.\nToday this means for each value in our sample R will choose a success or failure with probability p for each value of n."
   },
   {
     "objectID": "lectures/13_parametric_boot.html#problem-statement",
@@ -1929,7 +1929,7 @@
     "href": "lectures/13_parametric_boot.html#make-some-sample-data",
     "title": "Bootstrap Hypothesis Test",
     "section": "Make some sample data",
-    "text": "Make some sample data\n\n# This makes a 40% success sample. The rep() function repeats \"disease\" 13 times\n\nclinic_sample &lt;-  c(rep(\"disease\", 13), rep(\"no-disease\", 7))\n\n# This saves the sample as a dataframe\nclinic_sample &lt;- as.data.frame(clinic_sample)\n\n# This changed the name of the variable to \"has_disease\"\nnames(clinic_sample) &lt;-\"has_disease\"\n\nhead(clinic_sample)\n\n  has_disease\n1     disease\n2     disease\n3     disease\n4     disease\n5     disease\n6     disease"
+    "text": "Make some sample data\n\n# This makes a 40% success sample. The rep() function repeats \"disease\" 13 times\n\nclinic_sample &lt;-  c(rep(\"disease\", 13), rep(\"no-disease\", 7))\n\n# This saves the sample as a dataframe\nclinic_sample &lt;- as.data.frame(clinic_sample)\n\n# This changes the name of the variable to \"has_disease\"\nnames(clinic_sample) &lt;-\"has_disease\"\n\nhead(clinic_sample)\n\n  has_disease\n1     disease\n2     disease\n3     disease\n4     disease\n5     disease\n6     disease"
   },
   {
     "objectID": "lectures/13_parametric_boot.html#calculate-p-hat",
@@ -1950,7 +1950,7 @@
     "href": "lectures/13_parametric_boot.html#more-replications",
     "title": "Bootstrap Hypothesis Test",
     "section": "More replications",
-    "text": "More replications\nWe want to do this process a lot to create the bootstrap distribution.\n\n# setting a seed\nset.seed(2024)\n\n# Saving the df\nnull_distn_one_prop &lt;- clinic_sample  |&gt;\n  \n  # Here we tell specify what is a success\n  specify(response = has_disease, success = \"disease\") |&gt;\n  \n  # This is where we set the null hypothesis\n  hypothesize(null = \"point\", p = 0.4) |&gt;\n  \n  # Choosing 10000 replications\n  generate(reps = 10000, type = \"draw\") |&gt;\n  \n  # This is \n  calculate(stat = \"prop\")"
+    "text": "More replications\nWe want to do this process a lot to create the bootstrap distribution.\n\n# setting a seed\nset.seed(2024)\n\n# Saving the df\nnull_distn_one_prop &lt;- clinic_sample  |&gt;\n  \n  # Here we tell specify what is a success\n  specify(response = has_disease, success = \"disease\") |&gt;\n  \n  # This is where we set the null hypothesis\n  hypothesize(null = \"point\", p = 0.4) |&gt;\n  \n  # Choosing 10000 replications\n  generate(reps = 10000, type = \"draw\") |&gt;\n  \n  # This is calculating a proportion for each sample\n  calculate(stat = \"prop\")"
   },
   {
     "objectID": "lectures/13_parametric_boot.html#visualize-the-bootstrap-distribution.",
@@ -2006,7 +2006,7 @@
     "href": "lectures/13_parametric_boot.html#make-sample",
     "title": "Bootstrap Hypothesis Test",
     "section": "Make sample",
-    "text": "Make sample\nNothing wrong with copying and editing code from above.\n\n# This makes a 40% success sample. The rep() function repeats \"disease\" 13 times\n\nmajor_sample &lt;-   c(rep(\"yes\", 15), rep(\"no\", 10))\n\n# This saves the sample as a dataframe\nmajor_sample &lt;- as.data.frame(major_sample)\n\n# This changed the name of the variable to \"has_disease\"\nnames(major_sample) &lt;-\"work\""
+    "text": "Make sample\nNothing wrong with copying and editing code from above.\n\n# This makes a 60% success sample. \n\nmajor_sample &lt;-   c(rep(\"yes\", 15), rep(\"no\", 10))\n\n# This saves the sample as a dataframe\nmajor_sample &lt;- as.data.frame(major_sample)\n\n# This changed the name of the variable to \"has_disease\"\nnames(major_sample) &lt;-\"work\""
   },
   {
     "objectID": "lectures/13_parametric_boot.html#make-hypotheses",
@@ -2118,21 +2118,21 @@
     "href": "lectures/12_hypothesis_test_prop.html#the-question.",
     "title": "Hypothesis Testing",
     "section": "The question.",
-    "text": "The question.\n&gt; If the sentiment from 2014 New Yorkers is unchanged today, what is the probability we would have gotten \\(\\hat{p} = 0.514\\) based on the 2014 sample?\n\n\nIs it likely or unlikely\n\nLikely will be anything more than \\(\\alpha = 0.05\\)\nIf less than 0.05, we reject \\(H_0\\)"
+    "text": "The question.\n\nIf the sentiment from 2014 New Yorkers is unchanged today, what is the probability we would have gotten \\(\\hat{p} = 0.514\\) based on the 2014 sample?\n\n\n\nIs it likely or unlikely\n\nLikely will be anything more than \\(\\alpha = 0.05\\)\nIf less than 0.05, we reject \\(H_0\\)"
   },
   {
     "objectID": "lectures/12_hypothesis_test_prop.html#notation",
     "href": "lectures/12_hypothesis_test_prop.html#notation",
     "title": "Hypothesis Testing",
     "section": "Notation",
-    "text": "Notation\nHypothesis testing with Proportions\n\\[\nH_o: p = 0.82 \\\\\nH_1: p \\ne 0.82\n\\]\nNull and Alternative hypotheses.\nWe assume the null hypothesis is true and build a theoretical sampling distribution from that."
+    "text": "Notation\nHypothesis testing with Proportions\n\\[\nH_1: p = 0.82 \\\\\nH_A: p \\ne 0.82\n\\]\nNull and Alternative hypotheses.\nWe assume the null hypothesis is true and build a theoretical sampling distribution from that."
   },
   {
     "objectID": "lectures/12_hypothesis_test_prop.html#the-central-limit-theorem",
     "href": "lectures/12_hypothesis_test_prop.html#the-central-limit-theorem",
     "title": "Hypothesis Testing",
     "section": "The Central Limit Theorem",
-    "text": "The Central Limit Theorem\nThis is how we build the sampling distribution.\n\nIf we look at a proportion and the scenario satisfies certain conditions, then the distribution of sample proportions will appear to follow a bell-shaped curve called the normal distribution.\n\nThis is the point of R Assignment 2. If we could sample repeatedly from a population, the shape of all those samples would be normal."
+    "text": "The Central Limit Theorem\nThis is what allows us to build the sampling distribution.\n\nIf we look at a proportion and the scenario satisfies certain conditions, then the distribution of sample proportions will appear to follow a bell-shaped curve called the normal distribution.\n\nThis is the point of the recent R Assignment. If we could sample repeatedly from a population, the shape from the statistics in those samples would be normal."
   },
   {
     "objectID": "lectures/12_hypothesis_test_prop.html#condition-on-h_0",
@@ -2153,7 +2153,7 @@
     "href": "lectures/12_hypothesis_test_prop.html#conclusion",
     "title": "Hypothesis Testing",
     "section": "Conclusion",
-    "text": "Conclusion\nWhat is the probability of getting the \\(\\hat{p}\\) from our sample?\n\npnorm(q = p-hat, mean = p, sd = SE, lower.tail = )"
+    "text": "Conclusion\nWhat is the probability of getting the \\(\\hat{p}\\) from our sample?\n\npnorm(q = p-hat, mean = p, sd = SE )"
   },
   {
     "objectID": "lectures/12_hypothesis_test_prop.html#practice-1.-exclusive-relationships",
@@ -2216,7 +2216,7 @@
     "href": "lectures/12_hypothesis_test_prop.html#make-sample",
     "title": "Hypothesis Testing",
     "section": "Make sample",
-    "text": "Make sample"
+    "text": "Make sample\n\n# This creates a vector of 152 \"Trues\" and 51 \"Falses\"\nmore_than_1_relationship &lt;- c(\n  rep(TRUE, 152),\n  rep(FALSE, 51)\n) \n\n#This takes the vector and saves it as a data frame so we can us it. \nmore_than_1_relationship &lt;- as.data.frame(more_than_1_relationship)"
   },
   {
     "objectID": "lectures/12_hypothesis_test_prop.html#hypothesis-notation-1",
@@ -2237,21 +2237,21 @@
     "href": "lectures/12_hypothesis_test_prop.html#create-simulated-distribution",
     "title": "Hypothesis Testing",
     "section": "Create simulated distribution",
-    "text": "Create simulated distribution"
+    "text": "Create simulated distribution\n\nlibrary(infer)\n\n# Saving all the proportions we'll make\nnull_distn_one_prop &lt;- more_than_1_relationship  |&gt;\n  \n  # Here we tell specify what is a success\n  specify(response = more_than_1_relationship, success = \"TRUE\") |&gt;\n  \n  # This is where we set the null hypothesis\n  hypothesize(null = \"point\", p = 0.5) |&gt;\n  \n  # Choosing 10000 replications\n  generate(reps = 5000, type = \"draw\") |&gt;\n  \n  # This is \n  calculate(stat = \"prop\")"
   },
   {
     "objectID": "lectures/12_hypothesis_test_prop.html#examine-the-samples.",
     "href": "lectures/12_hypothesis_test_prop.html#examine-the-samples.",
     "title": "Hypothesis Testing",
     "section": "Examine the samples.",
-    "text": "Examine the samples."
+    "text": "Examine the samples.\n\n#visualize is a graphing function, based on ggplot, for the infer package. \n\nvisualise(data = null_distn_one_prop)"
   },
   {
     "objectID": "lectures/12_hypothesis_test_prop.html#calculate-the-p-value-based-on-simulation",
     "href": "lectures/12_hypothesis_test_prop.html#calculate-the-p-value-based-on-simulation",
     "title": "Hypothesis Testing",
     "section": "Calculate the p-value based on simulation",
-    "text": "Calculate the p-value based on simulation\nVisualize the pvalue\n\nCalculate the p-value\n\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1       0"
+    "text": "Calculate the p-value based on simulation\nVisualize the pvalue\n\nvisualise(data = null_distn_one_prop) +\n  shade_p_value(obs_stat = 0.749, direction = \"greater\")"
   },
   {
     "objectID": "lectures/12_hypothesis_test_prop.html#conclusion-2",
@@ -2490,5 +2490,33 @@
     "title": "Continuous RV",
     "section": "You try.",
     "text": "You try.\n3.37"
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#calculate-the-p-value",
+    "href": "lectures/12_hypothesis_test_prop.html#calculate-the-p-value",
+    "title": "Hypothesis Testing",
+    "section": "Calculate the p-value",
+    "text": "Calculate the p-value\n\nget_p_value(x = null_distn_one_prop, \n            obs_stat = 0.749,\n            direction = 'greater')\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1       0"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#create-one-sample-from-a-bootstrap-distribution",
+    "href": "lectures/13_parametric_boot.html#create-one-sample-from-a-bootstrap-distribution",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Create one sample from a bootstrap distribution",
+    "text": "Create one sample from a bootstrap distribution\n\n# setting a seed\nset.seed(2024)\n\n# Saving the df\nclinic_sample  |&gt;\n  \n  # Here we specify() what is a success\n  specify(response = has_disease, success = \"disease\") |&gt;\n  \n  # This is where we set the null hypothesis\n  hypothesize(null = \"point\", p = 0.40) |&gt;\n  \n  # This is how many times R will sample from the clinic sample\n  # We are using draw to sample 1 value from a theoretical distribution with p = 0.40. \n  generate(reps = 1, type = \"draw\") |&gt;\n  \n  # This groups the reps together to find a proportion. \n  calculate(stat = \"prop\")\n\nResponse: has_disease (factor)\nNull Hypothesis: point\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1   0.5"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#visualize-the-bootstrap-distribution",
+    "href": "lectures/13_parametric_boot.html#visualize-the-bootstrap-distribution",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "visualize() the bootstrap distribution",
+    "text": "visualize() the bootstrap distribution\n\n# cheater function to graph, works like ggplot(), but we don't need aes()\nvisualize(data = null_distn_one_prop)"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#conclusion-1",
+    "href": "lectures/13_parametric_boot.html#conclusion-1",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Conclusion",
+    "text": "Conclusion\nWe fail to reject the null hypothesis at the 5% significance level. 0.13 &gt; 0.05"
   }
 ]

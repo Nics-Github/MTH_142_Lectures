@@ -36,7 +36,6 @@ vignette("infer")
 
 2.  Today this means for each value in our sample R will choose a success or failure with probability `p` for each value of `n`.
 
-3.  We will do this with marbles
 :::
 
 ## Problem Statement
@@ -68,7 +67,7 @@ clinic_sample <-  c(rep("disease", 13), rep("no-disease", 7))
 # This saves the sample as a dataframe
 clinic_sample <- as.data.frame(clinic_sample)
 
-# This changed the name of the variable to "has_disease"
+# This changes the name of the variable to "has_disease"
 names(clinic_sample) <-"has_disease"
 
 head(clinic_sample)
@@ -90,7 +89,7 @@ p_hat <- clinic_sample  |>
 p_hat
 ```
 
-## Create bootstrap distribution w/ infer()
+## Create one sample from a bootstrap distribution
 
 ```{r}
 # setting a seed
@@ -134,12 +133,12 @@ null_distn_one_prop <- clinic_sample  |>
   # Choosing 10000 replications
   generate(reps = 10000, type = "draw") |>
   
-  # This is 
+  # This is calculating a proportion for each sample
   calculate(stat = "prop")
 
 ```
 
-## `visualize()` the bootstrap distribution.
+## `visualize()` the bootstrap distribution
 
 ```{r}
 # cheater function to graph, works like ggplot(), but we don't need aes()
@@ -165,7 +164,7 @@ get_pvalue(x = null_distn_one_prop,
 
 ```
 
-# Conclusion.
+# Conclusion
 
 Reject null.
 
@@ -189,7 +188,7 @@ Nothing wrong with copying and editing code from above.
 
 ```{r}
 
-# This makes a 40% success sample. The rep() function repeats "disease" 13 times
+# This makes a 60% success sample. 
 
 major_sample <-   c(rep("yes", 15), rep("no", 10))
 

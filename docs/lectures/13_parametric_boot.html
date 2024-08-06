@@ -424,7 +424,6 @@ Schwab
 <ol type="1">
 <li class="fragment"><p>The Parametric Bootstrap simulation assumes the null hypothesis is true then uses the data to construct a bootstrap distribution.</p></li>
 <li class="fragment"><p>Today this means for each value in our sample R will choose a success or failure with probability <code>p</code> for each value of <code>n</code>.</p></li>
-<li class="fragment"><p>We will do this with marbles</p></li>
 </ol>
 </div>
 </section>
@@ -454,7 +453,7 @@ H_a: p \ne 0.40
 <span id="cb3-5"><a></a><span class="co"># This saves the sample as a dataframe</span></span>
 <span id="cb3-6"><a></a>clinic_sample <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(clinic_sample)</span>
 <span id="cb3-7"><a></a></span>
-<span id="cb3-8"><a></a><span class="co"># This changed the name of the variable to "has_disease"</span></span>
+<span id="cb3-8"><a></a><span class="co"># This changes the name of the variable to "has_disease"</span></span>
 <span id="cb3-9"><a></a><span class="fu">names</span>(clinic_sample) <span class="ot">&lt;-</span><span class="st">"has_disease"</span></span>
 <span id="cb3-10"><a></a></span>
 <span id="cb3-11"><a></a><span class="fu">head</span>(clinic_sample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -491,8 +490,8 @@ H_a: p \ne 0.40
 </div>
 </div>
 </section>
-<section id="create-bootstrap-distribution-w-infer" class="slide level2">
-<h2>Create bootstrap distribution w/ infer()</h2>
+<section id="create-one-sample-from-a-bootstrap-distribution" class="slide level2">
+<h2>Create one sample from a bootstrap distribution</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># setting a seed</span></span>
 <span id="cb7-2"><a></a><span class="fu">set.seed</span>(<span class="dv">2024</span>)</span>
@@ -541,12 +540,12 @@ Null Hypothesis: point
 <span id="cb9-13"><a></a>  <span class="co"># Choosing 10000 replications</span></span>
 <span id="cb9-14"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">type =</span> <span class="st">"draw"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb9-15"><a></a>  </span>
-<span id="cb9-16"><a></a>  <span class="co"># This is </span></span>
+<span id="cb9-16"><a></a>  <span class="co"># This is calculating a proportion for each sample</span></span>
 <span id="cb9-17"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="visualize-the-bootstrap-distribution." class="slide level2">
-<h2><code>visualize()</code> the bootstrap distribution.</h2>
+<section id="visualize-the-bootstrap-distribution" class="slide level2">
+<h2><code>visualize()</code> the bootstrap distribution</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="co"># cheater function to graph, works like ggplot(), but we don't need aes()</span></span>
 <span id="cb10-2"><a></a><span class="fu">visualize</span>(<span class="at">data =</span> null_distn_one_prop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -578,8 +577,8 @@ Null Hypothesis: point
 </div>
 </section>
 <section>
-<section id="conclusion." class="title-slide slide level1 center">
-<h1>Conclusion.</h1>
+<section id="conclusion" class="title-slide slide level1 center">
+<h1>Conclusion</h1>
 <p>Reject null.</p>
 <p>This means that the doctor doing the study should believe that locally people have this disease at a different rate than nationally.</p>
 </section>
@@ -599,7 +598,7 @@ Null Hypothesis: point
 <h2>Make sample</h2>
 <p>Nothing wrong with copying and editing code from above.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co"># This makes a 40% success sample. The rep() function repeats "disease" 13 times</span></span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co"># This makes a 60% success sample. </span></span>
 <span id="cb14-2"><a></a></span>
 <span id="cb14-3"><a></a>major_sample <span class="ot">&lt;-</span>   <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"yes"</span>, <span class="dv">15</span>), <span class="fu">rep</span>(<span class="st">"no"</span>, <span class="dv">10</span>))</span>
 <span id="cb14-4"><a></a></span>
@@ -714,7 +713,7 @@ X \sim N(p = 0.7, SE = 0.092)
 </div>
 </div>
 </section>
-<section id="conclusion" class="slide level2">
+<section id="conclusion-1" class="slide level2">
 <h2>Conclusion</h2>
 <p>We fail to reject the null hypothesis at the 5% significance level. 0.13 &gt; 0.05</p>
 

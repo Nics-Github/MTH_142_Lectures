@@ -7,8 +7,6 @@ format:
 editor: visual
 ---
 
-I started falling asleep go back an rework this?
-
 ## Example: Ebola
 
 ::: incremental
@@ -64,7 +62,7 @@ And so $\hat{p} = 514/1000 = 0.514$ Which seems very different from $p=0.82$
 
 ## The question.
 
-\> If the sentiment from 2014 New Yorkers is unchanged today, what is the probability we would have gotten $\hat{p} = 0.514$ based on the 2014 sample?
+> If the sentiment from 2014 New Yorkers is unchanged today, what is the probability we would have gotten $\hat{p} = 0.514$ based on the 2014 sample?
 
 ::: incremental
 -   Is it likely or unlikely
@@ -79,8 +77,8 @@ And so $\hat{p} = 514/1000 = 0.514$ Which seems very different from $p=0.82$
 Hypothesis testing with Proportions
 
 $$
-H_o: p = 0.82 \\
-H_1: p \ne 0.82
+H_1: p = 0.82 \\
+H_A: p \ne 0.82
 $$
 
 Null and Alternative hypotheses.
@@ -89,11 +87,11 @@ We assume the null hypothesis is true and build a theoretical sampling distribut
 
 ## The Central Limit Theorem
 
-This is how we build the sampling distribution.
+This is what allows us to build the sampling distribution.
 
 > If we look at a proportion and the scenario satisfies certain conditions, then the distribution of sample proportions will appear to follow a bell-shaped curve called the *normal distribution*.
 
-This is the point of R Assignment 2. If we could sample repeatedly from a population, the shape of all those samples would be normal.
+This is the point of the recent R Assignment. If we could sample repeatedly from a population, the shape from the statistics in those samples would be normal.
 
 ## Condition on $H_0$
 
@@ -121,7 +119,7 @@ What is the probability of getting the $\hat{p}$ from our sample?
 #| eval: false
 #| echo: true
 
-pnorm(q = p-hat, mean = p, sd = SE, lower.tail = )
+pnorm(q = p-hat, mean = p, sd = SE )
 ```
 
 ## Practice 1. Exclusive relationships
@@ -206,6 +204,8 @@ More on decision errors later.
 ## Make sample
 
 ```{r}
+#| echo: true
+
 # This creates a vector of 152 "Trues" and 51 "Falses"
 more_than_1_relationship <- c(
   rep(TRUE, 152),
@@ -242,6 +242,8 @@ For this reason I have been avoiding it, until now.
 ## Create simulated distribution
 
 ```{r}
+#| echo: true
+
 library(infer)
 
 # Saving all the proportions we'll make
@@ -263,6 +265,8 @@ null_distn_one_prop <- more_than_1_relationship  |>
 ## Examine the samples.
 
 ```{r}
+#| echo: true
+
 #visualize is a graphing function, based on ggplot, for the infer package. 
 
 visualise(data = null_distn_one_prop)
@@ -274,14 +278,17 @@ visualise(data = null_distn_one_prop)
 Visualize the pvalue
 
 ```{r}
+#| echo: true
 
 visualise(data = null_distn_one_prop) +
   shade_p_value(obs_stat = 0.749, direction = "greater")
 ```
 
-Calculate the p-value
+## Calculate the p-value
 
 ```{r}
+#| echo: true
+
 get_p_value(x = null_distn_one_prop, 
             obs_stat = 0.749,
             direction = 'greater')
