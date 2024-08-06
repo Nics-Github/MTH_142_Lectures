@@ -512,12 +512,18 @@ H_A: p \ne 0.82
 <h2>Draw the Sampling Distribution</h2>
 <p><span class="math display">\[ p \sim N(p_0,SE)\]</span></p>
 <p>With <span class="math display">\[SE= \sqrt{\frac{p_0(1-p_0)}{n}}\]</span></p>
+<p>note that n is the sample size from our current study.</p>
 </section>
 <section id="conclusion" class="slide level2">
 <h2>Conclusion</h2>
 <p>What is the probability of getting the <span class="math inline">\(\hat{p}\)</span> from our sample?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">pnorm</span>(<span class="at">q =</span> p<span class="sc">-</span>hat, <span class="at">mean =</span> p, <span class="at">sd =</span> SE )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>SE <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fl">0.82</span><span class="sc">*</span>(<span class="dv">1</span><span class="fl">-0.82</span>)<span class="sc">/</span><span class="dv">1000</span>)</span>
+<span id="cb3-2"><a></a></span>
+<span id="cb3-3"><a></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">0.514</span>, <span class="at">mean =</span> <span class="fl">0.82</span>, <span class="at">sd =</span> SE )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.773057e-140</code></pre>
+</div>
 </div>
 </section>
 <section id="practice-1.-exclusive-relationships" class="slide level2">
@@ -578,9 +584,9 @@ p \sim N(\mu = 0.5, SE = 0.035)
 <h2>Probability of <span class="math inline">\(\hat{p}\)</span></h2>
 <p>If the distribution from the last slide is correct what is the probability we would find <span class="math inline">\(\hat{p}=0.749\)</span> from our sample.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">normTail</span>(<span class="at">m =</span> <span class="fl">0.5</span>, <span class="at">s =</span> <span class="fl">0.03509312</span>, <span class="at">U =</span> <span class="fl">0.7487685</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">normTail</span>(<span class="at">m =</span> <span class="fl">0.5</span>, <span class="at">s =</span> <span class="fl">0.03509312</span>, <span class="at">U =</span> <span class="fl">0.7487685</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">0.7487685</span> , <span class="at">mean=</span><span class="fl">0.5</span>,<span class="at">sd =</span> <span class="fl">0.03509312</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">0.7487685</span> , <span class="at">mean=</span><span class="fl">0.5</span>,<span class="at">sd =</span> <span class="fl">0.03509312</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6.763449e-13</code></pre>
 </div>
@@ -608,14 +614,14 @@ p \sim N(\mu = 0.5, SE = 0.035)
 <section id="make-sample" class="slide level2">
 <h2>Make sample</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># This creates a vector of 152 "Trues" and 51 "Falses"</span></span>
-<span id="cb8-2"><a></a>more_than_1_relationship <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb8-3"><a></a>  <span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="dv">152</span>),</span>
-<span id="cb8-4"><a></a>  <span class="fu">rep</span>(<span class="cn">FALSE</span>, <span class="dv">51</span>)</span>
-<span id="cb8-5"><a></a>) </span>
-<span id="cb8-6"><a></a></span>
-<span id="cb8-7"><a></a><span class="co">#This takes the vector and saves it as a data frame so we can us it. </span></span>
-<span id="cb8-8"><a></a>more_than_1_relationship <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(more_than_1_relationship)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># This creates a vector of 152 "Trues" and 51 "Falses"</span></span>
+<span id="cb9-2"><a></a>more_than_1_relationship <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb9-3"><a></a>  <span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="dv">152</span>),</span>
+<span id="cb9-4"><a></a>  <span class="fu">rep</span>(<span class="cn">FALSE</span>, <span class="dv">51</span>)</span>
+<span id="cb9-5"><a></a>) </span>
+<span id="cb9-6"><a></a></span>
+<span id="cb9-7"><a></a><span class="co">#This takes the vector and saves it as a data frame so we can us it. </span></span>
+<span id="cb9-8"><a></a>more_than_1_relationship <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(more_than_1_relationship)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="hypothesis-notation-1" class="slide level2">
@@ -639,30 +645,30 @@ H_A: p &gt; 0.5
 <section id="create-simulated-distribution" class="slide level2">
 <h2>Create simulated distribution</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">library</span>(infer)</span>
-<span id="cb9-2"><a></a></span>
-<span id="cb9-3"><a></a><span class="co"># Saving all the proportions we'll make</span></span>
-<span id="cb9-4"><a></a>null_distn_one_prop <span class="ot">&lt;-</span> more_than_1_relationship  <span class="sc">|&gt;</span></span>
-<span id="cb9-5"><a></a>  </span>
-<span id="cb9-6"><a></a>  <span class="co"># Here we tell specify what is a success</span></span>
-<span id="cb9-7"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> more_than_1_relationship, <span class="at">success =</span> <span class="st">"TRUE"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-8"><a></a>  </span>
-<span id="cb9-9"><a></a>  <span class="co"># This is where we set the null hypothesis</span></span>
-<span id="cb9-10"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">p =</span> <span class="fl">0.5</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-11"><a></a>  </span>
-<span id="cb9-12"><a></a>  <span class="co"># Choosing 10000 replications</span></span>
-<span id="cb9-13"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">5000</span>, <span class="at">type =</span> <span class="st">"draw"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-14"><a></a>  </span>
-<span id="cb9-15"><a></a>  <span class="co"># This is </span></span>
-<span id="cb9-16"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">library</span>(infer)</span>
+<span id="cb10-2"><a></a></span>
+<span id="cb10-3"><a></a><span class="co"># Saving all the proportions we'll make</span></span>
+<span id="cb10-4"><a></a>null_distn_one_prop <span class="ot">&lt;-</span> more_than_1_relationship  <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a></a>  </span>
+<span id="cb10-6"><a></a>  <span class="co"># Here we tell specify what is a success</span></span>
+<span id="cb10-7"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> more_than_1_relationship, <span class="at">success =</span> <span class="st">"TRUE"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-8"><a></a>  </span>
+<span id="cb10-9"><a></a>  <span class="co"># This is where we set the null hypothesis</span></span>
+<span id="cb10-10"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">p =</span> <span class="fl">0.5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-11"><a></a>  </span>
+<span id="cb10-12"><a></a>  <span class="co"># Choosing 10000 replications</span></span>
+<span id="cb10-13"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">5000</span>, <span class="at">type =</span> <span class="st">"draw"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-14"><a></a>  </span>
+<span id="cb10-15"><a></a>  <span class="co"># This is </span></span>
+<span id="cb10-16"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="examine-the-samples." class="slide level2">
 <h2>Examine the samples.</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="co">#visualize is a graphing function, based on ggplot, for the infer package. </span></span>
-<span id="cb10-2"><a></a></span>
-<span id="cb10-3"><a></a><span class="fu">visualise</span>(<span class="at">data =</span> null_distn_one_prop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co">#visualize is a graphing function, based on ggplot, for the infer package. </span></span>
+<span id="cb11-2"><a></a></span>
+<span id="cb11-3"><a></a><span class="fu">visualise</span>(<span class="at">data =</span> null_distn_one_prop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="12_hypothesis_test_prop_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
@@ -670,17 +676,17 @@ H_A: p &gt; 0.5
 <h2>Calculate the p-value based on simulation</h2>
 <p>Visualize the pvalue</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">visualise</span>(<span class="at">data =</span> null_distn_one_prop) <span class="sc">+</span></span>
-<span id="cb11-2"><a></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> <span class="fl">0.749</span>, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">visualise</span>(<span class="at">data =</span> null_distn_one_prop) <span class="sc">+</span></span>
+<span id="cb12-2"><a></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> <span class="fl">0.749</span>, <span class="at">direction =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="12_hypothesis_test_prop_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
 <section id="calculate-the-p-value" class="slide level2">
 <h2>Calculate the p-value</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">get_p_value</span>(<span class="at">x =</span> null_distn_one_prop, </span>
-<span id="cb12-2"><a></a>            <span class="at">obs_stat =</span> <span class="fl">0.749</span>,</span>
-<span id="cb12-3"><a></a>            <span class="at">direction =</span> <span class="st">'greater'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">get_p_value</span>(<span class="at">x =</span> null_distn_one_prop, </span>
+<span id="cb13-2"><a></a>            <span class="at">obs_stat =</span> <span class="fl">0.749</span>,</span>
+<span id="cb13-3"><a></a>            <span class="at">direction =</span> <span class="st">'greater'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value

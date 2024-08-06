@@ -2146,14 +2146,14 @@
     "href": "lectures/12_hypothesis_test_prop.html#draw-the-sampling-distribution",
     "title": "Hypothesis Testing",
     "section": "Draw the Sampling Distribution",
-    "text": "Draw the Sampling Distribution\n\\[ p \\sim N(p_0,SE)\\]\nWith \\[SE= \\sqrt{\\frac{p_0(1-p_0)}{n}}\\]"
+    "text": "Draw the Sampling Distribution\n\\[ p \\sim N(p_0,SE)\\]\nWith \\[SE= \\sqrt{\\frac{p_0(1-p_0)}{n}}\\]\nnote that n is the sample size from our current study."
   },
   {
     "objectID": "lectures/12_hypothesis_test_prop.html#conclusion",
     "href": "lectures/12_hypothesis_test_prop.html#conclusion",
     "title": "Hypothesis Testing",
     "section": "Conclusion",
-    "text": "Conclusion\nWhat is the probability of getting the \\(\\hat{p}\\) from our sample?\n\npnorm(q = p-hat, mean = p, sd = SE )"
+    "text": "Conclusion\nWhat is the probability of getting the \\(\\hat{p}\\) from our sample?\n\nSE = sqrt(0.82*(1-0.82)/1000)\n\npnorm(q = 0.514, mean = 0.82, sd = SE )\n\n[1] 2.773057e-140"
   },
   {
     "objectID": "lectures/12_hypothesis_test_prop.html#practice-1.-exclusive-relationships",

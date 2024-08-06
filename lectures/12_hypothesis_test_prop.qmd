@@ -7,7 +7,7 @@ format:
 editor: visual
 ---
 
-## Reading 
+## Reading
 
 [Read chapter 16 on hypothesis testing](https://openintro-ims.netlify.app/inference-one-prop)
 
@@ -115,15 +115,18 @@ $$ p \sim N(p_0,SE)$$
 
 With $$SE= \sqrt{\frac{p_0(1-p_0)}{n}}$$
 
+note that n is the sample size from our current study.
+
 ## Conclusion
 
 What is the probability of getting the $\hat{p}$ from our sample?
 
 ```{r}
-#| eval: false
 #| echo: true
 
-pnorm(q = p-hat, mean = p, sd = SE )
+SE = sqrt(0.82*(1-0.82)/1000)
+
+pnorm(q = 0.514, mean = 0.82, sd = SE )
 ```
 
 ## Practice 1. Exclusive relationships
