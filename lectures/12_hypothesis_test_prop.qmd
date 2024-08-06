@@ -5,8 +5,6 @@ format:
   revealjs:
     theme: beige
 editor: visual
-editor_options: 
-  chunk_output_type: console
 ---
 
 I started falling asleep go back an rework this?
