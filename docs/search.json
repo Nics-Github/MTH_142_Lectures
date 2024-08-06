@@ -2518,5 +2518,12 @@
     "title": "Bootstrap Hypothesis Test",
     "section": "Conclusion",
     "text": "Conclusion\nWe fail to reject the null hypothesis at the 5% significance level. 0.13 &gt; 0.05"
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#reading",
+    "href": "lectures/12_hypothesis_test_prop.html#reading",
+    "title": "Hypothesis Testing",
+    "section": "Reading",
+    "text": "Reading\nRead chapter 16 on hypothesis testing"
   }
 ]

@@ -7,6 +7,10 @@ format:
 editor: visual
 ---
 
+## Reading 
+
+[Read chapter 16 on hypothesis testing](https://openintro-ims.netlify.app/inference-one-prop)
+
 ## Example: Ebola
 
 ::: incremental
