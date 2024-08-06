@@ -1888,5 +1888,544 @@
     "title": "Normal Distribution",
     "section": "Calculate percentiles with R",
     "text": "Calculate percentiles with R\nWe use pnorm() to find percentiles.\n\npnorm(q=85.8 ,m = 92.6, s = 3.6 )\n\n[1] 0.02945336\n\n\nThis finds the probability to the left of q.\n\npnorm(q=85.8 ,m = 92.6, s = 3.6, lower.tail = FALSE)\n\n[1] 0.9705466"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#load-libraries",
+    "href": "lectures/13_parametric_boot.html#load-libraries",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Load Libraries",
+    "text": "Load Libraries\n\n# install.packages(\"infer\")\n\nlibrary(tidyverse)\nlibrary(infer)"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#the-infer-package",
+    "href": "lectures/13_parametric_boot.html#the-infer-package",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "The infer package",
+    "text": "The infer package\nGetting to know infer\n\nvignette(\"infer\")"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#parametric-bootstrap-distribution",
+    "href": "lectures/13_parametric_boot.html#parametric-bootstrap-distribution",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Parametric Bootstrap Distribution",
+    "text": "Parametric Bootstrap Distribution\n\n\nThe Parametric Bootstrap simulation assumes the null hypothesis is true then uses the data to construct a bootstrap distribution.\nToday this means for each value in our sample R will choose a success or failure with probability p for each value of n.\nWe will do this with marbles"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#problem-statement",
+    "href": "lectures/13_parametric_boot.html#problem-statement",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Problem Statement",
+    "text": "Problem Statement\nSuppose it is known that nationally out of 100 people struggling with drug addiction, 40 of them will have some blood born disease.\nA doctor at a clinic decides to test this hypothesis for her locality and samples 20 of her own patients. Of the 20 patients she finds 13 of them have a blood born disease.\nIs this evidence enough to say that the locality is different than the proportion nationally?"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#write-out-hypotheses",
+    "href": "lectures/13_parametric_boot.html#write-out-hypotheses",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Write out hypotheses",
+    "text": "Write out hypotheses\n\\[\nH_0: p = 0.40 \\\\\nH_a: p \\ne 0.40\n\\]\n\\[\n\\alpha = 0.05\n\\]"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#make-some-sample-data",
+    "href": "lectures/13_parametric_boot.html#make-some-sample-data",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Make some sample data",
+    "text": "Make some sample data\n\n# This makes a 40% success sample. The rep() function repeats \"disease\" 13 times\n\nclinic_sample &lt;-  c(rep(\"disease\", 13), rep(\"no-disease\", 7))\n\n# This saves the sample as a dataframe\nclinic_sample &lt;- as.data.frame(clinic_sample)\n\n# This changed the name of the variable to \"has_disease\"\nnames(clinic_sample) &lt;-\"has_disease\"\n\nhead(clinic_sample)\n\n  has_disease\n1     disease\n2     disease\n3     disease\n4     disease\n5     disease\n6     disease"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#calculate-p-hat",
+    "href": "lectures/13_parametric_boot.html#calculate-p-hat",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Calculate p-hat",
+    "text": "Calculate p-hat\nWe already know \\(\\hat{p} = 0.65\\). But if we didn’t we could do this:\n\np_hat &lt;- clinic_sample  |&gt;\n  # Telling R what we care about with specify \n  specify(response = has_disease, success = \"disease\") |&gt;\n  \n  # Calculating the proportion\n  calculate(stat = \"prop\")\n\n#Notice how we saved p_hat for later use. \np_hat\n\nResponse: has_disease (factor)\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1  0.65"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#create-bootstrap-distribution-w-infer",
+    "href": "lectures/13_parametric_boot.html#create-bootstrap-distribution-w-infer",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Create bootstrap distribution w/ infer()",
+    "text": "Create bootstrap distribution w/ infer()\n\n# setting a seed\nset.seed(2024)\n\n# Saving the df\nclinic_sample  |&gt;\n  \n  # Here we specify() what is a success\n  specify(response = has_disease, success = \"disease\") |&gt;\n  \n  # This is where we set the null hypothesis\n  hypothesize(null = \"point\", p = 0.40) |&gt;\n  \n  # This is how many times R will sample from the clinic sample\n  # We are using draw to sample 1 value from a theoretical distribution with p = 0.40. \n  generate(reps = 1, type = \"draw\") |&gt;\n  \n  # This groups the reps together to find a proportion. \n  calculate(stat = \"prop\")\n\nResponse: has_disease (factor)\nNull Hypothesis: point\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1   0.5"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#more-replications",
+    "href": "lectures/13_parametric_boot.html#more-replications",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "More replications",
+    "text": "More replications\nWe want to do this process a lot to create the bootstrap distribution.\n\n# setting a seed\nset.seed(2024)\n\n# Saving the df\nnull_distn_one_prop &lt;- clinic_sample  |&gt;\n  \n  # Here we tell specify what is a success\n  specify(response = has_disease, success = \"disease\") |&gt;\n  \n  # This is where we set the null hypothesis\n  hypothesize(null = \"point\", p = 0.4) |&gt;\n  \n  # Choosing 10000 replications\n  generate(reps = 10000, type = \"draw\") |&gt;\n  \n  # This is \n  calculate(stat = \"prop\")"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#visualize-the-bootstrap-distribution.",
+    "href": "lectures/13_parametric_boot.html#visualize-the-bootstrap-distribution.",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "visualize() the bootstrap distribution.",
+    "text": "visualize() the bootstrap distribution.\n\nnull_distn_one_prop |&gt;\n  \n  # cheater function to graph, works like ggplot()\n  visualize()"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#shade_p_value",
+    "href": "lectures/13_parametric_boot.html#shade_p_value",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "shade_p_value()",
+    "text": "shade_p_value()\n\n# shade the p value\nnull_distn_one_prop |&gt;\n  visualize() +\n  shade_p_value(obs_stat = p_hat, direction = \"both\")"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#we-can-use-get_pvalue",
+    "href": "lectures/13_parametric_boot.html#we-can-use-get_pvalue",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "We can use get_pvalue()",
+    "text": "We can use get_pvalue()\n\n# get the pvalue to use. \npvalue &lt;- null_distn_one_prop %&gt;%\n  get_pvalue(obs_stat = p_hat, direction = \"both\")\npvalue\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1  0.0392"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#make-a-parametric-bootstrap-distribution",
+    "href": "lectures/13_parametric_boot.html#make-a-parametric-bootstrap-distribution",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Make a parametric bootstrap distribution",
+    "text": "Make a parametric bootstrap distribution\nYou have a bag of marbles\n\nTake one out, note its color, and replace it.\nDo this 20 times. (Don’t look at the marbles).\nFind the proportion of reds in those 20 times. (This is one full repetition).\nEach person should do this once.\nAdd your proportions to the chalkboard graph."
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#should-we-do-this-problem-again-with-a-mathematical-model.",
+    "href": "lectures/13_parametric_boot.html#should-we-do-this-problem-again-with-a-mathematical-model.",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Should we do this problem again with a mathematical model.",
+    "text": "Should we do this problem again with a mathematical model.\nWe should be hesitant, it does not meet the success failure criterion."
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#problem-11-twice",
+    "href": "lectures/13_parametric_boot.html#problem-11-twice",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Problem 11 twice",
+    "text": "Problem 11 twice\nWe’ll do it once with the parametric bootstrap and once with a mathematical model."
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#problem-11-ch-16",
+    "href": "lectures/13_parametric_boot.html#problem-11-ch-16",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Problem 11, Ch 16",
+    "text": "Problem 11, Ch 16\nStatistics and employment In a large university where 70% of the full-time students are employed at least 5 hours per week, the members of the Statistics Department wonder if a smaller proportion of their students work at least 5 hours per week. They randomly sample 25 majors and find that 15 of the students work 5 or more hours each week."
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#make-sample",
+    "href": "lectures/13_parametric_boot.html#make-sample",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Make sample",
+    "text": "Make sample\nNothing wrong with copying and editing code from above.\n\n# This makes a 40% success sample. The rep() function repeats \"disease\" 13 times\n\nmajor_sample &lt;-   c(rep(\"yes\", 15), rep(\"no\", 10))\n\n# This saves the sample as a dataframe\nmajor_sample &lt;- as.data.frame(major_sample)\n\n# This changed the name of the variable to \"has_disease\"\nnames(major_sample) &lt;-\"work\""
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#make-hypotheses",
+    "href": "lectures/13_parametric_boot.html#make-hypotheses",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Make Hypotheses",
+    "text": "Make Hypotheses\n\\[\nH_0: p = 0.7 \\\\\nH_a: p &lt; 0.7\n\\]\n\\[\n\\alpha = 0.05\n\\]"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#make-p-hat",
+    "href": "lectures/13_parametric_boot.html#make-p-hat",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Make p-hat",
+    "text": "Make p-hat\np-hat:\n\n# There is no simulation happening here. Notice the pipes.\n# We are saving p_hat for later... It might be easier to type\n# p_hat &lt;- 15/25\np_hat &lt;- major_sample  |&gt;\n  \n  # specify which variable you are interested in, and which level is a success (our level is \"yes\")\n  specify(response = work, success = \"yes\") |&gt;\n  \n  # What is the statsitic we want calculated?\n  calculate(stat = \"prop\")"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#create-parametric-distribution-w-infer",
+    "href": "lectures/13_parametric_boot.html#create-parametric-distribution-w-infer",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Create parametric distribution w/ infer()",
+    "text": "Create parametric distribution w/ infer()\n\nset.seed(2018)\n\n\nnull_distn_one_prop &lt;- major_sample |&gt;\n  \n  specify(response = work, success = \"yes\") |&gt;\n  \n  hypothesize(null = \"point\", p = 0.70) |&gt;\n  \n  generate(reps = 10000) |&gt;\n  \n  calculate(stat = \"prop\")"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#visualize",
+    "href": "lectures/13_parametric_boot.html#visualize",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "visualize()",
+    "text": "visualize()\n\n#|echo: true\n\n\nnull_distn_one_prop |&gt;\n  visualise()"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#add-the-p-value-to-graph",
+    "href": "lectures/13_parametric_boot.html#add-the-p-value-to-graph",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Add the p-value to graph",
+    "text": "Add the p-value to graph\n\nnull_distn_one_prop |&gt;\n  visualize() +\n  shade_p_value(obs_stat = p_hat, direction = \"both\")"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#get_pvalue",
+    "href": "lectures/13_parametric_boot.html#get_pvalue",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "get_pvalue()",
+    "text": "get_pvalue()\n\npvalue &lt;- null_distn_one_prop %&gt;%\n  get_pvalue(obs_stat = p_hat, direction = \"less\")\npvalue\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1   0.188"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#make-conclusion",
+    "href": "lectures/13_parametric_boot.html#make-conclusion",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Make conclusion",
+    "text": "Make conclusion\nFail to reject the null hypothesis. It seems that stats majors work the same amount as other students based on our sample.\nCould have made a type two error. We failed to reject the null hypothesis when it was correct."
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#again-with-math.",
+    "href": "lectures/13_parametric_boot.html#again-with-math.",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Again with math.",
+    "text": "Again with math.\nConditions are met\nHypothesis notation is the same.\nThe assumed proportion is 0.7, the standard error is\n\\[\nSE = \\sqrt{\\frac{(0.7)(0.3)}{25}} = 0.09165151\n\\]\nThe distribution of the null is.\n\\[\nX \\sim N(p = 0.7, SE = 0.092)\n\\]"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#calculate-the-p-value-for-p_hat",
+    "href": "lectures/13_parametric_boot.html#calculate-the-p-value-for-p_hat",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Calculate the p-value for p_hat",
+    "text": "Calculate the p-value for p_hat\nWe saved p_hat earlier, it should still be in your environment.\n\npnorm(q = 0.6, mean = 0.7, sd = 0.09165151)\n\n[1] 0.1376168"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#conclusion",
+    "href": "lectures/13_parametric_boot.html#conclusion",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Conclusion",
+    "text": "Conclusion\nWe fail to reject the null hypothesis at the 5% significance level. 0.13 &gt; 0.05"
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#example-ebola",
+    "href": "lectures/12_hypothesis_test_prop.html#example-ebola",
+    "title": "Hypothesis Testing",
+    "section": "Example: Ebola",
+    "text": "Example: Ebola\n\n\nPretend: We are studying how New Yorkers feel about a mandatory 14 day quarantine for Ebola exposure.\nWe ask: do you favor a “mandatory 14-day quarantine for anyone who has come in contact with an Ebola patient?”\n\n\nEbola in New York City"
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#survey-data",
+    "href": "lectures/12_hypothesis_test_prop.html#survey-data",
+    "title": "Hypothesis Testing",
+    "section": "Survey Data",
+    "text": "Survey Data\nOur question: We want to know how New Yorkers feel on quarantine of Ebola after the COVID-19 pandemic."
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#the-2014-data",
+    "href": "lectures/12_hypothesis_test_prop.html#the-2014-data",
+    "title": "Hypothesis Testing",
+    "section": "The 2014 data",
+    "text": "The 2014 data\nWe have past data to compare to from 2014. Its called ebola_survey and is our best guess as how New Yorkers felt about mandatory quarantine pre pandemic. This will be our assumed \\(p\\).\n\n\n# A tibble: 2 × 2\n  quarantine     n\n  &lt;fct&gt;      &lt;int&gt;\n1 against      188\n2 favor        854\n\n\n\\(p= 854/1042 \\approx 0.82\\) This is a reasonable estimate for p because we have not other data to the contrary."
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#lets-now-assume-we-did-a-follow-up",
+    "href": "lectures/12_hypothesis_test_prop.html#lets-now-assume-we-did-a-follow-up",
+    "title": "Hypothesis Testing",
+    "section": "Let’s now assume we did a follow up:",
+    "text": "Let’s now assume we did a follow up:\nWe ask 1000 people if they favor a mandatory 14 day quarantine for individuals that have been in contact with Ebola.\nHere are the results.\n\n\n# A tibble: 1 × 2\n  against favor\n    &lt;dbl&gt; &lt;dbl&gt;\n1     486   514\n\n\nAnd so \\(\\hat{p} = 514/1000 = 0.514\\) Which seems very different from \\(p=0.82\\)"
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#p-vs-hatp",
+    "href": "lectures/12_hypothesis_test_prop.html#p-vs-hatp",
+    "title": "Hypothesis Testing",
+    "section": "p vs \\(\\hat{p}\\)",
+    "text": "p vs \\(\\hat{p}\\)\n\n\n\\(\\hat{p}\\) - the sample statistic. It is a proportion in this case.\n\nThis is how the current sample of New Yorkers feel about a mandatory quarantine.\n\np - The assumed population parameter, also a proportion.\n\nWe assume this is how all New Yorkers feel about a mandatory quarantine."
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#the-question.",
+    "href": "lectures/12_hypothesis_test_prop.html#the-question.",
+    "title": "Hypothesis Testing",
+    "section": "The question.",
+    "text": "The question.\n&gt; If the sentiment from 2014 New Yorkers is unchanged today, what is the probability we would have gotten \\(\\hat{p} = 0.514\\) based on the 2014 sample?\n\n\nIs it likely or unlikely\n\nLikely will be anything more than \\(\\alpha = 0.05\\)\nIf less than 0.05, we reject \\(H_0\\)"
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#notation",
+    "href": "lectures/12_hypothesis_test_prop.html#notation",
+    "title": "Hypothesis Testing",
+    "section": "Notation",
+    "text": "Notation\nHypothesis testing with Proportions\n\\[\nH_o: p = 0.82 \\\\\nH_1: p \\ne 0.82\n\\]\nNull and Alternative hypotheses.\nWe assume the null hypothesis is true and build a theoretical sampling distribution from that."
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#the-central-limit-theorem",
+    "href": "lectures/12_hypothesis_test_prop.html#the-central-limit-theorem",
+    "title": "Hypothesis Testing",
+    "section": "The Central Limit Theorem",
+    "text": "The Central Limit Theorem\nThis is how we build the sampling distribution.\n\nIf we look at a proportion and the scenario satisfies certain conditions, then the distribution of sample proportions will appear to follow a bell-shaped curve called the normal distribution.\n\nThis is the point of R Assignment 2. If we could sample repeatedly from a population, the shape of all those samples would be normal."
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#condition-on-h_0",
+    "href": "lectures/12_hypothesis_test_prop.html#condition-on-h_0",
+    "title": "Hypothesis Testing",
+    "section": "Condition on \\(H_0\\)",
+    "text": "Condition on \\(H_0\\)\nProportions:\n\nSuccess Failure condition\n\n30 successes or \\(n(p_0) &gt; 10\\)\n30 failures or \\(n(1-p_0) &gt; 10\\)\n\nLarge Independent Samples (n&gt;30)"
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#draw-the-sampling-distribution",
+    "href": "lectures/12_hypothesis_test_prop.html#draw-the-sampling-distribution",
+    "title": "Hypothesis Testing",
+    "section": "Draw the Sampling Distribution",
+    "text": "Draw the Sampling Distribution\n\\[ p \\sim N(p_0,SE)\\]\nWith \\[SE= \\sqrt{\\frac{p_0(1-p_0)}{n}}\\]"
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#conclusion",
+    "href": "lectures/12_hypothesis_test_prop.html#conclusion",
+    "title": "Hypothesis Testing",
+    "section": "Conclusion",
+    "text": "Conclusion\nWhat is the probability of getting the \\(\\hat{p}\\) from our sample?\n\npnorm(q = p-hat, mean = p, sd = SE, lower.tail = )"
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#practice-1.-exclusive-relationships",
+    "href": "lectures/12_hypothesis_test_prop.html#practice-1.-exclusive-relationships",
+    "title": "Hypothesis Testing",
+    "section": "Practice 1. Exclusive relationships",
+    "text": "Practice 1. Exclusive relationships\nHave a majority of college students had more than 1 exclusive_relationship?\n\n\n# A tibble: 3 × 2\n  `num &gt; 1`     n\n  &lt;lgl&gt;     &lt;int&gt;\n1 FALSE        51\n2 TRUE        152\n3 NA           15\n\n\n\nCheck Conditions.\nDo the test with math.\nDo the test with simulation."
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#with-math.",
+    "href": "lectures/12_hypothesis_test_prop.html#with-math.",
+    "title": "Hypothesis Testing",
+    "section": "With math.",
+    "text": "With math.\nWe are testing against 50%. We’ve already checked the conditions for the mathematical test. Now we:\n\nCheck conditions\nWrite hypothesis notation.\nWrite the notation for the distribution of sample proportions.\n\nfind the theoretical mean\nfind the standard error\n\nFind the probability we would get \\(\\hat{p} = 152/203 = 0.749\\) based on the null hypothesis.\nMake the conclusion."
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#hypothesis-notation",
+    "href": "lectures/12_hypothesis_test_prop.html#hypothesis-notation",
+    "title": "Hypothesis Testing",
+    "section": "Hypothesis notation",
+    "text": "Hypothesis notation\n\\[\nH_0: p = 0.5 \\\\\nH_A: p &gt; 0.5\n\\]\n\\[\n\\alpha = 0.05\n\\]"
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#notation-for-the-sampling-distribution",
+    "href": "lectures/12_hypothesis_test_prop.html#notation-for-the-sampling-distribution",
+    "title": "Hypothesis Testing",
+    "section": "Notation for the sampling distribution",
+    "text": "Notation for the sampling distribution\nWe have \\(\\mu =0.5\\) We need to find the standard error.\n\\[\nSE = \\sqrt{\\frac{(p)(1-p)}{n}}=\\sqrt{\\frac{(0.5)(0.5)}{203}} = 0.03509312\n\\]\n\\[\np \\sim N(\\mu = 0.5, SE = 0.035)\n\\]"
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#probability-of-hatp",
+    "href": "lectures/12_hypothesis_test_prop.html#probability-of-hatp",
+    "title": "Hypothesis Testing",
+    "section": "Probability of \\(\\hat{p}\\)",
+    "text": "Probability of \\(\\hat{p}\\)\nIf the distribution from the last slide is correct what is the probability we would find \\(\\hat{p}=0.749\\) from our sample.\n\nnormTail(m = 0.5, s = 0.03509312, U = 0.7487685)\n\npnorm(q = 0.7487685 , mean=0.5,sd = 0.03509312, lower.tail = FALSE)\n\n[1] 6.763449e-13"
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#conclusion-1",
+    "href": "lectures/12_hypothesis_test_prop.html#conclusion-1",
+    "title": "Hypothesis Testing",
+    "section": "Conclusion",
+    "text": "Conclusion\nWe get 6.763449e-13 (0.0000000000006), which is much smaller than 0.05. We reject the null hypothesis and state that its very likely that a majority of students have been in more than one exclusive relationship."
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#decision-error",
+    "href": "lectures/12_hypothesis_test_prop.html#decision-error",
+    "title": "Hypothesis Testing",
+    "section": "Decision Error",
+    "text": "Decision Error\nWe could have made a type 1 error, and rejected the null hypothesis if it were actually true.\nMore on decision errors later."
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#same-problem-with-simulation.",
+    "href": "lectures/12_hypothesis_test_prop.html#same-problem-with-simulation.",
+    "title": "Hypothesis Testing",
+    "section": "Same problem with simulation.",
+    "text": "Same problem with simulation.\n\nMake sample\nWrite hypothesis notation.\nCreate the simulated distribution.\nFind the probability we would get \\(\\hat{p} = 152/203 = 0.749\\) based on the null hypothesis.\nMake the conclusion."
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#make-sample",
+    "href": "lectures/12_hypothesis_test_prop.html#make-sample",
+    "title": "Hypothesis Testing",
+    "section": "Make sample",
+    "text": "Make sample"
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#hypothesis-notation-1",
+    "href": "lectures/12_hypothesis_test_prop.html#hypothesis-notation-1",
+    "title": "Hypothesis Testing",
+    "section": "Hypothesis notation",
+    "text": "Hypothesis notation\nThis part is the same.\n\\[\nH_0: p = 0.5 \\\\\nH_A: p &gt; 0.5\n\\]\n\\[\n\\alpha = 0.05\n\\]"
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#side-note-the-pipe",
+    "href": "lectures/12_hypothesis_test_prop.html#side-note-the-pipe",
+    "title": "Hypothesis Testing",
+    "section": "Side note the pipe |>",
+    "text": "Side note the pipe |&gt;\nYou may have noticed the occasional symbols |&gt; or %&gt;%.\nThis is called a pipe and it is an R operator that takes the output of the previous line of code and puts it into the first argument of the next line of code.\nIt often makes code easier to read, but can be confusing for first time programmers.\nFor this reason I have been avoiding it, until now."
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#create-simulated-distribution",
+    "href": "lectures/12_hypothesis_test_prop.html#create-simulated-distribution",
+    "title": "Hypothesis Testing",
+    "section": "Create simulated distribution",
+    "text": "Create simulated distribution"
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#examine-the-samples.",
+    "href": "lectures/12_hypothesis_test_prop.html#examine-the-samples.",
+    "title": "Hypothesis Testing",
+    "section": "Examine the samples.",
+    "text": "Examine the samples."
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#calculate-the-p-value-based-on-simulation",
+    "href": "lectures/12_hypothesis_test_prop.html#calculate-the-p-value-based-on-simulation",
+    "title": "Hypothesis Testing",
+    "section": "Calculate the p-value based on simulation",
+    "text": "Calculate the p-value based on simulation\nVisualize the pvalue\n\nCalculate the p-value\n\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1       0"
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#conclusion-2",
+    "href": "lectures/12_hypothesis_test_prop.html#conclusion-2",
+    "title": "Hypothesis Testing",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe conclusion is the same. The pvalue is much smaller than 0.05 so it is likely that a majority of students have had more than 1 exclusive relationship."
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#mathematical-vs.-simulation",
+    "href": "lectures/12_hypothesis_test_prop.html#mathematical-vs.-simulation",
+    "title": "Hypothesis Testing",
+    "section": "Mathematical vs. simulation",
+    "text": "Mathematical vs. simulation\nBoth methods are valid and often end at the same conclusion\nMath uses formula based on conditions which must be checked. A theoretical distribution is built and probabilities calculates.\nAlternatively a simulated distribution is built, which makes a simulated sampling distribution which is very similar to the theoretical distribution, conditions can be relaxed because we can visibly verify that the distribution is normal."
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#homework",
+    "href": "lectures/12_hypothesis_test_prop.html#homework",
+    "title": "Hypothesis Testing",
+    "section": "Homework",
+    "text": "Homework\nOn your homework you will use the math formula to make a theoretical distribution and calculate probabilities."
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#r-assignment",
+    "href": "lectures/12_hypothesis_test_prop.html#r-assignment",
+    "title": "Hypothesis Testing",
+    "section": "R Assignment",
+    "text": "R Assignment\nYou will make a simulated distribution of your own and find pvalues in a future R Assignment.\nWe’ll look at another example in the next video."
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#read-before-lecture",
+    "href": "lectures/11_Normal_Dist.html#read-before-lecture",
+    "title": "Normal Distribution",
+    "section": "Read before lecture",
+    "text": "Read before lecture\nOpen Intro Statistics 4.1 Normal Distribution"
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#normal-distribution",
+    "href": "lectures/11_Normal_Dist.html#normal-distribution",
+    "title": "Normal Distribution",
+    "section": "Normal Distribution",
+    "text": "Normal Distribution\nThe normal distribution has a symmetric bell shaped curve\n\nlibrary(openintro)\nnormTail()\n\n\nThe picture above is for the so called standard normal distribution."
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#the-standard-normal",
+    "href": "lectures/11_Normal_Dist.html#the-standard-normal",
+    "title": "Normal Distribution",
+    "section": "The Standard Normal",
+    "text": "The Standard Normal\nHas a mean \\(\\mu = 0\\) and standard deviation \\(\\sigma = 1\\)\n\nNotation \\(X\\sim N(\\mu,\\sigma)\\) means the random variable X has a normal distribution.\n\nIt is what z-scores are based on. (There are other distributions)."
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#very-short-history-lesson.",
+    "href": "lectures/11_Normal_Dist.html#very-short-history-lesson.",
+    "title": "Normal Distribution",
+    "section": "Very Short history lesson.",
+    "text": "Very Short history lesson.\n\n\nLong long ago before computers existed people wanted to calculate probabilities from z-scores.\nThe table was first made by Christian Kramp in 1799.\nIt was improved upon ( for more read this).\nWe will not use the ancient table"
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#brushtail-possum",
+    "href": "lectures/11_Normal_Dist.html#brushtail-possum",
+    "title": "Normal Distribution",
+    "section": "Brushtail possum",
+    "text": "Brushtail possum"
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#problem-from-text",
+    "href": "lectures/11_Normal_Dist.html#problem-from-text",
+    "title": "Normal Distribution",
+    "section": "Problem from text:",
+    "text": "Problem from text:\n\nHead lengths of brushtail possums follow a nearly normal distribution (it is also a continuous random variable) with mean 92.6 mm and standard deviation 3.6 mm. Compute the [percentiles] for possums with head lengths of 95.4 mm and 85.8 mm.\nWhich of the two brushtail possum observations in the previous guided practice is more unusual?"
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#picture-the-distribution",
+    "href": "lectures/11_Normal_Dist.html#picture-the-distribution",
+    "title": "Normal Distribution",
+    "section": "Picture the distribution",
+    "text": "Picture the distribution\n\\(X \\sim N(\\mu = 92.6 , \\sigma = 3.6)\\)\n\nnormTail(m=92.6,s=3.6)"
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#the-graph-for-the-first-possum",
+    "href": "lectures/11_Normal_Dist.html#the-graph-for-the-first-possum",
+    "title": "Normal Distribution",
+    "section": "The graph for the first possum",
+    "text": "The graph for the first possum\n\nnormTail(m=92.6,s=3.6, L = 95.4)"
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#the-graph-for-the-second-possum",
+    "href": "lectures/11_Normal_Dist.html#the-graph-for-the-second-possum",
+    "title": "Normal Distribution",
+    "section": "The graph for the second possum",
+    "text": "The graph for the second possum\n\nnormTail(m=92.6,s=3.6, L = 85.8)"
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#calculate-percentiles-with-r",
+    "href": "lectures/11_Normal_Dist.html#calculate-percentiles-with-r",
+    "title": "Normal Distribution",
+    "section": "Calculate percentiles with R",
+    "text": "Calculate percentiles with R\nWe use pnorm() to find percentiles.\n\npnorm(q=85.8 ,m = 92.6, s = 3.6 )\n\n[1] 0.02945336\n\n\nThis finds the probability to the left of q.\n\npnorm(q=85.8 ,m = 92.6, s = 3.6, lower.tail = FALSE)\n\n[1] 0.9705466"
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#visualize-with-openintro-package",
+    "href": "lectures/11_Normal_Dist.html#visualize-with-openintro-package",
+    "title": "Normal Distribution",
+    "section": "Visualize with openintro package",
+    "text": "Visualize with openintro package\n\nlibrary(tidyverse)\nlibrary(openintro)\n\npnorm(q=85.8 ,m = 92.6, s = 3.6, lower.tail = FALSE )\n\n[1] 0.9705466\n\nnormTail(m = 92.6, s= 3.6, U = 85.8)"
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#calculus",
+    "href": "lectures/11_Normal_Dist.html#calculus",
+    "title": "Normal Distribution",
+    "section": "Calculus",
+    "text": "Calculus\nThe function f(x) below defines the pdf of the bell curve.\n\\[ f(x) = \\frac{1}{\\sigma \\sqrt{2 \\pi}}  e^{-\\frac{1}{2}(\\frac{x-\\mu}{\\sigma})^2 } \\]"
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#what-we-really-care-about",
+    "href": "lectures/11_Normal_Dist.html#what-we-really-care-about",
+    "title": "Normal Distribution",
+    "section": "What we really care about:",
+    "text": "What we really care about:\nThe probability is the area under the curve and can be represented as:\n\\[ \\int_a^b \\frac{1}{\\sigma \\sqrt{2 \\pi}}  e^{-\\frac{1}{2}(\\frac{x-\\mu}{\\sigma})^2 } dx \\]\nWe will not be computing these values by hand."
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#reminder",
+    "href": "lectures/11_Normal_Dist.html#reminder",
+    "title": "Normal Distribution",
+    "section": "Reminder:",
+    "text": "Reminder:\nDraw the curve and the integral that goes with the possum area under the normal distribution."
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#the-empirical-rule.",
+    "href": "lectures/11_Normal_Dist.html#the-empirical-rule.",
+    "title": "Normal Distribution",
+    "section": "The Empirical rule.",
+    "text": "The Empirical rule.\nDraw a picture of the standard normal bell curve. Mark -1 and 1 \\(\\sigma\\) away from the mean.\nUsing R find the probability we get values between -1 and 1. shade your picture.\nRepeat this process for [-2,2] and [-3,3]."
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#practice",
+    "href": "lectures/11_Normal_Dist.html#practice",
+    "title": "Normal Distribution",
+    "section": "Practice",
+    "text": "Practice\nFrom the text:\n\nSAT scores closely follow the normal model with mean μ=1500 and standard deviation σ=300. About what percent of test takers score 900 to 2100? What percent score between 1500 and 2100"
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#practice-2",
+    "href": "lectures/11_Normal_Dist.html#practice-2",
+    "title": "Normal Distribution",
+    "section": "Practice 2",
+    "text": "Practice 2\n\nShannon is a randomly selected SAT taker, and nothing is known about Shannon’s SAT aptitude. What is the probability that Shannon scores at least 1630 on their SATs?"
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#practice-3",
+    "href": "lectures/11_Normal_Dist.html#practice-3",
+    "title": "Normal Distribution",
+    "section": "Practice 3",
+    "text": "Practice 3\n\nEdward earned a 1400 on their SAT. What is their percentile?\n\n\nWhat percent did better than Edward?"
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#qnorm-outputs-quantiles-from-percents.",
+    "href": "lectures/11_Normal_Dist.html#qnorm-outputs-quantiles-from-percents.",
+    "title": "Normal Distribution",
+    "section": "qnorm outputs quantiles from percents.",
+    "text": "qnorm outputs quantiles from percents.\n\n#|echo: TRUE\n\npnorm(q = 85.8 ,m = 92.6, s = 3.6 )\n\n[1] 0.02945336\n\nqnorm(p = 0.02945336, m = 92.6, s = 3.6)\n\n[1] 85.8\n\n\nqnorm() is for finding quantiles pnorm() is for finding percentiles."
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#practice-4",
+    "href": "lectures/11_Normal_Dist.html#practice-4",
+    "title": "Normal Distribution",
+    "section": "Practice 4",
+    "text": "Practice 4\nOI 4.2 d"
+  },
+  {
+    "objectID": "lectures/11_Normal_Dist.html#compute-the-mean-and-sd",
+    "href": "lectures/11_Normal_Dist.html#compute-the-mean-and-sd",
+    "title": "Normal Distribution",
+    "section": "Compute the mean and sd",
+    "text": "Compute the mean and sd\nNote on notation.\n\\(X \\sim N(\\mu = 92.6 , \\sigma = 3.6)\\)\nor\n\\(X \\sim N(\\bar{x} = 92.6 , s= 3.6)\\)\nWe estimate \\(\\sigma\\) with s - The sample proportion.\n\n# Sample standard deviation\n\nsd(possum$head_l)\n\n[1] 3.573349\n\n# Sample mean\nmean(possum$head_l, na.rm = TRUE)\n\n[1] 92.60288"
   }
 ]

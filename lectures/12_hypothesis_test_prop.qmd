@@ -141,7 +141,7 @@ count(exclusive_relationship, num > 1)
 
 -   Do the test with simulation.
 
-## With math. 
+## With math.
 
 We are testing against 50%. We've already checked the conditions for the mathematical test. Now we:
 
@@ -178,7 +178,7 @@ $$
 
 ## Probability of $\hat{p}$
 
-If the distribution from the last slide is correct what is the probability we would find $\hat{p}=0.749$ from our sample. 
+If the distribution from the last slide is correct what is the probability we would find $\hat{p}=0.749$ from our sample.
 
 ```{r}
 #| echo: true
@@ -189,16 +189,15 @@ pnorm(q = 0.7487685 , mean=0.5,sd = 0.03509312, lower.tail = FALSE)
 
 ## Conclusion
 
-We get 6.763449e-13 (0.0000000000006), which is much smaller than 0.05. 
-We reject the null hypothesis and state that its very likely that a majority of students have been in more than one exclusive relationship. 
+We get 6.763449e-13 (0.0000000000006), which is much smaller than 0.05. We reject the null hypothesis and state that its very likely that a majority of students have been in more than one exclusive relationship.
 
 ## Decision Error
 
-We could have made a type 1 error, and rejected the null hypothesis if it were actually true. 
+We could have made a type 1 error, and rejected the null hypothesis if it were actually true.
 
-More on decision errors later. 
+More on decision errors later.
 
-## Same problem with simulation. 
+## Same problem with simulation.
 
 1.  Make sample
 2.  Write hypothesis notation.
@@ -221,7 +220,7 @@ more_than_1_relationship <- as.data.frame(more_than_1_relationship)
 
 ## Hypothesis notation
 
-This part is the same. 
+This part is the same.
 
 $$
 H_0: p = 0.5 \\
@@ -232,16 +231,15 @@ $$
 \alpha = 0.05
 $$
 
-## Side note the pipe |>
+## Side note the pipe \|\>
 
 You may have noticed the occasional symbols `|>` or `%>%`.
 
-This is called a pipe and it is an R operator that takes the output of the previous line of code and puts it into the first argument of the next line of code. 
+This is called a pipe and it is an R operator that takes the output of the previous line of code and puts it into the first argument of the next line of code.
 
-It often makes code easier to read, but can be confusing for first time programmers. 
+It often makes code easier to read, but can be confusing for first time programmers.
 
-For this reason I have been avoiding it, until now. 
-
+For this reason I have been avoiding it, until now.
 
 ## Create simulated distribution
 
@@ -293,7 +291,7 @@ get_p_value(x = null_distn_one_prop,
 
 ## Conclusion
 
-The conclusion is the same. The pvalue is much smaller than 0.05 so it is likely that a majority of students have had more than 1 exclusive relationship. 
+The conclusion is the same. The pvalue is much smaller than 0.05 so it is likely that a majority of students have had more than 1 exclusive relationship.
 
 ## Mathematical vs. simulation
 
@@ -301,14 +299,14 @@ Both methods are valid and often end at the same conclusion
 
 Math uses formula based on conditions which must be checked. A theoretical distribution is built and probabilities calculates.
 
-Alternatively a simulated distribution is built, which makes a simulated sampling distribution which is very similar to the theoretical distribution, conditions can be relaxed because we can visibly verify that the distribution is normal. 
+Alternatively a simulated distribution is built, which makes a simulated sampling distribution which is very similar to the theoretical distribution, conditions can be relaxed because we can visibly verify that the distribution is normal.
 
 ## Homework
 
-On your homework you will use the math formula to make a theoretical distribution and calculate probabilities. 
+On your homework you will use the math formula to make a theoretical distribution and calculate probabilities.
 
-## R Assignment 
+## R Assignment
 
-You will make a simulated distribution of your own and find pvalues in a future R Assignment. 
+You will make a simulated distribution of your own and find pvalues in a future R Assignment.
 
-We'll look at another example in the next video. 
+We'll look at another example in the next video.

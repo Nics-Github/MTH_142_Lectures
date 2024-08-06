@@ -61,15 +61,17 @@ $$
 ## Make some sample data
 
 ```{r}
-# This makes a 40% success sample. The rep() function repeats "disease" a number of times
+# This makes a 40% success sample. The rep() function repeats "disease" 13 times
 
-clinic_sample <- c(rep("disease", 13), rep("no-disease", 7)) |>
-  #enframe() makes our vector into a dataframe
-  enframe() |>
-  rename(number= name, has_disease = value)
+clinic_sample <-  c(rep("disease", 13), rep("no-disease", 7))
 
-clinic_sample |>
-  head()
+# This saves the sample as a dataframe
+clinic_sample <- as.data.frame(clinic_sample)
+
+# This changed the name of the variable to "has_disease"
+names(clinic_sample) <-"has_disease"
+
+head(clinic_sample)
 ```
 
 ## Calculate p-hat
@@ -83,6 +85,8 @@ p_hat <- clinic_sample  |>
   
   # Calculating the proportion
   calculate(stat = "prop")
+
+#Notice how we saved p_hat for later use. 
 p_hat
 ```
 
@@ -138,10 +142,8 @@ null_distn_one_prop <- clinic_sample  |>
 ## `visualize()` the bootstrap distribution.
 
 ```{r}
-null_distn_one_prop |>
-  
-  # cheater function to graph, works like ggplot()
-  visualize()
+# cheater function to graph, works like ggplot(), but we don't need aes()
+visualize(data = null_distn_one_prop)
 
 ```
 
@@ -149,8 +151,7 @@ null_distn_one_prop |>
 
 ```{r}
 # shade the p value
-null_distn_one_prop |>
-  visualize() +
+visualize(data = null_distn_one_prop)+
   shade_p_value(obs_stat = p_hat, direction = "both")
 ```
 
@@ -158,40 +159,27 @@ null_distn_one_prop |>
 
 ```{r}
 # get the pvalue to use. 
-pvalue <- null_distn_one_prop %>%
-  get_pvalue(obs_stat = p_hat, direction = "both")
-pvalue
+get_pvalue(x = null_distn_one_prop,
+             obs_stat = p_hat, 
+             direction = "both")
+
 ```
 
 # Conclusion.
 
 Reject null.
 
-## Make a parametric bootstrap distribution
+This means that the doctor doing the study should believe that locally people have this disease at a different rate than nationally.
 
-You have a bag of marbles
+## Should we do this problem again with a mathematical model.
 
--   Take one out, note its color, and replace it.
+We should be hesitant, it does not meet the success-failure criterion.
 
--   Do this 20 times. (Don't look at the marbles).
-
--   Find the proportion of reds in those 20 times. (This is one full repetition).
-
--   Each person should do this once.
-
--   Add your proportions to the chalkboard graph.
-
-## Let's do this problem again with a mathematical model.
-
-$$ p \sim N(p,SE)$$
-
-With $$SE= \sqrt{\frac{p(1-p)}{n}}$$
-
-## Let's do problem 11 twice
+## Problem 11 twice
 
 We'll do it once with the parametric bootstrap and once with a mathematical model.
 
-## Example 2 Problem 11, Ch 16
+## Problem 11, Ch 16
 
 **Statistics and employment** In a large university where 70% of the full-time students are employed at least 5 hours per week, the members of the Statistics Department wonder if a smaller proportion of their students work at least 5 hours per week. They randomly sample 25 majors and find that 15 of the students work 5 or more hours each week.
 
@@ -200,9 +188,17 @@ We'll do it once with the parametric bootstrap and once with a mathematical mode
 Nothing wrong with copying and editing code from above.
 
 ```{r}
-major_sample <- c(rep("yes", 15), rep("no", 10)) %>%
-  enframe() %>%
-  rename(work = value)
+
+# This makes a 40% success sample. The rep() function repeats "disease" 13 times
+
+major_sample <-   c(rep("yes", 15), rep("no", 10))
+
+# This saves the sample as a dataframe
+major_sample <- as.data.frame(major_sample)
+
+# This changed the name of the variable to "has_disease"
+names(major_sample) <-"work"
+
 ```
 
 ## Make Hypotheses
@@ -223,9 +219,15 @@ p-hat:
 ```{r}
 #| echo: TRUE
 
-# There is no simulation happening here.
+# There is no simulation happening here. Notice the pipes.
+# We are saving p_hat for later... It might be easier to type
+# p_hat <- 15/25
 p_hat <- major_sample  |>
+  
+  # specify which variable you are interested in, and which level is a success (our level is "yes")
   specify(response = work, success = "yes") |>
+  
+  # What is the statsitic we want calculated?
   calculate(stat = "prop")
 ```
 
@@ -253,25 +255,20 @@ null_distn_one_prop <- major_sample |>
 ```{r}
 #|echo: true
 
-
-null_distn_one_prop |>
-  visualise()
+# I'm leaving off the data argument here. 
+visualise(null_distn_one_prop)
 ```
 
 ## Add the p-value to graph
 
 ```{r}
-
-
-null_distn_one_prop |>
-  visualize() +
+visualize(null_distn_one_prop) +
   shade_p_value(obs_stat = p_hat, direction = "both")
 ```
 
 ## `get_pvalue()`
 
 ```{r}
-
 
 pvalue <- null_distn_one_prop %>%
   get_pvalue(obs_stat = p_hat, direction = "less")
@@ -280,22 +277,36 @@ pvalue
 
 ## Make conclusion
 
-<!-- Also consider the type of error that may have occurred. -->
+Fail to reject the null hypothesis. It seems that stats majors work the same amount as other students based on our sample.
 
-<!-- ![](gfx/test_errors.png) -->
+Could have made a type two error. We failed to reject the null hypothesis when it was correct.
 
-## Example 3: Age at Marriage
+## Again with math. 
 
-There is a claim that the majority of women are waiting to get married until after 30. Although it is old and has a response bias use the modified `age_at_mar` to see if the proportion of women getting married after 30 was different in 2010.
+Conditions are met.
+
+Hypothesis notation is the same.
+
+The assumed proportion is 0.7, the standard error is
+
+$$
+SE = \sqrt{\frac{(0.7)(0.3)}{25}} = 0.09165151
+$$
+
+The distribution of the null is.
+
+$$
+X \sim N(p = 0.7, SE = 0.092)
+$$
+
+## Calculate the p-value for p_hat
+
+We saved p_hat earlier, it should still be in your environment.
 
 ```{r}
-library(openintro)
-
-age_at_mar <- age_at_mar |> 
-  mutate(over_30 =
-           case_when(
-             age > 30 ~ "Over_30",
-             TRUE ~ "Under_30"
-           ))
-age_at_mar
+pnorm(q = 0.6, mean = 0.7, sd = 0.09165151)
 ```
+
+## Conclusion
+
+We fail to reject the null hypothesis at the 5% significance level. 0.13 \> 0.05
