@@ -29,7 +29,7 @@ These are the lectures from MTH 142, you can also find the direct links via Canv
 
 [Lecture 12 Hypothesis Testing Proportion](lectures/12_hypothesis_test_prop.qmd)
 
-[Lecture 13 Paraemetric bootstrap Hypothesis Testing](lectures/13_parametric_boot.qmd)
+[Lecture 13 Parametric bootstrap Hypothesis Testing](lectures/13_parametric_boot.qmd)
 
 <!-- [Lecture 15 Non-parametric bootstrap Confidence Intervals](lectures/17_bootstrap_CI_proportion.qmd) -->
 

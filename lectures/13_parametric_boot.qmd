@@ -144,23 +144,13 @@ get_p_value(x = null_distn_one_prop,
 
 The conclusion is the same as the first lecture from homework 6. The pvalue is much smaller than 0.05 so it is likely that a majority of students have had more than 1 exclusive relationship.
 
-## Mathematical vs. simulation
+## Mathematical vs. Simulation
 
 Both methods are valid and often end at the same conclusion
 
-Math uses formula based on conditions which must be checked. A theoretical distribution is built and probabilities calculates.
+Math uses formula based on conditions which must be checked. A theoretical distribution is built and probabilities calculated.
 
-Alternatively a simulated distribution is built, which makes a simulated sampling distribution which is very similar to the theoretical distribution, conditions can be relaxed because we can visibly verify that the distribution is normal.
-
-## Homework
-
-On your homework you will use the math formula to make a theoretical distribution and calculate probabilities.
-
-## R Assignment
-
-You will make a simulated distribution of your own and find pvalues in a future R Assignment.
-
-We'll look at another example in the next video.
+A simulated distribution is built from resampling the sample. Conditions can be relaxed as we can visibly verify that the distribution is normal.
 
 ## Another example
 
@@ -199,7 +189,7 @@ head(clinic_sample)
 
 ## Calculate p-hat
 
-We already know $\hat{p} = 0.65$. But if we didn't we could do this:
+We can calculate $\hat{p} = \frac{13}{20} = 0.65$. But could do this:
 
 ```{r}
 p_hat <- clinic_sample  |>
@@ -292,19 +282,15 @@ get_pvalue(x = null_distn_one_prop,
 
 Reject null.
 
-This means that the doctor doing the study should believe that locally people have this disease at a different rate than nationally.
+This means that the doctor doing the study should believe that locally people have a blood born disease at a different rate than nationally.
 
 ## Should we do this problem again with a mathematical model.
 
-We should be hesitant, it does not meet the success-failure criterion.
+We should be hesitant, it does not meet the success-failure criterion and the sample is small.
 
 ## Last example
 
-Problem 11 twice
-
-We'll do it once with the parametric bootstrap and once with a mathematical model.
-
-## Problem 11, Ch 16
+Problem 11, Ch 16
 
 **Statistics and employment** In a large university where 70% of the full-time students are employed at least 5 hours per week, the members of the Statistics Department wonder if a smaller proportion of their students work at least 5 hours per week. They randomly sample 25 majors and find that 15 of the students work 5 or more hours each week.
 
@@ -388,7 +374,7 @@ visualise(null_distn_one_prop)
 
 ```{r}
 visualize(null_distn_one_prop) +
-  shade_p_value(obs_stat = p_hat, direction = "both")
+  shade_p_value(obs_stat = p_hat, direction = "less")
 ```
 
 ## `get_pvalue()`
@@ -405,33 +391,3 @@ pvalue
 Fail to reject the null hypothesis. It seems that stats majors work the same amount as other students based on our sample.
 
 Could have made a type two error. We failed to reject the null hypothesis when it was correct.
-
-## Again with math. 
-
-Conditions are met.
-
-Hypothesis notation is the same.
-
-The assumed proportion is 0.7, the standard error is
-
-$$
-SE = \sqrt{\frac{(0.7)(0.3)}{25}} = 0.09165151
-$$
-
-The distribution of the null is.
-
-$$
-X \sim N(p = 0.7, SE = 0.092)
-$$
-
-## Calculate the p-value for p_hat
-
-We saved p_hat earlier, it should still be in your environment.
-
-```{r}
-pnorm(q = 0.6, mean = 0.7, sd = 0.09165151)
-```
-
-## Conclusion
-
-We fail to reject the null hypothesis at the 5% significance level. 0.13 \> 0.05

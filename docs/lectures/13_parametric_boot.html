@@ -526,19 +526,10 @@ H_A: p &gt; 0.5
 <p>The conclusion is the same as the first lecture from homework 6. The pvalue is much smaller than 0.05 so it is likely that a majority of students have had more than 1 exclusive relationship.</p>
 </section>
 <section id="mathematical-vs.-simulation" class="slide level2">
-<h2>Mathematical vs.&nbsp;simulation</h2>
+<h2>Mathematical vs.&nbsp;Simulation</h2>
 <p>Both methods are valid and often end at the same conclusion</p>
-<p>Math uses formula based on conditions which must be checked. A theoretical distribution is built and probabilities calculates.</p>
-<p>Alternatively a simulated distribution is built, which makes a simulated sampling distribution which is very similar to the theoretical distribution, conditions can be relaxed because we can visibly verify that the distribution is normal.</p>
-</section>
-<section id="homework" class="slide level2">
-<h2>Homework</h2>
-<p>On your homework you will use the math formula to make a theoretical distribution and calculate probabilities.</p>
-</section>
-<section id="r-assignment" class="slide level2">
-<h2>R Assignment</h2>
-<p>You will make a simulated distribution of your own and find pvalues in a future R Assignment.</p>
-<p>We’ll look at another example in the next video.</p>
+<p>Math uses formula based on conditions which must be checked. A theoretical distribution is built and probabilities calculated.</p>
+<p>A simulated distribution is built from resampling the sample. Conditions can be relaxed as we can visibly verify that the distribution is normal.</p>
 </section>
 <section id="another-example" class="slide level2">
 <h2>Another example</h2>
@@ -583,7 +574,7 @@ H_a: p \ne 0.40
 </section>
 <section id="calculate-p-hat" class="slide level2">
 <h2>Calculate p-hat</h2>
-<p>We already know <span class="math inline">\(\hat{p} = 0.65\)</span>. But if we didn’t we could do this:</p>
+<p>We can calculate <span class="math inline">\(\hat{p} = \frac{13}{20} = 0.65\)</span>. But could do this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>p_hat <span class="ot">&lt;-</span> clinic_sample  <span class="sc">|&gt;</span></span>
 <span id="cb11-2"><a></a>  <span class="co"># Telling R what we care about with specify </span></span>
@@ -693,19 +684,15 @@ Null Hypothesis: point
 <section id="conclusion-1" class="title-slide slide level1 center">
 <h1>Conclusion</h1>
 <p>Reject null.</p>
-<p>This means that the doctor doing the study should believe that locally people have this disease at a different rate than nationally.</p>
+<p>This means that the doctor doing the study should believe that locally people have a blood born disease at a different rate than nationally.</p>
 </section>
 <section id="should-we-do-this-problem-again-with-a-mathematical-model." class="slide level2">
 <h2>Should we do this problem again with a mathematical model.</h2>
-<p>We should be hesitant, it does not meet the success-failure criterion.</p>
+<p>We should be hesitant, it does not meet the success-failure criterion and the sample is small.</p>
 </section>
 <section id="last-example" class="slide level2">
 <h2>Last example</h2>
-<p>Problem 11 twice</p>
-<p>We’ll do it once with the parametric bootstrap and once with a mathematical model.</p>
-</section>
-<section id="problem-11-ch-16" class="slide level2">
-<h2>Problem 11, Ch 16</h2>
+<p>Problem 11, Ch 16</p>
 <p><strong>Statistics and employment</strong> In a large university where 70% of the full-time students are employed at least 5 hours per week, the members of the Statistics Department wonder if a smaller proportion of their students work at least 5 hours per week. They randomly sample 25 majors and find that 15 of the students work 5 or more hours each week.</p>
 </section>
 <section id="make-sample-1" class="slide level2">
@@ -781,7 +768,7 @@ H_a: p &lt; 0.7
 <h2>Add the p-value to graph</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">visualize</span>(null_distn_one_prop) <span class="sc">+</span></span>
-<span id="cb24-2"><a></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> p_hat, <span class="at">direction =</span> <span class="st">"both"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-2"><a></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> p_hat, <span class="at">direction =</span> <span class="st">"less"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="13_parametric_boot_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"></section>
@@ -803,33 +790,6 @@ H_a: p &lt; 0.7
 <h2>Make conclusion</h2>
 <p>Fail to reject the null hypothesis. It seems that stats majors work the same amount as other students based on our sample.</p>
 <p>Could have made a type two error. We failed to reject the null hypothesis when it was correct.</p>
-</section>
-<section id="again-with-math." class="slide level2">
-<h2>Again with math.</h2>
-<p>Conditions are met.</p>
-<p>Hypothesis notation is the same.</p>
-<p>The assumed proportion is 0.7, the standard error is</p>
-<p><span class="math display">\[
-SE = \sqrt{\frac{(0.7)(0.3)}{25}} = 0.09165151
-\]</span></p>
-<p>The distribution of the null is.</p>
-<p><span class="math display">\[
-X \sim N(p = 0.7, SE = 0.092)
-\]</span></p>
-</section>
-<section id="calculate-the-p-value-for-p_hat" class="slide level2">
-<h2>Calculate the p-value for p_hat</h2>
-<p>We saved p_hat earlier, it should still be in your environment.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">0.6</span>, <span class="at">mean =</span> <span class="fl">0.7</span>, <span class="at">sd =</span> <span class="fl">0.09165151</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1376168</code></pre>
-</div>
-</div>
-</section>
-<section id="conclusion-2" class="slide level2">
-<h2>Conclusion</h2>
-<p>We fail to reject the null hypothesis at the 5% significance level. 0.13 &gt; 0.05</p>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">

@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Lectures from MTH 142 Fall 2024",
     "section": "",
-    "text": "These are the lectures from MTH 142, you can also find the direct links via Canvas.\nLecture 1 Statistical Thinking\nLecture 2 Study Design and Variables\nLecture 3 Categorical Data\nLecture 4 Numeric Data\nLecture 5 Linear Correlation\nLecture 6 Linear Correlation\nLecture 7 Regression math\nLecture 8 Probability\nLecture 9 Probability 2\nLecture 10 Continuous Random Variables\nLecture 11 The Normal Distribution\nLecture 12 Hypothesis Testing Proportion\nLecture 13 Paraemetric bootstrap Hypothesis Testing\n\nLecture 14 Confidence Intervals with Math\nLecture 17 Decision Errors\nLecture 18 Distributions and Two Proportions\nLecture 19 Hypothesis Test for a single mean\nLecture 20 Hypothesis Test for a difference of means (unpaired)\nLecture 21 ANOVA\nLecture 22 Regression with a Single Predictor"
+    "text": "These are the lectures from MTH 142, you can also find the direct links via Canvas.\nLecture 1 Statistical Thinking\nLecture 2 Study Design and Variables\nLecture 3 Categorical Data\nLecture 4 Numeric Data\nLecture 5 Linear Correlation\nLecture 6 Linear Correlation\nLecture 7 Regression math\nLecture 8 Probability\nLecture 9 Probability 2\nLecture 10 Continuous Random Variables\nLecture 11 The Normal Distribution\nLecture 12 Hypothesis Testing Proportion\nLecture 13 Parametric bootstrap Hypothesis Testing\n\nLecture 14 Confidence Intervals with Math\nLecture 17 Decision Errors\nLecture 18 Distributions and Two Proportions\nLecture 19 Hypothesis Test for a single mean\nLecture 20 Hypothesis Test for a difference of means (unpaired)\nLecture 21 ANOVA\nLecture 22 Regression with a Single Predictor"
   },
   {
     "objectID": "lectures/7_regression-by-hand.html#this-is-a-bonus-lecture",
@@ -1936,7 +1936,7 @@
     "href": "lectures/13_parametric_boot.html#calculate-p-hat",
     "title": "Bootstrap Hypothesis Test",
     "section": "Calculate p-hat",
-    "text": "Calculate p-hat\nWe already know \\(\\hat{p} = 0.65\\). But if we didn’t we could do this:\n\np_hat &lt;- clinic_sample  |&gt;\n  # Telling R what we care about with specify \n  specify(response = has_disease, success = \"disease\") |&gt;\n  \n  # Calculating the proportion\n  calculate(stat = \"prop\")\n\n#Notice how we saved p_hat for later use. \np_hat\n\nResponse: has_disease (factor)\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1  0.65"
+    "text": "Calculate p-hat\nWe can calculate \\(\\hat{p} = \\frac{13}{20} = 0.65\\). But could do this:\n\np_hat &lt;- clinic_sample  |&gt;\n  # Telling R what we care about with specify \n  specify(response = has_disease, success = \"disease\") |&gt;\n  \n  # Calculating the proportion\n  calculate(stat = \"prop\")\n\n#Notice how we saved p_hat for later use. \np_hat\n\nResponse: has_disease (factor)\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1  0.65"
   },
   {
     "objectID": "lectures/13_parametric_boot.html#create-bootstrap-distribution-w-infer",
@@ -1985,7 +1985,7 @@
     "href": "lectures/13_parametric_boot.html#should-we-do-this-problem-again-with-a-mathematical-model.",
     "title": "Bootstrap Hypothesis Test",
     "section": "Should we do this problem again with a mathematical model.",
-    "text": "Should we do this problem again with a mathematical model.\nWe should be hesitant, it does not meet the success-failure criterion."
+    "text": "Should we do this problem again with a mathematical model.\nWe should be hesitant, it does not meet the success-failure criterion and the sample is small."
   },
   {
     "objectID": "lectures/13_parametric_boot.html#problem-11-twice",
@@ -2041,7 +2041,7 @@
     "href": "lectures/13_parametric_boot.html#add-the-p-value-to-graph",
     "title": "Bootstrap Hypothesis Test",
     "section": "Add the p-value to graph",
-    "text": "Add the p-value to graph\n\nvisualize(null_distn_one_prop) +\n  shade_p_value(obs_stat = p_hat, direction = \"both\")"
+    "text": "Add the p-value to graph\n\nvisualize(null_distn_one_prop) +\n  shade_p_value(obs_stat = p_hat, direction = \"less\")"
   },
   {
     "objectID": "lectures/13_parametric_boot.html#get_pvalue",
@@ -2579,8 +2579,8 @@
     "objectID": "lectures/13_parametric_boot.html#mathematical-vs.-simulation",
     "href": "lectures/13_parametric_boot.html#mathematical-vs.-simulation",
     "title": "Bootstrap Hypothesis Test",
-    "section": "Mathematical vs. simulation",
-    "text": "Mathematical vs. simulation\nBoth methods are valid and often end at the same conclusion\nMath uses formula based on conditions which must be checked. A theoretical distribution is built and probabilities calculates.\nAlternatively a simulated distribution is built, which makes a simulated sampling distribution which is very similar to the theoretical distribution, conditions can be relaxed because we can visibly verify that the distribution is normal."
+    "section": "Mathematical vs. Simulation",
+    "text": "Mathematical vs. Simulation\nBoth methods are valid and often end at the same conclusion\nMath uses formula based on conditions which must be checked. A theoretical distribution is built and probabilities calculated.\nA simulated distribution is built from resampling the sample. Conditions can be relaxed as we can visibly verify that the distribution is normal."
   },
   {
     "objectID": "lectures/13_parametric_boot.html#homework",
@@ -2608,7 +2608,7 @@
     "href": "lectures/13_parametric_boot.html#last-example",
     "title": "Bootstrap Hypothesis Test",
     "section": "Last example",
-    "text": "Last example\nProblem 11 twice\nWe’ll do it once with the parametric bootstrap and once with a mathematical model."
+    "text": "Last example\nProblem 11, Ch 16\nStatistics and employment In a large university where 70% of the full-time students are employed at least 5 hours per week, the members of the Statistics Department wonder if a smaller proportion of their students work at least 5 hours per week. They randomly sample 25 majors and find that 15 of the students work 5 or more hours each week."
   },
   {
     "objectID": "lectures/13_parametric_boot.html#make-sample-1",
