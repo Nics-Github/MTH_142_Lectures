@@ -390,4 +390,4 @@ pvalue
 
 Fail to reject the null hypothesis. It seems that stats majors work the same amount as other students based on our sample.
 
-Could have made a type two error. We failed to reject the null hypothesis when it was correct.
+Could have made a type two error. We failed to reject the null hypothesis when it was incorrect.

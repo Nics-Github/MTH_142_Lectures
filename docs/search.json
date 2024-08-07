@@ -2055,7 +2055,7 @@
     "href": "lectures/13_parametric_boot.html#make-conclusion",
     "title": "Bootstrap Hypothesis Test",
     "section": "Make conclusion",
-    "text": "Make conclusion\nFail to reject the null hypothesis. It seems that stats majors work the same amount as other students based on our sample.\nCould have made a type two error. We failed to reject the null hypothesis when it was correct."
+    "text": "Make conclusion\nFail to reject the null hypothesis. It seems that stats majors work the same amount as other students based on our sample.\nCould have made a type two error. We failed to reject the null hypothesis when it was incorrect."
   },
   {
     "objectID": "lectures/13_parametric_boot.html#again-with-math.",
