@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Schwab">
-  <title>MTH 142 Online - Hypothesis Testing</title>
+  <title>MTH 142 Online - Confidence Intervals with a proportion</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -29,71 +29,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -391,7 +326,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Hypothesis Testing</h1>
+  <h1 class="title">Confidence Intervals with a proportion</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -402,27 +337,144 @@ Schwab
 </div>
 
 </section>
-<section id="reading" class="slide level2">
-<h2>Reading</h2>
-<p><a href="https://openintro-ims.netlify.app/inference-one-prop">Read chapter 16 on hypothesis testing</a></p>
+<section id="practice-making-ci-with-proportions" class="slide level2">
+<h2>Practice Making CI with proportions</h2>
 </section>
-<section id="example-ebola" class="slide level2">
-<h2>Example: Ebola</h2>
-<div>
+<section id="find-the-confidence-interval-for" class="slide level2">
+<h2>Find the confidence interval for:</h2>
+<ol type="1">
+<li>The true number of US women who were married before age 30.</li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+    age over_30 
+  &lt;int&gt; &lt;chr&gt;   
+1    32 Over_30 
+2    25 Under_30</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>The true proportion of women who smoke while pregnant in the US.</li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 13
+   fage  mage mature      weeks premie visits gained weight lowbirthweight sex  
+  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;
+1    34    34 younger mom    37 full …     14     28   6.96 not low        male 
+2    36    31 younger mom    41 full …     12     41   8.86 not low        fema…
+3    37    36 mature mom     37 full …     10     28   7.51 not low        fema…
+4    NA    16 younger mom    38 full …     NA     29   6.19 not low        male 
+5    32    31 younger mom    36 premie     12     48   6.75 not low        fema…
+6    32    26 younger mom    39 full …     14     45   6.69 not low        fema…
+# ℹ 3 more variables: habit &lt;chr&gt;, marital &lt;chr&gt;, whitemom &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="ci-mathematically" class="slide level2">
+<h2>CI mathematically</h2>
+<p>We build the CI around the sample proportion.</p>
+<p>Assume</p>
+<p><span class="math display">\[
+\hat{p} \sim N(p,se)
+\]</span></p>
+<ol type="1">
+<li><p>We’ll need <span class="math inline">\(\hat{p}\)</span> and <span class="math inline">\(\text{se}= \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\)</span></p></li>
+<li><p>We also need the z score that goes with the confidence interval we are looking for.</p></li>
+<li><p><span class="math inline">\(\hat{p} \pm z_{score} \times se\)</span></p></li>
+</ol>
+</section>
+<section id="remember-these-z-scores" class="slide level2">
+<h2>Remember these z-scores</h2>
+<table class="caption-top">
+<caption>z-scores you should know</caption>
+<thead>
+<tr class="header">
+<th>CI</th>
+<th>Z-score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>90%</td>
+<td><span class="math inline">\(z_{0.05}=1.645\)</span></td>
+</tr>
+<tr class="even">
+<td>95%</td>
+<td><span class="math inline">\(z_{0.025}=1.96\)</span></td>
+</tr>
+<tr class="odd">
+<td>99.7%</td>
+<td><span class="math inline">\(z_{0.005}=2.968\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how-to-find-zscore-with-qnorm" class="slide level2">
+<h2>How to find zscore with <code>qnorm()</code></h2>
+<p><code>qnorm()</code> finds the quantile that goes with a pvalue (probability)</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.959964</code></pre>
+</div>
+</div>
+<p><code>pnorm()</code> finds a pvalue from a quantile.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.975</code></pre>
+</div>
+</div>
+</section>
+<section id="the-distribution-of-sampling-proportions" class="slide level2">
+<h2>The distribution of sampling proportions</h2>
+<p>Compare vs.&nbsp;bootstrap distributions.</p>
+</section>
+<section id="lets-make-a-95-ci" class="slide level2">
+<h2>Let’s make a 95% CI</h2>
+<p>Calculate these: <span class="math inline">\(\hat{p}\)</span> and <span class="math inline">\(\text{se}= \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\)</span></p>
+<p><span class="math inline">\(\hat{p} \pm z_{score} \times se\)</span></p>
+</section>
+<section id="assumptions-for-a-single-parameter" class="slide level2">
+<h2>Assumptions for a single parameter</h2>
+<p>Independent and “large” sample.</p>
+<p>Success-Failure Condition</p>
+<p>Why do we need to assume this:</p>
+<p><span class="math display">\[
+\hat{p} \sim N(p,se)
+\]</span></p>
+</section>
+<section id="the-central-limit-theroem" class="title-slide slide level1 center">
+<h1>The Central Limit Theroem</h1>
+
+</section>
+
+<section id="notation" class="title-slide slide level1 center">
+<h1>Notation</h1>
+<p><span class="math display">\[ \hat{p} \sim N(p,SE)\]</span></p>
+<p>With <span class="math inline">\(SE= \sqrt{\frac{p(1-p)}{n}}\)</span></p>
+<p>or</p>
+<p><span class="math inline">\(SE= \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\)</span></p>
+</section>
+
+<section>
+<section id="rules-of-thumb" class="title-slide slide level1 center">
+<h1>Rules of thumb</h1>
+<div class="{incremental}">
 <ul>
-<li class="fragment"><p>Pretend: We are studying how New Yorkers feel about a mandatory 14 day quarantine for Ebola exposure.</p></li>
-<li class="fragment"><p>We ask: do you favor a “mandatory 14-day quarantine for anyone who has come in contact with an Ebola patient?”</p></li>
+<li><p>The operations need to be independent.</p></li>
+<li><p>n should be large</p></li>
+<li><p>Success-Failure Condition</p>
+<ul>
+<li><p><span class="math inline">\(np &gt;=10\)</span> and</p></li>
+<li><p><span class="math inline">\(n(1-p) &gt;= 10\)</span></p></li>
+</ul></li>
 </ul>
 </div>
-<p><a href="https://en.wikipedia.org/wiki/Ebola_virus_cases_in_the_United_States">Ebola in New York City</a></p>
 </section>
-<section id="survey-data" class="slide level2">
-<h2>Survey Data</h2>
-<p>Our question: We want to know how New Yorkers feel on quarantine of Ebola after the COVID-19 pandemic.</p>
-</section>
-<section id="the-2014-data" class="slide level2">
-<h2>The 2014 data</h2>
-<p>We have past data to compare to from 2014. Its called <code>ebola_survey</code> and is our best guess as how New Yorkers felt about mandatory quarantine pre pandemic. This will be our assumed <span class="math inline">\(p\)</span>.</p>
+<section id="quarantine-again" class="slide level2">
+<h2>Quarantine again</h2>
+<p>We ask 1042 New Yorkers if they are for quarantining people who have been exposed to ebola. The results are below.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
@@ -432,108 +484,14 @@ Schwab
 2 favor        854</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(p= 854/1042 \approx 0.82\)</span> This is a reasonable estimate for <em>p</em> because we have not other data to the contrary.</p>
-</section>
-<section id="lets-now-assume-we-did-a-follow-up" class="slide level2">
-<h2>Let’s now assume we did a follow up:</h2>
-<p>We ask 1000 people if they favor a mandatory 14 day quarantine for individuals that have been in contact with Ebola.</p>
-<p>Here are the results.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 2
-  against favor
-    &lt;dbl&gt; &lt;dbl&gt;
-1     486   514</code></pre>
-</div>
-</div>
-<p>And so <span class="math inline">\(\hat{p} = 514/1000 = 0.514\)</span> Which seems very different from <span class="math inline">\(p=0.82\)</span></p>
-</section>
-<section id="p-vs-hatp" class="slide level2">
-<h2>p vs <span class="math inline">\(\hat{p}\)</span></h2>
-<div>
 <ul>
-<li class="fragment"><p><span class="math inline">\(\hat{p}\)</span> - the sample statistic. It is a proportion in this case.</p>
-<ul>
-<li class="fragment">This is how the current sample of New Yorkers feel about a mandatory quarantine.</li>
-</ul></li>
-<li class="fragment"><p>p - The assumed population parameter, also a proportion.</p>
-<ul>
-<li class="fragment">We assume this is how all New Yorkers feel about a mandatory quarantine.</li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section id="the-question." class="slide level2">
-<h2>The question.</h2>
-<blockquote>
-<p>If the sentiment from 2014 New Yorkers is unchanged today, what is the probability we would have gotten <span class="math inline">\(\hat{p} = 0.514\)</span> based on the 2014 sample?</p>
-</blockquote>
-<div>
-<ul>
-<li class="fragment"><p>Is it likely or unlikely</p>
-<ul>
-<li class="fragment"><p>Likely will be anything more than <span class="math inline">\(\alpha = 0.05\)</span></p></li>
-<li class="fragment"><p>If less than 0.05, we reject <span class="math inline">\(H_0\)</span></p></li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section id="notation" class="slide level2">
-<h2>Notation</h2>
-<p>Hypothesis testing with Proportions</p>
-<p><span class="math display">\[
-H_0: p = 0.82 \\
-H_A: p \ne 0.82
-\]</span></p>
-<p>Null and Alternative hypotheses.</p>
-<p>We assume the null hypothesis is true and build a theoretical sampling distribution from that.</p>
-</section>
-<section id="the-central-limit-theorem" class="slide level2">
-<h2>The Central Limit Theorem</h2>
-<p>This is what allows us to build the sampling distribution.</p>
-<blockquote>
-<p>If we look at a proportion and the scenario satisfies certain conditions, then the distribution of sample proportions will appear to follow a bell-shaped curve called the <em>normal distribution</em>.</p>
-</blockquote>
-<p>This is the point of the recent R Assignment. If we could sample repeatedly from a population, the shape from the statistics in those samples would be normal.</p>
-</section>
-<section id="condition-on-h_0" class="slide level2">
-<h2>Condition on <span class="math inline">\(H_0\)</span></h2>
-<p>Proportions:</p>
-<ul>
-<li><p>Success Failure condition</p>
-<ul>
-<li><p>10 successes or <span class="math inline">\(n(p_0) &gt; 10\)</span></p></li>
-<li><p>10 failures or <span class="math inline">\(n(1-p_0) &gt; 10\)</span></p></li>
-</ul></li>
-<li><p>Large Independent Samples (n&gt;30)</p></li>
+<li><p>Write the notation for the theoretical sampling distribution.</p></li>
+<li><p>Make a 90, 95 and 99.7% CI for those against and interpret.</p></li>
 </ul>
 </section>
-<section id="draw-the-sampling-distribution" class="slide level2">
-<h2>Draw the Sampling Distribution</h2>
-<p><span class="math display">\[ p \sim N(p_0,SE)\]</span></p>
-<p>With <span class="math display">\[SE= \sqrt{\frac{p_0(1-p_0)}{n}}\]</span></p>
-<p>note that n is the sample size from our current study.</p>
-</section>
-<section id="calculate-pvalue" class="slide level2">
-<h2>Calculate pvalue</h2>
-<p>What is the probability of getting the <span class="math inline">\(\hat{p}\)</span> from our sample?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>SE <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fl">0.82</span><span class="sc">*</span>(<span class="dv">1</span><span class="fl">-0.82</span>)<span class="sc">/</span><span class="dv">1000</span>)</span>
-<span id="cb3-2"><a></a></span>
-<span id="cb3-3"><a></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">0.514</span>, <span class="at">mean =</span> <span class="fl">0.82</span>, <span class="at">sd =</span> SE )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.773057e-140</code></pre>
-</div>
-</div>
-</section>
-<section id="conclusion" class="slide level2">
-<h2>Conclusion</h2>
-<p>With a p-value of zero it is extremely unlikely that we would have gotten 0.514 if the true distribution was centered at 0.82. So the distribution is likely not really centered around 0.82 and so we reject the null hypothesis that p=0.82.</p>
-<p>So the true proportion of New Yorkers that believe there should be a mandatory 14 day quarantine is not 0.82, but some other number.</p>
-</section>
-<section id="practice-1.-exclusive-relationships" class="slide level2">
-<h2>Practice 1. Exclusive relationships</h2>
-<p>Have a majority of college students had more than 1 <code>exclusive_relationship</code>?</p>
+<section id="exclusive-relationships" class="slide level2">
+<h2>Exclusive relationships</h2>
+<p>What is the proportion of college students that have had more than 1 <code>exclusive_relationships</code>?</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
@@ -546,72 +504,28 @@ H_A: p \ne 0.82
 </div>
 <ul>
 <li><p>Check Conditions.</p></li>
-<li><p>Do the test with math.</p></li>
-<li><p>Do the test with simulation.</p></li>
+<li><p>Write the notation for the theoretical sampling distribution.</p></li>
+<li><p>Make a 90, 95 and 99.7% CI for those against and interpret.</p></li>
 </ul>
 </section>
-<section id="with-math." class="slide level2">
-<h2>With math.</h2>
-<p>We are testing against 50%. We’ve already checked the conditions for the mathematical test. Now we:</p>
-<ol type="1">
-<li><del>Check conditions</del></li>
-<li>Write hypothesis notation.</li>
-<li>Write the notation for the distribution of sample proportions.
-<ol type="i">
-<li>find the theoretical proportion</li>
-<li>find the standard error</li>
-</ol></li>
-<li>Find the probability we would get <span class="math inline">\(\hat{p} = 152/203 = 0.749\)</span> based on the null hypothesis.</li>
-<li>Make the conclusion.</li>
+<section id="iphones" class="slide level2">
+<h2>iphones</h2>
+<ol start="2" type="a">
+<li>In a sample of 300 students, 68% said they own an iPod and a smart phone. Compute a 97% confidence interval for the true percent of students who own an iPod and a smartphone.<sup>1</sup></li>
 </ol>
-</section>
-<section id="hypothesis-notation" class="slide level2">
-<h2>Hypothesis notation</h2>
-<p><span class="math display">\[
-H_0: p = 0.5 \\
-H_A: p &gt; 0.5
-\]</span></p>
-<p><span class="math display">\[
-\alpha = 0.05
-\]</span></p>
-</section>
-<section id="notation-for-the-sampling-distribution" class="slide level2">
-<h2>Notation for the sampling distribution</h2>
-<p>We have <span class="math inline">\(p =0.5\)</span> We need to find the standard error.</p>
-<p><span class="math display">\[
-SE = \sqrt{\frac{(p)(1-p)}{n}}=\sqrt{\frac{(0.5)(0.5)}{203}} = 0.03509312
-\]</span></p>
-<p><span class="math display">\[
-p \sim N(p = 0.5, SE = 0.035)
-\]</span></p>
-</section>
-<section id="probability-of-hatp" class="slide level2">
-<h2>Probability of <span class="math inline">\(\hat{p}\)</span></h2>
-<p>If the distribution from the last slide is correct what is the probability we would find <span class="math inline">\(\hat{p}=0.749\)</span> from our sample.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">normTail</span>(<span class="at">m =</span> <span class="fl">0.5</span>, <span class="at">s =</span> <span class="fl">0.03509312</span>, <span class="at">U =</span> <span class="fl">0.7487685</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">0.7487685</span> , <span class="at">mean=</span><span class="fl">0.5</span>,<span class="at">sd =</span> <span class="fl">0.03509312</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 6.763449e-13</code></pre>
-</div>
-</div>
-<img data-src="12_hypothesis_test_prop_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
-<section id="conclusion-1" class="slide level2">
-<h2>Conclusion</h2>
-<p>We get 6.763449e-13 (0.0000000000006), which is much smaller than 0.05. We reject the null hypothesis and state that its very likely that a majority of students have been in more than one exclusive relationship.</p>
-</section>
-<section id="decision-error" class="slide level2">
-<h2>Decision Error</h2>
-<p>We could have made a type 1 error, and rejected the null hypothesis if it were actually true.</p>
-<p>More on decision errors later.</p>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>This and the previous problem were from a text called <a href="https://openstax.org/books/introductory-statistics/pages/8-3-a-population-proportion">Introductory Statistics</a></p></li></ol></aside></section>
+<section id="worse-off" class="slide level2">
+<h2>Worse off?</h2>
+<p>Every week the Yougov/The Economist do a survey from a representative sample of about 1500 adults. <a href="https://today.yougov.com/about/panel-methodology">methodology</a> On March 4, 2024 people were asked about their personal finances. See the results <a href="https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_TYCEeIV.pdf#table.143">here</a>.</p>
+<p>Find a CI for the true proportion of Americans who feel they are worse off financially than a year ago.</p>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section>
+</section></section>
+
     </div>
   </div>
 

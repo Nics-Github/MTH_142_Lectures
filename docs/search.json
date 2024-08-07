@@ -2006,7 +2006,7 @@
     "href": "lectures/13_parametric_boot.html#make-sample",
     "title": "Bootstrap Hypothesis Test",
     "section": "Make sample",
-    "text": "Make sample\nNothing wrong with copying and editing code from above.\n\n# This makes a 60% success sample. \n\nmajor_sample &lt;-   c(rep(\"yes\", 15), rep(\"no\", 10))\n\n# This saves the sample as a dataframe\nmajor_sample &lt;- as.data.frame(major_sample)\n\n# This changed the name of the variable to \"has_disease\"\nnames(major_sample) &lt;-\"work\""
+    "text": "Make sample\n\n# This creates a vector of 152 \"Trues\" and 51 \"Falses\"\nmore_than_1_relationship &lt;- c(\n  rep(TRUE, 152),\n  rep(FALSE, 51)\n) \n\n#This takes the vector and saves it as a data frame so we can us it. \nmore_than_1_relationship &lt;- as.data.frame(more_than_1_relationship)"
   },
   {
     "objectID": "lectures/13_parametric_boot.html#make-hypotheses",
@@ -2076,7 +2076,7 @@
     "href": "lectures/13_parametric_boot.html#conclusion",
     "title": "Bootstrap Hypothesis Test",
     "section": "Conclusion",
-    "text": "Conclusion\nWe fail to reject the null hypothesis at the 5% significance level. 0.13 &gt; 0.05"
+    "text": "Conclusion\nThe conclusion is the same as the first lecture from homework 6. The pvalue is much smaller than 0.05 so it is likely that a majority of students have had more than 1 exclusive relationship."
   },
   {
     "objectID": "lectures/12_hypothesis_test_prop.html#example-ebola",
@@ -2139,7 +2139,7 @@
     "href": "lectures/12_hypothesis_test_prop.html#condition-on-h_0",
     "title": "Hypothesis Testing",
     "section": "Condition on \\(H_0\\)",
-    "text": "Condition on \\(H_0\\)\nProportions:\n\nSuccess Failure condition\n\n30 successes or \\(n(p_0) &gt; 10\\)\n30 failures or \\(n(1-p_0) &gt; 10\\)\n\nLarge Independent Samples (n&gt;30)"
+    "text": "Condition on \\(H_0\\)\nProportions:\n\nSuccess Failure condition\n\n10 successes or \\(n(p_0) &gt; 10\\)\n10 failures or \\(n(1-p_0) &gt; 10\\)\n\nLarge Independent Samples (n&gt;30)"
   },
   {
     "objectID": "lectures/12_hypothesis_test_prop.html#draw-the-sampling-distribution",
@@ -2153,7 +2153,7 @@
     "href": "lectures/12_hypothesis_test_prop.html#conclusion",
     "title": "Hypothesis Testing",
     "section": "Conclusion",
-    "text": "Conclusion\nWhat is the probability of getting the \\(\\hat{p}\\) from our sample?\n\nSE = sqrt(0.82*(1-0.82)/1000)\n\npnorm(q = 0.514, mean = 0.82, sd = SE )\n\n[1] 2.773057e-140"
+    "text": "Conclusion\nWith a p-value of zero it is extremely unlikely that we would have gotten 0.514 if the true distribution was centered at 0.82. So the distribution is likely not really centered around 0.82 and so we reject the null hypothesis that p=0.82.\nSo the true proportion of New Yorkers that believe there should be a mandatory 14 day quarantine is not 0.82, but some other number."
   },
   {
     "objectID": "lectures/12_hypothesis_test_prop.html#practice-1.-exclusive-relationships",
@@ -2167,7 +2167,7 @@
     "href": "lectures/12_hypothesis_test_prop.html#with-math.",
     "title": "Hypothesis Testing",
     "section": "With math.",
-    "text": "With math.\nWe are testing against 50%. We’ve already checked the conditions for the mathematical test. Now we:\n\nCheck conditions\nWrite hypothesis notation.\nWrite the notation for the distribution of sample proportions.\n\nfind the theoretical mean\nfind the standard error\n\nFind the probability we would get \\(\\hat{p} = 152/203 = 0.749\\) based on the null hypothesis.\nMake the conclusion."
+    "text": "With math.\nWe are testing against 50%. We’ve already checked the conditions for the mathematical test. Now we:\n\nCheck conditions\nWrite hypothesis notation.\nWrite the notation for the distribution of sample proportions.\n\nfind the theoretical proportion\nfind the standard error\n\nFind the probability we would get \\(\\hat{p} = 152/203 = 0.749\\) based on the null hypothesis.\nMake the conclusion."
   },
   {
     "objectID": "lectures/12_hypothesis_test_prop.html#hypothesis-notation",
@@ -2181,7 +2181,7 @@
     "href": "lectures/12_hypothesis_test_prop.html#notation-for-the-sampling-distribution",
     "title": "Hypothesis Testing",
     "section": "Notation for the sampling distribution",
-    "text": "Notation for the sampling distribution\nWe have \\(\\mu =0.5\\) We need to find the standard error.\n\\[\nSE = \\sqrt{\\frac{(p)(1-p)}{n}}=\\sqrt{\\frac{(0.5)(0.5)}{203}} = 0.03509312\n\\]\n\\[\np \\sim N(\\mu = 0.5, SE = 0.035)\n\\]"
+    "text": "Notation for the sampling distribution\nWe have \\(p =0.5\\) We need to find the standard error.\n\\[\nSE = \\sqrt{\\frac{(p)(1-p)}{n}}=\\sqrt{\\frac{(0.5)(0.5)}{203}} = 0.03509312\n\\]\n\\[\np \\sim N(p = 0.5, SE = 0.035)\n\\]"
   },
   {
     "objectID": "lectures/12_hypothesis_test_prop.html#probability-of-hatp",
@@ -2525,5 +2525,194 @@
     "title": "Hypothesis Testing",
     "section": "Reading",
     "text": "Reading\nRead chapter 16 on hypothesis testing"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#more-than-1-relationship-with-simulation",
+    "href": "lectures/13_parametric_boot.html#more-than-1-relationship-with-simulation",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "More than 1 relationship with simulation",
+    "text": "More than 1 relationship with simulation\n\nMake sample\nWrite hypothesis notation.\nCreate the simulated distribution.\nFind the probability we would get \\(\\hat{p} = 152/203 = 0.749\\) based on the null hypothesis.\nMake the conclusion."
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#hypothesis-notation",
+    "href": "lectures/13_parametric_boot.html#hypothesis-notation",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Hypothesis notation",
+    "text": "Hypothesis notation\nThis part is the same.\n\\[\nH_0: p = 0.5 \\\\\nH_A: p &gt; 0.5\n\\]\n\\[\n\\alpha = 0.05\n\\]"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#side-note-the-pipe",
+    "href": "lectures/13_parametric_boot.html#side-note-the-pipe",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Side note the pipe |>",
+    "text": "Side note the pipe |&gt;\nYou may have noticed the occasional symbols |&gt; or %&gt;%.\nThis is called a pipe and it is an R operator that takes the output of the previous line of code and puts it into the first argument of the next line of code.\nIt often makes code easier to read, but can be confusing for first time programmers.\nFor this reason I have been avoiding it, until now."
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#create-simulated-distribution",
+    "href": "lectures/13_parametric_boot.html#create-simulated-distribution",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Create simulated distribution",
+    "text": "Create simulated distribution\n\nlibrary(infer)\n\n# Saving all the proportions we'll make\nnull_distn_one_prop &lt;- more_than_1_relationship  |&gt;\n  \n  # Here we tell specify what is a success\n  specify(response = more_than_1_relationship, success = \"TRUE\") |&gt;\n  \n  # This is where we set the null hypothesis\n  hypothesize(null = \"point\", p = 0.5) |&gt;\n  \n  # Choosing 10000 replications\n  generate(reps = 5000, type = \"draw\") |&gt;\n  \n  # This is \n  calculate(stat = \"prop\")"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#examine-the-samples.",
+    "href": "lectures/13_parametric_boot.html#examine-the-samples.",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Examine the samples.",
+    "text": "Examine the samples.\n\n#visualize is a graphing function, based on ggplot, for the infer package. \n\nvisualise(data = null_distn_one_prop)"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#calculate-the-p-value-based-on-simulation",
+    "href": "lectures/13_parametric_boot.html#calculate-the-p-value-based-on-simulation",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Calculate the p-value based on simulation",
+    "text": "Calculate the p-value based on simulation\nVisualize the pvalue\n\nvisualise(data = null_distn_one_prop) +\n  shade_p_value(obs_stat = 0.749, direction = \"greater\")"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#calculate-the-p-value",
+    "href": "lectures/13_parametric_boot.html#calculate-the-p-value",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Calculate the p-value",
+    "text": "Calculate the p-value\n\nget_p_value(x = null_distn_one_prop, \n            obs_stat = 0.749,\n            direction = 'greater')\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1       0"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#mathematical-vs.-simulation",
+    "href": "lectures/13_parametric_boot.html#mathematical-vs.-simulation",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Mathematical vs. simulation",
+    "text": "Mathematical vs. simulation\nBoth methods are valid and often end at the same conclusion\nMath uses formula based on conditions which must be checked. A theoretical distribution is built and probabilities calculates.\nAlternatively a simulated distribution is built, which makes a simulated sampling distribution which is very similar to the theoretical distribution, conditions can be relaxed because we can visibly verify that the distribution is normal."
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#homework",
+    "href": "lectures/13_parametric_boot.html#homework",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Homework",
+    "text": "Homework\nOn your homework you will use the math formula to make a theoretical distribution and calculate probabilities."
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#r-assignment",
+    "href": "lectures/13_parametric_boot.html#r-assignment",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "R Assignment",
+    "text": "R Assignment\nYou will make a simulated distribution of your own and find pvalues in a future R Assignment.\nWe’ll look at another example in the next video."
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#another-example",
+    "href": "lectures/13_parametric_boot.html#another-example",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Another example",
+    "text": "Another example\nSuppose it is known that nationally out of 100 people struggling with drug addiction, 40 of them will have some blood born disease.\nA doctor at a clinic decides to test this hypothesis for her locality and samples 20 of her own patients. Of the 20 patients she finds 13 of them have a blood born disease.\nIs this evidence enough to say that the locality is different than the proportion nationally?"
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#last-example",
+    "href": "lectures/13_parametric_boot.html#last-example",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Last example",
+    "text": "Last example\nProblem 11 twice\nWe’ll do it once with the parametric bootstrap and once with a mathematical model."
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#make-sample-1",
+    "href": "lectures/13_parametric_boot.html#make-sample-1",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Make sample",
+    "text": "Make sample\nNothing wrong with copying and editing code from above.\n\n# This makes a 60% success sample. \n\nmajor_sample &lt;-   c(rep(\"yes\", 15), rep(\"no\", 10))\n\n# This saves the sample as a dataframe\nmajor_sample &lt;- as.data.frame(major_sample)\n\n# This changed the name of the variable to \"has_disease\"\nnames(major_sample) &lt;-\"work\""
+  },
+  {
+    "objectID": "lectures/13_parametric_boot.html#conclusion-2",
+    "href": "lectures/13_parametric_boot.html#conclusion-2",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Conclusion",
+    "text": "Conclusion\nWe fail to reject the null hypothesis at the 5% significance level. 0.13 &gt; 0.05"
+  },
+  {
+    "objectID": "lectures/12_hypothesis_test_prop.html#calculate-pvalue",
+    "href": "lectures/12_hypothesis_test_prop.html#calculate-pvalue",
+    "title": "Hypothesis Testing",
+    "section": "Calculate pvalue",
+    "text": "Calculate pvalue\nWhat is the probability of getting the \\(\\hat{p}\\) from our sample?\n\nSE = sqrt(0.82*(1-0.82)/1000)\n\npnorm(q = 0.514, mean = 0.82, sd = SE )\n\n[1] 2.773057e-140"
+  },
+  {
+    "objectID": "lectures/14__CI_prop_mathematically.html#practice-making-ci-with-proportions",
+    "href": "lectures/14__CI_prop_mathematically.html#practice-making-ci-with-proportions",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Practice Making CI with proportions",
+    "text": "Practice Making CI with proportions"
+  },
+  {
+    "objectID": "lectures/14__CI_prop_mathematically.html#find-the-confidence-interval-for",
+    "href": "lectures/14__CI_prop_mathematically.html#find-the-confidence-interval-for",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Find the confidence interval for:",
+    "text": "Find the confidence interval for:\n\nThe true number of US women who were married before age 30.\n\n\n\n# A tibble: 2 × 2\n    age over_30 \n  &lt;int&gt; &lt;chr&gt;   \n1    32 Over_30 \n2    25 Under_30\n\n\n\nThe true proportion of women who smoke while pregnant in the US.\n\n\n\n# A tibble: 6 × 13\n   fage  mage mature      weeks premie visits gained weight lowbirthweight sex  \n  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;\n1    34    34 younger mom    37 full …     14     28   6.96 not low        male \n2    36    31 younger mom    41 full …     12     41   8.86 not low        fema…\n3    37    36 mature mom     37 full …     10     28   7.51 not low        fema…\n4    NA    16 younger mom    38 full …     NA     29   6.19 not low        male \n5    32    31 younger mom    36 premie     12     48   6.75 not low        fema…\n6    32    26 younger mom    39 full …     14     45   6.69 not low        fema…\n# ℹ 3 more variables: habit &lt;chr&gt;, marital &lt;chr&gt;, whitemom &lt;chr&gt;"
+  },
+  {
+    "objectID": "lectures/14__CI_prop_mathematically.html#ci-mathematically",
+    "href": "lectures/14__CI_prop_mathematically.html#ci-mathematically",
+    "title": "Confidence Intervals with a proportion",
+    "section": "CI mathematically",
+    "text": "CI mathematically\nWe build the CI around the sample proportion.\nAssume\n\\[\n\\hat{p} \\sim N(p,se)\n\\]\n\nWe’ll need \\(\\hat{p}\\) and \\(\\text{se}= \\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}\\)\nWe also need the z score that goes with the confidence interval we are looking for.\n\\(\\hat{p} \\pm z_{score} \\times se\\)"
+  },
+  {
+    "objectID": "lectures/14__CI_prop_mathematically.html#remember-these-z-scores",
+    "href": "lectures/14__CI_prop_mathematically.html#remember-these-z-scores",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Remember these z-scores",
+    "text": "Remember these z-scores\n\nz-scores you should know\n\n\nCI\nZ-score\n\n\n\n\n90%\n\\(z_{0.05}=1.645\\)\n\n\n95%\n\\(z_{0.025}=1.96\\)\n\n\n99.7%\n\\(z_{0.005}=2.968\\)"
+  },
+  {
+    "objectID": "lectures/14__CI_prop_mathematically.html#how-to-find-zscore-with-qnorm",
+    "href": "lectures/14__CI_prop_mathematically.html#how-to-find-zscore-with-qnorm",
+    "title": "Confidence Intervals with a proportion",
+    "section": "How to find zscore with qnorm()",
+    "text": "How to find zscore with qnorm()\nqnorm() finds the quantile that goes with a pvalue (probability)\n\n\n[1] 1.959964\n\n\npnorm() finds a pvalue from a quantile.\n\n\n[1] 0.975"
+  },
+  {
+    "objectID": "lectures/14__CI_prop_mathematically.html#the-distribution-of-sampling-proportions",
+    "href": "lectures/14__CI_prop_mathematically.html#the-distribution-of-sampling-proportions",
+    "title": "Confidence Intervals with a proportion",
+    "section": "The distribution of sampling proportions",
+    "text": "The distribution of sampling proportions\nCompare vs. bootstrap distributions."
+  },
+  {
+    "objectID": "lectures/14__CI_prop_mathematically.html#lets-make-a-95-ci",
+    "href": "lectures/14__CI_prop_mathematically.html#lets-make-a-95-ci",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Let’s make a 95% CI",
+    "text": "Let’s make a 95% CI\nCalculate these: \\(\\hat{p}\\) and \\(\\text{se}= \\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}\\)\n\\(\\hat{p} \\pm z_{score} \\times se\\)"
+  },
+  {
+    "objectID": "lectures/14__CI_prop_mathematically.html#assumptions-for-a-single-parameter",
+    "href": "lectures/14__CI_prop_mathematically.html#assumptions-for-a-single-parameter",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Assumptions for a single parameter",
+    "text": "Assumptions for a single parameter\nIndependent and “large” sample.\nSuccess-Failure Condition\nWhy do we need to assume this:\n\\[\n\\hat{p} \\sim N(p,se)\n\\]"
+  },
+  {
+    "objectID": "lectures/14__CI_prop_mathematically.html#quarantine-again",
+    "href": "lectures/14__CI_prop_mathematically.html#quarantine-again",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Quarantine again",
+    "text": "Quarantine again\nWe ask 1042 New Yorkers if they are for quarantining people who have been exposed to ebola. The results are below.\n\n\n# A tibble: 2 × 2\n  quarantine     n\n  &lt;fct&gt;      &lt;int&gt;\n1 against      188\n2 favor        854\n\n\n\nWrite the notation for the theoretical sampling distribution.\nMake a 90, 95 and 99.7% CI for those against and interpret."
+  },
+  {
+    "objectID": "lectures/14__CI_prop_mathematically.html#exclusive-relationships",
+    "href": "lectures/14__CI_prop_mathematically.html#exclusive-relationships",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Exclusive relationships",
+    "text": "Exclusive relationships\nWhat is the proportion of college students that have had more than 1 exclusive_relationships?\n\n\n# A tibble: 3 × 2\n  `num &gt; 1`     n\n  &lt;lgl&gt;     &lt;int&gt;\n1 FALSE        51\n2 TRUE        152\n3 NA           15\n\n\n\nCheck Conditions.\nWrite the notation for the theoretical sampling distribution.\nMake a 90, 95 and 99.7% CI for those against and interpret."
+  },
+  {
+    "objectID": "lectures/14__CI_prop_mathematically.html#iphones",
+    "href": "lectures/14__CI_prop_mathematically.html#iphones",
+    "title": "Confidence Intervals with a proportion",
+    "section": "iphones",
+    "text": "iphones\n\nIn a sample of 300 students, 68% said they own an iPod and a smart phone. Compute a 97% confidence interval for the true percent of students who own an iPod and a smartphone.1\n\nThis and the previous problem were from a text called Introductory Statistics"
+  },
+  {
+    "objectID": "lectures/14__CI_prop_mathematically.html#worse-off",
+    "href": "lectures/14__CI_prop_mathematically.html#worse-off",
+    "title": "Confidence Intervals with a proportion",
+    "section": "Worse off?",
+    "text": "Worse off?\nEvery week the Yougov/The Economist do a survey from a representative sample of about 1500 adults. methodology On March 4, 2024 people were asked about their personal finances. See the results here.\nFind a CI for the true proportion of Americans who feel they are worse off financially than a year ago."
   }
 ]
