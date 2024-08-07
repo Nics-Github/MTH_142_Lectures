@@ -18,31 +18,6 @@ library(openintro)
 
 ## Practice Making CI with proportions
 
-## Find the confidence interval for:
-
-1.  The true number of US women who were married before age 30.
-
-```{r}
-#| code-fold: true
-
-library(openintro)
-
-age_at_mar <- age_at_mar |> 
-  mutate(over_30 =
-           case_when(
-             age > 30 ~ "Over_30",
-             TRUE ~ "Under_30"
-           ))
-head(age_at_mar, 2)
-
-```
-
-2.  The true proportion of women who smoke while pregnant in the US.
-
-```{r}
-head(births14)
-
-```
 
 ## CI mathematically
 
@@ -75,7 +50,7 @@ $$
 `qnorm()` finds the quantile that goes with a pvalue (probability)
 
 ```{r}
-qnorm(p = 0.975, mean = 0, sd = 1 )
+qnorm(p = 0.95, mean = 0, sd = 1 )
 ```
 
 `pnorm()` finds a pvalue from a quantile.
@@ -83,10 +58,6 @@ qnorm(p = 0.975, mean = 0, sd = 1 )
 ```{r}
 pnorm(q=1.959964 , mean = 0, sd = 1 )
 ```
-
-## The distribution of sampling proportions
-
-Compare vs. bootstrap distributions.
 
 ## Let's make a 95% CI
 
@@ -160,24 +131,8 @@ exclusive_relationship |>
 
 -   Make a 90, 95 and 99.7% CI for those against and interpret.
 
-## iphones
-
-b.  In a sample of 300 students, 68% said they own an iPod and a smart phone. Compute a 97% confidence interval for the true percent of students who own an iPod and a smartphone.[^1]
-
-[^1]: This and the previous problem were from a text called [Introductory Statistics](https://openstax.org/books/introductory-statistics/pages/8-3-a-population-proportion)
-
 ## Worse off?
 
 Every week the Yougov/The Economist do a survey from a representative sample of about 1500 adults. [methodology](https://today.yougov.com/about/panel-methodology) On March 4, 2024 people were asked about their personal finances. See the results [here](https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_TYCEeIV.pdf#table.143).
 
-Find a CI for the true proportion of Americans who feel they are worse off financially than a year ago.
-
-```{r}
-number_worse_off <- round(0.42*1556)
-not_worse_off <- 1556 -number_worse_off
-
-# This makes a data frame that mirrors the number of people who were worse off or not from the poll. 
-poll <- tibble(
-  worse_off = c(rep("Yes", number_worse_off), rep("No", not_worse_off))
-)
-```
+42% of respondants said they were worse off than a year ago. Find a CI for the true proportion of Americans who feel they are worse off financially than a year ago.

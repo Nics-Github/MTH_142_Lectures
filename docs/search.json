@@ -2664,7 +2664,7 @@
     "href": "lectures/14__CI_prop_mathematically.html#how-to-find-zscore-with-qnorm",
     "title": "Confidence Intervals with a proportion",
     "section": "How to find zscore with qnorm()",
-    "text": "How to find zscore with qnorm()\nqnorm() finds the quantile that goes with a pvalue (probability)\n\n\n[1] 1.959964\n\n\npnorm() finds a pvalue from a quantile.\n\n\n[1] 0.975"
+    "text": "How to find zscore with qnorm()\nqnorm() finds the quantile that goes with a pvalue (probability)\n\n\n[1] 1.644854\n\n\npnorm() finds a pvalue from a quantile.\n\n\n[1] 0.975"
   },
   {
     "objectID": "lectures/14__CI_prop_mathematically.html#the-distribution-of-sampling-proportions",
@@ -2713,6 +2713,6 @@
     "href": "lectures/14__CI_prop_mathematically.html#worse-off",
     "title": "Confidence Intervals with a proportion",
     "section": "Worse off?",
-    "text": "Worse off?\nEvery week the Yougov/The Economist do a survey from a representative sample of about 1500 adults. methodology On March 4, 2024 people were asked about their personal finances. See the results here.\nFind a CI for the true proportion of Americans who feel they are worse off financially than a year ago."
+    "text": "Worse off?\nEvery week the Yougov/The Economist do a survey from a representative sample of about 1500 adults. methodology On March 4, 2024 people were asked about their personal finances. See the results here.\n42% of respondants said they were worse off than a year ago. Find a CI for the true proportion of Americans who feel they are worse off financially than a year ago."
   }
 ]

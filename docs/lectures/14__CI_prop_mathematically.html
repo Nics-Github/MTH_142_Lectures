@@ -340,38 +340,6 @@ Schwab
 <section id="practice-making-ci-with-proportions" class="slide level2">
 <h2>Practice Making CI with proportions</h2>
 </section>
-<section id="find-the-confidence-interval-for" class="slide level2">
-<h2>Find the confidence interval for:</h2>
-<ol type="1">
-<li>The true number of US women who were married before age 30.</li>
-</ol>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-    age over_30 
-  &lt;int&gt; &lt;chr&gt;   
-1    32 Over_30 
-2    25 Under_30</code></pre>
-</div>
-</div>
-<ol start="2" type="1">
-<li>The true proportion of women who smoke while pregnant in the US.</li>
-</ol>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 13
-   fage  mage mature      weeks premie visits gained weight lowbirthweight sex  
-  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;
-1    34    34 younger mom    37 full …     14     28   6.96 not low        male 
-2    36    31 younger mom    41 full …     12     41   8.86 not low        fema…
-3    37    36 mature mom     37 full …     10     28   7.51 not low        fema…
-4    NA    16 younger mom    38 full …     NA     29   6.19 not low        male 
-5    32    31 younger mom    36 premie     12     48   6.75 not low        fema…
-6    32    26 younger mom    39 full …     14     45   6.69 not low        fema…
-# ℹ 3 more variables: habit &lt;chr&gt;, marital &lt;chr&gt;, whitemom &lt;chr&gt;</code></pre>
-</div>
-</div>
-</section>
 <section id="ci-mathematically" class="slide level2">
 <h2>CI mathematically</h2>
 <p>We build the CI around the sample proportion.</p>
@@ -416,7 +384,7 @@ Schwab
 <p><code>qnorm()</code> finds the quantile that goes with a pvalue (probability)</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.959964</code></pre>
+<pre><code>[1] 1.644854</code></pre>
 </div>
 </div>
 <p><code>pnorm()</code> finds a pvalue from a quantile.</p>
@@ -425,10 +393,6 @@ Schwab
 <pre><code>[1] 0.975</code></pre>
 </div>
 </div>
-</section>
-<section id="the-distribution-of-sampling-proportions" class="slide level2">
-<h2>The distribution of sampling proportions</h2>
-<p>Compare vs.&nbsp;bootstrap distributions.</p>
 </section>
 <section id="lets-make-a-95-ci" class="slide level2">
 <h2>Let’s make a 95% CI</h2>
@@ -508,16 +472,10 @@ Schwab
 <li><p>Make a 90, 95 and 99.7% CI for those against and interpret.</p></li>
 </ul>
 </section>
-<section id="iphones" class="slide level2">
-<h2>iphones</h2>
-<ol start="2" type="a">
-<li>In a sample of 300 students, 68% said they own an iPod and a smart phone. Compute a 97% confidence interval for the true percent of students who own an iPod and a smartphone.<sup>1</sup></li>
-</ol>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>This and the previous problem were from a text called <a href="https://openstax.org/books/introductory-statistics/pages/8-3-a-population-proportion">Introductory Statistics</a></p></li></ol></aside></section>
 <section id="worse-off" class="slide level2">
 <h2>Worse off?</h2>
 <p>Every week the Yougov/The Economist do a survey from a representative sample of about 1500 adults. <a href="https://today.yougov.com/about/panel-methodology">methodology</a> On March 4, 2024 people were asked about their personal finances. See the results <a href="https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_TYCEeIV.pdf#table.143">here</a>.</p>
-<p>Find a CI for the true proportion of Americans who feel they are worse off financially than a year ago.</p>
+<p>42% of respondants said they were worse off than a year ago. Find a CI for the true proportion of Americans who feel they are worse off financially than a year ago.</p>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
@@ -525,7 +483,6 @@ Schwab
 </div>
 </div>
 </section></section>
-
     </div>
   </div>
 
