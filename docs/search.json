@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Lectures from MTH 142 Fall 2024",
     "section": "",
-    "text": "These are the lectures from MTH 142, you can also find the direct links via Canvas.\nLecture 1 Statistical Thinking\nLecture 2 Study Design and Variables\nLecture 3 Categorical Data\nLecture 4 Numeric Data\nLecture 5 Linear Correlation\nLecture 6 Linear Correlation\nLecture 7 Regression math\nLecture 8 Probability\nLecture 9 Probability 2\nLecture 10 Continuous Random Variables\nLecture 11 The Normal Distribution\nLecture 12 Hypothesis Testing Proportion\nLecture 13 Parametric bootstrap Hypothesis Testing\nLecture 14 Confidence Intervals with Math\nLecture 15 Visualizing the CLT\nLecture 16 Distributions and Two Proportions\nLecture 17 Decision Errors\nLecture 19 Hypothesis Test for a single mean\nLecture 20 Hypothesis Test for a difference of means (unpaired)\nLecture 21 ANOVA\nLecture 22 Regression with a Single Predictor"
+    "text": "These are the lectures from MTH 142, you can also find the direct links via Canvas.\nLecture 1 Statistical Thinking\nLecture 2 Study Design and Variables\nLecture 3 Categorical Data\nLecture 4 Numeric Data\nLecture 5 Linear Correlation\nLecture 6 Linear Correlation\nLecture 7 Regression math\nLecture 8 Probability\nLecture 9 Probability 2\nLecture 10 Continuous Random Variables\nLecture 11 The Normal Distribution\nLecture 12 Hypothesis Testing Proportion\nLecture 13 Parametric bootstrap Hypothesis Testing\nLecture 14 Confidence Intervals with Math\nLecture 15 Visualizing the CLT\nLecture 16 Distributions and Two Proportions\nLecture 17 Decision Errors\nLecture 18 Hypothesis Test for a single mean\nLecture 19 Hypothesis Test for a difference of means (unpaired)\nLecture 21 ANOVA\nLecture 22 Regression with a Single Predictor"
   },
   {
     "objectID": "lectures/7_regression-by-hand.html#this-is-a-bonus-lecture",
@@ -3022,5 +3022,544 @@
     "title": "Two proportions",
     "section": "Libraries",
     "text": "Libraries\n\nlibrary(tidyverse)\nlibrary(openintro)"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#libraries",
+    "href": "lectures/19_single_mean.html#libraries",
+    "title": "hypothesis test for one mean",
+    "section": "Libraries",
+    "text": "Libraries\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#test-statistics",
+    "href": "lectures/19_single_mean.html#test-statistics",
+    "title": "hypothesis test for one mean",
+    "section": "Test Statistics",
+    "text": "Test Statistics\nWhat is a test statistic?\nIt is the value from your data that you can compare to a sampling (or comparison) distribution primarily for finding a p-value."
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#single-proportion",
+    "href": "lectures/19_single_mean.html#single-proportion",
+    "title": "hypothesis test for one mean",
+    "section": "Single proportion",
+    "text": "Single proportion\nThe test statistic for a single proportion is a z-score for the standard normal N(0,1):\n\\[\nT=\\frac{\\widehat{p} - p_{null}}{SE}\n\\]\nWhere \\(p_{null}\\) is the proportion under the null hypothesis."
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#diff-of-proportions",
+    "href": "lectures/19_single_mean.html#diff-of-proportions",
+    "title": "hypothesis test for one mean",
+    "section": "Diff of Proportions",
+    "text": "Diff of Proportions\nThe test statistic for a difference of proportions is also a z-score for the standard normal N(0,1):\n\\[\nT = \\frac{\\widehat{p_1} - \\widehat{p_2} - 0}{SE}\n\\]\nWhere \\(\\widehat{p_1} - \\widehat{p_2}\\) is the point estimate and 0 is the difference under the null."
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#why-did-we-compute-these",
+    "href": "lectures/19_single_mean.html#why-did-we-compute-these",
+    "title": "hypothesis test for one mean",
+    "section": "Why did we compute these?",
+    "text": "Why did we compute these?\nWe find the test statistics on the standard normal table of z-scores to be able to find a p-value.\nWe don’t really need to know how to do this because we have pnorm().\nWhen reading stats papers the phrase test statistic is still often given along side the p-value."
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#a-single-mean",
+    "href": "lectures/19_single_mean.html#a-single-mean",
+    "title": "hypothesis test for one mean",
+    "section": "A single mean",
+    "text": "A single mean\nFictional:\nWe are concerned about over-fishing depleting the food for penguin’s diets.\nLast year the average weight of Adelie penguins on Togersen island was 3900 grams.\nWe went to Togersen Island this year and weighed some penguins.\nOur data is in penguins."
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#penguin-sample",
+    "href": "lectures/19_single_mean.html#penguin-sample",
+    "title": "hypothesis test for one mean",
+    "section": "Penguin Sample",
+    "text": "Penguin Sample\n\nTogersen_penguins &lt;- penguins |&gt;\n  filter(island == \"Torgersen\") \n\nmean(Togersen_penguins$body_mass_g, na.rm = TRUE)\n\n[1] 3706.373\n\n\nIs the difference from 3900 due to chance?"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#hypothesis-test-for-a-single-mean",
+    "href": "lectures/19_single_mean.html#hypothesis-test-for-a-single-mean",
+    "title": "hypothesis test for one mean",
+    "section": "Hypothesis test for a single mean",
+    "text": "Hypothesis test for a single mean\nLet’s set up the test for the penguins\n\\[\nH_0: \\mu = 3900 \\\\\nH_a: \\mu \\ne 3900\n\\]"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#conditions",
+    "href": "lectures/19_single_mean.html#conditions",
+    "title": "hypothesis test for one mean",
+    "section": "Conditions",
+    "text": "Conditions\nLarge Independent sample\n\nNo extreme outliers\nLarger than 30\n\nor\nSmall Independent sample\n\nThe data distribution is normal.\nNo clear outliers."
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#check-our-conditions",
+    "href": "lectures/19_single_mean.html#check-our-conditions",
+    "title": "hypothesis test for one mean",
+    "section": "Check our conditions",
+    "text": "Check our conditions\n\n#Sample size \nnrow(Togersen_penguins)\n\n[1] 52\n\n# Outliers? \nggplot(Togersen_penguins)+\n  geom_boxplot(aes(x=body_mass_g))"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#what-is-the-sampling-distribution",
+    "href": "lectures/19_single_mean.html#what-is-the-sampling-distribution",
+    "title": "hypothesis test for one mean",
+    "section": "What is the sampling distribution?",
+    "text": "What is the sampling distribution?\nWe could use the sampling distribution… But its much better to use the Student t."
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#the-students-t-dist",
+    "href": "lectures/19_single_mean.html#the-students-t-dist",
+    "title": "hypothesis test for one mean",
+    "section": "The Student’s t dist",
+    "text": "The Student’s t dist\nThe student t distribution is similar to the normal distribution in shape. \nIt has wider tails. \nIt is used with confidence intervals and hypothesis testing of a single mean. \nUnlike the normal distribution it works well for small sample sizes if the population is normal distributed."
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#very-short-history",
+    "href": "lectures/19_single_mean.html#very-short-history",
+    "title": "hypothesis test for one mean",
+    "section": "Very Short History",
+    "text": "Very Short History\n\n\nWilliam Sealy Gosset\n\n\n\n\nWorked at Guiness and was interested in the chemical properties of barley. source"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#the-parameters-of-a-student-t.",
+    "href": "lectures/19_single_mean.html#the-parameters-of-a-student-t.",
+    "title": "hypothesis test for one mean",
+    "section": "The parameters of a student t.",
+    "text": "The parameters of a student t.\nThe student t takes just one parameter\n\ndf = degree of freedom.\n\n\\(df= n-1\\)"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#limit-of-t-dist-is-normal",
+    "href": "lectures/19_single_mean.html#limit-of-t-dist-is-normal",
+    "title": "hypothesis test for one mean",
+    "section": "limit of t-dist is normal",
+    "text": "limit of t-dist is normal\nAs \\(\\text{lim}_{df \\rightarrow \\infty} t_{dist} \\rightarrow N(\\mu=0,sigma=1)\\)\n\nhttps://en.wikipedia.org/wiki/Student%27s_t-distribution#/media/File:Student_t_pdf.svg"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#t-dist-is-better-than-the-normal-for-sampling-distributions.",
+    "href": "lectures/19_single_mean.html#t-dist-is-better-than-the-normal-for-sampling-distributions.",
+    "title": "hypothesis test for one mean",
+    "section": "t-dist is better than the normal for sampling distributions.",
+    "text": "t-dist is better than the normal for sampling distributions.\nYou can use either if:\n\n\nIf the sample size is large or underlying distribution is normal\nPopulation standard deviation is known \\(\\sigma\\)\nBut if population sd \\(\\sigma\\) is unknown or n is small use student t.\nIn general the t distribution works, the normal less so."
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#the-sampling-distribution-for-sample-mean",
+    "href": "lectures/19_single_mean.html#the-sampling-distribution-for-sample-mean",
+    "title": "hypothesis test for one mean",
+    "section": "The sampling distribution for sample mean:",
+    "text": "The sampling distribution for sample mean:\n\\(\\mu \\sim \\text{t}_{df}\\)\n\nThe mean of the t-dist is 0.\n\nThe mean of your sample is \\(\\bar{x}\\) and the standard error is \\(SE = \\frac{s}{\\sqrt{n}}\\)"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#what-is-df",
+    "href": "lectures/19_single_mean.html#what-is-df",
+    "title": "hypothesis test for one mean",
+    "section": "What is df?",
+    "text": "What is df?\n\n\nThe number of values that can vary when finding a mean.\nConsider that you find a mean of 3 numbers. x,y,and z.\nIf I tell you the mean is 10, you can guess any two numbers and the third is forced.\nThis mean would have 2 degrees of freedom."
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#test-statistic-for-a-mean",
+    "href": "lectures/19_single_mean.html#test-statistic-for-a-mean",
+    "title": "hypothesis test for one mean",
+    "section": "test statistic for a mean",
+    "text": "test statistic for a mean\nWe’ve skipped discussing test statistics until now, because of pnorm().\nIdeally\n\\[ T = \\frac{\\bar{x} - \\mu}{\\frac{\\sigma}{\\sqrt{n}}}\\]\nor more realistically:\n\\[ T = \\frac{\\bar{x} - \\mu}{\\frac{s_x}{\\sqrt{n}}}\\]"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#lets-finish-our-hypothesis-test",
+    "href": "lectures/19_single_mean.html#lets-finish-our-hypothesis-test",
+    "title": "hypothesis test for one mean",
+    "section": "Let’s finish our hypothesis test",
+    "text": "Let’s finish our hypothesis test\nWe are considering the weight of penguins.\nLast year the weight was 3900, and this yeah its 3706.\nWe checked conditions.\nThe standard deviation is:\n\ns_x = sd(Togersen_penguins$body_mass_g, na.rm = TRUE)\ns_x\n\n[1] 445.1079\n\n\nSo the test statistic is:\n\nT = (3706.373 - 3900)/ (s_x/sqrt(51))\nT\n\n[1] -3.106602"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#find-pvalue",
+    "href": "lectures/19_single_mean.html#find-pvalue",
+    "title": "hypothesis test for one mean",
+    "section": "Find pvalue",
+    "text": "Find pvalue\nWe need to calculate the probability of getting -3.11 for a test statistic.\nMultiply by 2 for a two tailed test.\n\n2 * pt(-3.11, df = 51-1)\n\n[1] 0.003086856"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#conclusion",
+    "href": "lectures/19_single_mean.html#conclusion",
+    "title": "hypothesis test for one mean",
+    "section": "conclusion",
+    "text": "conclusion\nReject the null hypothesis. We have strong evidence to believe that the average weight this year is different from 3900 grams.\nIts possible we made a type 1 error and rejected the null even if it was true."
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#you-can-make-confidence-intervals-with-the-student-t.",
+    "href": "lectures/19_single_mean.html#you-can-make-confidence-intervals-with-the-student-t.",
+    "title": "hypothesis test for one mean",
+    "section": "You can make confidence intervals with the student t.",
+    "text": "You can make confidence intervals with the student t.\nIts the same as doing it with the normal distribution.\nExcept you use a t* score instead of z*score.\n\\[ \\bar{x} \\pm t^* SE\\]"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#lets-make-a-90-ci-for-our-penguin-data.",
+    "href": "lectures/19_single_mean.html#lets-make-a-90-ci-for-our-penguin-data.",
+    "title": "hypothesis test for one mean",
+    "section": "Lets make a 90% CI for our penguin data.",
+    "text": "Lets make a 90% CI for our penguin data.\n\\(\\bar{x} = 3706.373\\)\n\\(SE = \\frac{s}{n}=\\frac{445.10}{51} = 8.73\\)\n\\(t^*=\\)\n\nt_star = qt(0.95 , df=50)\nt_star\n\n[1] 1.675905\n\n\n\nx_bar = 3706.373\nSE = s_x/sqrt(51)\n\n# Lower Bound\nx_bar - t_star*SE\n\n[1] 3601.918\n\n# Upper Bound\nx_bar + t_star*SE\n\n[1] 3810.828"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#conclusion-1",
+    "href": "lectures/19_single_mean.html#conclusion-1",
+    "title": "hypothesis test for one mean",
+    "section": "Conclusion",
+    "text": "Conclusion\nWe are 90% confident that the true weight of penguins is between 3602 and 3811."
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#you-try-hypothesis-testing-on-a-single-mean",
+    "href": "lectures/19_single_mean.html#you-try-hypothesis-testing-on-a-single-mean",
+    "title": "hypothesis test for one mean",
+    "section": "You try: Hypothesis testing on a single mean",
+    "text": "You try: Hypothesis testing on a single mean\nAwesome Auto data set. 𝑛 = 5, \\(\\bar{x}\\)= 14600, and \\(s_x\\)= 7765.31. Suppose you hear that the Awesome Auto dealership typically sells cars for 18000. You decide to test this claim.\n\nWrite the hypotheses in symbols.\nCheck conditions, then calculate the test statistic, 𝑇 , and the associated degrees of freedom.\nFind and interpret the p-value in this context.\nWhat is the conclusion of the hypothesis test when using 𝛼 = 0.05?"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#solution",
+    "href": "lectures/19_single_mean.html#solution",
+    "title": "hypothesis test for one mean",
+    "section": "Solution",
+    "text": "Solution\n\\[\nH_0: \\mu = 18000 \\\\\nH_a: \\mu \\ne 18000 \\\\\n\\alpha = 0.05\n\\]\nUnfortunately we cannot at present test the normal condition. The cars are independent."
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#test-statistic",
+    "href": "lectures/19_single_mean.html#test-statistic",
+    "title": "hypothesis test for one mean",
+    "section": "Test Statistic",
+    "text": "Test Statistic\n\\(T =   \\frac{14600 - 18000}{\\frac{7765.31}{\\sqrt{5}}}\\)\ndf = 4\np-value:\n\n# give info below\nx_bar = 14600\nmu = 18000\ns_x = 7765.31\nn = 5\n\n# test statistic\ntest_stat = (x_bar - mu)/(s_x/sqrt(n))\n\n# Find pvalue\n2*pt(q=test_stat, df=4)\n\n[1] 0.3829896"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#conclusion-2",
+    "href": "lectures/19_single_mean.html#conclusion-2",
+    "title": "hypothesis test for one mean",
+    "section": "Conclusion",
+    "text": "Conclusion\nWith a large p value we find no evidence that the prices at Awesome Auto average 18000.\nWe could never verify that the underlying data was normal."
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#the-t.test",
+    "href": "lectures/19_single_mean.html#the-t.test",
+    "title": "hypothesis test for one mean",
+    "section": "The t.test()",
+    "text": "The t.test()\nR, of course, can make this test easy if you are working from a vector of values (x) (instead of sample statistics, like above). You will do this on occasion in your homework.\nYou can also take the time to have R calculate the mean and standard deviation, but t.test() is fine.\n\nt.test(x= , alternative= , mu=)"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#awesome-auto-revisited",
+    "href": "lectures/19_single_mean.html#awesome-auto-revisited",
+    "title": "hypothesis test for one mean",
+    "section": "Awesome auto revisited",
+    "text": "Awesome auto revisited\nSuppose the awesome auto data was:\n\nawesome_auto &lt;- c(15000, 26000, 6000, 17000, 9000)\n\n\nt.test(x = awesome_auto,\n       alternative = \"two\",\n       mu = 18000)\n\n\n    One Sample t-test\n\ndata:  awesome_auto\nt = -0.97905, df = 4, p-value = 0.383\nalternative hypothesis: true mean is not equal to 18000\n95 percent confidence interval:\n  4958.097 24241.903\nsample estimates:\nmean of x \n    14600"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#you-try-another-one-with-t.test",
+    "href": "lectures/19_single_mean.html#you-try-another-one-with-t.test",
+    "title": "hypothesis test for one mean",
+    "section": "You try: Another one with t.test()",
+    "text": "You try: Another one with t.test()\nThe 2017 Toyota Prius Prime has a MPG_e = 54. Consider the prius_mpg data set in the openintro package.\n\nTest the hypothesis that the actual MPG is greater than 54.\n\nConsider Conditions, but do the test either way and we’ll discuss conditions afterwards.\n\nHint: use prius_mpg$_____ to take just one column from the data."
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#my-output",
+    "href": "lectures/19_single_mean.html#my-output",
+    "title": "hypothesis test for one mean",
+    "section": "My output",
+    "text": "My output\n\nlibrary(tidyverse)\nlibrary(openintro)\n\nt.test(x=prius_mpg$average_mpg, alternative = \"greater\", mu = 54)\n\n\n    One Sample t-test\n\ndata:  prius_mpg$average_mpg\nt = 5.757, df = 18, p-value = 9.304e-06\nalternative hypothesis: true mean is greater than 54\n95 percent confidence interval:\n 117.4944      Inf\nsample estimates:\nmean of x \n 144.8632"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#preview-bootstrapping",
+    "href": "lectures/19_single_mean.html#preview-bootstrapping",
+    "title": "hypothesis test for one mean",
+    "section": "Preview: Bootstrapping",
+    "text": "Preview: Bootstrapping\n\nlibrary(infer)\n\nx_bar &lt;- mean(prius_mpg$average_mpg)\n\nprius_randomization &lt;-prius_mpg |&gt;\n  specify(response = average_mpg)|&gt;\n  hypothesise(null= \"point\", mu = 54) |&gt;\n  generate(reps = 5000)|&gt;\n  calculate(stat = \"mean\")"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#graph-and-pvalue",
+    "href": "lectures/19_single_mean.html#graph-and-pvalue",
+    "title": "hypothesis test for one mean",
+    "section": "Graph and pvalue",
+    "text": "Graph and pvalue\n\nprius_randomization |&gt;  visualise()+\n  shade_p_value(obs_stat = x_bar, direction = \"greater\")\n\nprius_randomization |&gt;\n  get_pvalue(obs_stat = x_bar, direction = \"greater\")\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1       0"
+  },
+  {
+    "objectID": "lectures/19_single_mean.html#a-single-mean-example",
+    "href": "lectures/19_single_mean.html#a-single-mean-example",
+    "title": "hypothesis test for one mean",
+    "section": "A single mean example",
+    "text": "A single mean example\nFictional:\nWe are concerned about over-fishing depleting the food for penguin’s diets.\nLast year the average weight of Adelie penguins on Togersen island was 3900 grams.\nWe went to Togersen Island this year and weighed some penguins.\nOur data is in penguins."
+  },
+  {
+    "objectID": "lectures/18_single_mean.html",
+    "href": "lectures/18_single_mean.html",
+    "title": "hypothesis test for one mean",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(palmerpenguins)"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#libraries",
+    "href": "lectures/18_single_mean.html#libraries",
+    "title": "hypothesis test for one mean",
+    "section": "Libraries",
+    "text": "Libraries\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#test-statistics",
+    "href": "lectures/18_single_mean.html#test-statistics",
+    "title": "hypothesis test for one mean",
+    "section": "Test Statistics",
+    "text": "Test Statistics\nWhat is a test statistic?\nIt is the value from your data that you can compare to a sampling (or comparison) distribution primarily for finding a p-value."
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#single-proportion",
+    "href": "lectures/18_single_mean.html#single-proportion",
+    "title": "hypothesis test for one mean",
+    "section": "Single proportion",
+    "text": "Single proportion\nThe test statistic for a single proportion is a z-score for the standard normal N(0,1):\n\\[\nT=\\frac{\\widehat{p} - p_{null}}{SE}\n\\]\nWhere \\(p_{null}\\) is the proportion under the null hypothesis."
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#diff-of-proportions",
+    "href": "lectures/18_single_mean.html#diff-of-proportions",
+    "title": "hypothesis test for one mean",
+    "section": "Diff of Proportions",
+    "text": "Diff of Proportions\nThe test statistic for a difference of proportions is also a z-score for the standard normal N(0,1):\n\\[\nT = \\frac{\\widehat{p_1} - \\widehat{p_2} - 0}{SE}\n\\]\nWhere \\(\\widehat{p_1} - \\widehat{p_2}\\) is the point estimate and 0 is the difference under the null."
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#why-did-we-compute-these",
+    "href": "lectures/18_single_mean.html#why-did-we-compute-these",
+    "title": "hypothesis test for one mean",
+    "section": "Why did we compute these?",
+    "text": "Why did we compute these?\nWe find the test statistics on the standard normal table of z-scores to be able to find a p-value.\nWe don’t really need to know how to do this because we have pnorm().\nWhen reading stats papers the phrase test statistic is still often given along side the p-value."
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#a-single-mean-example",
+    "href": "lectures/18_single_mean.html#a-single-mean-example",
+    "title": "hypothesis test for one mean",
+    "section": "A single mean example",
+    "text": "A single mean example\nFictional:\nWe are concerned about over-fishing depleting the food for penguin’s diets.\nLast year the average weight of Adelie penguins on Togersen island was 3900 grams.\nWe went to Togersen Island this year and weighed some penguins.\nOur data is in penguins."
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#penguin-sample",
+    "href": "lectures/18_single_mean.html#penguin-sample",
+    "title": "hypothesis test for one mean",
+    "section": "Penguin Sample",
+    "text": "Penguin Sample\n\nTogersen_penguins &lt;- penguins |&gt;\n  filter(island == \"Torgersen\") \n\nmean(Togersen_penguins$body_mass_g, na.rm = TRUE)\n\n[1] 3706.373\n\n\nIs the difference from 3900 due to chance?"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#hypothesis-test-for-a-single-mean",
+    "href": "lectures/18_single_mean.html#hypothesis-test-for-a-single-mean",
+    "title": "hypothesis test for one mean",
+    "section": "Hypothesis test for a single mean",
+    "text": "Hypothesis test for a single mean\nLet’s set up the test for the penguins\n\\[\nH_0: \\mu = 3900 \\\\\nH_a: \\mu \\ne 3900\n\\]"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#conditions",
+    "href": "lectures/18_single_mean.html#conditions",
+    "title": "hypothesis test for one mean",
+    "section": "Conditions",
+    "text": "Conditions\nLarge Independent sample\n\nNo extreme outliers\nLarger than 30\n\nor\nSmall Independent sample\n\nThe data distribution is normal.\nNo clear outliers."
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#check-our-conditions",
+    "href": "lectures/18_single_mean.html#check-our-conditions",
+    "title": "hypothesis test for one mean",
+    "section": "Check our conditions",
+    "text": "Check our conditions\n\n#Sample size \nnrow(Togersen_penguins)\n\n[1] 52\n\n# Outliers? \nggplot(Togersen_penguins)+\n  geom_boxplot(aes(x=body_mass_g))"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#what-is-the-sampling-distribution",
+    "href": "lectures/18_single_mean.html#what-is-the-sampling-distribution",
+    "title": "hypothesis test for one mean",
+    "section": "What is the sampling distribution?",
+    "text": "What is the sampling distribution?\nWe could use the sampling distribution… But its much better to use the Student t."
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#the-students-t-dist",
+    "href": "lectures/18_single_mean.html#the-students-t-dist",
+    "title": "hypothesis test for one mean",
+    "section": "The Student’s t dist",
+    "text": "The Student’s t dist\nThe student t distribution is similar to the normal distribution in shape. \nIt has wider tails. \nIt is used with confidence intervals and hypothesis testing of a single mean. \nUnlike the normal distribution it works well for small sample sizes if the population is normal distributed."
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#very-short-history",
+    "href": "lectures/18_single_mean.html#very-short-history",
+    "title": "hypothesis test for one mean",
+    "section": "Very Short History",
+    "text": "Very Short History\n\n\nWilliam Sealy Gosset\n\n\n\n\nWorked at Guiness and was interested in the chemical properties of barley. source"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#the-parameters-of-a-student-t.",
+    "href": "lectures/18_single_mean.html#the-parameters-of-a-student-t.",
+    "title": "hypothesis test for one mean",
+    "section": "The parameters of a student t.",
+    "text": "The parameters of a student t.\nThe student t takes just one parameter\n\ndf = degree of freedom.\n\n\\(df= n-1\\)"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#limit-of-t-dist-is-normal",
+    "href": "lectures/18_single_mean.html#limit-of-t-dist-is-normal",
+    "title": "hypothesis test for one mean",
+    "section": "limit of t-dist is normal",
+    "text": "limit of t-dist is normal\nAs \\(\\text{lim}_{df \\rightarrow \\infty} t_{dist} \\rightarrow N(\\mu=0,sigma=1)\\)\n\nhttps://en.wikipedia.org/wiki/Student%27s_t-distribution#/media/File:Student_t_pdf.svg"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#t-dist-is-better-than-the-normal-for-sampling-distributions.",
+    "href": "lectures/18_single_mean.html#t-dist-is-better-than-the-normal-for-sampling-distributions.",
+    "title": "hypothesis test for one mean",
+    "section": "t-dist is better than the normal for sampling distributions.",
+    "text": "t-dist is better than the normal for sampling distributions.\nYou can use either if:\n\n\nIf the sample size is large or underlying distribution is normal\nPopulation standard deviation is known \\(\\sigma\\)\nBut if population sd \\(\\sigma\\) is unknown or n is small use student t.\nIn general the t distribution works, the normal less so."
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#the-sampling-distribution-for-sample-mean",
+    "href": "lectures/18_single_mean.html#the-sampling-distribution-for-sample-mean",
+    "title": "hypothesis test for one mean",
+    "section": "The sampling distribution for sample mean:",
+    "text": "The sampling distribution for sample mean:\n\\(\\mu \\sim \\text{t}_{df}\\)\n\nThe mean of the t-dist is 0.\n\nThe mean of your sample is \\(\\bar{x}\\) and the standard error is \\(SE = \\frac{s}{\\sqrt{n}}\\)"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#what-is-df",
+    "href": "lectures/18_single_mean.html#what-is-df",
+    "title": "hypothesis test for one mean",
+    "section": "What is df?",
+    "text": "What is df?\n\n\nThe number of values that can vary when finding a mean.\nConsider that you find a mean of 3 numbers. x,y,and z.\nIf I tell you the mean is 10, you can guess any two numbers and the third is forced.\nThis mean would have 2 degrees of freedom."
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#test-statistic-for-a-mean",
+    "href": "lectures/18_single_mean.html#test-statistic-for-a-mean",
+    "title": "hypothesis test for one mean",
+    "section": "test statistic for a mean",
+    "text": "test statistic for a mean\nWe’ve skipped discussing test statistics until now, because of pnorm().\nIdeally\n\\[ T = \\frac{\\bar{x} - \\mu}{\\frac{\\sigma}{\\sqrt{n}}}\\]\nor more realistically:\n\\[ T = \\frac{\\bar{x} - \\mu}{\\frac{s_x}{\\sqrt{n}}}\\]"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#lets-finish-our-hypothesis-test",
+    "href": "lectures/18_single_mean.html#lets-finish-our-hypothesis-test",
+    "title": "hypothesis test for one mean",
+    "section": "Let’s finish our hypothesis test",
+    "text": "Let’s finish our hypothesis test\nWe are considering the weight of penguins.\nLast year the weight was 3900, and this yeah its 3706.\nWe checked conditions.\nThe standard deviation is:\n\ns_x = sd(Togersen_penguins$body_mass_g, na.rm = TRUE)\ns_x\n\n[1] 445.1079\n\n\nSo the test statistic is:\n\nT = (3706.373 - 3900)/ (s_x/sqrt(51))\nT\n\n[1] -3.106602"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#find-pvalue",
+    "href": "lectures/18_single_mean.html#find-pvalue",
+    "title": "hypothesis test for one mean",
+    "section": "Find pvalue",
+    "text": "Find pvalue\nWe need to calculate the probability of getting -3.11 for a test statistic.\nMultiply by 2 for a two tailed test.\n\n2 * pt(-3.11, df = 51-1)\n\n[1] 0.003086856"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#conclusion",
+    "href": "lectures/18_single_mean.html#conclusion",
+    "title": "hypothesis test for one mean",
+    "section": "conclusion",
+    "text": "conclusion\nReject the null hypothesis. We have strong evidence to believe that the average weight this year is different from 3900 grams.\nIts possible we made a type 1 error and rejected the null even if it was true."
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#you-can-make-confidence-intervals-with-the-student-t.",
+    "href": "lectures/18_single_mean.html#you-can-make-confidence-intervals-with-the-student-t.",
+    "title": "hypothesis test for one mean",
+    "section": "You can make confidence intervals with the student t.",
+    "text": "You can make confidence intervals with the student t.\nIts the same as doing it with the normal distribution.\nExcept you use a t* score instead of z*score.\n\\[ \\bar{x} \\pm t^* SE\\]"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#lets-make-a-90-ci-for-our-penguin-data.",
+    "href": "lectures/18_single_mean.html#lets-make-a-90-ci-for-our-penguin-data.",
+    "title": "hypothesis test for one mean",
+    "section": "Lets make a 90% CI for our penguin data.",
+    "text": "Lets make a 90% CI for our penguin data.\n\\(\\bar{x} = 3706.373\\)\n\\(SE = \\frac{s}{n}=\\frac{445.10}{51} = 8.73\\)\n\\(t^*=\\)\n\nt_star = qt(0.95 , df=50)\nt_star\n\n[1] 1.675905\n\n\n\nx_bar = 3706.373\nSE = s_x/sqrt(51)\n\n# Lower Bound\nx_bar - t_star*SE\n\n[1] 3601.918\n\n# Upper Bound\nx_bar + t_star*SE\n\n[1] 3810.828"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#conclusion-1",
+    "href": "lectures/18_single_mean.html#conclusion-1",
+    "title": "hypothesis test for one mean",
+    "section": "Conclusion",
+    "text": "Conclusion\nWe are 90% confident that the true weight of penguins is between 3602 and 3811."
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#you-try-hypothesis-testing-on-a-single-mean",
+    "href": "lectures/18_single_mean.html#you-try-hypothesis-testing-on-a-single-mean",
+    "title": "hypothesis test for one mean",
+    "section": "You try: Hypothesis testing on a single mean",
+    "text": "You try: Hypothesis testing on a single mean\nAwesome Auto data set. 𝑛 = 5, \\(\\bar{x}\\)= 14600, and \\(s_x\\)= 7765.31. Suppose you hear that the Awesome Auto dealership typically sells cars for 18000. You decide to test this claim.\n\nWrite the hypotheses in symbols.\nCheck conditions, then calculate the test statistic, 𝑇 , and the associated degrees of freedom.\nFind and interpret the p-value in this context.\nWhat is the conclusion of the hypothesis test when using 𝛼 = 0.05?"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#solution",
+    "href": "lectures/18_single_mean.html#solution",
+    "title": "hypothesis test for one mean",
+    "section": "Solution",
+    "text": "Solution\n\\[\nH_0: \\mu = 18000 \\\\\nH_a: \\mu \\ne 18000 \\\\\n\\alpha = 0.05\n\\]\nUnfortunately we cannot at present test the normal condition. The cars are independent."
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#test-statistic",
+    "href": "lectures/18_single_mean.html#test-statistic",
+    "title": "hypothesis test for one mean",
+    "section": "Test Statistic",
+    "text": "Test Statistic\n\\(T =   \\frac{14600 - 18000}{\\frac{7765.31}{\\sqrt{5}}}\\)\ndf = 4\np-value:\n\n# give info below\nx_bar = 14600\nmu = 18000\ns_x = 7765.31\nn = 5\n\n# test statistic\ntest_stat = (x_bar - mu)/(s_x/sqrt(n))\n\n# Find pvalue\n2*pt(q=test_stat, df=4)\n\n[1] 0.3829896"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#conclusion-2",
+    "href": "lectures/18_single_mean.html#conclusion-2",
+    "title": "hypothesis test for one mean",
+    "section": "Conclusion",
+    "text": "Conclusion\nWith a large p value we find no evidence that the prices at Awesome Auto average 18000.\nWe could never verify that the underlying data was normal."
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#the-t.test",
+    "href": "lectures/18_single_mean.html#the-t.test",
+    "title": "hypothesis test for one mean",
+    "section": "The t.test()",
+    "text": "The t.test()\nR, of course, can make this test easy if you are working from a vector of values (x) (instead of sample statistics, like above). You will do this on occasion in your homework.\nYou can also take the time to have R calculate the mean and standard deviation, but t.test() is fine.\n\nt.test(x= , alternative= , mu=)"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#awesome-auto-revisited",
+    "href": "lectures/18_single_mean.html#awesome-auto-revisited",
+    "title": "hypothesis test for one mean",
+    "section": "Awesome auto revisited",
+    "text": "Awesome auto revisited\nSuppose the awesome auto data was:\n\nawesome_auto &lt;- c(15000, 26000, 6000, 17000, 9000)\n\n\nt.test(x = awesome_auto,\n       alternative = \"two\",\n       mu = 18000)\n\n\n    One Sample t-test\n\ndata:  awesome_auto\nt = -0.97905, df = 4, p-value = 0.383\nalternative hypothesis: true mean is not equal to 18000\n95 percent confidence interval:\n  4958.097 24241.903\nsample estimates:\nmean of x \n    14600"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#you-try-another-one-with-t.test",
+    "href": "lectures/18_single_mean.html#you-try-another-one-with-t.test",
+    "title": "hypothesis test for one mean",
+    "section": "You try: Another one with t.test()",
+    "text": "You try: Another one with t.test()\nThe 2017 Toyota Prius Prime has a MPG_e = 54. Consider the prius_mpg data set in the openintro package.\n\nTest the hypothesis that the actual MPG is greater than 54.\n\nConsider Conditions, but do the test either way and we’ll discuss conditions afterwards.\n\nHint: use prius_mpg$_____ to take just one column from the data."
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#my-output",
+    "href": "lectures/18_single_mean.html#my-output",
+    "title": "hypothesis test for one mean",
+    "section": "My output",
+    "text": "My output\n\nlibrary(tidyverse)\nlibrary(openintro)\n\nt.test(x=prius_mpg$average_mpg, alternative = \"greater\", mu = 54)\n\n\n    One Sample t-test\n\ndata:  prius_mpg$average_mpg\nt = 5.757, df = 18, p-value = 9.304e-06\nalternative hypothesis: true mean is greater than 54\n95 percent confidence interval:\n 117.4944      Inf\nsample estimates:\nmean of x \n 144.8632"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#preview-bootstrapping",
+    "href": "lectures/18_single_mean.html#preview-bootstrapping",
+    "title": "hypothesis test for one mean",
+    "section": "Preview: Bootstrapping",
+    "text": "Preview: Bootstrapping\n\nlibrary(infer)\n\nx_bar &lt;- mean(prius_mpg$average_mpg)\n\nprius_randomization &lt;-prius_mpg |&gt;\n  specify(response = average_mpg)|&gt;\n  hypothesise(null= \"point\", mu = 54) |&gt;\n  generate(reps = 5000)|&gt;\n  calculate(stat = \"mean\")"
+  },
+  {
+    "objectID": "lectures/18_single_mean.html#graph-and-pvalue",
+    "href": "lectures/18_single_mean.html#graph-and-pvalue",
+    "title": "hypothesis test for one mean",
+    "section": "Graph and pvalue",
+    "text": "Graph and pvalue\n\nprius_randomization |&gt;  visualise()+\n  shade_p_value(obs_stat = x_bar, direction = \"greater\")\n\nprius_randomization |&gt;\n  get_pvalue(obs_stat = x_bar, direction = \"greater\")\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1       0"
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html",
+    "href": "lectures/19_diff-of-means.html",
+    "title": "Difference of Means",
+    "section": "",
+    "text": "Find a partner (or two) and grab some chalkboard\nDo this hypothesis test.\nThe average height of Smith students is thought to be 64 inches. Our class has an average height of 65 inches with a standard deviation of 3.2. There were 34 students in our sample.\nTest the hypothesis that the true mean is 64 twice\n\nonce using the observed statistic to find a p-value.\nonce with the test statistic to find the same p-value."
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#warm-up",
+    "href": "lectures/19_diff-of-means.html#warm-up",
+    "title": "Difference of Means",
+    "section": "",
+    "text": "Find a partner (or two) and grab some chalkboard\nDo this hypothesis test.\nThe average height of Smith students is thought to be 64 inches. Our class has an average height of 65 inches with a standard deviation of 3.2. There were 34 students in our sample.\nTest the hypothesis that the true mean is 64 twice\n\nonce using the observed statistic to find a p-value.\nonce with the test statistic to find the same p-value."
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#warm-up-again-with-r",
+    "href": "lectures/19_diff-of-means.html#warm-up-again-with-r",
+    "title": "Difference of Means",
+    "section": "warm up again with R",
+    "text": "warm up again with R\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(googlesheets4)\n\n# Making CI from some sample proportions.\n\nclass_heights &lt;- read_sheet(\"https://docs.google.com/spreadsheets/d/1x9srZXDoYzKGew1f-y4brMbN8dl4QM66pc-dmCBWHQY/edit?usp=sharing\",\n                            sheet = \"220-01\",\n                            range = \"1:35\")|&gt;\n  select(height)\n\n! Using an auto-discovered, cached token.\n  To suppress this message, modify your code or options to clearly consent to\n  the use of a cached token.\n  See gargle's \"Non-interactive auth\" vignette for more details:\n  &lt;https://gargle.r-lib.org/articles/non-interactive-auth.html&gt;\nℹ The googlesheets4 package is using a cached token for 'nschwab@smith.edu'.\nAuto-refreshing stale OAuth token.\n✔ Reading from \"Schwab SDS 220 Fall 23 Pre-Course Questionnaire (Responses)\".\n✔ Range ''220-01'!1:35'.\n\n\n\nt.test(class_heights$height, mu=64)\n\n\n    One Sample t-test\n\ndata:  class_heights$height\nt = 1.8954, df = 33, p-value = 0.06683\nalternative hypothesis: true mean is not equal to 64\n95 percent confidence interval:\n 63.92442 66.13440\nsample estimates:\nmean of x \n 65.02941"
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#side-note-prop.test",
+    "href": "lectures/19_diff-of-means.html#side-note-prop.test",
+    "title": "Difference of Means",
+    "section": "Side note: prop.test()",
+    "text": "Side note: prop.test()\nThere is also a prop.test() function that will test a proportion hypothesis from data based on mathematical formula (as opposed to bootstrapping)."
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#new-test-difference-of-two-means",
+    "href": "lectures/19_diff-of-means.html#new-test-difference-of-two-means",
+    "title": "Difference of Means",
+    "section": "New test: Difference of two means",
+    "text": "New test: Difference of two means\nAnother hypothesis test.\n\nConditions\nDistributions\nNew Standard Error\nNew df"
   }
 ]

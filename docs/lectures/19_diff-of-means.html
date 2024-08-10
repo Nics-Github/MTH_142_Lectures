@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Nic Schwab">
+<meta name="author" content="Schwab">
 
-<title>MTH 142 Online - Lectures from MTH 142 Fall 2024</title>
+<title>MTH 142 Online - Difference of Means</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,25 +21,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,6 +102,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -79,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">MTH 142 Online</span>
     </a>
   </div>
@@ -90,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">lectures</span></a>
   </li>  
 </ul>
@@ -105,14 +168,31 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm up</a></li>
+  <li><a href="#warm-up-again-with-r" id="toc-warm-up-again-with-r" class="nav-link" data-scroll-target="#warm-up-again-with-r">warm up again with R</a></li>
+  <li><a href="#side-note-prop.test" id="toc-side-note-prop.test" class="nav-link" data-scroll-target="#side-note-prop.test">Side note: <code>prop.test()</code></a></li>
+  <li><a href="#new-test-difference-of-two-means" id="toc-new-test-difference-of-two-means" class="nav-link" data-scroll-target="#new-test-difference-of-two-means">New test: Difference of two means</a></li>
+  <li><a href="#conditions" id="toc-conditions" class="nav-link" data-scroll-target="#conditions">Conditions</a></li>
+  <li><a href="#compute-the-df" id="toc-compute-the-df" class="nav-link" data-scroll-target="#compute-the-df">Compute the df</a></li>
+  <li><a href="#se" id="toc-se" class="nav-link" data-scroll-target="#se">SE</a></li>
+  <li><a href="#test-statistic" id="toc-test-statistic" class="nav-link" data-scroll-target="#test-statistic">Test Statistic</a></li>
+  <li><a href="#lets-do-number-18-together." id="toc-lets-do-number-18-together." class="nav-link" data-scroll-target="#lets-do-number-18-together.">Let’s do number 18 together.</a></li>
+  <li><a href="#grab-a-partner" id="toc-grab-a-partner" class="nav-link" data-scroll-target="#grab-a-partner">Grab a partner</a></li>
+  <li><a href="#together-t.test" id="toc-together-t.test" class="nav-link" data-scroll-target="#together-t.test">Together t.test()</a></li>
+  <li><a href="#a-second-test" id="toc-a-second-test" class="nav-link" data-scroll-target="#a-second-test">A second test</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="19_diff-of-means.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lectures from MTH 142 Fall 2024</h1>
+<h1 class="title">Difference of Means</h1>
 </div>
 
 
@@ -122,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Nic Schwab </p>
+             <p>Schwab </p>
           </div>
   </div>
     
@@ -135,31 +215,140 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>These are the lectures from MTH 142, you can also find the direct links via Canvas.</p>
-<p><a href="lectures/day-1-statistical-thinking.html">Lecture 1 Statistical Thinking</a></p>
-<p><a href="./lectures/2_sampling.html">Lecture 2 Study Design and Variables</a></p>
-<p><a href="./lectures/3_categorical_data.html">Lecture 3 Categorical Data</a></p>
-<p><a href="./lectures/4_Numeric_Data.html">Lecture 4 Numeric Data</a></p>
-<p><a href="./lectures/5_linear_regression_1_predictor.html">Lecture 5 Linear Correlation</a></p>
-<p><a href="./lectures/6_Linear_regression_part_2.html">Lecture 6 Linear Correlation</a></p>
-<p><a href="./lectures/7_regression-by-hand.html">Lecture 7 Regression math</a></p>
-<p><a href="./lectures/8_Probability_1.html">Lecture 8 Probability</a></p>
-<p><a href="./lectures/9_Probability_2.html">Lecture 9 Probability 2</a></p>
-<p><a href="./lectures/10_continuous_rv.html">Lecture 10 Continuous Random Variables</a></p>
-<p><a href="./lectures/11_Normal_Dist.html">Lecture 11 The Normal Distribution</a></p>
-<p><a href="./lectures/12_hypothesis_test_prop.html">Lecture 12 Hypothesis Testing Proportion</a></p>
-<p><a href="./lectures/13_parametric_boot.html">Lecture 13 Parametric bootstrap Hypothesis Testing</a></p>
-<p><a href="./lectures/14__CI_prop_mathematically.html">Lecture 14 Confidence Intervals with Math</a></p>
-<p><a href="./lectures/15_Reflection.html">Lecture 15 Visualizing the CLT</a></p>
-<p><a href="./lectures/16_Two_Proportions.html">Lecture 16 Distributions and Two Proportions</a></p>
-<p><a href="./lectures/17_decision_error_tidying_up.html">Lecture 17 Decision Errors</a></p>
-<p><a href="./lectures/18_single_mean.html">Lecture 18 Hypothesis Test for a single mean</a></p>
-<p><a href="./lectures/19_diff-of-means.html">Lecture 19 Hypothesis Test for a difference of means (unpaired)</a></p>
-<p><a href="./lectures/21_ANOVA.html">Lecture 21 ANOVA</a></p>
-<p><a href="./lectures/23_linear_regression.html">Lecture 22 Regression with a Single Predictor</a></p>
-<!-- [Lecture 23 Prof. Kurtz-Garcia](https://drive.google.com/file/d/1qBB3kJL0HJxSDSy2tWqqBDFLrtgn1YAC/view?usp=sharing) -->
+<section id="warm-up" class="level2">
+<h2 class="anchored" data-anchor-id="warm-up">Warm up</h2>
+<p>Find a partner (or two) and grab some chalkboard</p>
+<p>Do this hypothesis test.</p>
+<p>The average height of Smith students is thought to be 64 inches. Our class has an average height of 65 inches with a standard deviation of 3.2. There were 34 students in our sample.</p>
+<p>Test the hypothesis that the true mean is 64 twice</p>
+<ol type="1">
+<li><p>once using the observed statistic to find a p-value.</p></li>
+<li><p>once with the test statistic to find the same p-value.</p></li>
+</ol>
+</section>
+<section id="warm-up-again-with-r" class="level2">
+<h2 class="anchored" data-anchor-id="warm-up-again-with-r">warm up again with R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googlesheets4)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Making CI from some sample proportions.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>class_heights <span class="ot">&lt;-</span> <span class="fu">read_sheet</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1x9srZXDoYzKGew1f-y4brMbN8dl4QM66pc-dmCBWHQY/edit?usp=sharing"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">sheet =</span> <span class="st">"220-01"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">range =</span> <span class="st">"1:35"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(height)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>! Using an auto-discovered, cached token.
+  To suppress this message, modify your code or options to clearly consent to
+  the use of a cached token.
+  See gargle's "Non-interactive auth" vignette for more details:
+  &lt;https://gargle.r-lib.org/articles/non-interactive-auth.html&gt;
+ℹ The googlesheets4 package is using a cached token for 'nschwab@smith.edu'.
+Auto-refreshing stale OAuth token.
+✔ Reading from "Schwab SDS 220 Fall 23 Pre-Course Questionnaire (Responses)".
+✔ Range ''220-01'!1:35'.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(class_heights<span class="sc">$</span>height, <span class="at">mu=</span><span class="dv">64</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  class_heights$height
+t = 1.8954, df = 33, p-value = 0.06683
+alternative hypothesis: true mean is not equal to 64
+95 percent confidence interval:
+ 63.92442 66.13440
+sample estimates:
+mean of x 
+ 65.02941 </code></pre>
+</div>
+</div>
+</section>
+<section id="side-note-prop.test" class="level2">
+<h2 class="anchored" data-anchor-id="side-note-prop.test">Side note: <code>prop.test()</code></h2>
+<p>There is also a <code>prop.test()</code> function that will test a proportion hypothesis from data based on mathematical formula (as opposed to bootstrapping).</p>
+</section>
+<section id="new-test-difference-of-two-means" class="level2">
+<h2 class="anchored" data-anchor-id="new-test-difference-of-two-means">New test: Difference of two means</h2>
+<p>Another hypothesis test.</p>
+<ul>
+<li><p>Conditions</p></li>
+<li><p>Distributions</p></li>
+<li><p>New Standard Error</p></li>
+<li><p>New df</p></li>
+</ul>
+</section>
+<section id="conditions" class="level1">
+<h1>Conditions</h1>
+<p>Independence Extended</p>
+<p>Normality (no extreme outliers)</p>
+</section>
+<section id="compute-the-df" class="level1">
+<h1>Compute the df</h1>
+<p><strong>with no computer</strong></p>
+<p>t - distribution with the smaller of <span class="math inline">\(n_1-1\)</span> and <span class="math inline">\(n_2-1\)</span> degrees of freedom.</p>
+<p><br></p>
+<p><strong>with R</strong></p>
+<p>t - distribution, let R find the degrees of freedom with <code>t.test()</code>.</p>
+</section>
+<section id="se" class="level1">
+<h1>SE</h1>
+<p><span class="math display">\[
+SE = \sqrt{\frac{\sigma^2_1}{n_1}+\frac{\sigma^2_2}{n_2}}\\
+\text{or}\\
+SE = \sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}
+\]</span> We rarely know <span class="math inline">\(\sigma\)</span> so the second standard error is more often used.</p>
+</section>
+<section id="test-statistic" class="level1">
+<h1>Test Statistic</h1>
+<p><span class="math display">\[
+\text{Test Statisitc} = \frac{\bar{x}_1 - \bar{x}_2 -0}{SE }
+\]</span></p>
+<p>(It looks just like the difference of proportions, but with means)</p>
+</section>
+<section id="lets-do-number-18-together." class="level1">
+<h1>Let’s do number 18 together.</h1>
+<p><a href="https://openintro-ims.netlify.app/inference-two-means#chp20-exercises">Chapter 20</a></p>
+<ol type="1">
+<li>CI for the difference of means</li>
+<li>Hypothesis Test</li>
+</ol>
+</section>
+<section id="grab-a-partner" class="level1">
+<h1>Grab a partner</h1>
+<p>20.17 on the board.</p>
+</section>
+<section id="together-t.test" class="level1">
+<h1>Together t.test()</h1>
+<p>Is there a difference in the absenteeism of students from New South Wales based on reported gender?</p>
+<ul>
+<li><p><code>absenteeism</code></p></li>
+<li><p>check conditions make boxplot</p></li>
+<li><p>write hypothesis</p></li>
+<li><p>use <code>t.test( y\~x, alternative= "t", data=)</code></p></li>
+</ul>
+</section>
+<section id="a-second-test" class="level1">
+<h1>A second test</h1>
+<p>Is there a difference in the absenteeism of students from New South Wales based on ethnicity?</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -583,7 +772,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="./credits.qmd">
+    <a class="nav-link" href="../credits.qmd">
 <p>credits</p>
 </a>
   </li>  

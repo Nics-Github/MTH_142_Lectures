@@ -39,9 +39,9 @@ These are the lectures from MTH 142, you can also find the direct links via Canv
 
 [Lecture 17 Decision Errors](lectures/17_decision_error_tidying_up.qmd)
 
-[Lecture 19 Hypothesis Test for a single mean](lectures/19_single_mean.qmd)
+[Lecture 18 Hypothesis Test for a single mean](lectures/18_single_mean.qmd)
 
-[Lecture 20 Hypothesis Test for a difference of means (unpaired)](lectures/20_diff-of-means.qmd)
+[Lecture 19 Hypothesis Test for a difference of means (unpaired)](lectures/19_diff-of-means.qmd)
 
 [Lecture 21 ANOVA](lectures/21_ANOVA.qmd)
 

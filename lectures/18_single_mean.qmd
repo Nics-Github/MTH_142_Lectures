@@ -50,27 +50,11 @@ We don't really need to know how to do this because we have `pnorm().`
 
 When reading stats papers the phrase test statistic is still often given along side the p-value.
 
-## Test for Independence
-
-The test statistic for a test for indepence is a quantile from the chi-squared distribution:
-
-$$
-T = \sum \frac{(obs - exp)^2}{exp}
-$$
-
-Where obs is observed values and exp is expected values is the point estimate and 0 is the difference under the null.
-
-## The test stat for $\chi^2$
-
-The test statistic for $\chi^2$ is the same as the observed statistic.
-
-We use it to find p-values.
-
-# A single mean
+## A single mean example
 
 Fictional:
 
-We are concerned about fishing depleting fish for penguin's diets.
+We are concerned about over-fishing depleting the food for penguin's diets.
 
 Last year the average weight of Adelie penguins on Togersen island was 3900 grams.
 
@@ -82,14 +66,16 @@ Our data is in `penguins`.
 
 ```{r}
 Togersen_penguins <- penguins |>
-  filter(island == "Torgersen")
-```
+  filter(island == "Torgersen") 
 
-Find the average weight of these penguins.
+mean(Togersen_penguins$body_mass_g, na.rm = TRUE)
+```
 
 Is the difference from 3900 due to chance?
 
 ## Hypothesis test for a single mean
+
+Let's set up the test for the penguins
 
 $$
 H_0: \mu = 3900 \\
@@ -116,17 +102,16 @@ or
 
 ```{r}
 #Sample size 
-Togersen_penguins |>nrow()
+nrow(Togersen_penguins)
 
 # Outliers? 
-Togersen_penguins |>
-  ggplot()+
+ggplot(Togersen_penguins)+
   geom_boxplot(aes(x=body_mass_g))
 ```
 
 ## What is the sampling distribution?
 
-It could be normal... But its much better to use the Student t.
+We could use the sampling distribution... But its much better to use the Student t.
 
 ## The Student's t dist
 
@@ -181,11 +166,9 @@ You can use either if:
 
 -   Population standard deviation is known $\sigma$
 
-<br>
-
 -   But if population sd $\sigma$ is unknown or n is small use student t.
 
--   In general t distribution works, normal less so.
+-   In general the t distribution works, the normal less so.
 :::
 
 ## The sampling distribution for sample mean:
@@ -204,25 +187,14 @@ The mean of your sample is $\bar{x}$ and the standard error is $SE = \frac{s}{\s
 
 ::: incremental
 -   The number of values that can vary when finding a mean.
-
-<br>
-
 -   Consider that you find a mean of 3 numbers. x,y,and z.
-
-<br>
-
 -   If I tell you the mean is 10, you can guess any two numbers and the third is forced.
-
-<br>
-
 -   This mean would have 2 degrees of freedom.
 :::
 
 ## test statistic for a mean
 
-We've skipped discussing most of the test statistics, because of `pnorm()`.
-
-<br>
+We've skipped discussing test statistics until now, because of `pnorm()`.
 
 Ideally
 
@@ -234,6 +206,42 @@ $$ T = \frac{\bar{x} - \mu}{\frac{s_x}{\sqrt{n}}}$$
 
 ## Let's finish our hypothesis test
 
+We are considering the weight of penguins.
+
+Last year the weight was 3900, and this yeah its 3706.
+
+We checked conditions.
+
+The standard deviation is:
+
+```{r}
+s_x = sd(Togersen_penguins$body_mass_g, na.rm = TRUE)
+s_x
+```
+
+So the test statistic is:
+
+```{r}
+T = (3706.373 - 3900)/ (s_x/sqrt(51))
+T
+```
+
+## Find pvalue
+
+We need to calculate the probability of getting -3.11 for a test statistic.
+
+Multiply by 2 for a two tailed test.
+
+```{r}
+2 * pt(-3.11, df = 51-1)
+```
+
+## conclusion 
+
+Reject the null hypothesis. We have strong evidence to believe that the average weight this year is different from 3900 grams.
+
+Its possible we made a type 1 error and rejected the null even if it was true.
+
 ## You can make confidence intervals with the student t.
 
 Its the same as doing it with the normal distribution.
@@ -244,7 +252,33 @@ $$ \bar{x} \pm t^* SE$$
 
 ## Lets make a 90% CI for our penguin data.
 
-## Hypothesis testing on a single mean
+$\bar{x} = 3706.373$
+
+$SE = \frac{s}{n}=\frac{445.10}{51} = 8.73$
+
+$t^*=$
+
+```{r}
+t_star = qt(0.95 , df=50)
+t_star
+```
+
+```{r}
+x_bar = 3706.373
+SE = s_x/sqrt(51)
+
+# Lower Bound
+x_bar - t_star*SE
+
+# Upper Bound
+x_bar + t_star*SE
+```
+
+## Conclusion
+
+We are 90% confident that the true weight of penguins is between 3602 and 3811.
+
+## You try: Hypothesis testing on a single mean
 
 Awesome Auto data set. 𝑛 = 5, $\bar{x}$= 14600, and $s_x$= 7765.31. Suppose you hear that the Awesome Auto dealership typically sells cars for 18000. You decide to test this claim.
 
@@ -256,9 +290,49 @@ Awesome Auto data set. 𝑛 = 5, $\bar{x}$= 14600, and $s_x$= 7765.31. Suppose y
 
 -   What is the conclusion of the hypothesis test when using 𝛼 = 0.05?
 
+## Solution
+
+$$
+H_0: \mu = 18000 \\
+H_a: \mu \ne 18000 \\
+\alpha = 0.05
+$$
+
+Unfortunately we cannot at present test the normal condition. The cars are independent.
+
+## Test Statistic
+
+$T =   \frac{14600 - 18000}{\frac{7765.31}{\sqrt{5}}}$
+
+df = 4
+
+p-value:
+
+```{r}
+# give info below
+x_bar = 14600
+mu = 18000
+s_x = 7765.31
+n = 5
+
+# test statistic
+test_stat = (x_bar - mu)/(s_x/sqrt(n))
+
+# Find pvalue
+2*pt(q=test_stat, df=4)
+```
+
+## Conclusion
+
+With a large p value we find no evidence that the prices at Awesome Auto average 18000.
+
+We could never verify that the underlying data was normal.
+
 ## The `t.test()`
 
-R, of course, can make this test easy if you are working from a vector of values (x) (instead of sample statistics).
+R, of course, can make this test easy if you are working from a vector of values (x) (instead of sample statistics, like above). You will do this on occasion in your homework.
+
+You can also take the time to have R calculate the mean and standard deviation, but t.test() is fine.
 
 <br>
 
@@ -275,18 +349,12 @@ awesome_auto <- c(15000, 26000, 6000, 17000, 9000)
 
 ```{r}
 
-t.test(awesome_auto,
-       alternative = "less",
-       mu=18000)
+t.test(x = awesome_auto,
+       alternative = "two",
+       mu = 18000)
 ```
 
-## Try one:
-
-Georgianna claims that in a small city renowned for its music school, the average child takes less than 5 years of piano lessons. We have a random sample of 20 children from the city, with a mean of 4.6 years of piano lessons and a standard deviation of 2.2 years.
-
--   Evaluate Georgianna's claim (or that the opposite might be true) using a hypothesis test.
-
-## Another one with `t.test()`
+## You try: Another one with `t.test()`
 
 The 2017 Toyota Prius Prime has a MPG_e = 54. Consider the `prius_mpg` data set in the openintro package.
 
@@ -305,7 +373,7 @@ Hint: use `prius_mpg$_____` to take just one column from the data.
 ## My output
 
 ```{r}
-#| echo: false
+#| echo: true
 
 library(tidyverse)
 library(openintro)
@@ -313,7 +381,7 @@ library(openintro)
 t.test(x=prius_mpg$average_mpg, alternative = "greater", mu = 54)
 ```
 
-## Bootstrapping
+## Preview: Bootstrapping
 
 ```{r}
 #| echo: TRUE
