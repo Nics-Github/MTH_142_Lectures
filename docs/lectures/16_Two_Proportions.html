@@ -565,9 +565,9 @@ H_a:p_1 \ne p_2
 <p><span class="math inline">\({p}_1−{p}_2 \sim N(0,0.095)\)</span></p>
 <p>If the distribution is centered around the null parameter (eg 0, because we assume there is no difference) how likely is it that we would get 0.13 for a difference?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">0.13</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> SE, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="dv">2</span><span class="sc">*</span><span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fl">0.13</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> SE, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0856231</code></pre>
+<pre><code>[1] 0.1712462</code></pre>
 </div>
 </div>
 </section>

@@ -181,7 +181,7 @@ ${p}_1−{p}_2 \sim N(0,0.095)$
 If the distribution is centered around the null parameter (eg 0, because we assume there is no difference) how likely is it that we would get 0.13 for a difference? 
 
 ```{r}
-pnorm(q = 0.13, mean = 0, sd = SE, lower.tail = FALSE)
+2*pnorm(q = 0.13, mean = 0, sd = SE, lower.tail = FALSE)
 ```
 
 ## Conclusion

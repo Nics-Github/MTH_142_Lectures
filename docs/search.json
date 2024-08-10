@@ -2867,7 +2867,7 @@
     "href": "lectures/16_Two_Proportions.html#find-pvalue",
     "title": "Two proportions",
     "section": "Find pvalue",
-    "text": "Find pvalue\nNote that the distribution is different, because in a hypothesis test we assume the center is 0.\n\\({p}_1−{p}_2 \\sim N(0,0.095)\\)\nIf the distribution is centered around the null parameter (eg 0, because we assume there is no difference) how likely is it that we would get 0.13 for a difference?\n\npnorm(q = 0.13, mean = 0, sd = SE, lower.tail = FALSE)\n\n[1] 0.0856231"
+    "text": "Find pvalue\nNote that the distribution is different, because in a hypothesis test we assume the center is 0.\n\\({p}_1−{p}_2 \\sim N(0,0.095)\\)\nIf the distribution is centered around the null parameter (eg 0, because we assume there is no difference) how likely is it that we would get 0.13 for a difference?\n\n2*pnorm(q = 0.13, mean = 0, sd = SE, lower.tail = FALSE)\n\n[1] 0.1712462"
   },
   {
     "objectID": "lectures/16_Two_Proportions.html#conclusion",
