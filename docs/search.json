@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Lectures from MTH 142 Fall 2024",
     "section": "",
-    "text": "These are the lectures from MTH 142, you can also find the direct links via Canvas.\nLecture 1 Statistical Thinking\nLecture 2 Study Design and Variables\nLecture 3 Categorical Data\nLecture 4 Numeric Data\nLecture 5 Linear Correlation\nLecture 6 Linear Correlation\nLecture 7 Regression math\nLecture 8 Probability\nLecture 9 Probability 2\nLecture 10 Continuous Random Variables\nLecture 11 The Normal Distribution\nLecture 12 Hypothesis Testing Proportion\nLecture 13 Parametric bootstrap Hypothesis Testing\n\nLecture 14 Confidence Intervals with Math\nLecture 17 Decision Errors\nLecture 18 Distributions and Two Proportions\nLecture 19 Hypothesis Test for a single mean\nLecture 20 Hypothesis Test for a difference of means (unpaired)\nLecture 21 ANOVA\nLecture 22 Regression with a Single Predictor"
+    "text": "These are the lectures from MTH 142, you can also find the direct links via Canvas.\nLecture 1 Statistical Thinking\nLecture 2 Study Design and Variables\nLecture 3 Categorical Data\nLecture 4 Numeric Data\nLecture 5 Linear Correlation\nLecture 6 Linear Correlation\nLecture 7 Regression math\nLecture 8 Probability\nLecture 9 Probability 2\nLecture 10 Continuous Random Variables\nLecture 11 The Normal Distribution\nLecture 12 Hypothesis Testing Proportion\nLecture 13 Parametric bootstrap Hypothesis Testing\nLecture 14 Confidence Intervals with Math\nLecture 15 Visualizing the CLT\nLecture 16 Distributions and Two Proportions\nLecture 17 Decision Errors\nLecture 19 Hypothesis Test for a single mean\nLecture 20 Hypothesis Test for a difference of means (unpaired)\nLecture 21 ANOVA\nLecture 22 Regression with a Single Predictor"
   },
   {
     "objectID": "lectures/7_regression-by-hand.html#this-is-a-bonus-lecture",
@@ -130,14 +130,14 @@
     "href": "lectures/6_Linear_regression_part_2.html#data-from-the-40s",
     "title": "Linear Regression part 2",
     "section": "Data from the 40s",
-    "text": "Data from the 40s\nThis data cites this source, which you may be inclined to look over.\n\n\nCode\n#install.packages(\"MASS\")\nlibrary(MASS)"
+    "text": "Data from the 40s\nThis data cites this source, which you may be inclined to look over.\n\n\nCode\nlibrary(tidyverse)\n\n#install.packages(\"MASS\")\n#library(MASS)\ncats &lt;- read_csv(\"cats.csv\")"
   },
   {
     "objectID": "lectures/6_Linear_regression_part_2.html#look-at-data",
     "href": "lectures/6_Linear_regression_part_2.html#look-at-data",
     "title": "Linear Regression part 2",
     "section": "Look at data",
-    "text": "Look at data\n\n?cats\ntail(cats,6)\n\n    Sex Bwt  Hwt\n139   M 3.6 15.0\n140   M 3.7 11.0\n141   M 3.8 14.8\n142   M 3.8 16.8\n143   M 3.9 14.4\n144   M 3.9 20.5"
+    "text": "Look at data\n\n?cats\n\nNo documentation for 'cats' in specified packages and libraries:\nyou could try '??cats'\n\ntail(cats,6)\n\n# A tibble: 6 × 3\n  Sex     Bwt   Hwt\n  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 M       3.6  15  \n2 M       3.7  11  \n3 M       3.8  14.8\n4 M       3.8  16.8\n5 M       3.9  14.4\n6 M       3.9  20.5"
   },
   {
     "objectID": "lectures/6_Linear_regression_part_2.html#which-variable-is-which",
@@ -172,7 +172,7 @@
     "href": "lectures/6_Linear_regression_part_2.html#find-correlation-coefficient",
     "title": "Linear Regression part 2",
     "section": "Find correlation coefficient",
-    "text": "Find correlation coefficient\n\nsummarize(.data= cats , r = cor(Bwt, Hwt, use=\"complete.obs\"))\n\n          r\n1 0.8041274"
+    "text": "Find correlation coefficient\n\nsummarize(.data= cats , r = cor(Bwt, Hwt, use=\"complete.obs\"))\n\n# A tibble: 1 × 1\n      r\n  &lt;dbl&gt;\n1 0.804"
   },
   {
     "objectID": "lectures/6_Linear_regression_part_2.html#find-the-coefficents",
@@ -1614,7 +1614,7 @@
     "href": "lectures/6_Linear_regression_part_2.html#you-try-calculate-a-residual",
     "title": "Linear Regression part 2",
     "section": "You try: calculate a residual",
-    "text": "You try: calculate a residual\nThere is a cat in this data that has a heart weight of 11.7 grams and a body weight of 3.5 grams. Calculate the residual for this cat."
+    "text": "You try: calculate a residual\nThere is a cat in this data that has a heart weight of 11.7 grams and a body weight of 3.5 kilograms. Calculate the residual for this cat."
   },
   {
     "objectID": "lectures/6_Linear_regression_part_2.html#solution-1",
@@ -2714,5 +2714,299 @@
     "title": "Confidence Intervals with a proportion",
     "section": "Worse off?",
     "text": "Worse off?\nEvery week the Yougov/The Economist do a survey from a representative sample of about 1500 adults. methodology On March 4, 2024 people were asked about their personal finances. See the results here.\n42% of respondants said they were worse off than a year ago. Find a CI for the true proportion of Americans who feel they are worse off financially than a year ago."
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#explore-the-clt",
+    "href": "lectures/16_Two_Proportions.html#explore-the-clt",
+    "title": "Two proportions",
+    "section": "Explore the CLT",
+    "text": "Explore the CLT\n1 Distributions\n2 Confidence Intervals\n3 Confidence Interval (activity)\n4 Then on to two proportions"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#distributions",
+    "href": "lectures/16_Two_Proportions.html#distributions",
+    "title": "Two proportions",
+    "section": "Distributions",
+    "text": "Distributions\n\nData Distribution\n\nHow does the sample data look?\n\nSampling distribution\n\nA theoretical distribution (math model) of proportions from many samples\ncentered around the true propotion p.\n\nBootstrapped Distribution\n\nIf parametric its the same as the Null Distribution, center at p.\nIf non-parametric it is centered around \\(\\widehat{p}.\\)\n\n\nhttps://seeing-theory.brown.edu/frequentist-inference/index.html#section2"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#central-limit-theorem-for-a-proportion.",
+    "href": "lectures/16_Two_Proportions.html#central-limit-theorem-for-a-proportion.",
+    "title": "Two proportions",
+    "section": "Central Limit Theorem for a proportion.",
+    "text": "Central Limit Theorem for a proportion.\nThis is how we build the sampling distribution.\nIf we consider many proportions from many samples and the conditions are satisfied, then the distribution of the sample proportions will be Normal.\nhttps://xlasercut.github.io/central-limit-theorem-animation/#/"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#confidence-intervals.",
+    "href": "lectures/16_Two_Proportions.html#confidence-intervals.",
+    "title": "Two proportions",
+    "section": "Confidence intervals.",
+    "text": "Confidence intervals.\nIf we make a 95% CI from 100 point estimates of \\(\\widehat{p}\\) from 100 samples we expect 95 of those to contain the true proportion."
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#demonstration",
+    "href": "lectures/16_Two_Proportions.html#demonstration",
+    "title": "Two proportions",
+    "section": "Demonstration",
+    "text": "Demonstration\nhttps://seeing-theory.brown.edu/frequentist-inference/index.html#section2"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#two-proportions",
+    "href": "lectures/16_Two_Proportions.html#two-proportions",
+    "title": "Two proportions",
+    "section": "Two proportions",
+    "text": "Two proportions\nMaybe we want to directly compare two proportions.\nConsider a difference of proportions.\n\nConfidence Interval\nHypothesis Test"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#compare-two-proportions",
+    "href": "lectures/16_Two_Proportions.html#compare-two-proportions",
+    "title": "Two proportions",
+    "section": "Compare two proportions",
+    "text": "Compare two proportions\nIs there a difference between the two proportions?"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#similar-to-ci-for-one-prop.",
+    "href": "lectures/16_Two_Proportions.html#similar-to-ci-for-one-prop.",
+    "title": "Two proportions",
+    "section": "Similar to CI for one prop.",
+    "text": "Similar to CI for one prop.\nThe following is from chapter 17 in the text:\nThe difference \\(\\hat{p}_1−\\hat{p}_2\\) can be modeled using a normal distribution when\n\nIndependence Extended: The data are independent within and between the two groups.\nSuccess-failure condition. The success-failure condition holds for both groups, where we check successes and failures in each group separately."
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#mean-and-se",
+    "href": "lectures/16_Two_Proportions.html#mean-and-se",
+    "title": "Two proportions",
+    "section": "Mean and SE",
+    "text": "Mean and SE\n\\(p_1−p_2 \\sim N(\\hat{p}_1−\\hat{p}_2,\\sqrt{\\frac{\\hat{p}_1(1−\\hat{p}_1)}{n_1} +\\frac{\\hat{p}_2(1−\\hat{p}_2)}{n_2}})\\)\nmean = \\(\\hat{p}_1−\\hat{p}_2\\)\nStandard Error = \\(\\sqrt{\\frac{\\hat{p}_1(1−\\hat{p}_1)}{n_1} +\\frac{\\hat{p}_2(1−\\hat{p}_2)}{n_2}}\\)"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#consider-the-cpr-data.",
+    "href": "lectures/16_Two_Proportions.html#consider-the-cpr-data.",
+    "title": "Two proportions",
+    "section": "Consider the cpr data.",
+    "text": "Consider the cpr data."
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#data-distribution",
+    "href": "lectures/16_Two_Proportions.html#data-distribution",
+    "title": "Two proportions",
+    "section": "Data Distribution",
+    "text": "Data Distribution"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#make-a-95-confidence-interval",
+    "href": "lectures/16_Two_Proportions.html#make-a-95-confidence-interval",
+    "title": "Two proportions",
+    "section": "Make a 95% Confidence Interval",
+    "text": "Make a 95% Confidence Interval\nWe want to try to capture the true difference in proportions.\n\\[\n\\hat{p}_1−\\hat{p}_2  \\pm z_{\\frac{\\alpha}{2}} \\times SE\n\\]\nWe expect 95% of the CI to capture the true difference.\nCheck conditions first:\n\nIndependence Extended\nSuccess-failure condition"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#find-hatp-and-se",
+    "href": "lectures/16_Two_Proportions.html#find-hatp-and-se",
+    "title": "Two proportions",
+    "section": "Find \\(\\hat{p}\\) and SE",
+    "text": "Find \\(\\hat{p}\\) and SE\n\\(\\hat{p}_1 = \\frac{11}{50} = 0.22\\)\n\\(\\hat{p}_2 = \\frac{14}{40} \\approx 0.35\\)\n\\(\\hat{p_2} - \\hat{p_1} = 0.13\\)\n\\(SE = \\sqrt{\\frac{\\hat{p}_1(1-\\hat{p}_1)}{n_1}+\\frac{\\hat{p}_2(1-\\hat{p}_2)}{n_2}} \\approx 0.095\\)\n\n\n[1] 0.13\n\n\n[1] 0.09549607\n\n\n\\(Z = 1.96\\)"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#the-distribution-is",
+    "href": "lectures/16_Two_Proportions.html#the-distribution-is",
+    "title": "Two proportions",
+    "section": "The distribution is",
+    "text": "The distribution is\n\\({p}_1−{p}_2 \\sim N(0.13,0.095)\\)"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#the-95-ci",
+    "href": "lectures/16_Two_Proportions.html#the-95-ci",
+    "title": "Two proportions",
+    "section": "The 95% CI",
+    "text": "The 95% CI\n\n\n[1] \"Lower Bound\"\n\n\n[1] -0.0571723\n\n\n[1] \"Upper Bound\"\n\n\n[1] 0.3171723"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#interpretation",
+    "href": "lectures/16_Two_Proportions.html#interpretation",
+    "title": "Two proportions",
+    "section": "Interpretation",
+    "text": "Interpretation\nWe are 95 % confident that the true difference in the proportion of people who survived using the two treatments is between -0.06 and 0.32. Note that zero is in this interval. It is possible that there is no difference in the survival rates."
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#you-try",
+    "href": "lectures/16_Two_Proportions.html#you-try",
+    "title": "Two proportions",
+    "section": "You try:",
+    "text": "You try:"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#chapter-17",
+    "href": "lectures/16_Two_Proportions.html#chapter-17",
+    "title": "Two proportions",
+    "section": "10 chapter 17",
+    "text": "10 chapter 17"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#lets-do-a-hypothesis-test",
+    "href": "lectures/16_Two_Proportions.html#lets-do-a-hypothesis-test",
+    "title": "Two proportions",
+    "section": "Let’s do a Hypothesis Test",
+    "text": "Let’s do a Hypothesis Test\nWe’ll use the same data above\n\\[\nH_0: p_1 = p_2 \\\\\nH_a:p_1 \\ne p_2\n\\]\n\\[\n\\alpha = 0.05\n\\]\nCheck conditions:\n\nIndependence Extended\nSuccess-failure condition"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#pooled-groups",
+    "href": "lectures/16_Two_Proportions.html#pooled-groups",
+    "title": "Two proportions",
+    "section": "pooled groups",
+    "text": "pooled groups\nThere is one difference when doing the hypothesis test. We use a pooled statistic when calculating the standard error.\nThe book uses \\(\\widehat{p}_{pool} = \\frac{\\text{total successes from both groups}}{\\text{total from both groups}}\\)\nIf conditions with the pooled group then\n\\(\\hat{p}_1−\\hat{p}_2 \\sim N({p}_1−{p}_2,\\sqrt{\\hat{p}_{pool}(1−\\hat{p}_{pool})(\\frac{1}{n_1} +\\frac{1}{n_2}}))\\)"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#calculate-the-pooled-groups",
+    "href": "lectures/16_Two_Proportions.html#calculate-the-pooled-groups",
+    "title": "Two proportions",
+    "section": "Calculate the pooled groups",
+    "text": "Calculate the pooled groups\n\\(\\widehat{p}_{pool} = \\frac{25}{90}\\)\n\\(SE = \\sqrt{\\widehat{p}_{pool}(1-\\widehat{p}_{pool})(1/n_1+1/n_2)}\\)\n\n\n[1] 0.09501462"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#find-pvalue",
+    "href": "lectures/16_Two_Proportions.html#find-pvalue",
+    "title": "Two proportions",
+    "section": "Find pvalue",
+    "text": "Find pvalue\nNote that the distribution is different, because in a hypothesis test we assume the center is 0.\n\\({p}_1−{p}_2 \\sim N(0,0.095)\\)\nIf the distribution is centered around the null parameter (eg 0, because we assume there is no difference) how likely is it that we would get 0.13 for a difference?\n\n\n[1] 0.0856231"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#conclusion",
+    "href": "lectures/16_Two_Proportions.html#conclusion",
+    "title": "Two proportions",
+    "section": "Conclusion",
+    "text": "Conclusion\nOur pvalue is greater than 0.05 so we fail to reject the null hypothesis and conclude that there is no difference in survival rates between the treatment and control groups.\nNote: It is possible we have made a Type 2 error in failing to reject the null even when the null was false."
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#you-try-1",
+    "href": "lectures/16_Two_Proportions.html#you-try-1",
+    "title": "Two proportions",
+    "section": "You try",
+    "text": "You try\nproblem 12 chapter 17"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#problem-12-chapter-17",
+    "href": "lectures/16_Two_Proportions.html#problem-12-chapter-17",
+    "title": "Two proportions",
+    "section": "problem 12 chapter 17",
+    "text": "problem 12 chapter 17"
+  },
+  {
+    "objectID": "lectures/15_Reflection.html#explore-the-clt",
+    "href": "lectures/15_Reflection.html#explore-the-clt",
+    "title": "Reflect on the CLT",
+    "section": "Explore the CLT",
+    "text": "Explore the CLT\n1 Distributions\n2 Confidence Intervals\n3 Confidence Interval (activity)"
+  },
+  {
+    "objectID": "lectures/15_Reflection.html#distributions",
+    "href": "lectures/15_Reflection.html#distributions",
+    "title": "Reflect on the CLT",
+    "section": "Distributions",
+    "text": "Distributions\n\nData Distribution\n\nHow does the sample data look?\n\nSampling distribution\n\nA theoretical distribution (math model) of proportions from many samples\ncentered around the true propotion p.\n\nBootstrapped Distribution\n\nIf parametric its center is the same as the Null Distribution, center at p.\nIf non-parametric it is centered around \\(\\widehat{p}.\\)"
+  },
+  {
+    "objectID": "lectures/15_Reflection.html#central-limit-theorem-for-a-proportion.",
+    "href": "lectures/15_Reflection.html#central-limit-theorem-for-a-proportion.",
+    "title": "Reflect on the CLT",
+    "section": "Central Limit Theorem for a proportion.",
+    "text": "Central Limit Theorem for a proportion.\nThis is how we build the sampling distribution.\nIf we consider many proportions from many samples and the conditions are satisfied, then the distribution of the sample proportions will be Normal.\nAn visual for the CLT"
+  },
+  {
+    "objectID": "lectures/15_Reflection.html#confidence-intervals.",
+    "href": "lectures/15_Reflection.html#confidence-intervals.",
+    "title": "Reflect on the CLT",
+    "section": "Confidence intervals.",
+    "text": "Confidence intervals.\nIf we make a 95% CI from 100 point estimates of \\(\\widehat{p}\\) from 100 samples we expect 95 of those to contain the true proportion."
+  },
+  {
+    "objectID": "lectures/15_Reflection.html#demonstration",
+    "href": "lectures/15_Reflection.html#demonstration",
+    "title": "Reflect on the CLT",
+    "section": "Demonstration",
+    "text": "Demonstration\nA visual for Confidence Intervals"
+  },
+  {
+    "objectID": "lectures/15_Reflection.html#the-bootstrap",
+    "href": "lectures/15_Reflection.html#the-bootstrap",
+    "title": "Reflect on the CLT",
+    "section": "The bootstrap",
+    "text": "The bootstrap\nThe bootstrap from Seeing Theory"
+  },
+  {
+    "objectID": "lectures/17_decision_error_tidying_up.html",
+    "href": "lectures/17_decision_error_tidying_up.html",
+    "title": "Decision Errors",
+    "section": "",
+    "text": "Write notation\nCheck Conditions\nBuild Theoretical Distributions with assumed parameter.\nFind the probability of such a sample statistic."
+  },
+  {
+    "objectID": "lectures/17_decision_error_tidying_up.html#hypothesis-testing-with-p-values",
+    "href": "lectures/17_decision_error_tidying_up.html#hypothesis-testing-with-p-values",
+    "title": "Decision Errors",
+    "section": "Hypothesis Testing with p-values",
+    "text": "Hypothesis Testing with p-values\n\nWrite notation\nCheck Conditions\nBuild Theoretical Distributions with assumed parameter.\nFind the probability of a sample statistic."
+  },
+  {
+    "objectID": "lectures/17_decision_error_tidying_up.html#the-question-we-are-trying-to-answer",
+    "href": "lectures/17_decision_error_tidying_up.html#the-question-we-are-trying-to-answer",
+    "title": "Decision Errors",
+    "section": "The question we are trying to answer:",
+    "text": "The question we are trying to answer:\nIf the null hypothesis is true, how likely is it that we would have gotten the statistic from our sample?"
+  },
+  {
+    "objectID": "lectures/17_decision_error_tidying_up.html#example-from-lab-4",
+    "href": "lectures/17_decision_error_tidying_up.html#example-from-lab-4",
+    "title": "Decision Errors",
+    "section": "Example from lab 4",
+    "text": "Example from lab 4\nIf \\(H_0 : p = 0.08\\) how likely is it we would have gotten \\(\\widehat{p} = 0.0653\\)\nYou all found that to be very unlikely from your bootstrap distribution."
+  },
+  {
+    "objectID": "lectures/17_decision_error_tidying_up.html#note-on-alpha-alpha",
+    "href": "lectures/17_decision_error_tidying_up.html#note-on-alpha-alpha",
+    "title": "Decision Errors",
+    "section": "Note on alpha \\(\\alpha\\) :",
+    "text": "Note on alpha \\(\\alpha\\) :\n\\(\\alpha\\) is a cut off value. If the p-value is larger than \\(\\alpha\\) we say \\(\\widehat{p}\\) is likely (Fail to reject \\(H_0\\)), smaller than alpha \\(\\widehat{p}\\) is unlikely (reject \\(H_0\\)).\n\n\\(\\alpha\\) shows the strength of our evidence.\nweak evidence \\(\\alpha = 0.1\\) or higher.\nmoderate evidence \\(\\alpha =0.05\\)\nstrong evidence \\(\\alpha = 0.01\\)\n\nChoosing alpha involves making trade offs that are beyond the scope of this class."
+  },
+  {
+    "objectID": "lectures/17_decision_error_tidying_up.html#but-we-can-make-the-wrong-decision",
+    "href": "lectures/17_decision_error_tidying_up.html#but-we-can-make-the-wrong-decision",
+    "title": "Decision Errors",
+    "section": "But we can make the wrong decision",
+    "text": "But we can make the wrong decision\nThese are just probabilities. They could be wrong.\n\nWe could reject \\(H_0\\) if it is true. (Type 1)\n\nor\n\nWe could fail to reject \\(H_0\\) if it is false. (Type 2)"
+  },
+  {
+    "objectID": "lectures/17_decision_error_tidying_up.html#decision-errors",
+    "href": "lectures/17_decision_error_tidying_up.html#decision-errors",
+    "title": "Decision Errors",
+    "section": "Decision Errors",
+    "text": "Decision Errors"
+  },
+  {
+    "objectID": "lectures/17_decision_error_tidying_up.html#on-lab-4",
+    "href": "lectures/17_decision_error_tidying_up.html#on-lab-4",
+    "title": "Decision Errors",
+    "section": "On Lab 4",
+    "text": "On Lab 4\nCould we have made an error?"
+  },
+  {
+    "objectID": "lectures/17_decision_error_tidying_up.html#board-work-problem",
+    "href": "lectures/17_decision_error_tidying_up.html#board-work-problem",
+    "title": "Decision Errors",
+    "section": "Board work problem",
+    "text": "Board work problem\n16.3\n\nignore d.\nMake your own bootstrapped null distribution. set.seed(2024)\nFind the pvalue.\nMake conclusion.\nAlso consider which error could have been reached."
+  },
+  {
+    "objectID": "lectures/17_decision_error_tidying_up.html#example-from-difference-of-props",
+    "href": "lectures/17_decision_error_tidying_up.html#example-from-difference-of-props",
+    "title": "Decision Errors",
+    "section": "Example from difference of props",
+    "text": "Example from difference of props\nIf \\(H_0 : p_1 = p_2\\) how likely is it we would have gotten \\(\\widehat{p}_1- \\widehat{p}_2 = 0.13\\)\nWith a p-value of 0.086 found it to be likely that we would have gotten 0.13."
+  },
+  {
+    "objectID": "lectures/17_decision_error_tidying_up.html#making-a-wrong-decision",
+    "href": "lectures/17_decision_error_tidying_up.html#making-a-wrong-decision",
+    "title": "Decision Errors",
+    "section": "Making a wrong decision",
+    "text": "Making a wrong decision\nThese are just probabilities. They could be wrong.\n\nWe could reject \\(H_0\\) if it is true. (Type 1)\n\nor\n\nWe could fail to reject \\(H_0\\) if it is false. (Type 2)"
   }
 ]

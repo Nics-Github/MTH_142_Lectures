@@ -29,6 +29,7 @@ This data cites [this source,](https://digital.library.adelaide.edu.au/dspace/bi
 
 ```{r}
 #| code-fold: show
+library(tidyverse)
 
 #install.packages("MASS")
 #library(MASS)
@@ -50,8 +51,6 @@ Which should be the predictor and response variables?
 
 ```{r}
 #| echo: false
-
-library(tidyverse)
 
 ggplot(data = cats, aes(Bwt, Hwt))+
   geom_point(aes(color=Sex) )+
@@ -123,7 +122,7 @@ Intercept: If we found a cat they weighed nothing its heart would be -0.36 grams
 summary(cat_model)
 ```
 
-## You try: 
+## You try:
 
 ::: incremental
 -   If a cat weighs 3.5 kg how large a heart would we expect?
@@ -133,17 +132,16 @@ summary(cat_model)
     -   Caution against extrapolation.
 :::
 
-## Solution: 
+## Solution:
 
 The equation for the line is
 
-$\widehat{Hwt} = -0.36 + 4.03 \times Bwt $
+\$\widehat{Hwt} = -0.36 + 4.03 \times Bwt \$
 
 Plug in 3.5 we get
 
 $\widehat{Hwt} = -0.36 + 4.03 \times 3.5 \\
-\widehat{Hwt} = 13.745 \approx 13.7
-$
+\widehat{Hwt} = 13.745 \approx 13.7$
 
 # Residuals
 
@@ -162,11 +160,11 @@ ggplot(cats, aes(x = Bwt, y = Hwt))+
 
 ```
 
-## You try:  calculate a residual
+## You try: calculate a residual
 
 There is a cat in this data that has a heart weight of 11.7 grams and a body weight of 3.5 kilograms. Calculate the residual for this cat.
 
-## Solution: 
+## Solution:
 
 The residual is calculated $$e = y - \hat{y}$$
 

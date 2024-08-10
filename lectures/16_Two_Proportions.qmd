@@ -1,6 +1,5 @@
 ---
 title: "Two proportions"
-subtitle: "And a demonstration with one proportion"
 author: "Schwab"
 format: 
   revealjs:
@@ -13,7 +12,7 @@ library(tidyverse)
 library(openintro)
 ```
 
-# Clarifying
+## Explore the CLT
 
 1 Distributions
 
@@ -41,87 +40,27 @@ library(openintro)
 
     -   If non-parametric it is centered around $\widehat{p}.$
 
+<https://seeing-theory.brown.edu/frequentist-inference/index.html#section2>
+
 ## Central Limit Theorem for a proportion.
 
 This is how we build the sampling distribution.
 
 If we consider many proportions from many samples and the conditions are satisfied, then the distribution of the sample proportions will be Normal.
 
-## Assumptions for a single proportion
-
-Independent and "large" sample.
-
-Success-Failure Condition
-
-$$
-\widehat{p} \sim N(p,se)
-$$
-
-## Notation
-
-$$ \widehat{p} \sim N(p,SE)$$
-
-With $SE= \sqrt{\frac{p(1-p)}{n}}$
-
-or estimate with.
-
-$SE= \sqrt{\frac{\widehat{p}(1-\widehat{p})}{n}}$
-
-We often use $\widehat{p}$ as an estimator for $p$.
+<https://xlasercut.github.io/central-limit-theorem-animation/#/>
 
 ## Confidence intervals.
 
-If we make a 95% CI and we get 100 $\widehat{p}$ from 100 samples we expect 95 of those to contain the true proportion.
+If we make a 95% CI from 100 point estimates of $\widehat{p}$ from 100 samples we expect 95 of those to contain the true proportion.
 
 ## Demonstration
 
-Make 30ish samples (n=25) and see how many 95% CI capture the true proportion. (How many do we expect to capture p?)
+<https://seeing-theory.brown.edu/frequentist-inference/index.html#section2>
 
--   Note the number of red marbles of 25.
+# Difference of proportions
 
-Put your p-hats [here](https://docs.google.com/spreadsheets/d/1rtcthdCWxSeNad71l5oDQOn13Et9ORbIUuyF6InGu4M/edit?usp=sharing) (round to the hundredth place)
-
--   Make your CI using a math model.
-
--   I'll put all the CIs on the board. to see if they capture the true proportion.
-
-$p = \frac{400}{2200} = 0.1818182$
-
-## Code for demonstration
-
-```{r}
-#| echo: TRUE
-
-library(tidyverse)
-library(googlesheets4)
-
-# Making CI from some sample proportions.
-
-class_p_hats <- unlist(read_sheet("https://docs.google.com/spreadsheets/d/1rtcthdCWxSeNad71l5oDQOn13Et9ORbIUuyF6InGu4M/edit?usp=sharing"))
-p <- 0.181818
-n <- length(class_p_hats)
-
-#Make the DF, for every p-hat it finds a CI and makes the plot. 
-sims <- tibble(
-  p_hat = class_p_hats,
-  se = sqrt(p_hat * (1 - p_hat) / n),
-  lower = p_hat - 1.96 * se,
-  upper = p_hat + 1.96 * se,
-  covers = lower <= p & upper >= p
-) |>
-  mutate(id = row_number())
-
-# Make the plot
-ggplot(data = sims) +
-  geom_vline(xintercept = p, linetype = 3) +
-  geom_segment(aes(x = lower, xend = upper, y = id, yend = id, color = covers)) +
-  annotate("text", x = p, y = 50, label = paste("Coverage rate:", sum(sims$covers) / nrow(sims)))
-
-```
-
-## Questions
-
-# More proportions!
+## Two proportions
 
 Maybe we want to directly compare two proportions.
 
@@ -147,11 +86,11 @@ The difference $\hat{p}_1−\hat{p}_2$ can be modeled using a normal distributio
 
 ## Mean and SE
 
-$\hat{p}_1−\hat{p}_2 \sim N({p}_1−{p}_2,\sqrt{\frac{\hat{p}_1(1−\hat{p}_1)}{n_1} +\frac{\hat{p}_2(1−\hat{p}_2)}{n_2}})$
+$p_1−p_2 \sim N(\hat{p}_1−\hat{p}_2,\sqrt{\frac{\hat{p}_1(1−\hat{p}_1)}{n_1} +\frac{\hat{p}_2(1−\hat{p}_2)}{n_2}})$
 
 mean = $\hat{p}_1−\hat{p}_2$
 
-Standard Error = $\sqrt{\frac{\hat{p}_1(1−\hat{p}_1)}{n} +\frac{\hat{p}_2(1−\hat{p}_2)}{n}}$
+Standard Error = $\sqrt{\frac{\hat{p}_1(1−\hat{p}_1)}{n_1} +\frac{\hat{p}_2(1−\hat{p}_2)}{n_2}}$
 
 ## Consider the cpr data.
 
@@ -163,14 +102,14 @@ library(openintro)
 
 ![](gfx/cpr.png)
 
-## Two groups
+## Data Distribution
 
 ```{r}
 ggplot(cpr, aes(x = group, fill = outcome))+
   geom_bar(position = "fill")
 ```
 
-## Let's make a 95% CI
+## Make a 95% Confidence Interval
 
 We want to try to capture the true difference in proportions.
 
@@ -186,11 +125,63 @@ Check conditions first:
 
 -   *Success-failure condition*
 
+## Find $\hat{p}$ and SE
+
+$\hat{p}_1 = \frac{11}{50} = 0.22$
+
+$\hat{p}_2 = \frac{14}{40} \approx 0.35$
+
+$\hat{p_2} - \hat{p_1} = 0.13$
+
+$SE = \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1}+\frac{\hat{p}_2(1-\hat{p}_2)}{n_2}} \approx 0.095$
+
+```{r}
+p_1 = 0.22
+p_2 = 0.35
+p_2-p_1
+SE = sqrt(p_1*(1-p_1)/50+p_2*(1-p_2)/40)
+SE
+```
+
+$Z = 1.96$
+
+## The distribution is 
+
+${p}_1−{p}_2 \sim N(0.13,0.095)$
+
+## The 95% CI
+
+```{r}
+Z = 1.96
+
+print("Lower Bound")
+p_2-p_1 - Z* SE
+
+print("Upper Bound")
+p_2-p_1 + Z* SE
+
+
+```
+
+## Interpretation 
+
+We are 95 % confident that the true difference in the proportion of people who survived using the two treatments is between -0.06 and 0.32. Note that zero is in this interval. It is possible that there is no difference in the survival rates.
+
+## You try:
+
+## [10 chapter 17](https://openintro-ims.netlify.app/inference-two-props#sec-chp17-exercises)
+
 ## Let's do a Hypothesis Test
+
+We'll use the same data above
 
 $$
 H_0: p_1 = p_2 \\
 H_a:p_1 \ne p_2 
+$$
+
+$$
+\alpha = 0.05
 $$
 
 Check conditions:
@@ -209,8 +200,35 @@ If conditions with the pooled group then
 
 $\hat{p}_1−\hat{p}_2 \sim N({p}_1−{p}_2,\sqrt{\hat{p}_{pool}(1−\hat{p}_{pool})(\frac{1}{n_1} +\frac{1}{n_2}}))$
 
-## Finish our hypothesis test from Monday
+## Calculate the pooled groups
 
-## Try some
+$\widehat{p}_{pool} = \frac{25}{90}$
 
-[10 and 12 from chapter 17](https://openintro-ims.netlify.app/inference-two-props#chp17-exercises)
+$SE = \sqrt{\widehat{p}_{pool}(1-\widehat{p}_{pool})(1/n_1+1/n_2)}$
+
+```{r}
+p_pool = 25/90
+SE = sqrt(p_pool*(1-p_pool)*(1/50+1/40))
+SE
+```
+
+## Find pvalue
+Note that the distribution is different, because in a hypothesis test we assume the center is 0. 
+
+${p}_1−{p}_2 \sim N(0,0.095)$
+
+If the distribution is centered around the null parameter (eg 0, because we assume there is no difference) how likely is it that we would get 0.13 for a difference? 
+
+```{r}
+pnorm(q = 0.13, mean = 0, sd = SE, lower.tail = FALSE)
+```
+
+## Conclusion
+
+Our pvalue is greater than 0.05 so we fail to reject the null hypothesis and conclude that there is no difference in survival rates between the treatment and control groups.
+
+Note: It is possible we have made a Type 2 error in failing to reject the null even when the null was false.
+
+## You try 
+
+[problem 12 chapter 17](https://openintro-ims.netlify.app/inference-two-props#sec-chp17-exercises)

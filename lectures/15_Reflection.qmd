@@ -1,0 +1,59 @@
+---
+title: "Reflect on the CLT"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+library(openintro)
+```
+
+## Explore the CLT
+
+1 Distributions
+
+2 Confidence Intervals
+
+3 Confidence Interval (activity)
+
+## Distributions
+
+-   Data Distribution
+
+    -   How does the sample data look?
+
+-   Sampling distribution
+
+    -   A theoretical distribution (math model) of proportions from many samples
+
+    -   centered around the true propotion p.
+
+-   Bootstrapped Distribution
+
+    -   If parametric its center is the same as the Null Distribution, center at p.
+
+    -   If non-parametric it is centered around $\widehat{p}.$
+
+## The bootstrap
+
+[The bootstrap from Seeing Theory](https://seeing-theory.brown.edu/frequentist-inference/index.html#section2)
+
+## Central Limit Theorem for a proportion.
+
+This is how we build the sampling distribution.
+
+If we consider many proportions from many samples and the conditions are satisfied, then the distribution of the sample proportions will be Normal.
+
+[An visual for the CLT](https://xlasercut.github.io/central-limit-theorem-animation/#/)
+
+## Confidence intervals.
+
+If we make a 95% CI from 100 point estimates of $\widehat{p}$ from 100 samples we expect 95 of those to contain the true proportion.
+
+## Demonstration
+
+[A visual for Confidence Intervals](https://seeing-theory.brown.edu/frequentist-inference/index.html#section2)

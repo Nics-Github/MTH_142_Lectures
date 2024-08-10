@@ -31,13 +31,13 @@ These are the lectures from MTH 142, you can also find the direct links via Canv
 
 [Lecture 13 Parametric bootstrap Hypothesis Testing](lectures/13_parametric_boot.qmd)
 
-<!-- [Lecture 15 Non-parametric bootstrap Confidence Intervals](lectures/17_bootstrap_CI_proportion.qmd) -->
-
 [Lecture 14 Confidence Intervals with Math](lectures/14__CI_prop_mathematically.qmd)
 
-[Lecture 17 Decision Errors](lectures/17_decision_error_tidying_up.qmd)
+[Lecture 15 Visualizing the CLT](lectures/15_Reflection.qmd)
 
-[Lecture 18 Distributions and Two Proportions](lectures/18_Two_Proportions.qmd)
+[Lecture 16 Distributions and Two Proportions](lectures/16_Two_Proportions.qmd)
+
+[Lecture 17 Decision Errors](lectures/17_decision_error_tidying_up.qmd)
 
 [Lecture 19 Hypothesis Test for a single mean](lectures/19_single_mean.qmd)
 
