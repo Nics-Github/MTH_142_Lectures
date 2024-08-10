@@ -2790,21 +2790,21 @@
     "href": "lectures/16_Two_Proportions.html#data-distribution",
     "title": "Two proportions",
     "section": "Data Distribution",
-    "text": "Data Distribution"
+    "text": "Data Distribution\n\nggplot(cpr, aes(x = group, fill = outcome))+\n  geom_bar(position = \"fill\")"
   },
   {
     "objectID": "lectures/16_Two_Proportions.html#make-a-95-confidence-interval",
     "href": "lectures/16_Two_Proportions.html#make-a-95-confidence-interval",
     "title": "Two proportions",
     "section": "Make a 95% Confidence Interval",
-    "text": "Make a 95% Confidence Interval\nWe want to try to capture the true difference in proportions.\n\\[\n\\hat{p}_1−\\hat{p}_2  \\pm z_{\\frac{\\alpha}{2}} \\times SE\n\\]\nWe expect 95% of the CI to capture the true difference.\nCheck conditions first:\n\nIndependence Extended\nSuccess-failure condition"
+    "text": "Make a 95% Confidence Interval\nWe want to try to capture the true difference in proportions.\n\\[\n\\hat{p}_1−\\hat{p}_2  \\pm z_{\\frac{\\alpha}{2}} \\times SE\n\\]\nWe expect 95% of the CIs to capture the true difference.\nCheck conditions first:\n\nIndependence Extended\nSuccess-failure condition"
   },
   {
     "objectID": "lectures/16_Two_Proportions.html#find-hatp-and-se",
     "href": "lectures/16_Two_Proportions.html#find-hatp-and-se",
     "title": "Two proportions",
     "section": "Find \\(\\hat{p}\\) and SE",
-    "text": "Find \\(\\hat{p}\\) and SE\n\\(\\hat{p}_1 = \\frac{11}{50} = 0.22\\)\n\\(\\hat{p}_2 = \\frac{14}{40} \\approx 0.35\\)\n\\(\\hat{p_2} - \\hat{p_1} = 0.13\\)\n\\(SE = \\sqrt{\\frac{\\hat{p}_1(1-\\hat{p}_1)}{n_1}+\\frac{\\hat{p}_2(1-\\hat{p}_2)}{n_2}} \\approx 0.095\\)\n\n\n[1] 0.13\n\n\n[1] 0.09549607\n\n\n\\(Z = 1.96\\)"
+    "text": "Find \\(\\hat{p}\\) and SE\n\\(\\hat{p}_1 = \\frac{11}{50} = 0.22\\)\n\\(\\hat{p}_2 = \\frac{14}{40} \\approx 0.35\\)\n\\(\\hat{p_2} - \\hat{p_1} = 0.13\\)\n\\(SE = \\sqrt{\\frac{\\hat{p}_1(1-\\hat{p}_1)}{n_1}+\\frac{\\hat{p}_2(1-\\hat{p}_2)}{n_2}} \\approx 0.095\\)\n\np_1 = 0.22\np_2 = 0.35\np_2-p_1\n\n[1] 0.13\n\nSE = sqrt(p_1*(1-p_1)/50+p_2*(1-p_2)/40)\nSE\n\n[1] 0.09549607\n\n\n\\(Z = 1.96\\)"
   },
   {
     "objectID": "lectures/16_Two_Proportions.html#the-distribution-is",
@@ -2818,7 +2818,7 @@
     "href": "lectures/16_Two_Proportions.html#the-95-ci",
     "title": "Two proportions",
     "section": "The 95% CI",
-    "text": "The 95% CI\n\n\n[1] \"Lower Bound\"\n\n\n[1] -0.0571723\n\n\n[1] \"Upper Bound\"\n\n\n[1] 0.3171723"
+    "text": "The 95% CI\n\nZ = 1.96\n\n# \"Lower Bound\"\np_2-p_1 - Z* SE\n\n[1] -0.0571723\n\n# \"Upper Bound\"\np_2-p_1 + Z* SE\n\n[1] 0.3171723"
   },
   {
     "objectID": "lectures/16_Two_Proportions.html#interpretation",
@@ -2860,14 +2860,14 @@
     "href": "lectures/16_Two_Proportions.html#calculate-the-pooled-groups",
     "title": "Two proportions",
     "section": "Calculate the pooled groups",
-    "text": "Calculate the pooled groups\n\\(\\widehat{p}_{pool} = \\frac{25}{90}\\)\n\\(SE = \\sqrt{\\widehat{p}_{pool}(1-\\widehat{p}_{pool})(1/n_1+1/n_2)}\\)\n\n\n[1] 0.09501462"
+    "text": "Calculate the pooled groups\n\\(\\widehat{p}_{pool} = \\frac{25}{90}\\)\n\\(SE = \\sqrt{\\widehat{p}_{pool}(1-\\widehat{p}_{pool})(1/n_1+1/n_2)}\\)\n\np_pool = 25/90\nSE = sqrt(p_pool*(1-p_pool)*(1/50+1/40))\nSE\n\n[1] 0.09501462"
   },
   {
     "objectID": "lectures/16_Two_Proportions.html#find-pvalue",
     "href": "lectures/16_Two_Proportions.html#find-pvalue",
     "title": "Two proportions",
     "section": "Find pvalue",
-    "text": "Find pvalue\nNote that the distribution is different, because in a hypothesis test we assume the center is 0.\n\\({p}_1−{p}_2 \\sim N(0,0.095)\\)\nIf the distribution is centered around the null parameter (eg 0, because we assume there is no difference) how likely is it that we would get 0.13 for a difference?\n\n\n[1] 0.0856231"
+    "text": "Find pvalue\nNote that the distribution is different, because in a hypothesis test we assume the center is 0.\n\\({p}_1−{p}_2 \\sim N(0,0.095)\\)\nIf the distribution is centered around the null parameter (eg 0, because we assume there is no difference) how likely is it that we would get 0.13 for a difference?\n\npnorm(q = 0.13, mean = 0, sd = SE, lower.tail = FALSE)\n\n[1] 0.0856231"
   },
   {
     "objectID": "lectures/16_Two_Proportions.html#conclusion",
@@ -3008,5 +3008,19 @@
     "title": "Decision Errors",
     "section": "Making a wrong decision",
     "text": "Making a wrong decision\nThese are just probabilities. They could be wrong.\n\nWe could reject \\(H_0\\) if it is true. (Type 1)\n\nor\n\nWe could fail to reject \\(H_0\\) if it is false. (Type 2)"
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#read-before-hand",
+    "href": "lectures/16_Two_Proportions.html#read-before-hand",
+    "title": "Two proportions",
+    "section": "Read before hand",
+    "text": "Read before hand\nRead chapter 17 on inference with two proportions."
+  },
+  {
+    "objectID": "lectures/16_Two_Proportions.html#libraries",
+    "href": "lectures/16_Two_Proportions.html#libraries",
+    "title": "Two proportions",
+    "section": "Libraries",
+    "text": "Libraries\n\nlibrary(tidyverse)\nlibrary(openintro)"
   }
 ]

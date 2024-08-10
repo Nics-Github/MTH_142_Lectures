@@ -5,58 +5,19 @@ format:
   revealjs:
     theme: beige
 editor: visual
+execute: 
+  echo: true
 ---
+## Read before hand
+
+Read [chapter 17](https://openintro-ims.netlify.app/inference-two-props) on inference with two proportions. 
+
+## Libraries
 
 ```{r}
 library(tidyverse)
 library(openintro)
 ```
-
-## Explore the CLT
-
-1 Distributions
-
-2 Confidence Intervals
-
-3 Confidence Interval (activity)
-
-4 Then on to two proportions
-
-## Distributions
-
--   Data Distribution
-
-    -   How does the sample data look?
-
--   Sampling distribution
-
-    -   A theoretical distribution (math model) of proportions from many samples
-
-    -   centered around the true propotion p.
-
--   Bootstrapped Distribution
-
-    -   If parametric its the same as the Null Distribution, center at p.
-
-    -   If non-parametric it is centered around $\widehat{p}.$
-
-<https://seeing-theory.brown.edu/frequentist-inference/index.html#section2>
-
-## Central Limit Theorem for a proportion.
-
-This is how we build the sampling distribution.
-
-If we consider many proportions from many samples and the conditions are satisfied, then the distribution of the sample proportions will be Normal.
-
-<https://xlasercut.github.io/central-limit-theorem-animation/#/>
-
-## Confidence intervals.
-
-If we make a 95% CI from 100 point estimates of $\widehat{p}$ from 100 samples we expect 95 of those to contain the true proportion.
-
-## Demonstration
-
-<https://seeing-theory.brown.edu/frequentist-inference/index.html#section2>
 
 # Difference of proportions
 
@@ -117,7 +78,7 @@ $$
 \hat{p}_1−\hat{p}_2  \pm z_{\frac{\alpha}{2}} \times SE
 $$
 
-We expect 95% of the CI to capture the true difference.
+We expect 95% of the CIs to capture the true difference.
 
 Check conditions first:
 
@@ -154,10 +115,10 @@ ${p}_1−{p}_2 \sim N(0.13,0.095)$
 ```{r}
 Z = 1.96
 
-print("Lower Bound")
+# "Lower Bound"
 p_2-p_1 - Z* SE
 
-print("Upper Bound")
+# "Upper Bound"
 p_2-p_1 + Z* SE
 
 
