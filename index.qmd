@@ -43,8 +43,6 @@ These are the lectures from MTH 142, you can also find the direct links via Canv
 
 [Lecture 19 Hypothesis Test for a difference of means (unpaired)](lectures/19_diff-of-means.qmd)
 
-[Lecture 21 ANOVA](lectures/21_ANOVA.qmd)
+[Lecture 20 ANOVA](lectures/20_ANOVA.qmd)
 
-[Lecture 22 Regression with a Single Predictor](lectures/23_linear_regression.qmd)
-
-<!-- [Lecture 23 Prof. Kurtz-Garcia](https://drive.google.com/file/d/1qBB3kJL0HJxSDSy2tWqqBDFLrtgn1YAC/view?usp=sharing) -->
+[Lecture 21 Regression with a Single Predictor](lectures/21_linear_regression.qmd)

@@ -236,7 +236,7 @@ Multiply by 2 for a two tailed test.
 2 * pt(-3.11, df = 51-1)
 ```
 
-## conclusion 
+## conclusion
 
 Reject the null hypothesis. We have strong evidence to believe that the average weight this year is different from 3900 grams.
 

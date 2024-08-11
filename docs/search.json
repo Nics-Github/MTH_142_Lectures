@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Lectures from MTH 142 Fall 2024",
     "section": "",
-    "text": "These are the lectures from MTH 142, you can also find the direct links via Canvas.\nLecture 1 Statistical Thinking\nLecture 2 Study Design and Variables\nLecture 3 Categorical Data\nLecture 4 Numeric Data\nLecture 5 Linear Correlation\nLecture 6 Linear Correlation\nLecture 7 Regression math\nLecture 8 Probability\nLecture 9 Probability 2\nLecture 10 Continuous Random Variables\nLecture 11 The Normal Distribution\nLecture 12 Hypothesis Testing Proportion\nLecture 13 Parametric bootstrap Hypothesis Testing\nLecture 14 Confidence Intervals with Math\nLecture 15 Visualizing the CLT\nLecture 16 Distributions and Two Proportions\nLecture 17 Decision Errors\nLecture 18 Hypothesis Test for a single mean\nLecture 19 Hypothesis Test for a difference of means (unpaired)\nLecture 21 ANOVA\nLecture 22 Regression with a Single Predictor"
+    "text": "These are the lectures from MTH 142, you can also find the direct links via Canvas.\nLecture 1 Statistical Thinking\nLecture 2 Study Design and Variables\nLecture 3 Categorical Data\nLecture 4 Numeric Data\nLecture 5 Linear Correlation\nLecture 6 Linear Correlation\nLecture 7 Regression math\nLecture 8 Probability\nLecture 9 Probability 2\nLecture 10 Continuous Random Variables\nLecture 11 The Normal Distribution\nLecture 12 Hypothesis Testing Proportion\nLecture 13 Parametric bootstrap Hypothesis Testing\nLecture 14 Confidence Intervals with Math\nLecture 15 Visualizing the CLT\nLecture 16 Distributions and Two Proportions\nLecture 17 Decision Errors\nLecture 18 Hypothesis Test for a single mean\nLecture 19 Hypothesis Test for a difference of means (unpaired)\nLecture 20 ANOVA\nLecture 21 Regression with a Single Predictor"
   },
   {
     "objectID": "lectures/7_regression-by-hand.html#this-is-a-bonus-lecture",
@@ -3561,5 +3561,411 @@
     "title": "Difference of Means",
     "section": "New test: Difference of two means",
     "text": "New test: Difference of two means\nAnother hypothesis test.\n\nConditions\nDistributions\nNew Standard Error\nNew df"
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#reading",
+    "href": "lectures/19_diff-of-means.html#reading",
+    "title": "Difference of Means",
+    "section": "Reading",
+    "text": "Reading\nRead chapter 20 before these lectures."
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#confidence-interval-99",
+    "href": "lectures/19_diff-of-means.html#confidence-interval-99",
+    "title": "Difference of Means",
+    "section": "Confidence interval 99%",
+    "text": "Confidence interval 99%\nCheck independence extended.\nNo extreme outliers."
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#input-values-calculate-se",
+    "href": "lectures/19_diff-of-means.html#input-values-calculate-se",
+    "title": "Difference of Means",
+    "section": "Input values & calculate SE",
+    "text": "Input values & calculate SE\n\\(\\bar{x}_1 - \\bar{x}_2 \\pm t^* SE\\)\n\n# Automatic car stats\nx_1 = 23.7\ns_1 = 3.9\nn_1 = 25\n\n# Manual car stats\nx_2 = 30.9\ns_2 = 5.13\nn_2 = 25\n\n# Calculate the SE\nSE =  sqrt(s_1^2/n_1 +s_2^2/n_2)\n\n# Calculate the t_star\nt_star = qt(p = 0.005, df = 24, lower.tail = FALSE)"
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#conclusion",
+    "href": "lectures/19_diff-of-means.html#conclusion",
+    "title": "Difference of Means",
+    "section": "Conclusion",
+    "text": "Conclusion\nWe are 99% sure that the true difference in mpg is between 3.6 and 10.8.\n\n#Lower bound\nx_1 - x_2 - t_star*SE\n\n[1] -10.80477\n\n# Upper Bound\nx_1 - x_2 + t_star*SE\n\n[1] -3.595228"
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#hypothesis-test",
+    "href": "lectures/19_diff-of-means.html#hypothesis-test",
+    "title": "Difference of Means",
+    "section": "Hypothesis test",
+    "text": "Hypothesis test\nConditions are checked and values are input.\nNotation:\n\\[\nH_o: \\mu_1 = \\mu_2\\\\\nH_a: \\mu_1 \\ne \\mu_2\\\\\n\\alpha = 0.05\n\\]"
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#calculate-pvalue",
+    "href": "lectures/19_diff-of-means.html#calculate-pvalue",
+    "title": "Difference of Means",
+    "section": "Calculate pvalue",
+    "text": "Calculate pvalue\nTest statistic:\n\\[\nT = \\frac{\\bar{x}_1-\\bar{x}_2 - 0 }{SE}\n\\]\n\nTest_stat = x_1 - x_2\n\n2*pt(q=Test_stat, df = 24)\n\n[1] 1.933053e-07"
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#conclusion-1",
+    "href": "lectures/19_diff-of-means.html#conclusion-1",
+    "title": "Difference of Means",
+    "section": "Conclusion:",
+    "text": "Conclusion:\nWith a pvalue close to zero we have strong evidence to reject the null hypothesis in favor of the alternative. It seems that the average fuel economy of automatic vs manual cars is different.\nIt is possible we have made a type 1 error."
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#solution",
+    "href": "lectures/19_diff-of-means.html#solution",
+    "title": "Difference of Means",
+    "section": "Solution:",
+    "text": "Solution:\nWe should first check out absenteeism. ?absenteeism\nIndependence between and within groups.\ncheck for outliers:\n\nlibrary(tidyverse)\nlibrary(openintro)\n\nggplot(data= absenteeism, aes(x=days, color = sex))+\n  geom_boxplot()"
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#oh-no",
+    "href": "lectures/19_diff-of-means.html#oh-no",
+    "title": "Difference of Means",
+    "section": "Oh no",
+    "text": "Oh no\nThose outliers seem pretty extreme. We should probably not do this test with a math model, like t.test()"
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#lets-do-it-anyway-for-practice",
+    "href": "lectures/19_diff-of-means.html#lets-do-it-anyway-for-practice",
+    "title": "Difference of Means",
+    "section": "Let’s do it anyway for practice",
+    "text": "Let’s do it anyway for practice\n\\[\nH_o: \\mu_1 = \\mu_2\\\\\nH_a: \\mu_1 \\ne \\mu_2\\\\\n\\alpha = 0.05\n\\]\n\nt.test(absenteeism$days ~ absenteeism$sex, alternative = \"t\")\n\n\n    Welch Two Sample t-test\n\ndata:  absenteeism$days by absenteeism$sex\nt = -1.0058, df = 136.35, p-value = 0.3163\nalternative hypothesis: true difference in means between group F and group M is not equal to 0\n95 percent confidence interval:\n -8.096135  2.637044\nsample estimates:\nmean in group F mean in group M \n       15.22500        17.95455"
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#conditions-1",
+    "href": "lectures/19_diff-of-means.html#conditions-1",
+    "title": "Difference of Means",
+    "section": "Conditions",
+    "text": "Conditions\nIndependence\nOutliers seem to still be a problem\n\nggplot(data= absenteeism, aes(x=days, color = eth))+\n  geom_boxplot()"
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#doing-the-test-anyway",
+    "href": "lectures/19_diff-of-means.html#doing-the-test-anyway",
+    "title": "Difference of Means",
+    "section": "Doing the test anyway",
+    "text": "Doing the test anyway\n\\[\nH_o: \\mu_1 = \\mu_2\\\\\nH_a: \\mu_1 \\ne \\mu_2\\\\\n\\alpha = 0.05\n\\]\n\nt.test(absenteeism$days~absenteeism$eth, alternative = \"t\")\n\n\n    Welch Two Sample t-test\n\ndata:  absenteeism$days by absenteeism$eth\nt = 3.4358, df = 126.85, p-value = 0.0007991\nalternative hypothesis: true difference in means between group A and group N is not equal to 0\n95 percent confidence interval:\n  3.837747 14.262384\nsample estimates:\nmean in group A mean in group N \n       21.23188        12.18182"
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#do-it-with-a-simulation",
+    "href": "lectures/19_diff-of-means.html#do-it-with-a-simulation",
+    "title": "Difference of Means",
+    "section": "Do it with a simulation",
+    "text": "Do it with a simulation\n\nlibrary(infer)\n\nset.seed(9)\n\nabsenteeism_randomization &lt;- absenteeism |&gt;\n  specify( days ~ eth )|&gt;\n  hypothesise(null= \"independence\") |&gt;\n  generate(reps = 5000, type = \"permute\")|&gt;\n  calculate(stat = \"diff in means\", order = c(\"A\",\"N\"))"
+  },
+  {
+    "objectID": "lectures/19_diff-of-means.html#visualize-and-pvalue",
+    "href": "lectures/19_diff-of-means.html#visualize-and-pvalue",
+    "title": "Difference of Means",
+    "section": "Visualize and pvalue",
+    "text": "Visualize and pvalue\nThe observed difference is \\(21.2 - 12.2 \\approx 9\\)\n\nabsenteeism_randomization |&gt;\n  visualise()+\n  shade_p_value(obs_stat = 9, direction = \"right\")\n\nabsenteeism_randomization|&gt;\n  get_p_value(obs_stat = 9, direction = \"both\")\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1  0.0004"
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html",
+    "href": "lectures/20_ANOVA.html",
+    "title": "ANOVA part 1",
+    "section": "",
+    "text": "library(openintro)\n\nLoading required package: airports\n\n\nLoading required package: cherryblossom\n\n\nLoading required package: usdata\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n\n\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(kableExtra)\n\n\nAttaching package: 'kableExtra'\n\nThe following object is masked from 'package:dplyr':\n\n    group_rows"
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#libraries",
+    "href": "lectures/20_ANOVA.html#libraries",
+    "title": "ANOVA part 1",
+    "section": "",
+    "text": "library(openintro)\n\nLoading required package: airports\n\n\nLoading required package: cherryblossom\n\n\nLoading required package: usdata\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n\n\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(kableExtra)\n\n\nAttaching package: 'kableExtra'\n\nThe following object is masked from 'package:dplyr':\n\n    group_rows"
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#comparing-multiple-groups",
+    "href": "lectures/20_ANOVA.html#comparing-multiple-groups",
+    "title": "ANOVA part 1",
+    "section": "Comparing multiple groups",
+    "text": "Comparing multiple groups\nWe use Analysis of Variance for testing if there is a difference between many means."
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#new-distribution-f",
+    "href": "lectures/20_ANOVA.html#new-distribution-f",
+    "title": "ANOVA part 1",
+    "section": "New distribution: F",
+    "text": "New distribution: F\nThe F distribution looks like:"
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#p-value-and-ci",
+    "href": "lectures/20_ANOVA.html#p-value-and-ci",
+    "title": "ANOVA part 1",
+    "section": "p-value and CI",
+    "text": "p-value and CI\nWe find the p-value in the right tail.\nThere is no real confidence interval."
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#conditions",
+    "href": "lectures/20_ANOVA.html#conditions",
+    "title": "ANOVA part 1",
+    "section": "Conditions:",
+    "text": "Conditions:\n\nthe observations are independent within and between groups,\n\n\n\nthe responses within each group are nearly normal, and*\n\n\n\nthe variability across the groups is about equal."
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#rule-of-thumb",
+    "href": "lectures/20_ANOVA.html#rule-of-thumb",
+    "title": "ANOVA part 1",
+    "section": "Rule of Thumb",
+    "text": "Rule of Thumb\n\nThe variance are equal condition has a rule of thumb.\nIf the largest is not more than four times the smallest all is well.\n\\[\n\\frac{\\sigma^2_{max}}{\\sigma^2_{min}}\\le 4\n\\]\nor\nIf the largest SD/ smalest SD is between 0.5 and 2.\n\\[\n\\frac{\\sigma_{max}}{\\sigma_{min}}\\le 2\n\\]"
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#a-test",
+    "href": "lectures/20_ANOVA.html#a-test",
+    "title": "ANOVA part 1",
+    "section": "A test",
+    "text": "A test\nThere are three classes that took a midterm. We want to know if the exam average for any of the classes is different.\n\nggplot(data=classdata) +\n  geom_boxplot(\n    aes(x= m1, color = lecture)    )"
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#summary-stats",
+    "href": "lectures/20_ANOVA.html#summary-stats",
+    "title": "ANOVA part 1",
+    "section": "Summary stats",
+    "text": "Summary stats\nIs the variance about the same?\n\nclassdata |&gt;\n  group_by(lecture) |&gt;\n  summarise(mean = mean(m1), sd = sd(m1), count = n())|&gt;\n  kable(digits = 1, align = \"l\")\n\n\n\n\nlecture\nmean\nsd\ncount\n\n\n\n\na\n75.1\n13.9\n58\n\n\nb\n72.0\n13.8\n55\n\n\nc\n78.9\n13.1\n51"
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#notation",
+    "href": "lectures/20_ANOVA.html#notation",
+    "title": "ANOVA part 1",
+    "section": "Notation:",
+    "text": "Notation:\n\n\\(H_0: \\mu_1 =\\mu_2 =\\mu_3\\)\n\\(H_a:\\) At least one mean is different.\n\\(\\alpha = 0.05\\)"
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#the-test-computation",
+    "href": "lectures/20_ANOVA.html#the-test-computation",
+    "title": "ANOVA part 1",
+    "section": "The test computation",
+    "text": "The test computation\nIs done by R with aov() . We will not be doing this test by hand.\n\nresults &lt;- aov( m1 ~ lecture, data = classdata )\nsummary(results)\n\n             Df Sum Sq Mean Sq F value Pr(&gt;F)  \nlecture       2   1290   645.1   3.484  0.033 *\nResiduals   161  29810   185.2                 \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#conclusion",
+    "href": "lectures/20_ANOVA.html#conclusion",
+    "title": "ANOVA part 1",
+    "section": "Conclusion:",
+    "text": "Conclusion:\nReject the null, one of the exam averages is different than the other two."
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#try-one",
+    "href": "lectures/20_ANOVA.html#try-one",
+    "title": "ANOVA part 1",
+    "section": "Try one:",
+    "text": "Try one:\nIn the iris data set, would it be appropriate to do ANOVA on petal.length? Why or why not?\nMake a summary table or boxplot to justifty."
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#my-code-for-petal.length",
+    "href": "lectures/20_ANOVA.html#my-code-for-petal.length",
+    "title": "ANOVA part 1",
+    "section": "My code for petal.length",
+    "text": "My code for petal.length\nFor the table:\n\niris |&gt;\n   group_by(Species) |&gt;\n   summarise(mean = mean(Petal.Length), standard_dev = sd(Petal.Length), count =n())|&gt;\n   kable(digits = 1, align = \"c\")\n\nFor the graph\n\niris |&gt;\n  ggplot(aes(Petal.Length, color = Species))+\n  geom_boxplot()"
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#my-summary-table-and-graph",
+    "href": "lectures/20_ANOVA.html#my-summary-table-and-graph",
+    "title": "ANOVA part 1",
+    "section": "My summary table and graph",
+    "text": "My summary table and graph\n\niris |&gt;\n   group_by(Species) |&gt;\n   summarise(mean = mean(Petal.Length), sd = sd(Petal.Length), count =n())|&gt;\n   kable(digits = 1, align = \"c\")\n\n\n\n\nSpecies\nmean\nsd\ncount\n\n\n\n\nsetosa\n1.5\n0.2\n50\n\n\nversicolor\n4.3\n0.5\n50\n\n\nvirginica\n5.6\n0.6\n50\n\n\n\n\n\n\niris |&gt;\n  ggplot(aes(Petal.Length, color = Species))+\n  geom_boxplot()"
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#a-flowers-sepal",
+    "href": "lectures/20_ANOVA.html#a-flowers-sepal",
+    "title": "ANOVA part 1",
+    "section": "A flower’s sepal",
+    "text": "A flower’s sepal"
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#try-sepal.length-from-iris.",
+    "href": "lectures/20_ANOVA.html#try-sepal.length-from-iris.",
+    "title": "ANOVA part 1",
+    "section": "Try Sepal.Length from iris.",
+    "text": "Try Sepal.Length from iris.\nIs it appropriate to do ANOVA on Sepal.Length?\n\n\n\n\n\nSpecies\nmean\nsd\n\n\n\n\nsetosa\n5.0\n0.4\n\n\nversicolor\n5.9\n0.5\n\n\nvirginica\n6.6\n0.6"
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#look-at-the-graph",
+    "href": "lectures/20_ANOVA.html#look-at-the-graph",
+    "title": "ANOVA part 1",
+    "section": "Look at the graph",
+    "text": "Look at the graph\nIs there one mean that’s different?\n\niris |&gt;\n  ggplot(aes(Sepal.Length, color = Species))+\n  geom_boxplot()"
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#do-the-test",
+    "href": "lectures/20_ANOVA.html#do-the-test",
+    "title": "ANOVA part 1",
+    "section": "Do the test",
+    "text": "Do the test\n\nNotation\nTest\nConclusion\n\n\nresults &lt;- aov( Sepal.Length ~ Species, data = iris )\nsummary(results)\n\n             Df Sum Sq Mean Sq F value Pr(&gt;F)    \nSpecies       2  63.21  31.606   119.3 &lt;2e-16 ***\nResiduals   147  38.96   0.265                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
+  },
+  {
+    "objectID": "lectures/20_ANOVA.html#problem-5-7-or-9",
+    "href": "lectures/20_ANOVA.html#problem-5-7-or-9",
+    "title": "ANOVA part 1",
+    "section": "Problem 5, 7, or 9",
+    "text": "Problem 5, 7, or 9\nLink to exercises"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html",
+    "href": "lectures/21_linear_regression.html",
+    "title": "Linear regression one predictor",
+    "section": "",
+    "text": "library(openintro)\n\nLoading required package: airports\n\n\nLoading required package: cherryblossom\n\n\nLoading required package: usdata\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n\n\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(broom)\nlibrary(statsr)\n\nLoading required package: BayesFactor\nLoading required package: coda\nLoading required package: Matrix\n\nAttaching package: 'Matrix'\n\nThe following objects are masked from 'package:tidyr':\n\n    expand, pack, unpack\n\n************\nWelcome to BayesFactor 0.9.12-4.7. If you have questions, please contact Richard Morey (richarddmorey@gmail.com).\n\nType BFManual() to open the manual.\n************\n\nAttaching package: 'statsr'\n\nThe following objects are masked from 'package:openintro':\n\n    calc_streak, evals, nycflights, present\n\nlibrary(kableExtra)\n\n\nAttaching package: 'kableExtra'\n\nThe following object is masked from 'package:dplyr':\n\n    group_rows"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#libraries",
+    "href": "lectures/21_linear_regression.html#libraries",
+    "title": "Linear regression one predictor",
+    "section": "",
+    "text": "library(openintro)\n\nLoading required package: airports\n\n\nLoading required package: cherryblossom\n\n\nLoading required package: usdata\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n\n\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(broom)\nlibrary(statsr)\n\nLoading required package: BayesFactor\nLoading required package: coda\nLoading required package: Matrix\n\nAttaching package: 'Matrix'\n\nThe following objects are masked from 'package:tidyr':\n\n    expand, pack, unpack\n\n************\nWelcome to BayesFactor 0.9.12-4.7. If you have questions, please contact Richard Morey (richarddmorey@gmail.com).\n\nType BFManual() to open the manual.\n************\n\nAttaching package: 'statsr'\n\nThe following objects are masked from 'package:openintro':\n\n    calc_streak, evals, nycflights, present\n\nlibrary(kableExtra)\n\n\nAttaching package: 'kableExtra'\n\nThe following object is masked from 'package:dplyr':\n\n    group_rows"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#recall-linear-regression",
+    "href": "lectures/21_linear_regression.html#recall-linear-regression",
+    "title": "Linear regression one predictor",
+    "section": "Recall Linear Regression",
+    "text": "Recall Linear Regression\n\nstarbucks |&gt;\n  ggplot()+\n  geom_point(aes(x=fat, y= calories))"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#modeling-with-a-line.",
+    "href": "lectures/21_linear_regression.html#modeling-with-a-line.",
+    "title": "Linear regression one predictor",
+    "section": "Modeling with a line.",
+    "text": "Modeling with a line.\nFit the data with a model.\n\nstar_model &lt;- lm(calories ~ fat, data= starbucks) \nstar_model |&gt; tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    184.      17.3       10.6 1.25e-16\n2 fat             11.3      1.12      10.1 1.32e-15"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#add-the-model-to-the-points.",
+    "href": "lectures/21_linear_regression.html#add-the-model-to-the-points.",
+    "title": "Linear regression one predictor",
+    "section": "Add the model to the points.",
+    "text": "Add the model to the points.\n\nstarbucks |&gt;\n  ggplot(aes(x=fat, y= calories))+\n  geom_point()+\n  geom_smooth(method = \"lm\", se = FALSE)\n\n`geom_smooth()` using formula = 'y ~ x'"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#model-outputs-tidy",
+    "href": "lectures/21_linear_regression.html#model-outputs-tidy",
+    "title": "Linear regression one predictor",
+    "section": "Model outputs: tidy",
+    "text": "Model outputs: tidy\n\n#tidy() give the regression output\ntidy(star_model) |&gt;\n  kable()\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n183.73375\n17.277012\n10.63458\n0\n\n\nfat\n11.26651\n1.117087\n10.08562\n0"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#summary",
+    "href": "lectures/21_linear_regression.html#summary",
+    "title": "Linear regression one predictor",
+    "section": "summary()",
+    "text": "summary()\n\nsummary(star_model)\n\n\nCall:\nlm(formula = calories ~ fat, data = starbucks)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-132.599  -44.130    3.469   54.868  126.134 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  183.734     17.277   10.63  &lt; 2e-16 ***\nfat           11.267      1.117   10.09 1.32e-15 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 69.1 on 75 degrees of freedom\nMultiple R-squared:  0.5756,    Adjusted R-squared:  0.5699 \nF-statistic: 101.7 on 1 and 75 DF,  p-value: 1.32e-15"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#what-were-we-doing",
+    "href": "lectures/21_linear_regression.html#what-were-we-doing",
+    "title": "Linear regression one predictor",
+    "section": "What were we doing?",
+    "text": "What were we doing?\n\nMake a model\nTrying to figure out if the model is reasonable\n\nlooking at the correlation coefficent r."
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#what-will-we-do-today",
+    "href": "lectures/21_linear_regression.html#what-will-we-do-today",
+    "title": "Linear regression one predictor",
+    "section": "What will we do today?",
+    "text": "What will we do today?\n\nA hypothesis test to see if the slope is a number other than zero.\nrecall: \\(y= \\beta_0 + \\beta_1 x\\)\n\\(\\beta_1\\) is the slope.\nIf the slope is zero there is no relationship between y and x."
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#conditions",
+    "href": "lectures/21_linear_regression.html#conditions",
+    "title": "Linear regression one predictor",
+    "section": "Conditions:",
+    "text": "Conditions:\n\n\nLinearity* data has to be linear\n\nData has to be independent\n\nwatch out for time series.\n\nnearly normal residuals\n\nlook for random disbursment around the zero line of residual plot.\n\nconstant or equal variability\n\nthe points in the residual plot should not have a distinct/changing pattern.\n\n\nThe book gives the acronym of LINE."
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#some-examples",
+    "href": "lectures/21_linear_regression.html#some-examples",
+    "title": "Linear regression one predictor",
+    "section": "Some examples:",
+    "text": "Some examples:\nIndependence problems\n\narbuthnot |&gt;\n  ggplot(aes(year,boys))+\n  geom_point() +\n  geom_smooth(method = \"lm\" , se = FALSE)\n\n`geom_smooth()` using formula = 'y ~ x'"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#linear-problems",
+    "href": "lectures/21_linear_regression.html#linear-problems",
+    "title": "Linear regression one predictor",
+    "section": "Linear Problems",
+    "text": "Linear Problems"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#normal-issues",
+    "href": "lectures/21_linear_regression.html#normal-issues",
+    "title": "Linear regression one predictor",
+    "section": "Normal issues",
+    "text": "Normal issues"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#normal-issues-again",
+    "href": "lectures/21_linear_regression.html#normal-issues-again",
+    "title": "Linear regression one predictor",
+    "section": "Normal issues again",
+    "text": "Normal issues again"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#starbucks-calories-vs-fat.",
+    "href": "lectures/21_linear_regression.html#starbucks-calories-vs-fat.",
+    "title": "Linear regression one predictor",
+    "section": "Starbucks calories vs fat.",
+    "text": "Starbucks calories vs fat.\n\nstarbucks |&gt;\n  ggplot(aes(x=fat, y= calories))+\n  geom_point()+\n  geom_smooth(method = \"lm\", se = FALSE)\n\n`geom_smooth()` using formula = 'y ~ x'"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#what-about-this",
+    "href": "lectures/21_linear_regression.html#what-about-this",
+    "title": "Linear regression one predictor",
+    "section": "What about this?",
+    "text": "What about this?\n\narbuthnot |&gt;\n  ggplot(aes(x = girls, y = boys))+\n  geom_point()+\n  labs(title = \"Boys vs Girls\",\n       subtitle = \"Born in London in the 1600s\")+\n  geom_smooth(method = \"lm\")\n\n`geom_smooth()` using formula = 'y ~ x'"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#residuals-girl-vs-boy-births",
+    "href": "lectures/21_linear_regression.html#residuals-girl-vs-boy-births",
+    "title": "Linear regression one predictor",
+    "section": "Residuals girl vs boy births",
+    "text": "Residuals girl vs boy births"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#recall",
+    "href": "lectures/21_linear_regression.html#recall",
+    "title": "Linear regression one predictor",
+    "section": "Recall",
+    "text": "Recall\n\\[\ny=\\beta_0+\\beta_1 x + e\n\\]\n\n\\(\\beta_0\\) = intercept\n\\(\\beta_1\\) = slope\nx is the predictor variable\ny is the response variable\ne is the error"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#relationship-between-variable-x-and-y",
+    "href": "lectures/21_linear_regression.html#relationship-between-variable-x-and-y",
+    "title": "Linear regression one predictor",
+    "section": "Relationship between variable x and y?",
+    "text": "Relationship between variable x and y?\nIf there is no relationship the slope is 0\nIf there is a relationship the slope is not zero.\nWe do\n\\[\nH_0: \\beta_1 = 0 \\\\\nH_1: \\beta_1 \\ne 0\n\\]\n(We could do other tests on r - the correlation coefficient or \\(\\beta_0\\) )"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#the-t-distribution",
+    "href": "lectures/21_linear_regression.html#the-t-distribution",
+    "title": "Linear regression one predictor",
+    "section": "The t distribution",
+    "text": "The t distribution\nThe distribution of the slopes of an infinite number of samples would be a student t.\nSo we are doing a t test with this test statistic:\n\\(T = \\frac{\\hat{\\beta}_1-0} {\\text{SE}}\\)\ndf= n-2\nWe’ll let R calculate \\(SE\\) and \\(\\hat{\\beta_1}\\)."
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#the-test",
+    "href": "lectures/21_linear_regression.html#the-test",
+    "title": "Linear regression one predictor",
+    "section": "The test",
+    "text": "The test\n\\[\nH_0: \\beta_1 = 0 \\\\\nH_1: \\beta_1 \\ne 0\n\\]\n\nresults &lt;- lm(boys ~ girls, data= arbuthnot)\ntidy(results)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)   185.     59.8         3.09 2.74e- 3\n2 girls           1.03    0.0104     99.6  1.21e-85"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#some-vocab",
+    "href": "lectures/21_linear_regression.html#some-vocab",
+    "title": "Linear regression one predictor",
+    "section": "Some Vocab",
+    "text": "Some Vocab\n\\(r\\) - correlation coefficient\n\\(r^2\\) - coefficient of determination\n\\(r^2\\) is the proportion of the variability that can be explained by the explanatory variable"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#practice-problem",
+    "href": "lectures/21_linear_regression.html#practice-problem",
+    "title": "Linear regression one predictor",
+    "section": "Practice Problem",
+    "text": "Practice Problem\nThe diamonds data set in R contains the prices and other attributes of almost 54,000 diamonds. We want to see if carat (weight of the diamond) is a good predictor for price (in US dollars).\n\nWrite the hypotheses.\nCheck the conditions and comment on any potential violations.\nWhat is the p-value and conclusion?"
+  },
+  {
+    "objectID": "lectures/21_linear_regression.html#homework-time",
+    "href": "lectures/21_linear_regression.html#homework-time",
+    "title": "Linear regression one predictor",
+    "section": "Homework Time",
+    "text": "Homework Time\nProblem 3 and 6 in class."
   }
 ]

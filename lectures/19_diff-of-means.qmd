@@ -9,38 +9,9 @@ execute:
   echo: true
 ---
 
-## Warm up
+## Reading
 
-Find a partner (or two) and grab some chalkboard
-
-Do this hypothesis test.
-
-The average height of Smith students is thought to be 64 inches. Our class has an average height of 65 inches with a standard deviation of 3.2. There were 34 students in our sample.
-
-Test the hypothesis that the true mean is 64 twice
-
-1.  once using the observed statistic to find a p-value.
-
-2.  once with the test statistic to find the same p-value.
-
-## warm up again with R
-
-```{r}
-library(tidyverse)
-library(googlesheets4)
-
-# Making CI from some sample proportions.
-
-class_heights <- read_sheet("https://docs.google.com/spreadsheets/d/1x9srZXDoYzKGew1f-y4brMbN8dl4QM66pc-dmCBWHQY/edit?usp=sharing",
-                            sheet = "220-01",
-                            range = "1:35")|>
-  select(height)
-
-```
-
-```{r}
-t.test(class_heights$height, mu=64)
-```
+[Read chapter 20 before these lectures.](https://openintro-ims.netlify.app/inference-two-means)
 
 ## Side note: `prop.test()`
 
@@ -92,29 +63,184 @@ $$
 
 (It looks just like the difference of proportions, but with means)
 
-# Let's do number 18 together.
+# Problem number 18
 
 [Chapter 20](https://openintro-ims.netlify.app/inference-two-means#chp20-exercises)
 
 1.  CI for the difference of means
 2.  Hypothesis Test
 
-# Grab a partner
+## Confidence interval 99%
 
-20.17 on the board.
+Check independence extended.
 
-# Together t.test()
+No extreme outliers.
+
+## Input values & calculate SE
+
+$\bar{x}_1 - \bar{x}_2 \pm t^* SE$
+
+```{r}
+# Automatic car stats
+x_1 = 23.7
+s_1 = 3.9
+n_1 = 25
+
+# Manual car stats
+x_2 = 30.9
+s_2 = 5.13
+n_2 = 25
+
+# Calculate the SE
+SE =  sqrt(s_1^2/n_1 +s_2^2/n_2)
+
+# Calculate the t_star
+t_star = qt(p = 0.005, df = 24, lower.tail = FALSE)
+
+
+```
+
+## Conclusion
+
+We are 99% sure that the true difference in mpg is between 3.6 and 10.8.
+
+```{r}
+#Lower bound
+x_1 - x_2 - t_star*SE
+
+# Upper Bound
+x_1 - x_2 + t_star*SE
+```
+
+## Hypothesis test 
+
+Conditions are checked and values are input.
+
+Notation:
+
+$$
+H_o: \mu_1 = \mu_2\\
+H_a: \mu_1 \ne \mu_2\\
+\alpha = 0.05
+$$
+
+## Calculate pvalue
+
+Test statistic:
+
+$$
+T = \frac{\bar{x}_1-\bar{x}_2 - 0 }{SE}
+$$
+
+```{r}
+Test_stat = x_1 - x_2
+
+2*pt(q=Test_stat, df = 24)
+```
+
+## Conclusion:
+
+With a pvalue close to zero we have strong evidence to reject the null hypothesis in favor of the alternative. It seems that the average fuel economy of automatic vs manual cars is different.
+
+It is possible we have made a type 1 error.
+
+# example with t.test()
 
 Is there a difference in the absenteeism of students from New South Wales based on reported gender?
 
 -   `absenteeism`
 
--   check conditions make boxplot
+-   check conditions, make boxplot
 
 -   write hypothesis
 
 -   use `t.test( y\~x, alternative= "t", data=)`
 
-# A second test
+## Solution:
+
+We should first check out absenteeism. `?absenteeism`
+
+Independence between and within groups.
+
+check for outliers:
+
+```{r}
+library(tidyverse)
+library(openintro)
+
+ggplot(data= absenteeism, aes(x=days, color = sex))+
+  geom_boxplot()
+```
+
+## Oh no
+
+Those outliers seem pretty extreme. We should probably not do this test with a math model, like `t.test()`
+
+## Let's do it anyway for practice
+
+$$
+H_o: \mu_1 = \mu_2\\
+H_a: \mu_1 \ne \mu_2\\
+\alpha = 0.05
+$$
+
+```{r}
+t.test(absenteeism$days ~ absenteeism$sex, alternative = "t")
+```
+
+# You try one
 
 Is there a difference in the absenteeism of students from New South Wales based on ethnicity?
+
+## Conditions
+
+Independence
+
+Outliers seem to still be a problem
+
+```{r}
+ggplot(data= absenteeism, aes(x=days, color = eth))+
+  geom_boxplot()
+```
+
+## Doing the test anyway
+
+$$
+H_o: \mu_1 = \mu_2\\
+H_a: \mu_1 \ne \mu_2\\
+\alpha = 0.05
+$$
+
+```{r}
+t.test(absenteeism$days~absenteeism$eth, alternative = "t")
+```
+
+## Do it with a simulation
+
+```{r}
+library(infer)
+
+set.seed(9)
+
+absenteeism_randomization <- absenteeism |>
+  specify( days ~ eth )|>
+  hypothesise(null= "independence") |>
+  generate(reps = 5000, type = "permute")|>
+  calculate(stat = "diff in means", order = c("A","N"))
+
+
+
+```
+
+## Visualize and pvalue
+
+The observed difference is $21.2 - 12.2 \approx 9$
+
+```{r}
+absenteeism_randomization |>
+  visualise()+
+  shade_p_value(obs_stat = 9, direction = "right")
+
+absenteeism_randomization|>
+  get_p_value(obs_stat = 9, direction = "both")
+```
