@@ -112,7 +112,7 @@ x_1 - x_2 - t_star*SE
 x_1 - x_2 + t_star*SE
 ```
 
-## Hypothesis test 
+## Hypothesis test
 
 Conditions are checked and values are input.
 
