@@ -7,6 +7,10 @@ format:
 editor: visual
 ---
 
+## Reading
+
+[Open Intro Statistics 3.2 and 3.4](/2019.openintro.statistics.pdf)
+
 ## Probability Functions
 
 $0<P(x_i)<1$
@@ -91,7 +95,7 @@ Write the probability model (as a table or graph).
 
 Problem 3.30
 
-## Some formula. 
+## Some formula.
 
 General Multiplication Rule:
 

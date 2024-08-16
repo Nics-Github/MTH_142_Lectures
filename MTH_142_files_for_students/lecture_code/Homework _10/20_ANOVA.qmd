@@ -1,0 +1,164 @@
+---
+title: "ANOVA part 1"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+execute: 
+  echo: true
+---
+
+## Reading
+
+[Read Chapter 22 before hand.](https://openintro-ims.netlify.app/inference-many-means)
+
+## Libraries
+
+```{r}
+library(openintro)
+library(tidyverse)
+```
+
+## Comparing multiple groups
+
+We use **An**alysis **o**f **Va**riance for testing if there is a difference between many means.
+
+## New distribution: F
+
+The F distribution looks like:
+
+```{r curve-F}
+#| echo: False
+
+curve(
+  df(x, df1=1, df2=2), 
+  from=0, to=5)
+```
+
+## p-value and CI
+
+We find the p-value in the right tail.
+
+There is no real confidence interval.
+
+## Conditions:
+
+-   **the observations are independent within and between groups,**
+
+<br>
+
+-   the responses within each group are nearly normal, and\*
+
+<br>
+
+-   the variability across the groups is *about* equal.
+
+## Rule of Thumb
+
+<br>
+
+"The variability across groups is equal" condition has a rule of thumb.
+
+If the largest SD/ smallest SD is between 0.5 and 2.
+
+$$
+0.5\le \frac{\sigma_{max}}{\sigma_{min}}\le 2
+$$
+
+## A test
+
+There are three classes that took a midterm. We want to know if the exam average for any of the classes is different.
+
+```{r}
+ggplot(data=classdata) +
+  geom_boxplot(
+    aes(x= m1, color = lecture)    )
+```
+
+## Summary stats
+
+Is the variance about the same?
+
+```{r}
+
+group_by(.data = classdata, lecture) |>
+  summarise(mean = mean(m1), sd = sd(m1), count = n())
+```
+
+## Notation:
+
+<br>
+
+$H_0: \mu_1 =\mu_2 =\mu_3$
+
+$H_a:$ At least one mean is different.
+
+$\alpha = 0.05$
+
+## The test computation
+
+Is done by R with `aov()` . We will not be doing this test by hand.
+
+```{r}
+results <- aov( m1 ~ lecture, data = classdata )
+summary(results)
+```
+
+## Conclusion:
+
+Reject the null, one of the exam averages is different than the other two.
+
+## A flower's sepal
+
+![](https://upload.wikimedia.org/wikipedia/commons/7/7f/Mature_flower_diagram.svg)
+
+## Try `Sepal.Length` from iris.
+
+Is it appropriate to do ANOVA on `Sepal.Length`?
+
+```{r}
+#| echo: False
+
+group_by(.data= iris, Species) |>
+   summarise(mean = mean(Sepal.Length), sd = sd(Sepal.Length))
+```
+
+```{r}
+#| echo: False
+
+iris |>
+  ggplot(aes(Sepal.Length, color = Species))+
+  geom_boxplot()
+
+```
+
+## Look at the graph
+
+Is there one mean that's different?
+
+```{r}
+
+iris |>
+  ggplot(aes(Sepal.Length, color = Species))+
+  geom_boxplot()
+```
+
+## Do the test
+
+-   Notation
+
+-   Test
+
+-   Conclusion
+
+```{r}
+results <- aov( Sepal.Length ~ Species, data = iris )
+summary(results)
+```
+
+## Problems 5 or 9
+
+[Link to exercises](https://openintro-ims.netlify.app/inference-many-means#chp22-exercises)
+
+## Show how to do HW problem 3 and 4

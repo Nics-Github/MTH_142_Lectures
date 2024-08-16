@@ -1,0 +1,112 @@
+---
+title: "Intro to Study Vocabulary"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+---
+
+## Read before hand
+
+[Chapter 2 on Study Design](https://openintro-ims.netlify.app/data-design)
+
+## Overview
+
+In this lecture I'll go over the vocabulary from the text and present some examples.
+
+## Blue whales
+
+Study: [In Breeding in blue whales.](https://www.nytimes.com/2024/01/23/science/blue-whale-genome.html)
+
+![New York Times, 1/23/2024 photo cred: Burton Lim](https://static01.nyt.com/images/2024/01/23/multimedia/23tb-blue-whales-tghb/23tb-blue-whales-tghb-jumbo.jpg?quality=75&auto=webp)
+
+## Some info on Blue whales:
+
+n = 3500
+
+Four subspecies[^1]:
+
+[^1]: https://en.wikipedia.org/wiki/Blue_whale
+
+-   Northern
+
+-   Northern Indian Ocean
+
+-   Pygmy blue whale
+
+-   Antarctic subspecies
+
+## Population vs Sample
+
+The *population* is all the Blue Whales left in the world
+
+The *sample* is the 35 Blue Whales that have washed ashore.
+
+## Sampling Strategies
+
+1.  Simple random sampling
+
+2.  Stratified sampling
+
+3.  Convenience sample
+
+## Experimental Design
+
+1.  Control vs Treatment
+
+2.  Randomization - Effect of Confounding Variables.
+
+3.  Replication - Repeat experiments have the similar results.
+
+## Experiments vs Observational Studies
+
+1.  Experiments have a control
+
+    a.  Use for causal conclusions
+
+2.  Observational Studies often gather information
+
+    a.  Cannot be used for casual conclusions
+
+## Explanatory and Response
+
+If we suspect a causal relationship we have an explanatory (independent) and response variable (dependent).
+
+-   Negative relationship
+
+-   Positive Relationship
+
+-   No Relationship
+
+## Confounder Variables
+
+Variables that have an unanticipated effect on the study.
+
+## You try
+
+[Chapter 2 2.1](https://openintro-ims.netlify.app/data-design#chp2-exercises)[2 and 2.20](https://openintro-ims.netlify.app/data-design#sec-chp2-exercises)
+
+## Solution 2.12
+
+a\. Observational Study. There is no control group.
+
+b\. No we cannot see for sure if there is a link between stress and muscle cramps.
+
+c\. It could be that (perhaps) there is a link between excess coffee and lack of sleep that causes cramps
+
+## Solution 2.20
+
+a\. This was an experiment there is a control group (placebo).
+
+b\. Explanatory is the quantity of vitamin C. The response is cold duration
+
+c\. The patients were blind during their treatment, all pills look the same
+
+d\. The study is not double blind as the nurses knew which patient got which pill
+
+e\. A Confounding variable is whether a patient takes the pill.
+
+## Next Reading
+
+[Chapter 4 Exploring Categorical Data](https://openintro-ims.netlify.app/explore-categorical)

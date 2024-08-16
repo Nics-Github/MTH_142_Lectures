@@ -1,0 +1,138 @@
+---
+title: "Confidence Intervals with a proportion"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+---
+
+```{r}
+#| echo: false
+#| include: false
+
+
+library(tidyverse)
+library(openintro)
+```
+
+## Practice Making CI with proportions
+
+
+## CI mathematically
+
+We build the CI around the sample proportion.
+
+Assume
+
+$$
+\hat{p} \sim N(p,se)
+$$
+
+1.  We'll need $\hat{p}$ and $\text{se}= \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$
+
+2.  We also need the z score that goes with the confidence interval we are looking for.
+
+3.  $\hat{p} \pm z_{score} \times se$
+
+## Remember these z-scores
+
+| CI    | Z-score           |
+|-------|-------------------|
+| 90%   | $z_{0.05}=1.645$  |
+| 95%   | $z_{0.025}=1.96$  |
+| 99.7% | $z_{0.005}=2.968$ |
+
+: z-scores you should know
+
+## How to find zscore with `qnorm()`
+
+`qnorm()` finds the quantile that goes with a pvalue (probability)
+
+```{r}
+qnorm(p = 0.95, mean = 0, sd = 1 )
+```
+
+`pnorm()` finds a pvalue from a quantile.
+
+```{r}
+pnorm(q=1.959964 , mean = 0, sd = 1 )
+```
+
+## Let's make a 95% CI
+
+Calculate these: $\hat{p}$ and $\text{se}= \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$
+
+$\hat{p} \pm z_{score} \times se$
+
+## Assumptions for a single parameter
+
+Independent and "large" sample.
+
+Success-Failure Condition
+
+Why do we need to assume this:
+
+$$
+\hat{p} \sim N(p,se)
+$$
+
+# The Central Limit Theroem
+
+# Notation
+
+$$ \hat{p} \sim N(p,SE)$$
+
+With $SE= \sqrt{\frac{p(1-p)}{n}}$
+
+or
+
+$SE= \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$
+
+# Rules of thumb
+
+::: {incremental}
+-   The operations need to be independent.
+
+-   n should be large
+
+-   Success-Failure Condition
+
+    -   $np >=10$ and
+
+    -   $n(1-p) >= 10$
+:::
+
+## Quarantine again
+
+We ask 1042 New Yorkers if they are for quarantining people who have been exposed to ebola. The results are below.
+
+```{r}
+count(ebola_survey,quarantine)
+```
+
+-   Write the notation for the theoretical sampling distribution.
+
+-   Make a 90, 95 and 99.7% CI for those against and interpret.
+
+## Exclusive relationships
+
+What is the proportion of college students that have had more than 1 `exclusive_relationships`?
+
+```{r}
+exclusive_relationship |>
+  count(num > 1)
+
+```
+
+-   Check Conditions.
+
+-   Write the notation for the theoretical sampling distribution.
+
+-   Make a 90, 95 and 99.7% CI for those against and interpret.
+
+## Worse off?
+
+Every week the Yougov/The Economist do a survey from a representative sample of about 1500 adults. [methodology](https://today.yougov.com/about/panel-methodology) On March 4, 2024 people were asked about their personal finances. See the results [here](https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_TYCEeIV.pdf#table.143).
+
+42% of respondants said they were worse off than a year ago. Find a CI for the true proportion of Americans who feel they are worse off financially than a year ago.

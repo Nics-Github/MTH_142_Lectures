@@ -1,0 +1,111 @@
+---
+title: "Continuous RV"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+---
+
+## Reading
+
+[Read chapter 3.5 from Openintro statistics.](/2019.openintro.statistics.pdf)
+
+## Continuous RV
+
+::: incremental
+-   A continuous random variable can take any numeric value.
+
+-   (Discrete can only take integers.)
+
+-   X- Face value of a die
+
+-   Y- Sum of two die.
+
+-   X and Y are **discrete** r.v. because their outcomes are whole numbers.
+:::
+
+## Height
+
+X- height (inches)
+
+X is a continuous random variable.
+
+(people usually report is as a discrete RV.)
+
+## Tangent: Precision matters
+
+Who is 65 inches tall?
+
+None of us really know how tall we are exactly.
+
+## Convenience Sample on heights
+
+Last semester my in person class told me how tall they are. I made a histogram of their heights.
+
+```{r}
+library(tidyverse)
+
+heights <- c(65L, 62L, 69L, 68L, 63L, 61L, 61L, 64L, 63L, 62L, 71L, 66L, 63L, 68L, 67L, 70L, 65L, 61L, 64L, 69L, 67L, 67L, 70L, 64L, 61L, 64L, 64L, 69L, 69L, 59L, 63L, 66L, 64L, 62L)
+
+heights <- data_frame(heights)
+
+
+ggplot(data = heights)+
+  geom_histogram(mapping = aes(heights), bins=12, color="orange", fill= "gray40")+
+  theme_classic()+
+  xlab("Heights Inches")+
+  ylab("Number of Students")+
+  labs(title = "Heights from students Fall 2023")
+```
+
+## Probabilities from our sample
+
+There are 34 students in my sample (n = 34).
+
+Treat the data as discrete.
+
+::: incremental
+Estimate the following probabilities.
+
+-   P( X \< 65 )
+-   P( 60 \< X \< 63 )
+-   P( X = 65 )
+:::
+
+```{r}
+table(heights)
+```
+
+## Cont. Height Density Plot
+
+We get slightly different answers if we think about the data as continuous.
+
+Let X - A Student's Height
+
+```{r}
+
+ggplot(data = heights)+
+  geom_density(mapping = aes(heights), fill= "gray40", alpha = 0.4)+
+  theme_classic()+
+  xlab("Heights Inches")+
+  ylab("Number of Students")+
+  labs(title = "Heights from students Fall 2023")
+
+```
+
+## Probability Height Questions
+
+Let's pretend our sample is representative of all students
+
+::: incremental
+-   P( X \< 65 )
+-   P( 60 \< X \< 63 )
+-   P( X = 65 )
+
+Cannot be equal to exactly 1 number with continuous distributions. There is an $\infty$ number of values.
+:::
+
+## You try.
+
+[3.37](https://www.biostat.jhsph.edu/~iruczins/teaching/books/2019.openintro.statistics.pdf#chapter.3)

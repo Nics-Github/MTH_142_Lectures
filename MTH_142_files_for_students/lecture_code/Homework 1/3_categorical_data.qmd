@@ -8,8 +8,6 @@ format:
     theme: beige
 execute: 
   echo: true
-editor_options: 
-  chunk_output_type: inline
 ---
 
 ## Read before Lecture
@@ -23,6 +21,7 @@ For each of the following pairs of variables, a statistically significant positi
 ::: incremental
 -   The amount of ice cream sold in New England and the number of deaths by drowning
 -   The number of doctors in a region and the number of crimes committed in that region
+
 :::
 
 ## Explore Categorical Data
@@ -36,10 +35,8 @@ Exploring Categorical Data:
 ```{r}
 library(tidyverse)
 library(openintro)
-```
-# You should read and view the documentation of the data as a first step to exploring it. 
 
-```{r}
+# You should read and view the documentation of the data as a first step to exploring it. 
 ?assortive_mating
 assortive_mating
 ```
@@ -54,7 +51,6 @@ Tables are also helpful in understanding categorical data
 
 ```{r}
 table(data = assortive_mating)
-
 ```
 
 ## Prop tables
@@ -66,7 +62,6 @@ table(data = assortive_mating)
 my_table <- table(assortive_mating$self_male, assortive_mating$partner_female)
 
 prop.table(my_table)
-
 ```
 
 ## Margins
@@ -111,8 +106,7 @@ We can map aes to multiple variables
 ```{r}
 #| code-line-numbers: "1"
 ggplot(data = assortive_mating, mapping = aes(x=self_male, fill=partner_female)) +
-  geom_bar()+
-  scale_fill_manual(values =c("blue", "brown", "green"))
+  geom_bar()
 ```
 
 ## fill
@@ -120,8 +114,7 @@ ggplot(data = assortive_mating, mapping = aes(x=self_male, fill=partner_female))
 ```{r}
 #| code-line-numbers: "2"
 ggplot(data = assortive_mating, mapping = aes(x=self_male,fill=partner_female)) +
-  geom_bar(position = "fill") +
-  scale_fill_manual(values =c("blue", "brown", "green"))
+  geom_bar(position = "fill")
 ```
 
 ## dodge
@@ -129,29 +122,16 @@ ggplot(data = assortive_mating, mapping = aes(x=self_male,fill=partner_female)) 
 ```{r}
 #| code-line-numbers: "3"
 ggplot(data = assortive_mating, mapping = aes(x=self_male,fill=partner_female)) +
-  geom_bar(position = "dodge")+
-  scale_fill_manual(values =c("blue", "brown", "green"))
+  geom_bar(position = "dodge")
 ```
 
 ## [Problem 4.5](https://openintro-ims.netlify.app/explore-categorical#chp4-exercises)
 
 ## Additional Practice exploring Categorical Data
 
-Once you've loaded the openintro and tidyverse libraries there are many datasets to practice with.
+Once you've loaded the openintro and tidyverse libraries there are many dataset to practice with. 
 
-`avandia` is the name of the dataset explore it using the methods above.
+`avandia` is the name of the dataset explore it using the methods above. 
 
 I'll explore it myself in the next video.
 
-## Exploring avandia
-
-```{r}
-?avandia
-avandia
-```
-
-
-```{r}
-ggplot(data = avandia, mapping = aes(x = treatment, fill = cardiovascular_problems)) +
-  geom_bar(position = "fill")
-```

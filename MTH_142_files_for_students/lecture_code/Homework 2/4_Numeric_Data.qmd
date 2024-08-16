@@ -31,18 +31,13 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
-```{r}
-penguins
-```
-
-
 ## Histogram
 
 Summarize the **shape** of the distribution of one variable
 
 ```{r}
 ggplot(data = penguins, mapping = aes(x = body_mass_g)) +
-  geom_histogram(bins = 30)
+  geom_histogram()
 ```
 
 ## Density plot
@@ -51,9 +46,6 @@ Summarize the **shape** of the distribution of one variable
 
 ```{r}
 #| code-line-numbers: "2"
-
-options(scipen = 1000)
-
 ggplot(data = penguins, mapping = aes(x = body_mass_g)) +
   geom_density()
 ```
@@ -71,11 +63,6 @@ ggplot(data = penguins, mapping = aes(x = body_mass_g)) +
 ## Your turn
 
 -   Use a data graphic to summarize the distribution of the `height` variable in the `starwars` data frame.
-
-```{r}
-ggplot(data = starwars, mapping = aes(x = height)) +
-  geom_boxplot()
-```
 
 ## Histogram: two variables
 
@@ -132,6 +119,7 @@ ggplot(data = penguins, mapping = aes(x = body_mass_g, fill = species)) +
 
 ```{r}
 #| code-line-numbers: "1|2|3|4|5"
+
   summarize(
     .data = penguins,
     number_of_penguins = n(),
@@ -148,7 +136,7 @@ Most summary information can be found with the `fivnum()` or `summary()` functio
 
 # This is just the five number summary
 five_number_pengiuns <-fivenum(penguins$body_mass_g)
-#five_number_pengiuns
+five_number_pengiuns
 
 #This is the five number plus summary
 summary(penguins$body_mass_g)
@@ -157,7 +145,7 @@ summary(penguins$body_mass_g)
 
 ```{r}
 # This is how you can get the exact quantile. 
-quantile(x= penguins$body_mass_g, probs = c(0.10), na.rm=TRUE)
+quantile(x= penguins$body_mass_g, probs = c(0.25,0.5), na.rm=TRUE)
 ```
 
 ## Graphed Quantiles
@@ -179,18 +167,6 @@ ggplot(data = penguins, aes(x = body_mass_g)) +
 
 ## Answer here.
 
-```{r}
- summarize(
-    .data = starwars,
-    number_of_characters = n(),
-    mean_height = mean(height, na.rm = TRUE),
-    sd_height = sd(height, na.rm = TRUE)
-  )
-
-quantile(x= starwars$height, probs = c(0.80), na.rm=TRUE)
-```
-
-
 ## Outliers
 
 Along a number line to locate outliers we first calculate the two bounds\
@@ -210,8 +186,8 @@ Let's do this with penguins mass.
 # This is the IQR of the penguin's mass
 iqr_mass <- IQR(x= penguins$body_mass_g, na.rm = TRUE)
 
-q1 <- 3550
-q3 <- 4750
+q1 <- five_number_pengiuns[2]
+q3 <- five_number_pengiuns[4]
 
 # This is the lower bound
 q1 - 1.5*iqr_mass 
@@ -232,25 +208,3 @@ max(penguins$body_mass_g, na.rm = TRUE)
 -   Who are the outliers?
 
 ## Answer here
-
-```{r}
-ggplot(data = starwars, mapping = aes(mass))+
-  geom_boxplot() +
-  geom_vline(xintercept = 127.85, color = "purple")
-  
-
-# This is the IQR for starwars mass
-iqr_mass <- IQR(x= starwars$mass, na.rm = TRUE)
-
-#summary(starwars$mass)
-
-q1 <- 55.6
-q3 <- 84.5
-
-# This is the lower bound
-q1 - 1.5*iqr_mass 
-
-# This is the upper bound
-q3 + 1.5*iqr_mass
-```
-
