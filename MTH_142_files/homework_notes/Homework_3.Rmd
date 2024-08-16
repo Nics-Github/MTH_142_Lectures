@@ -1,0 +1,58 @@
+---
+title: "Homework_3"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+execute: 
+  echo: TRUE
+---
+
+Problem 7
+
+```{r}
+Brightness_Level_x <- c(16,	26,	28,	29,	34,	34,	45,	52,	85,	88)
+Hours_y <- c(	7.3, 5.6,	6.6,	5.3,	6.5,	4.5,	5.5,	5.2,	4.1,	3.3)
+
+Problme_7 <- data.frame(Brightness_Level_x, Hours_y)
+
+Problme_7
+summarise(.data = Problme_7, r = cor(Brightness_Level_x,Hours_y, use = "complete.obs"))
+?tibble()
+
+```
+
+Problem 11
+
+```{r}
+Vehicle_Weight	<- c(21.3,30.3,32.3,37.6,38.1,39.3,40.6,41.4,42.2,42.5)
+
+Fuel_Economy <- c(42.7,	27,	31.1,	27.6,	24.5,	21.7,	21.7,	10.1,	9.3,	18.6)
+
+Problem11 <- data.frame(Vehicle_Weight,Fuel_Economy)
+Problem11
+
+Problem11 <- data.frame(Vehicle_Weight,Fuel_Economy)
+Problem11
+
+# Alternative method
+library(tidyverse)
+Problem11 <- tribble (
+~Vehicle_Weight ,	~Fuel_Economy,
+21.3,	42.7,
+30.3,	27,
+32.3,	31.1,
+37.6,	27.6,
+38.1,	24.5,
+39.3,	21.7,
+40.6,	21.7,
+41.4,	10.1,
+42.2,	9.3,
+42.5,	18.6
+)
+Problem11
+
+Problem11 <- lm(Vehicle_Weight~Fuel_Economy, data = Problem11)
+summary(Problem11)
+```

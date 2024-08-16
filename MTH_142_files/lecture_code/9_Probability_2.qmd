@@ -1,0 +1,112 @@
+---
+title: "Random Variables"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+---
+
+## Probability Functions
+
+$0<P(x_i)<1$
+
+$\sum_i P(x_i) = 1$
+
+## Process vs Variable
+
++-----------------------------+-----------------------------------+
+| Random Process              | Random Variable                   |
++=============================+===================================+
+| Rolling a two six sided die | X = Sum of faces                  |
++-----------------------------+-----------------------------------+
+| Flip a coin 10 times        | X = \# Number of Tails            |
++-----------------------------+-----------------------------------+
+| Body Dimensions             | X = Foot size                     |
+|                             |                                   |
+|                             | Y = Neck Circumference Z = Height |
++-----------------------------+-----------------------------------+
+
+## Random variables
+
+::: incremental
+-   Are like functions that map onto the real line
+
+-   Often given the names X, Y, and Z
+
+-   Capital X is the name of the variable
+
+-   Lowercase x is the value the variable takes
+
+-   Type of Random variables:
+
+    -   Continuous Random Variables
+
+    -   Discrete Random Variables
+:::
+
+## Discrete Random Variables
+
+Get a Probability Mass Function
+
+States their probability of any value of x
+
+-   Example: Value of face on a die
+
+## Continuous Random Variables
+
+Get a Probability Density Function
+
+This states there probability for any value less than or grater than little x.
+
+-   Height
+
+## Expectation
+
+Expectation is another word for average.
+
+::: incremental
+-   It is $E[X] = \sum_i P(x_i) x_i$
+
+-   Let's make a probability model for X = The value on the face of a dice.
+
+-   Let's graph the model.
+
+-   Then let's calculate its expectation.
+:::
+
+## You try
+
+Write the random variable.
+
+Find the expectation for the sum of two die.
+
+Write the probability model (as a table or graph).
+
+[Here is the sample space](https://spreadsheetsolving.com/wp-content/uploads/2013/06/techsmithwor6cb3.png) for rolling two die [^1]
+
+[^1]: https://spreadsheetsolving.com/probabilities-dice-simulations/
+
+## Examples
+
+Problem 3.30
+
+## Some formula. 
+
+General Multiplication Rule:
+
+$P(A \text{ and } B) = P(A|B)P(B)$
+
+Law of Total Probability:
+
+$P(A) = P(A|B_1)P(B_1)+P(A|B_2)P(B_2)+…+P(A|B_k)P(B_k)$
+
+Where each $B_i$ is disjoint.
+
+Conditional Probability
+
+$P(A|B) = \frac{P(B|A)P(A)}{P(B)}$
+
+## Practice Problems
+
+3.14, 3.15

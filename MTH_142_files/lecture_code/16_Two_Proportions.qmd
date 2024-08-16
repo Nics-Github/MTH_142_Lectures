@@ -1,0 +1,240 @@
+---
+title: "Two proportions"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+execute: 
+  echo: true
+---
+
+## Read before hand
+
+Read [chapter 17](https://openintro-ims.netlify.app/inference-two-props) on inference with two proportions.
+
+## Libraries
+
+```{r}
+library(tidyverse)
+library(openintro)
+```
+
+# Difference of proportions
+
+## Two proportions
+
+Maybe we want to directly compare two proportions.
+
+Consider a difference of proportions.
+
+-   Confidence Interval
+
+-   Hypothesis Test
+
+## Compare two proportions
+
+Is there a difference between the two proportions?
+
+## Similar to CI for one prop.
+
+The following is from chapter 17 in the text:
+
+The difference $\hat{p}_1−\hat{p}_2$ can be modeled using a normal distribution when
+
+-   *Independence Extended:* The data are independent within and between the two groups.
+
+-   *Success-failure condition.* The success-failure condition holds for both groups, where we check successes and failures in each group separately.
+
+## Mean and SE
+
+$p_1−p_2 \sim N(\hat{p}_1−\hat{p}_2,\sqrt{\frac{\hat{p}_1(1−\hat{p}_1)}{n_1} +\frac{\hat{p}_2(1−\hat{p}_2)}{n_2}})$
+
+mean = $\hat{p}_1−\hat{p}_2$
+
+Standard Error = $\sqrt{\frac{\hat{p}_1(1−\hat{p}_1)}{n_1} +\frac{\hat{p}_2(1−\hat{p}_2)}{n_2}}$
+
+## Consider the cpr data.
+
+```{r}
+#| include: FALSE
+library(tidyverse)
+library(openintro)
+```
+
+![](gfx/cpr.png)
+
+## Data Distribution
+
+```{r}
+ggplot(cpr, aes(x = group, fill = outcome))+
+  geom_bar(position = "fill")
+```
+
+## Make a 95% Confidence Interval
+
+We want to try to capture the true difference in proportions.
+
+$$
+\hat{p}_1−\hat{p}_2  \pm z_{\frac{\alpha}{2}} \times SE
+$$
+
+We expect 95% of the CIs to capture the true difference.
+
+Check conditions first:
+
+-   *Independence Extended*
+
+-   *Success-failure condition*
+
+## Find $\hat{p}$ and SE
+
+$\hat{p}_1 = \frac{11}{50} = 0.22$
+
+$\hat{p}_2 = \frac{14}{40} \approx 0.35$
+
+$\hat{p_2} - \hat{p_1} = 0.13$
+
+$SE = \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1}+\frac{\hat{p}_2(1-\hat{p}_2)}{n_2}} \approx 0.095$
+
+```{r}
+p_1 = 0.22
+p_2 = 0.35
+p_2-p_1
+SE = sqrt(p_1*(1-p_1)/50+p_2*(1-p_2)/40)
+SE
+```
+
+$Z = 1.96$
+
+## The distribution is
+
+${p}_1−{p}_2 \sim N(0.13,0.095)$
+
+## The 95% CI
+
+```{r}
+Z = 1.96
+
+# "Lower Bound"
+p_2-p_1 - Z* SE
+
+# "Upper Bound"
+p_2-p_1 + Z* SE
+
+
+```
+
+Sleep example
+8.0%, while this proportion is 8.8% for Oregon residents. These data are based on simple random samples of 11,545 California and 4,691 Oregon residents
+
+```{r}
+p_1 = 0.08
+p_2 = 0.088
+#p_2-p_1
+SE = sqrt(p_1*(1-p_1)/11545+p_2*(1-p_2)/4691)
+#SE
+  
+## The 95% CI
+Z = 1.96
+
+# "Lower Bound"
+p_2-p_1 - Z* SE
+
+# "Upper Bound"
+p_2-p_1 + Z* SE
+```
+
+
+
+## Interpretation
+
+We are 95 % confident that the true difference in the proportion of people who survived using the two treatments is between -0.06 and 0.32. Note that zero is in this interval. It is possible that there is no difference in the survival rates.
+
+## You try:
+
+## [10 chapter 17](https://openintro-ims.netlify.app/inference-two-props#sec-chp17-exercises)
+
+## Let's do a Hypothesis Test
+
+We'll use the same data above
+
+$$
+H_0: p_1 = p_2 \\
+H_a:p_1 \ne p_2 
+$$
+
+$$
+\alpha = 0.05
+$$
+
+Check conditions:
+
+-   *Independence Extended*
+
+-   *Success-failure condition*
+
+## pooled groups
+
+There is one difference when doing the hypothesis test. We use a pooled statistic when calculating the standard error.
+
+The book uses $\widehat{p}_{pool} = \frac{\text{total successes from both groups}}{\text{total from both groups}}$
+
+If conditions with the pooled group then
+
+$\hat{p}_1−\hat{p}_2 \sim N({p}_1−{p}_2,\sqrt{\hat{p}_{pool}(1−\hat{p}_{pool})(\frac{1}{n_1} +\frac{1}{n_2}}))$
+
+## Calculate the pooled groups
+
+$\widehat{p}_{pool} = \frac{25}{90}$
+
+$SE = \sqrt{\widehat{p}_{pool}(1-\widehat{p}_{pool})(1/n_1+1/n_2)}$
+
+```{r}
+p_pool = 25/90
+SE = sqrt(p_pool*(1-p_pool)*(1/50+1/40))
+SE
+```
+
+## Find pvalue
+
+Note that the distribution is different, because in a hypothesis test we assume the center is 0.
+
+${p}_1−{p}_2 \sim N(0,0.095)$
+
+If the distribution is centered around the null parameter (eg 0, because we assume there is no difference) how likely is it that we would get 0.13 for a difference?
+
+
+days is 8.0%, while this proportion is 8.8% for Oregon residents. These data are based on simple random samples of 11,545 California and 4,691 Oregon residents.
+
+
+```{r}
+total_success = 0.08*11545 +0.088*4691
+
+p_pool = total_success/(11545+4691)
+
+SE = sqrt(p_pool*(1-p_pool)*(1/11545+1/4691))
+#SE
+
+p_1 = 0.08
+p_2 = 0.088
+diff = p_2-p_1
+
+
+2*pnorm(q = 0.008, mean = 0, sd = SE, lower.tail = FALSE)
+
+```
+
+
+
+
+
+## Conclusion
+
+Our pvalue is greater than 0.05 so we fail to reject the null hypothesis and conclude that there is no difference in survival rates between the treatment and control groups.
+
+Note: It is possible we have made a Type 2 error in failing to reject the null even when the null was false.
+
+## You try
+
+[problem 12 chapter 17](https://openintro-ims.netlify.app/inference-two-props#sec-chp17-exercises)

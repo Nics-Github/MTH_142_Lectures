@@ -1,0 +1,191 @@
+---
+title: "Linear Regression part 2"
+author: "Schwab"
+format: 
+  revealjs:
+    theme: beige
+editor: visual
+execute: 
+  echo: TRUE
+---
+
+## Cats
+
+![Cat's hearts](https://petlifesa.com/wp-content/uploads/2019/08/SA0057-Petlifesa-health-conditions-diseases-heart-disease-facts-about-your-cats-heart-Header-FA.jpg){fig-align="center"}
+
+## Cats' hearts
+
+![You stole Meow Heart](https://drbillspetnutrition.com/wp-content/uploads/2017/01/1.-Feline-Heart-1.jpg){fig-align="center"}
+
+## A big heart may cause problems
+
+Finding the size of a cat's heart is hard.
+
+Estimate with a model a model.
+
+## Data from the 40s
+
+This data cites [this source,](https://digital.library.adelaide.edu.au/dspace/bitstream/2440/15253/1/211.pdf) which you may be inclined to look over.
+
+```{r}
+#| code-fold: show
+
+#install.packages("MASS")
+#library(MASS)
+cats <- read_csv("cats.csv")
+```
+
+## Look at data
+
+```{r}
+?cats
+tail(cats,6)
+```
+
+## Which variable is which?
+
+Which should be the predictor and response variables?
+
+## Plot
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+
+ggplot(data = cats, aes(Bwt, Hwt))+
+  geom_point(aes(color=Sex) )+
+  xlab("Body Weight in Kg") +
+  ylab("Heart Weight in Grams")
+
+```
+
+## Describe Trend
+
+-   Shape
+
+-   Direction
+
+-   Strength
+
+## Add a regression line
+
+and some labels.
+
+```{r}
+ggplot(data = cats, aes(x = Bwt, y = Hwt))+
+  geom_point(aes(color=Sex) )+
+  geom_smooth(method = lm, se = FALSE) +
+  xlab("Body Weight in Kg") +
+  ylab("Heart Weight in Grams")
+```
+
+## Find correlation coefficient
+
+```{r}
+summarize(.data= cats , r = cor(Bwt, Hwt, use="complete.obs"))
+```
+
+## Find the coefficents
+
+```{r}
+#install.packages("broom")
+library(broom)
+cat_model <- lm(Hwt ~ Bwt, data = cats)
+tidy(cat_model)
+```
+
+## The Equation
+
+Intercept is the y-intercept of our linear model ($\beta_0 = -0.36$).
+
+The number next to Bwt is the slope ($\beta_1 = 4.03$).
+
+The equations is: $$
+\hat{y} = \beta_0 + \beta_1 x \\
+\text{or} \\
+\widehat{Hwt} = -0.36 + 4.03 \times Bwt $$
+
+## Summary
+
+![](images/lm_cats_1_predictor.png) Stolen from Prof Kurtz Garcia at Smith College
+
+## Interpretation
+
+Slope: For every *kilogram* increase in body weight we expect a 4.03 *gram* increase in the heart weight.
+
+Intercept: If we found a cat they weighed nothing its heart would be -0.36 grams?
+
+## More Complete outputs
+
+```{r}
+# Alternative to tidy()
+summary(cat_model)
+```
+
+## You try: 
+
+::: incremental
+-   If a cat weighs 3.5 kg how large a heart would we expect?
+
+-   Can we estimate the heart size for a 5kg cat?
+
+    -   Caution against extrapolation.
+:::
+
+## Solution: 
+
+The equation for the line is
+
+$\widehat{Hwt} = -0.36 + 4.03 \times Bwt $
+
+Plug in 3.5 we get
+
+$\widehat{Hwt} = -0.36 + 4.03 \times 3.5 \\
+\widehat{Hwt} = 13.745 \approx 13.7
+$
+
+# Residuals
+
+Residuals are the difference in the observed values and the predicted value.
+
+$$e = y - \hat{y}$$
+
+```{r}
+#| echo: FALSE
+
+ggplot(cats, aes(x = Bwt, y = Hwt))+
+  geom_point(aes(color=Sex) )+
+  geom_smooth(method = lm, se = FALSE) +
+  xlab("Body Weight in Kg") +
+  ylab("Heart Weight in Grams")
+
+```
+
+## You try:  calculate a residual
+
+There is a cat in this data that has a heart weight of 11.7 grams and a body weight of 3.5 kilograms. Calculate the residual for this cat.
+
+## Solution: 
+
+The residual is calculated $$e = y - \hat{y}$$
+
+We previously found the value of $\hat{y} = 13.7$ and we are told $y=11.7$ So we need to subtract those two values to get
+
+$$e = y - \hat{y}\\
+e = 11.7-13.7\\
+e = -2$$
+
+## Solution with R functions
+
+```{r}
+predict(object =  cat_model, 
+        newdata = data.frame(Bwt = 3.5)
+        )
+```
+
+## Citations
+
+Street cats from <https://petlifesa.com/wp-content/uploads/2019/08/SA0057-Petlifesa-health-conditions-diseases-heart-disease-facts-about-your-cats-heart-Header-FA.jpg>
+
+You stole Meow Heart https://drbillspetnutrition.com/feline-heart-conditions/

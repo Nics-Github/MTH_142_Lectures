@@ -1,0 +1,51 @@
+---
+title: "HW_10"
+author: "Nic Schwab"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+model_Hw_10_number_4 <- lm(depVar~group, data = TAlabsessions)
+model_Hw_10_number_4
+```
+
+```{r}
+HW_10_problem_3 <- tribble(
+~Internship, ~Co_op, ~Work_Study,
+13.5,	  14.25,	13.75,
+14.75,	14,	    14.25,
+13.75,	13.5,	  14.75,
+14.25,	15.5,	  13.25,
+15,	    12.75,	14,
+14.5,	  14.25,	13.75,
+12.5,	  13,	    14.25,
+14.25,	12.75,	13.25,
+12.5,	  14.25,	13.5,
+13,	    14,	    15.25,
+13.5,	  14.5,	  13.5,
+13.75,	14.5,	  13.25,
+12.75,	13.25,	14.25,
+13.5,	  14,	    15.75,
+13.5,	  13,	    14.5,
+14.75,	14.25,	14.75,
+13,	    13.5,	  15.25,
+14.75,  14.5,	  14.25,
+13,	    15,	    13.75,
+15,	    13.75,	14.25,
+12.75,	14.25,	14.25,
+14.25,	14.5,	  13.5,
+13,	    13.5,	  12.5,
+13,	    14,	    16.25
+)
+```
+
+```{r}
+pivoted_problem_3 <- pivot_longer(data= HW_10_problem_3, cols = c("Internship","Co_op","Work_Study"), names_to = "groups")
+
+```

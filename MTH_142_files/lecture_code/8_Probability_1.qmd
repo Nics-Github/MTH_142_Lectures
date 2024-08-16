@@ -1,0 +1,166 @@
+---
+title: "Probability part 1"
+author: "Schwab"
+format: 
+  revealjs: 
+    theme: beige
+editor: visual
+execute: 
+  echo: true
+---
+
+## Read before hand:
+
+[Open Intro Statistics](https://www.biostat.jhsph.edu/~iruczins/teaching/books/2019.openintro.statistics.pdf) Chapter 3.1.
+
+## The Law of Large numbers
+
+The theoretical probability of getting a heads is 0.5 on a coin.
+
+Let's test it empirically.
+
+[Flip a coin](https://www.random.org/coins/)
+
+[Visualize the law of large numbers](https://docs.google.com/spreadsheets/d/1pWXdJkCfo8P-oiseqJ7tAh9sXHuDjTPK3SKWNWvx_Bk/edit?usp=sharing)
+
+## Empirical vs Theoretical Probabilities
+
+-   We just found the probability of flipping a coin empirically.
+
+-   We know what it is in theory. ( 0.5)
+
+-   Today we will discuss theoretical probabilities.
+
+## Probability
+
+> The probability of an event is the proportion of times we would see the event occur if the process could happen an infinite number of times.
+
+[Consider a fair six sided die.](https://www.google.com/search?client=firefox-b-1-d&q=six+sided+die)
+
+Event A = Rolling a 4.
+
+A random variable X might be:
+
+-   X\~The number that shows up on a die.
+
+## Rolling a 4
+
+There are 6 possible outcomes so the
+
+-   Sample space = {1,2,3,4,5,6 } = $\Omega$
+
+We want 1 outcome of the 6.
+
+-   P(Rolling a 4) = P( X = 4) = $\frac{1}{6}$
+
+## Not rolling a 4.
+
+We want 5 outcomes of the 6.
+
+$\Omega = \{1,2,3,4,5,6 \}$
+
+-   P(Not Rolling a 4) = $P( X \ne 4) = \frac{5}{6}$
+
+This is called the complement and is denoted $\bar{A}$
+
+## Simulate die rolling in R
+
+(optional code)
+
+```{r}
+# This is to get consistent answers. 
+set.seed(1)
+
+# Roll the die once
+sample(x = c(1,2,3,4,5,6), size = 1, replace = TRUE)
+
+# Roll the die 1000 times and keep the number of 4s. 
+thousand_rolls = sample(x = c(1,2,3,4,5,6), size = 10000, replace = TRUE)
+
+# Check to see if each value equals 4. If it does equal 4 a 1 is returned, if not a zero.
+sum(thousand_rolls == 4)
+
+# Number of fours from our simulation
+1701/10000
+
+#Theoredical probability
+1/6
+```
+
+## An event and its complement
+
+An event and its complement sum to 1.
+
+$P(A) + P(\bar{A}) = 1$
+
+## You try
+
+[We are rolling two fair die.](https://www.google.com/search?client=firefox-b-1-d&q=six+sided+die)
+
+1.  What is the theoretical probability their sum is 7? Call this event B.
+
+[Here is the sample space](https://spreadsheetsolving.com/wp-content/uploads/2013/06/techsmithwor6cb3.png) [^1]
+
+[^1]: https://spreadsheetsolving.com/probabilities-dice-simulations/
+
+2.  Write the event and the probability notation.
+
+3.  Find the compliment of the value above.
+
+Do this by hand.
+
+## Disjoint (Mutually Exclusive) Events
+
+> Two events that cannot happen simultaneously.
+
+Consider the single six sided die.
+
+A = Rolling a 3
+
+B = Rolling an even number
+
+-   $P(A \text{ and } B) = 0$
+
+-   $P(A \text{ or } B) = \frac{1}{6}+\frac{3}{6}$
+
+## What is disjoint with?
+
+::: incremental
+-   A = Flipping heads on a coin
+
+-   B = Going to class
+
+-   C = Eating a cheeseburger
+:::
+
+## What is not disjoint with?
+
+-   A = Flipping heads on a coin
+
+-   B = Going to class
+
+-   C = Eating a cheeseburger
+
+## Independence
+
+> Two outcomes are independent if knowing the outcome of one gives no useful information about the other.
+
+-   I flip a tails on a coin. Does that tell me the probability of the next flip?
+
+-   I pull an Ace of Spades from a deck but don't replace it. Does that tell me about the probability of the next card I pull?
+
+-   One person in class is left handed does that effect the probability of another person being left handed.
+
+## An incomplete list of formulas
+
+-   Addition Rule $P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B)$
+
+-   Rules for probability distributions.
+
+-   Multiplication rule for independence. $P(A \text{ and } B) = P(A) \times P(B)$
+
+You've read chapter 3.1 and made note of these formulas.
+
+## Try some for practice:
+
+[OI:](https://www.biostat.jhsph.edu/~iruczins/teaching/books/2019.openintro.statistics.pdf) 3.2, 3.5, 3.11
