@@ -9,6 +9,10 @@ execute:
   echo: true
 ---
 
+## Read before:
+
+[Read chapter 24 before hand.](https://openintro-ims.netlify.app/inf-model-slr#case-study-sandwich-store)
+
 ## Libraries
 
 ```{r}
@@ -16,7 +20,6 @@ library(openintro)
 library(tidyverse)
 library(broom)
 library(statsr)
-library(kableExtra)
 ```
 
 # Linear Regression (again)
@@ -24,25 +27,14 @@ library(kableExtra)
 ## Recall Linear Regression
 
 ```{r}
-starbucks |>
-  ggplot()+
+ggplot(data = starbucks)+
   geom_point(aes(x=fat, y= calories))
-```
-
-## Modeling with a line.
-
-Fit the data with a model.
-
-```{r}
-star_model <- lm(calories ~ fat, data= starbucks) 
-star_model |> tidy()
 ```
 
 ## Add the model to the points.
 
 ```{r}
-starbucks |>
-  ggplot(aes(x=fat, y= calories))+
+ggplot(data = starbucks, aes(x=fat, y= calories))+
   geom_point()+
   geom_smooth(method = "lm", se = FALSE)
 ```
@@ -50,10 +42,9 @@ starbucks |>
 ## Model outputs: tidy
 
 ```{r}
-
+star_model <- lm(calories ~ fat, data = starbucks)
 #tidy() give the regression output
-tidy(star_model) |>
-  kable()
+tidy(star_model) 
 ```
 
 ## summary()
@@ -81,7 +72,7 @@ ggplot(data = star_model_aug, aes(x = .fitted, y = .resid)) +
 
 -   Trying to figure out if the model is reasonable
 
-    -   looking at the correlation coefficent r.
+    -   looking at the correlation coefficient r.
 
 ## What will we do today?
 
@@ -93,33 +84,28 @@ ggplot(data = star_model_aug, aes(x = .fitted, y = .resid)) +
 
 -   If the slope is zero there is no relationship between y and x.
 
-## Conditions:
+## Conditions: LINE
 
--   
-
-    -   Linearity\* data has to be linear
+-   Linearity\* data has to be *linear*
 
 -   Data has to be *independent*
 
     -   watch out for time series.
 
--   nearly normal residuals
+-   nearly *normal* residuals
 
     -   look for random disbursment around the zero line of residual plot.
 
--   constant or equal variability
+-   constant or *equal* *variability*
 
     -   the points in the residual plot should not have a distinct/changing pattern.
-
-The book gives the acronym of LINE.
 
 ## Some examples:
 
 **Independence problems**
 
 ```{r}
-arbuthnot |>
-  ggplot(aes(year,boys))+
+ggplot(data= arbuthnot, aes(year,boys))+
   geom_point() +
   geom_smooth(method = "lm" , se = FALSE)
 ```
@@ -130,8 +116,7 @@ arbuthnot |>
 #| echo: false
 #| warning: false
 
-cars93 |>
-  ggplot(aes(x = mpg_city, y = price ))+
+ggplot(data= cars93, aes(x = mpg_city, y = price ))+
   geom_point()+
   geom_smooth(method="lm", se=FALSE) +
   labs(title = "Price by MPG cars93")
@@ -143,8 +128,7 @@ cars93 |>
 #| echo: false
 #| warning: false
 
-starbucks |>
-  ggplot(aes(x=fiber, y= calories))+
+ggplot(data= starbucks, aes(x=fiber, y= calories))+
   geom_point()+
   geom_smooth(method = "lm", se = FALSE)+
   labs(title = "Calories by Fiber",
@@ -193,8 +177,7 @@ ggplot(data = star_model_aug, aes(x = .fitted, y = .resid)) +
 ## What about this?
 
 ```{r}
-arbuthnot |>
-  ggplot(aes(x = girls, y = boys))+
+ggplot(data = arbuthnot, aes(x = girls, y = boys))+
   geom_point()+
   labs(title = "Boys vs Girls",
        subtitle = "Born in London in the 1600s")+
@@ -271,7 +254,7 @@ $$
 
 ```{r}
 results <- lm(boys ~ girls, data= arbuthnot)
-tidy(results)
+summary(results)
 ```
 
 ## Some Vocab
@@ -282,14 +265,6 @@ $r^2$ - coefficient of determination
 
 $r^2$ is the proportion of the variability that can be explained by the explanatory variable
 
-## Practice Problem
-
-The `diamonds` data set in R contains the prices and other attributes of almost 54,000 diamonds. We want to see if carat (weight of the diamond) is a good predictor for price (in US dollars).
-
-a)  Write the hypotheses.
-b)  Check the conditions and comment on any potential violations.
-c)  What is the p-value and conclusion?
-
 ## Homework Time
 
-Problem 3 and 6 in class.
+[Problem 3 in class.](https://openintro-ims.netlify.app/inf-model-slr#sec-chp24-exercises)

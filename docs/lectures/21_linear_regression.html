@@ -172,11 +172,11 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#libraries" id="toc-libraries" class="nav-link active" data-scroll-target="#libraries">Libraries</a></li>
+  <li><a href="#read-before" id="toc-read-before" class="nav-link active" data-scroll-target="#read-before">Read before:</a></li>
+  <li><a href="#libraries" id="toc-libraries" class="nav-link" data-scroll-target="#libraries">Libraries</a></li>
   <li><a href="#linear-regression-again" id="toc-linear-regression-again" class="nav-link" data-scroll-target="#linear-regression-again">Linear Regression (again)</a>
   <ul class="collapse">
   <li><a href="#recall-linear-regression" id="toc-recall-linear-regression" class="nav-link" data-scroll-target="#recall-linear-regression">Recall Linear Regression</a></li>
-  <li><a href="#modeling-with-a-line." id="toc-modeling-with-a-line." class="nav-link" data-scroll-target="#modeling-with-a-line.">Modeling with a line.</a></li>
   <li><a href="#add-the-model-to-the-points." id="toc-add-the-model-to-the-points." class="nav-link" data-scroll-target="#add-the-model-to-the-points.">Add the model to the points.</a></li>
   <li><a href="#model-outputs-tidy" id="toc-model-outputs-tidy" class="nav-link" data-scroll-target="#model-outputs-tidy">Model outputs: tidy</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">summary()</a></li>
@@ -185,7 +185,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#what-were-we-doing" id="toc-what-were-we-doing" class="nav-link" data-scroll-target="#what-were-we-doing">What were we doing?</a></li>
   <li><a href="#what-will-we-do-today" id="toc-what-will-we-do-today" class="nav-link" data-scroll-target="#what-will-we-do-today">What will we do today?</a></li>
-  <li><a href="#conditions" id="toc-conditions" class="nav-link" data-scroll-target="#conditions">Conditions:</a></li>
+  <li><a href="#conditions-line" id="toc-conditions-line" class="nav-link" data-scroll-target="#conditions-line">Conditions: LINE</a></li>
   <li><a href="#some-examples" id="toc-some-examples" class="nav-link" data-scroll-target="#some-examples">Some examples:</a></li>
   <li><a href="#linear-problems" id="toc-linear-problems" class="nav-link" data-scroll-target="#linear-problems">Linear Problems</a></li>
   <li><a href="#normal-issues" id="toc-normal-issues" class="nav-link" data-scroll-target="#normal-issues">Normal issues</a></li>
@@ -204,7 +204,6 @@ window.Quarto = {
   <li><a href="#the-t-distribution" id="toc-the-t-distribution" class="nav-link" data-scroll-target="#the-t-distribution">The t distribution</a></li>
   <li><a href="#the-test" id="toc-the-test" class="nav-link" data-scroll-target="#the-test">The test</a></li>
   <li><a href="#some-vocab" id="toc-some-vocab" class="nav-link" data-scroll-target="#some-vocab">Some Vocab</a></li>
-  <li><a href="#practice-problem" id="toc-practice-problem" class="nav-link" data-scroll-target="#practice-problem">Practice Problem</a></li>
   <li><a href="#homework-time" id="toc-homework-time" class="nav-link" data-scroll-target="#homework-time">Homework Time</a></li>
   </ul></li>
   </ul>
@@ -238,6 +237,10 @@ window.Quarto = {
 </header>
 
 
+<section id="read-before" class="level2">
+<h2 class="anchored" data-anchor-id="read-before">Read before:</h2>
+<p><a href="https://openintro-ims.netlify.app/inf-model-slr#case-study-sandwich-store">Read chapter 24 before hand.</a></p>
+</section>
 <section id="libraries" class="level2">
 <h2 class="anchored" data-anchor-id="libraries">Libraries</h2>
 <div class="cell">
@@ -291,15 +294,6 @@ The following objects are masked from 'package:openintro':
 
     calc_streak, evals, nycflights, present</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'kableExtra'
-
-The following object is masked from 'package:dplyr':
-
-    group_rows</code></pre>
-</div>
 </div>
 </section>
 <section id="linear-regression-again" class="level1">
@@ -307,9 +301,8 @@ The following object is masked from 'package:dplyr':
 <section id="recall-linear-regression" class="level2">
 <h2 class="anchored" data-anchor-id="recall-linear-regression">Recall Linear Regression</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>fat, <span class="at">y=</span> calories))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starbucks)<span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>fat, <span class="at">y=</span> calories))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -319,12 +312,30 @@ The following object is masked from 'package:dplyr':
 </div>
 </div>
 </section>
-<section id="modeling-with-a-line." class="level2">
-<h2 class="anchored" data-anchor-id="modeling-with-a-line.">Modeling with a line.</h2>
-<p>Fit the data with a model.</p>
+<section id="add-the-model-to-the-points." class="level2">
+<h2 class="anchored" data-anchor-id="add-the-model-to-the-points.">Add the model to the points.</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>star_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(calories <span class="sc">~</span> fat, <span class="at">data=</span> starbucks) </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>star_model <span class="sc">|&gt;</span> <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starbucks, <span class="fu">aes</span>(<span class="at">x=</span>fat, <span class="at">y=</span> calories))<span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="model-outputs-tidy" class="level2">
+<h2 class="anchored" data-anchor-id="model-outputs-tidy">Model outputs: tidy</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>star_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(calories <span class="sc">~</span> fat, <span class="at">data =</span> starbucks)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#tidy() give the regression output</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(star_model) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   term        estimate std.error statistic  p.value
@@ -334,66 +345,10 @@ The following object is masked from 'package:dplyr':
 </div>
 </div>
 </section>
-<section id="add-the-model-to-the-points." class="level2">
-<h2 class="anchored" data-anchor-id="add-the-model-to-the-points.">Add the model to the points.</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>fat, <span class="at">y=</span> calories))<span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="model-outputs-tidy" class="level2">
-<h2 class="anchored" data-anchor-id="model-outputs-tidy">Model outputs: tidy</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#tidy() give the regression output</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(star_model) <span class="sc">|&gt;</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">term</th>
-<th style="text-align: right;">estimate</th>
-<th style="text-align: right;">std.error</th>
-<th style="text-align: right;">statistic</th>
-<th style="text-align: right;">p.value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">(Intercept)</td>
-<td style="text-align: right;">183.73375</td>
-<td style="text-align: right;">17.277012</td>
-<td style="text-align: right;">10.63458</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">fat</td>
-<td style="text-align: right;">11.26651</td>
-<td style="text-align: right;">1.117087</td>
-<td style="text-align: right;">10.08562</td>
-<td style="text-align: right;">0</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">summary()</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(star_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(star_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -420,18 +375,18 @@ F-statistic: 101.7 on 1 and 75 DF,  p-value: 1.32e-15</code></pre>
 <section id="are-residuals-normalish" class="level1">
 <h1>Are residuals normalish?</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>star_model_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(star_model)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> star_model_aug, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) <span class="sc">+</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Residuals"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>star_model_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(star_model)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> star_model_aug, <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Fitted values"</span>) <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Residuals"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -442,7 +397,7 @@ F-statistic: 101.7 on 1 and 75 DF,  p-value: 1.32e-15</code></pre>
 <li><p>Make a model</p></li>
 <li><p>Trying to figure out if the model is reasonable</p>
 <ul>
-<li>looking at the correlation coefficent r.</li>
+<li>looking at the correlation coefficient r.</li>
 </ul></li>
 </ul>
 </section>
@@ -455,42 +410,38 @@ F-statistic: 101.7 on 1 and 75 DF,  p-value: 1.32e-15</code></pre>
 <li><p>If the slope is zero there is no relationship between y and x.</p></li>
 </ul>
 </section>
-<section id="conditions" class="level2">
-<h2 class="anchored" data-anchor-id="conditions">Conditions:</h2>
+<section id="conditions-line" class="level2">
+<h2 class="anchored" data-anchor-id="conditions-line">Conditions: LINE</h2>
 <ul>
-<li><ul>
-<li>Linearity* data has to be linear</li>
-</ul></li>
+<li><p>Linearity* data has to be <em>linear</em></p></li>
 <li><p>Data has to be <em>independent</em></p>
 <ul>
 <li>watch out for time series.</li>
 </ul></li>
-<li><p>nearly normal residuals</p>
+<li><p>nearly <em>normal</em> residuals</p>
 <ul>
 <li>look for random disbursment around the zero line of residual plot.</li>
 </ul></li>
-<li><p>constant or equal variability</p>
+<li><p>constant or <em>equal</em> <em>variability</em></p>
 <ul>
 <li>the points in the residual plot should not have a distinct/changing pattern.</li>
 </ul></li>
 </ul>
-<p>The book gives the acronym of LINE.</p>
 </section>
 <section id="some-examples" class="level2">
 <h2 class="anchored" data-anchor-id="some-examples">Some examples:</h2>
 <p><strong>Independence problems</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>arbuthnot <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year,boys))<span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span> , <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span> arbuthnot, <span class="fu">aes</span>(year,boys))<span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span> , <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -502,7 +453,7 @@ F-statistic: 101.7 on 1 and 75 DF,  p-value: 1.32e-15</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -514,7 +465,7 @@ F-statistic: 101.7 on 1 and 75 DF,  p-value: 1.32e-15</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -526,7 +477,7 @@ F-statistic: 101.7 on 1 and 75 DF,  p-value: 1.32e-15</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -535,17 +486,17 @@ F-statistic: 101.7 on 1 and 75 DF,  p-value: 1.32e-15</code></pre>
 <section id="starbucks-calories-vs-fat." class="level2">
 <h2 class="anchored" data-anchor-id="starbucks-calories-vs-fat.">Starbucks calories vs fat.</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>fat, <span class="at">y=</span> calories))<span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>starbucks <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>fat, <span class="at">y=</span> calories))<span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -558,7 +509,7 @@ F-statistic: 101.7 on 1 and 75 DF,  p-value: 1.32e-15</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -566,19 +517,18 @@ F-statistic: 101.7 on 1 and 75 DF,  p-value: 1.32e-15</code></pre>
 <section id="what-about-this" class="level2">
 <h2 class="anchored" data-anchor-id="what-about-this">What about this?</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>arbuthnot <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> girls, <span class="at">y =</span> boys))<span class="sc">+</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Boys vs Girls"</span>,</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Born in London in the 1600s"</span>)<span class="sc">+</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> arbuthnot, <span class="fu">aes</span>(<span class="at">x =</span> girls, <span class="at">y =</span> boys))<span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Boys vs Girls"</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Born in London in the 1600s"</span>)<span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -590,7 +540,7 @@ F-statistic: 101.7 on 1 and 75 DF,  p-value: 1.32e-15</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="21_linear_regression_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -638,14 +588,27 @@ H_0: \beta_1 = 0 \\
 H_1: \beta_1 \ne 0
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lm</span>(boys <span class="sc">~</span> girls, <span class="at">data=</span> arbuthnot)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lm</span>(boys <span class="sc">~</span> girls, <span class="at">data=</span> arbuthnot)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 5
-  term        estimate std.error statistic  p.value
-  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-1 (Intercept)   185.     59.8         3.09 2.74e- 3
-2 girls           1.03    0.0104     99.6  1.21e-85</code></pre>
+<pre><code>
+Call:
+lm(formula = boys ~ girls, data = arbuthnot)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-363.30 -110.25   -6.42   97.44  356.63 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 184.77244   59.76823   3.091  0.00274 ** 
+girls         1.03391    0.01038  99.578  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 148.8 on 80 degrees of freedom
+Multiple R-squared:  0.992, Adjusted R-squared:  0.9919 
+F-statistic:  9916 on 1 and 80 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </section>
@@ -655,18 +618,9 @@ H_1: \beta_1 \ne 0
 <p><span class="math inline">\(r^2\)</span> - coefficient of determination</p>
 <p><span class="math inline">\(r^2\)</span> is the proportion of the variability that can be explained by the explanatory variable</p>
 </section>
-<section id="practice-problem" class="level2">
-<h2 class="anchored" data-anchor-id="practice-problem">Practice Problem</h2>
-<p>The <code>diamonds</code> data set in R contains the prices and other attributes of almost 54,000 diamonds. We want to see if carat (weight of the diamond) is a good predictor for price (in US dollars).</p>
-<ol type="a">
-<li>Write the hypotheses.</li>
-<li>Check the conditions and comment on any potential violations.</li>
-<li>What is the p-value and conclusion?</li>
-</ol>
-</section>
 <section id="homework-time" class="level2">
 <h2 class="anchored" data-anchor-id="homework-time">Homework Time</h2>
-<p>Problem 3 and 6 in class.</p>
+<p><a href="https://openintro-ims.netlify.app/inf-model-slr#sec-chp24-exercises">Problem 3 in class.</a></p>
 
 
 </section>

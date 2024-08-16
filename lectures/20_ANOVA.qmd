@@ -9,12 +9,15 @@ execute:
   echo: true
 ---
 
+## Reading
+
+[Read Chapter 22 before hand.](https://openintro-ims.netlify.app/inference-many-means)
+
 ## Libraries
 
 ```{r}
 library(openintro)
 library(tidyverse)
-library(kableExtra)
 ```
 
 ## Comparing multiple groups
@@ -55,21 +58,12 @@ There is no real confidence interval.
 
 <br>
 
-The variance are equal condition has a rule of thumb.
+"The variability across groups is equal" condition has a rule of thumb.
 
-If the largest is not more than four times the smallest all is well.
-
-$$
-\frac{\sigma^2_{max}}{\sigma^2_{min}}\le 4
-$$
-
-or
-
-If the largest SD/ smalest SD is between 0.5 and 2.
-
+If the largest SD/ smallest SD is between 0.5 and 2.
 
 $$
-\frac{\sigma_{max}}{\sigma_{min}}\le 2
+0.5\le \frac{\sigma_{max}}{\sigma_{min}}\le 2
 $$
 
 ## A test
@@ -88,10 +82,8 @@ Is the variance about the same?
 
 ```{r}
 
-classdata |>
-  group_by(lecture) |>
-  summarise(mean = mean(m1), sd = sd(m1), count = n())|>
-  kable(digits = 1, align = "l")
+group_by(.data = classdata, lecture) |>
+  summarise(mean = mean(m1), sd = sd(m1), count = n())
 ```
 
 ## Notation:
@@ -117,57 +109,6 @@ summary(results)
 
 Reject the null, one of the exam averages is different than the other two.
 
-## Try one:
-
-In the iris data set, would it be appropriate to do ANOVA on `petal.length`? Why or why not?
-
-Make a summary table or boxplot to justifty.
-
-## My code for `petal.length`
-
-For the table:
-
-```{r}
-#| eval: false
-
-iris |>
-   group_by(Species) |>
-   summarise(mean = mean(Petal.Length), standard_dev = sd(Petal.Length), count =n())|>
-   kable(digits = 1, align = "c")
-```
-
-For the graph
-
-```{r}
-#| eval: false
-
-iris |>
-  ggplot(aes(Petal.Length, color = Species))+
-  geom_boxplot()
-
-```
-
-## My summary table and graph
-
-```{r}
-
-
-
-iris |>
-   group_by(Species) |>
-   summarise(mean = mean(Petal.Length), sd = sd(Petal.Length), count =n())|>
-   kable(digits = 1, align = "c")
-```
-
-```{r}
-
-
-iris |>
-  ggplot(aes(Petal.Length, color = Species))+
-  geom_boxplot()
-
-```
-
 ## A flower's sepal
 
 ![](https://upload.wikimedia.org/wikipedia/commons/7/7f/Mature_flower_diagram.svg)
@@ -179,11 +120,8 @@ Is it appropriate to do ANOVA on `Sepal.Length`?
 ```{r}
 #| echo: False
 
-
-iris |>
-   group_by(Species) |>
-   summarise(mean = mean(Sepal.Length), sd = sd(Sepal.Length))|>
-   kable(digits = 1, align = "l")
+group_by(.data= iris, Species) |>
+   summarise(mean = mean(Sepal.Length), sd = sd(Sepal.Length))
 ```
 
 ```{r}
@@ -219,6 +157,8 @@ results <- aov( Sepal.Length ~ Species, data = iris )
 summary(results)
 ```
 
-## Problem 5, 7, or 9
+## Problems 5 or 9
 
 [Link to exercises](https://openintro-ims.netlify.app/inference-many-means#chp22-exercises)
+
+## Show how to do HW problem 3 and 4
