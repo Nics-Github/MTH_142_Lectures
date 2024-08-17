@@ -282,7 +282,7 @@ ggplot(data = arbuthnot, aes(x = year, y = girls)) +
 
 **Answer:**
 
-3.  Generate a plot of the proportion of boys born over time from the `arbuthnot` data. What do you see?
+3.  Generate a plot of the proportion of boys born over time from the `arbuthnot` data. What do you see? (Copy and edit code from above, or use the MTH 142 cheat sheet for ideas.)
 
 **Answer:**
 
