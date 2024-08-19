@@ -1,7 +1,7 @@
 ---
-title: "R Assignment 0 Introduction to R and RStudio"
-author: "blank"
-date: "Today"
+title: "Introduction to R and RStudio"
+author: "Solutions"
+date: "2/2/2024"
 format: pdf
 editor: source
 ---
@@ -14,15 +14,15 @@ library(openintro)
 
 ## The yaml
 
-The little bit of code at the top of this document, between some hyphens - - - , is called the yaml. This has the meta information for the document. You could add author: "Your name" under "title".
+The little bit of code at the top of this document, between some hyphens - - - , is called the yaml. Add your name and the date into the yaml. They should both be strings (that means "in quotes").
 
 ## A note on labs
 
-In MTH 142 online you will get lots of practice doing statistics through homework and R assignments. You will have 4 assignments during this course that will help you do "modern" statistics with simulation and specialized R packages. In this R assignment the goal is to warm up with some plotting and becoming familiar with R and quarto. You will have 7 questions at the end which will be peer graded. Which means your peers will grade these so you do not need to include your name in the YAML. Finally you will know if you have done this assignment correctly if you are able to render without errors. (Getting errors is normal and common. If you are unable to fix them go to office hours or or post a screenshot of the error and where it occurred to a forum). Turn in the rendered .pdf to canvas before the due date. Late assignments are not accepted and one will be dropped. Good luck.
+In SDS 220 you will get lots of practice doing statistics through homework assignments, the final project and labs. You will have 7 or 8 labs during this course that will help you do "modern" statistics with simulation and specialized R packages. In this lab the goal is to warm up with some plotting and becoming familiar with R and quarto. You will have 7 questions at the end which will be graded. Finally you will know if you have done your lab correctly if you are able to render without errors. (Getting errors is normal and common. If you are unable to fix them go to office hours or tutoring.) Turn in the rendered .pdf to moodle before the due date. Late labs are not accepted and one will be dropped. Good luck.
 
 ## Keep your labs organized
 
-This R_Assignment_0.qmd file should be organized into a folder on HCC's RStudio Workbench or your computer. You can leave it in the same folder you found it. All of your assignments for this class should go in the same folder.
+This Lab1.qmd file should be organized into a folder on your computer, ideally in documents (Do not leave it in your downloads folder). All of your labs for this class should go in the same folder. The folders *img* and *more* should be in the same folder. This is important for rendering your work.
 
 ## The RStudio Interface
 
@@ -35,13 +35,11 @@ By now you have seen Rstudio and have heard words like: **console**, **quarto**,
 -   The **tidyverse** "umbrella" package which houses a suite of many different `R` packages: for data wrangling and data visualization
 -   The **openintro** `R` package: for data and custom functions with the OpenIntro resources
 
-You likely have the tidyverse installed already. In the lower right hand corner click on the *Packages* tab. Type the name of each of these packages (tidyverse, openintro) into the search box to see if they have been installed. If these packages do not appear when you type in their name, install them by running the chunk below.
+You likely have the tidyverse installed already. In the lower right hand corner click on the *Packages* tab. Type the name of each of these packages (tidyverse, openintro) into the search box to see if they have been installed. If these packages do not appear when you type in their name, install them by running the chunk below. 
 
 ```{r install-packages, message = FALSE, eval = FALSE}
-# Only click the green arrow if you did not find the tidyverse or openintro package. 
-
-install.packages("tidyverse")
-install.packages("openintro")
+#install.packages("tidyverse")
+#install.packages("openintro")
 ```
 
 After running the chunk above stream of text will begin, communicating the process `R` is going through to install the package from the location you selected when you installed `R`. If you were not prompted to select a server for downloading packages when you installed `R`, RStudio may prompt you to select a server from which to download; any of them will work.
@@ -57,17 +55,17 @@ We are choosing to use the tidyverse package because it consists of a set of pac
 
 ### Creating a reproducible lab report
 
-We will be using quarto .qmd ( or the older rmarkdown .rmd) to create reproducible lab reports. The following videos give justification for rmarkdwon, which is similar to quarto.
+We will be using quarto ( or the older rmarkdown) to create reproducible lab reports. The following videos give justification for rmarkdwon, which is similar to quarto.
 
 [**Why use quarto for Lab Reports?**](https://youtu.be/lNWVQ2oxNho)
 
 [**Using quarto for Lab Reports in RStudio**](https://youtu.be/o0h-eVABe9M)
 
-You have already opened R_assingment_0.qmd and you are working in it now. In the future you can click File -\> Quarto Document to make a new .qmd file.
+You have already opened Lab_1.qmd and you are working in it now. In the future you can click File -\> Quarto Document to make a new .qmd file.
 
 Going forward you should refrain from typing your code directly in the console, as this makes it very difficult to remember and reproduce the output you want to reference. Potentially the most important feature of quarto files is that they allow for us to nest our `R` code within a written report. In an quarto file, `R` code appears in a gray box, which we call "code chunks." The quarto file knows that the gray box contains `R` code because it begins with three tick marks (\`\`\`), followed by two curly braces that contain a lowercase letter r ({r}). If you do not see these code chunks you may be in *Visual* mode. You can switch to *Source* mode in the upper left.
 
-Instead of typing our `R` code into the console, we encourage you to type any code you produce (final correct answer, or anything you're just trying out) in the `R` code chunk associated with each problem. You can execute the `R` code you type in these code chunks similar to how you typed code into the console and pressed enter/return. Within the code chunk there are two ways to execute a line of `R` code: (1) place your cursor on the line on code and press `Ctrl-Enter` or `Cmd-Enter` at the same time, or (2) place your cursor on the line and a "Run" button in the upper right hand corner of the quarto file. Alternatively, if you wanted to run all of the `R` code in a given code chunk, you can click on the "Play" button in the upper right hand corner of the code chunk (green sideways triangle).
+Instead of typing our `R` code into the console, we encourage you to type any code you produce (final correct answer, or anything you're just trying out) in the `R` code chunk associated with each problem. You can execute the `R` code you type in these code chunks similar to how you typed code into the console and pressed enter/return. Within the code chunk there are two ways to execute a line of `R` code: (1) place your cursor on the line on code and press `Ctrl-Enter` or `Cmd-Enter` at the same time, or (2) place your cursor on the line and press the "Run" button in the upper right hand corner of the quarto file. Alternatively, if you wanted to run all of the `R` code in a given code chunk, you can click on the "Play" button in the upper right hand corner of the code chunk (green sideways triangle).
 
 If at any point you need to start over and run all of the code chunks before a specific code chunk, you click on the "Fastforward" button in the upper right hand corner of that code chunk (gray upside down triangle with a bar below). This will run every code chunk that occurred *before* that code chunk, but *will not* execute the `R` code included in that code chunk.
 
@@ -76,7 +74,6 @@ If at any point you need to start over and run all of the code chunks before a s
 To get started, let's take a peek at the data.
 
 ```{r load-abrbuthnot-data}
-arbuthnot <- openintro::arbuthnot
 arbuthnot
 ```
 
@@ -94,7 +91,7 @@ The Arbuthnot data set refers to the work of Dr. John Arbuthnot, an 18<sup>th</s
 arbuthnot
 ```
 
-This command does display the data for us, however, printing the whole dataset in the console is not that useful. One advantage of RStudio is that it comes with a built-in data viewer. The *Environment* tab (in the upper right pane) lists the objects in your environment. Clicking on the name `arbuthnot` will open up a *Data Viewer* tab next to your quarto file, which provides an alternative display of the data set. This display should feel similar to viewing data on a spreadsheet, where you are able to scroll through the dataset to inspect it. However, unlike Excel, you will not be able to edit the data in this tab. Once you are done viewing the data, You can close this tab by clicking on the `x` in the upper left hand corner.
+This command does display the data for us, however, printing the whole dataset in the console is not that useful. One advantage of RStudio is that it comes with a built-in data viewer. The *Environment* tab (in the upper right pane) lists the objects in your environment. Clicking on the name `arbuthnot` will open up a *Data Viewer* tab next to your quarto file, which provides an alternative display of the data set. This display should feel similar to viewing data in Excel, where you are able to scroll through the dataset to inspect it. However, unlike Excel, you will not be able to edit the data in this tab. Once you are done viewing the data, You can close this tab by clicking on the `x` in the upper left hand corner.
 
 When inspecting the data, you should see four columns of numbers and 82 rows. Each row represents a different year that Arbuthnot collected data. The first entry in each row is the row number (an index we can use to access the data from individual years if we want), the second is the year, and the third and fourth are the numbers of boys and girls baptized that year, respectively. Use the scrollbar on the right side of the console window to examine the complete data set.
 
@@ -191,14 +188,24 @@ What you will see is a list of 82 numbers. These numbers appear as a list, becau
 We are interested in using this new vector of the total number of baptisms to generate some plots, so we'll want to save it as a permanent column in our data frame. We can do this using the following code:
 
 ```{r calc-total-bapt-vars-save}
-arbuthnot <-  mutate(.data= arbuthnot, total = boys + girls)
+arbuthnot <-   mutate(arbuthnot, total = boys + girls)
 ```
 
-This code has a lot of new pieces to it, so let's break it down. In the first line we are doing two things, (1) adding a new `total` column to this updated data frame, and (2) overwriting the existing `arbutnot` data frame with an updated data frame that includes the new `total` column. 
+This code has a lot of new pieces to it, so let's break it down. In the first line we are doing two things, (1) adding a new `total` column to this updated data frame, and (2) overwriting the existing `arbutnot` data frame with an updated data frame that includes the new `total` column. We are able to chain these two processes together using the **piping** (`|>`) operator. The piping operator takes the output of the previous expression and "pipes it" into the first argument of the next expression.
+
+To continue our analogy with mathematical functions, `x |> f(y)` is equivalent to `f(x, y)`. Connecting `arbuthnot` and `mutate(total = boys + girls)` with the pipe operator is the same as typing `mutate(arbuthnot, total = boys + girls)`, where `arbuthnot` becomes the first argument included in the `mutate()` function.
+
+::: {#boxedtext}
+**A note on piping:** Note that we can read these two lines of code as the following:
+
+*"Take the `arbuthnot` dataset and **pipe** it into the `mutate` function. Mutate the `arbuthnot` data set by creating a new variable called `total` that is the sum of the variables called `boys` and `girls`. Then assign the resulting dataset to the object called `arbuthnot`, i.e. overwrite the old `arbuthnot` dataset with the new one containing the new variable."*
+
+This is equivalent to going through each row and adding up the `boys` and `girls` counts for that year and recording that value in a new column called `total`.
+:::
 
 <div>
 
-**Where is the new variable?** When you make changes to variables, like adding a total column, in your dataset, click on the name of the dataset in the environment to update it in the data viewer.
+**Where is the new variable?** When you make changes to variables in your dataset, click on the name of the dataset again to update it in the data viewer.
 
 </div>
 
@@ -220,7 +227,7 @@ In an similar fashion, once you know the total number of baptisms for boys and g
 Alternatively, you could calculate this ratio for every year by acting on the complete `boys` and `girls` columns, and then save those calculations into a new variable named `boy_to_girl_ratio`:
 
 ```{r calc-prop-boys-to-girls-vars}
-arbuthnot <- mutate(.data = arbuthnot, boy_to_girl_ratio = boys / girls)
+arbuthnot <-  mutate(.data = arbuthnot, boy_to_girl_ratio = boys / girls)
 ```
 
 You can also compute the proportion of newborns that are boys in 1629 with the following code:
@@ -232,7 +239,7 @@ You can also compute the proportion of newborns that are boys in 1629 with the f
 Or you can compute this for all years simultaneously and add it as a new variable named `boy_ratio` to the dataset:
 
 ```{r calc-prop-boys-vars}
-arbuthnot <- mutate(arbuthnot, boy_ratio = boys / total)
+arbuthnot <-  mutate(.data = arbuthnot, boy_ratio = boys / total)
 ```
 
 Notice that rather than dividing by `boys + girls` we are using the `total` variable we created earlier in our calculations!
@@ -246,8 +253,7 @@ Notice that rather than dividing by `boys + girls` we are using the `total` vari
 Finally, in addition to simple mathematical operators like subtraction and division, you can ask R to make comparisons like greater than, `>`, less than, `<`, and equality, `==`. For example, we can create a new variable called `more_boys` that tells us whether the number of births of boys outnumbered that of girls in each year with the following code:
 
 ```{r boys-more-than-girls}
-arbuthnot <- arbuthnot |>
-  mutate(more_boys = boys > girls)
+arbuthnot <-   mutate(.data = arbuthnot, more_boys = boys > girls)
 ```
 
 This command adds a new variable to the `arbuthnot` data frame containing the values of either `TRUE` if that year had more boys than girls, or `FALSE` if that year did not (the answer may surprise you). This variable contains a different kind of data than we have encountered so far. All other columns in the `arbuthnot` data frame have values that are numerical (the year, the number of boys and girls). Here, we've asked R to create *logical* data, data where the values are either `TRUE` or `FALSE`. In general, data analysis will involve many different kinds of data types, and one reason for using `R` is that it is able to represent and compute with many of them.
@@ -261,69 +267,8 @@ To find the minimum and maximum values of columns, you can use the functions `mi
 Here's an example of how to find the minimum and maximum amount of boy births in a year:
 
 ```{r summarize min and max}
-summarize(.data=arbuthnot, 
+summarize(.data = arbuthnot,
           min = min(boys),
           max = max(boys)
             )
 ```
-
-# Exercises
-
-1.  Considering the arbuthnot data: What command would you use to extract just the counts of girls baptized? Make a new chunk and type it below.
-
-**Answer**:
-
-2.  Continuing with the `arbuthnot` data, use the plot below to address the following question: Is there an apparent trend in the number of girls baptized over the years? How would you describe it? (To ensure that your lab report is comprehensive, be sure to include the code needed to make the plot as well as your written interpretation.)
-
-```{r }
-ggplot(data = arbuthnot, aes(x = year, y = girls)) +
-  geom_line()
-```
-
-**Answer:**
-
-3.  Generate a plot of the proportion of boys born over time from the `arbuthnot` data. What do you see? (Copy and edit code from above, or use the MTH 142 cheat sheet for ideas.)
-
-**Answer:**
-
-Answer the following questions with the `present` data frame:
-
-4.  What years are included in the `present` data set? What are the dimensions of the data frame? What are the variable (column) names?
-
-**Answer:**
-
-5.  How do the counts from `present` compare to Arbuthnot's? Are they of a similar magnitude?
-
-**Answer:**
-
-6.  Using `present` make a plot that displays the proportion of boys born over time. What do you see? Does Arbuthnot's observation about boys being born in greater proportion than girls hold up in the U.S.? Include the plot in your response. *Hint:* You need to make a column that has the proportion of boys being born the you should be able to reuse your code from Exercise 3 above, just replace the name of the data frame.
-
-**Answer:**
-
-7.  In what year did we see the most total number of births in the U.S.? *Hint:* First calculate the totals and save it as a new variable. Then, sort your dataset in descending order based on the `total` column. You can do this interactively in the data viewer by clicking on the arrows next to the variable names. To include the sorted result in your report you will need to use two new functions. First we use `arrange()` to sorting the variable. Then we can arrange the data in a descending order with another function, `desc()`, for descending order. The sample code is provided below.
-
-**Answer:**
-
-```{r sample-arrange, eval=FALSE}
-arrange(.data = present, desc(total))
-```
-
-These data come from reports by the Centers for Disease Control. You can learn more about them by bringing up the help file using the command `?present`.
-
-## Resources for learning R and working in RStudio
-
-That was a short introduction to R and RStudio, but we will provide you with more functions and a more complete sense of the language as the course progresses.
-
-In this course we will be using the suite of R packages from the **tidyverse**. The book [R For Data Science](https://r4ds.had.co.nz/) by Grolemund and Wickham is a fantastic resource for data analysis in R with the tidyverse. If you are Goggling for R code, make sure to also include these package names in your search query. For example, instead of Goggling "scatterplot in R", Goggle "scatterplot in R with the tidyverse".
-
-These may come in handy throughout the semester:
-
--   [RMarkdown cheatsheet](https://github.com/rstudio/cheatsheets/raw/main/rmarkdown-2.0.pdf)
--   [Data transformation cheatsheet](https://github.com/rstudio/cheatsheets/raw/main/data-transformation.pdf)
--   [Data visualization cheatsheet](https://github.com/rstudio/cheatsheets/raw/main/data-visualization-2.1.pdf)
-
-Note that some of the code on these cheatsheets may be too advanced for this course. However the majority of it will become useful throughout the semester.
-
-------------------------------------------------------------------------
-
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png){style="border-width:0"}</a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.

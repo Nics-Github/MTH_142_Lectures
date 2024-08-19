@@ -1,6 +1,6 @@
 ---
 title: "Foundations for statistical inference - Sampling distributions"
-output: word_document
+output: pdf_document
 ---
 
 ```{r global_options, include=FALSE}
@@ -65,9 +65,11 @@ ggplot(global_monitor, aes(x = scientist_work)) +
 We can also obtain summary statistics to confirm we constructed the data frame correctly.
 
 ```{r summ-stat-pop, results = TRUE}
-global_monitor %>%
-  count(scientist_work) %>%
-  mutate(p = n /sum(n))
+# This first line counts the science work benefiet and saves it as a new data frame. the letter n is used for count
+g_monitor_count <- count(x = global_monitor, scientist_work, name ="count")
+
+# This takes the data frame and adds a proportion variable
+mutate(g_monitor_count, proportion = count /sum(count))
 ```
 
 ## The unknown sampling distribution
@@ -80,8 +82,7 @@ For the remainder of this R Assignment pretend we do not have access to the enti
 If you are interested in estimating the proportion of people who don't think the work scientists do benefits them, you can use the `sample_n` command to survey the population.
 
 ```{r samp1}
-samp1 <- global_monitor %>%
-  sample_n(50)
+samp1 <-  sample_n(global_monitor, 50)
 ```
 
 This command collects a simple random sample of size 50 from the `global_monitor` dataset, and assigns the result to `samp1`.
@@ -91,9 +92,11 @@ Working with these 50 names is considerably simpler than working with all 100,00
 If you're interested in estimating the proportion of all people who do not believe that the work scientists do benefits them, but you do not have access to the population data, your best single guess is the sample proportion.
 
 ```{r phat-samp1}
-samp1 %>%
-  count(scientist_work) %>%
-  mutate(p_hat = n /sum(n))
+# This first line counts the science work benefiet and saves it as a new data frame. the letter n is used for count
+g_monitor_count_samp <- count(x = samp1, scientist_work, name ="count")
+
+# This takes the data frame and adds a proportion variable
+mutate(g_monitor_count_samp, proportion = count /sum(count))
 ```
 
 1.  Describe the distribution of responses in this sample. That is how has the proportion changed? Why does this seem reasonable? 
@@ -121,10 +124,12 @@ Here, we use R to take 15,000 different samples of size 50 from the population, 
 Note that we specify that `replace = TRUE` since sampling distributions are constructed by sampling with replacement.
 
 ```{r iterate}
-sample_props50 <- global_monitor %>%
-                    rep_sample_n(size = 50, reps = 15000, replace = TRUE) %>%
-                    count(scientist_work) %>%
-                    mutate(p_hat = n /sum(n)) %>%
+# Here was use a special operator called the pipe |>, which takes the output of the previous line and puts it as the argument of the next line. More on that in a later Rassignment
+
+sample_props50 <- global_monitor |>
+                    rep_sample_n(size = 50, reps = 15000, replace = TRUE) |>
+                    count(scientist_work) |>
+                    mutate(p_hat = n /sum(n)) |>
                     filter(scientist_work == "Doesn't benefit")
 ```
 
@@ -199,10 +204,12 @@ ggplot(data = sample_props, aes(x = p_hat)) +
 
 Questions:
 
-It is my hope that you have a sense of the central limit theorem at this point. There are only 3 questions for this R Assignment. 
+It is my hope that you have a sense of the central limit theorem at this point. Some of the new code can see overwhelming, but don't worry too much about it. 
 
-1. As the sample size increases the center of the sampling distribution gets closer to ___
+There are only 3 questions for this R Assignment. If you are stumped post your thoughts or questions to the discussion. 
 
-2. As the sample size increases the variability ___
+1. As the sample size increases the center of the sampling distribution gets ____
 
-3. As the sample size increases the shape becomes  ____
+2. As the sample size increases the variability of the sampling distribution ____
+
+3. As the sample size increases the shape becomes ______

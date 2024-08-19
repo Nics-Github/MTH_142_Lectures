@@ -38,8 +38,8 @@ By now you have seen Rstudio and have heard words like: **console**, **quarto**,
 You likely have the tidyverse installed already. In the lower right hand corner click on the *Packages* tab. Type the name of each of these packages (tidyverse, openintro) into the search box to see if they have been installed. If these packages do not appear when you type in their name, install them by running the chunk below. 
 
 ```{r install-packages, message = FALSE, eval = FALSE}
-install.packages("tidyverse")
-install.packages("openintro")
+#install.packages("tidyverse")
+#install.packages("openintro")
 ```
 
 After running the chunk above stream of text will begin, communicating the process `R` is going through to install the package from the location you selected when you installed `R`. If you were not prompted to select a server for downloading packages when you installed `R`, RStudio may prompt you to select a server from which to download; any of them will work.
@@ -188,8 +188,7 @@ What you will see is a list of 82 numbers. These numbers appear as a list, becau
 We are interested in using this new vector of the total number of baptisms to generate some plots, so we'll want to save it as a permanent column in our data frame. We can do this using the following code:
 
 ```{r calc-total-bapt-vars-save}
-arbuthnot <- arbuthnot |>
-  mutate(total = boys + girls)
+arbuthnot <-   mutate(arbuthnot, total = boys + girls)
 ```
 
 This code has a lot of new pieces to it, so let's break it down. In the first line we are doing two things, (1) adding a new `total` column to this updated data frame, and (2) overwriting the existing `arbutnot` data frame with an updated data frame that includes the new `total` column. We are able to chain these two processes together using the **piping** (`|>`) operator. The piping operator takes the output of the previous expression and "pipes it" into the first argument of the next expression.
@@ -228,8 +227,7 @@ In an similar fashion, once you know the total number of baptisms for boys and g
 Alternatively, you could calculate this ratio for every year by acting on the complete `boys` and `girls` columns, and then save those calculations into a new variable named `boy_to_girl_ratio`:
 
 ```{r calc-prop-boys-to-girls-vars}
-arbuthnot <- arbuthnot |>
-  mutate(boy_to_girl_ratio = boys / girls)
+arbuthnot <-  mutate(.data = arbuthnot, boy_to_girl_ratio = boys / girls)
 ```
 
 You can also compute the proportion of newborns that are boys in 1629 with the following code:
@@ -241,8 +239,7 @@ You can also compute the proportion of newborns that are boys in 1629 with the f
 Or you can compute this for all years simultaneously and add it as a new variable named `boy_ratio` to the dataset:
 
 ```{r calc-prop-boys-vars}
-arbuthnot <- arbuthnot |>
-  mutate(boy_ratio = boys / total)
+arbuthnot <-  mutate(.data = arbuthnot, boy_ratio = boys / total)
 ```
 
 Notice that rather than dividing by `boys + girls` we are using the `total` variable we created earlier in our calculations!
@@ -256,8 +253,7 @@ Notice that rather than dividing by `boys + girls` we are using the `total` vari
 Finally, in addition to simple mathematical operators like subtraction and division, you can ask R to make comparisons like greater than, `>`, less than, `<`, and equality, `==`. For example, we can create a new variable called `more_boys` that tells us whether the number of births of boys outnumbered that of girls in each year with the following code:
 
 ```{r boys-more-than-girls}
-arbuthnot <- arbuthnot |>
-  mutate(more_boys = boys > girls)
+arbuthnot <-   mutate(.data = arbuthnot, more_boys = boys > girls)
 ```
 
 This command adds a new variable to the `arbuthnot` data frame containing the values of either `TRUE` if that year had more boys than girls, or `FALSE` if that year did not (the answer may surprise you). This variable contains a different kind of data than we have encountered so far. All other columns in the `arbuthnot` data frame have values that are numerical (the year, the number of boys and girls). Here, we've asked R to create *logical* data, data where the values are either `TRUE` or `FALSE`. In general, data analysis will involve many different kinds of data types, and one reason for using `R` is that it is able to represent and compute with many of them.
@@ -271,9 +267,9 @@ To find the minimum and maximum values of columns, you can use the functions `mi
 Here's an example of how to find the minimum and maximum amount of boy births in a year:
 
 ```{r summarize min and max}
-arbuthnot |>
-  summarize(min = min(boys),
-            max = max(boys)
+summarize(.data = arbuthnot,
+          min = min(boys),
+          max = max(boys)
             )
 ```
 
@@ -295,11 +291,12 @@ ggplot(data = arbuthnot, aes(x = year, y = girls)) +
   geom_line()
 ```
 
-**Answer:** In general the numbers of girls baptized over the years has gone up, there was a significant dip between 1640 and 1660. Not many girls were born then. 
+**Answer:** In general the numbers of girls baptized over the years has gone up, there was a significant dip between 1640 and 1660. Not as many girls were born then. 
 
 3.  Generate a plot of the proportion of boys born over time. What do you see?
 
 ```{r }
+# This plots a line graph showing the ratio of boys born over time. 
 ggplot(data = arbuthnot, aes(x = year, y = boy_ratio)) +
   geom_line()
 ```
@@ -322,9 +319,10 @@ present
 6.  Make a plot that displays the proportion of boys born over time. What do you see? Does Arbuthnot's observation about boys being born in greater proportion than girls hold up in the U.S.? Include the plot in your response. *Hint:* You need to make a column that has the proportion of boys being born the you should be able to reuse your code from Exercise 3 above, just replace the name of the data frame.
 
 ```{r}
-present <- present |>
-  mutate(total= boys+girls, boy_ratio = boys / total)
+# The first line of code makes a two new columns (total and boy_ratio) then overwrites the "present" dataframe. 
+present <-  mutate(.data= present, total= boys+girls, boy_ratio = boys / total)
 
+# This makes a basic line plot of the new variable created above. 
 ggplot(data = present, aes(x = year, y = boy_ratio)) +
   geom_line()
 ```
@@ -336,8 +334,7 @@ ggplot(data = present, aes(x = year, y = boy_ratio)) +
 **Answer:** In the year 1961 there were more than 4 million total births. 
 
 ```{r sample-arrange, eval=FALSE}
-present |>
-  arrange(desc(total))
+arrange(.data= present , desc(total))
 ```
 
 These data come from reports by the Centers for Disease Control. You can learn more about them by bringing up the help file using the command `?present`.
