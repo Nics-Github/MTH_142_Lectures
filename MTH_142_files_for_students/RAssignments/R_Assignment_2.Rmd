@@ -1,6 +1,11 @@
 ---
 title: "Foundations for statistical inference - Sampling distributions"
-output: pdf_document
+author: "name"
+date: ""
+format: pdf
+editor: source
+execute: 
+  echo: true
 ---
 
 ```{r global_options, include=FALSE}
