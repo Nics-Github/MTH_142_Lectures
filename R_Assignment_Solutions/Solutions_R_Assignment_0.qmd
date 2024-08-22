@@ -1,9 +1,12 @@
 ---
 title: "Introduction to R and RStudio"
+subtitle: "R_Assignment_0"
 author: "Solutions"
-date: "2/2/2024"
+date: "Last updated 8/22/2024"
 format: pdf
 editor: source
+execute: 
+  echo: true
 ---
 
 ```{r global_options, include = FALSE}
