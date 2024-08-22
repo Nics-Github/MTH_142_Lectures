@@ -1,9 +1,8 @@
 ---
 title: "Foundations for statistical inference - Sampling distributions"
 author: "name"
-date: ""
-format: pdf
-editor: source
+date: "`r Sys.Date()`"
+output: pdf_document
 execute: 
   echo: true
 ---

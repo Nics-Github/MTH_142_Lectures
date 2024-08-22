@@ -1,7 +1,11 @@
 ---
 title: "R Assignment 1 EDA"
-output: word_document
+author: "name"
 date: "`r Sys.Date()`"
+output: pdf_document
+execute: 
+  echo: true
+
 ---
 
 ```{r setup, include=FALSE}
