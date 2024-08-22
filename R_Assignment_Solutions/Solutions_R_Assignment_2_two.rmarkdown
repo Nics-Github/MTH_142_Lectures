@@ -14,6 +14,7 @@ knitr::opts_chunk$set(eval = TRUE, results = FALSE, fig.show = "hide", message =
 set.seed(1234)
 ```
 
+
 In this assignment, you will investigate the ways in which the statistics from a random sample of data can serve as point estimates for population parameters.
 We're interested in formulating a *sampling distribution* of our estimate in order to learn about the properties of the estimate, such as its distribution.
 
@@ -26,11 +27,13 @@ We will also use the **infer** package for resampling.
 
 Let's load the packages.
 
+
 ```{r load-packages, message=FALSE}
 library(tidyverse)
 library(openintro)
 library(infer)
 ```
+
 
 ### The data
 
@@ -46,6 +49,7 @@ In this assignment, you will assume this 20% is a true population proportion and
 We will first create our population assuming a population size of 100,000.
 This means 20,000 (20%) of the population think the work scientists do does not benefit them personally and the remaining 80,000 think it does.
 
+
 ```{r}
 # This code is making a dataframe called global monitor. 
 
@@ -54,9 +58,11 @@ global_monitor <- tibble(
 )
 ```
 
+
 The name of the data frame is `global_monitor` and the name of the variable that contains responses to the question *"Do you believe that the work scientists do benefit people like you?"* is `scientist_work`.
 
 We can quickly visualize the distribution of these responses using a bar plot.
+
 
 ```{r bar-plot-pop, fig.height=2.5, fig.width=10}
 ggplot(global_monitor, aes(x = scientist_work)) +
@@ -68,7 +74,9 @@ ggplot(global_monitor, aes(x = scientist_work)) +
   coord_flip() 
 ```
 
+
 We can also obtain summary statistics to confirm we constructed the data frame correctly.
+
 
 ```{r summ-stat-pop, results = TRUE}
 # This first line counts the science work benefiet and saves it as a new data frame. the letter n is used for count
@@ -77,6 +85,7 @@ g_monitor_count <- count(x = global_monitor, scientist_work, name ="count")
 # This takes the data frame and adds a proportion variable
 mutate(g_monitor_count, proportion = count /sum(count))
 ```
+
 
 ## The unknown sampling distribution
 
@@ -87,15 +96,18 @@ For the remainder of this R Assignment pretend we do not have access to the enti
 
 If you are interested in estimating the proportion of people who don't think the work scientists do benefits them, you can use the `sample_n` command to survey the population.
 
+
 ```{r samp1}
 samp1 <-  sample_n(global_monitor, 50)
 ```
+
 
 This command collects a simple random sample of size 50 from the `global_monitor` dataset, and assigns the result to `samp1`.
 This is similar to randomly drawing names from a hat that contains the names of all in the population.
 Working with these 50 names is considerably simpler than working with all 100,000 people in the population.
 
 If you're interested in estimating the proportion of all people who do not believe that the work scientists do benefits them, but you do not have access to the population data, your best single guess is the sample proportion.
+
 
 ```{r phat-samp1}
 # This first line counts the science work benefiet and saves it as a new data frame. the letter n is used for count
@@ -104,6 +116,7 @@ g_monitor_count_samp <- count(x = samp1, scientist_work, name ="count")
 # This takes the data frame and adds a proportion variable
 mutate(g_monitor_count_samp, proportion = count /sum(count))
 ```
+
 
 1.  Describe the distribution of responses in this sample. That is how has the proportion changed? Why does this seem reasonable? 
 
@@ -129,6 +142,7 @@ Here, we use R to take 15,000 different samples of size 50 from the population, 
 
 Note that we specify that `replace = TRUE` since sampling distributions are constructed by sampling with replacement.
 
+
 ```{r iterate}
 # Here was use a special operator called the pipe |>, which takes the output of the previous line and puts it as the argument of the next line. More on that in a later Rassignment
 
@@ -139,7 +153,9 @@ sample_props50 <- global_monitor |>
                     filter(scientist_work == "Doesn't benefit")
 ```
 
+
 And we can visualize the distribution of these proportions with a histogram.
+
 
 ```{r fig.show="hide"}
 ggplot(data = sample_props50, aes(x = p_hat)) +
@@ -150,6 +166,7 @@ ggplot(data = sample_props50, aes(x = p_hat)) +
     subtitle = "Sample size = 50, Number of samples = 15000"
   )
 ```
+
 
 Next, you will review how this set of code works.
 
@@ -168,10 +185,12 @@ This is similar to what happens in real life, except usually pollsters only coll
 ## Sample size and the sampling distribution
 
 
+
 ```{r hist, fig.show='hide'}
 ggplot(data = sample_props50, aes(x = p_hat)) +
   geom_histogram(binwidth = 0.02)
 ```
+
 
 The sampling distribution that you computed tells you much about estimating the true proportion of people who think that the work scientists do doesn't benefit them.
 Because the sample proportion is an unbiased estimator, the sampling distribution is centered at the true population proportion, and the spread of the distribution indicates how much variability is incurred by sampling only 50 people at a time from the population.
@@ -185,6 +204,7 @@ If you're interested in estimating the proportion of all people who do not belie
 The following questions will be peer graded. 
 
 The code below was copied from above and will produce a histogram based on the sample size and number of samples simulated. You task is to explore what happens to the center, spread, and shape of the distribution as the sample size increases. Change the code and write your answer at the bottom. Then knit and upload this document to R_assignment.
+
 
 ```{r Graded-Problem, include = TRUE}
 
@@ -206,6 +226,7 @@ ggplot(data = sample_props, aes(x = p_hat)) +
     subtitle = "Sample size = 50, Number of samples = 15000"
   )
 ```
+
 
 
 Questions:
