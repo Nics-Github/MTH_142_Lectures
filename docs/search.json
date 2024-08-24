@@ -4898,5 +4898,68 @@
     "title": "Test for a single mean",
     "section": "Errors",
     "text": "Errors"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#read-beforehand",
+    "href": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#read-beforehand",
+    "title": "Statistical Thinking",
+    "section": "Read beforehand",
+    "text": "Read beforehand\nChapter 1 hello data"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#the-data",
+    "href": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#the-data",
+    "title": "Statistical Thinking",
+    "section": "The Data",
+    "text": "The Data\n\n\n# A tibble: 50 × 18\n   state emp_length  term homeownership annual_income verified_income\n   &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;                 &lt;dbl&gt; &lt;fct&gt;          \n 1 NJ             3    60 rent                  59000 Not Verified   \n 2 CA            10    36 rent                  60000 Not Verified   \n 3 SC            NA    36 mortgage              75000 Verified       \n 4 CA             0    36 rent                  75000 Not Verified   \n 5 OH             4    60 mortgage             254000 Not Verified   \n 6 IN             6    36 mortgage              67000 Source Verified\n 7 NY             2    36 rent                  28800 Source Verified\n 8 MO            10    36 mortgage              80000 Not Verified   \n 9 FL             6    60 rent                  34000 Not Verified   \n10 FL             3    60 mortgage              80000 Source Verified\n# ℹ 40 more rows\n# ℹ 12 more variables: debt_to_income &lt;dbl&gt;, total_credit_limit &lt;int&gt;,\n#   total_credit_utilized &lt;int&gt;, num_cc_carrying_balance &lt;int&gt;,\n#   loan_purpose &lt;fct&gt;, loan_amount &lt;int&gt;, grade &lt;fct&gt;, interest_rate &lt;dbl&gt;,\n#   public_record_bankrupt &lt;int&gt;, loan_status &lt;fct&gt;, has_second_income &lt;lgl&gt;,\n#   total_income &lt;dbl&gt;"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#vocabulary",
+    "href": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#vocabulary",
+    "title": "Statistical Thinking",
+    "section": "Vocabulary",
+    "text": "Vocabulary\n\n\n# A tibble: 2 × 18\n  state emp_length  term homeownership annual_income verified_income\n  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;                 &lt;dbl&gt; &lt;fct&gt;          \n1 NJ             3    60 rent                  59000 Not Verified   \n2 CA            10    36 rent                  60000 Not Verified   \n# ℹ 12 more variables: debt_to_income &lt;dbl&gt;, total_credit_limit &lt;int&gt;,\n#   total_credit_utilized &lt;int&gt;, num_cc_carrying_balance &lt;int&gt;,\n#   loan_purpose &lt;fct&gt;, loan_amount &lt;int&gt;, grade &lt;fct&gt;, interest_rate &lt;dbl&gt;,\n#   public_record_bankrupt &lt;int&gt;, loan_status &lt;fct&gt;, has_second_income &lt;lgl&gt;,\n#   total_income &lt;dbl&gt;\n\n\n\n\nData Frame\nObservations\nTidy Data\nVariables\nVariable Types"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#more-on-variable-types",
+    "href": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#more-on-variable-types",
+    "title": "Statistical Thinking",
+    "section": "More on variable types:",
+    "text": "More on variable types:"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#a-mean",
+    "href": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#a-mean",
+    "title": "Statistical Thinking",
+    "section": "A mean",
+    "text": "A mean\n\n\n[1] 86170"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#explanatory-and-response",
+    "href": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#explanatory-and-response",
+    "title": "Statistical Thinking",
+    "section": "Explanatory and Response",
+    "text": "Explanatory and Response\nConsider the variables emp_length and annual_income.\nDoes the length of someone’s employment explain their income?"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#a-scatter-plot",
+    "href": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#a-scatter-plot",
+    "title": "Statistical Thinking",
+    "section": "A scatter plot",
+    "text": "A scatter plot"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#observational-study-or-experiment.",
+    "href": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#observational-study-or-experiment.",
+    "title": "Statistical Thinking",
+    "section": "Observational study or experiment.",
+    "text": "Observational study or experiment.\nExperiment - Has some control or non-treatment variable.\nObservational - No control.\nIt is harder to say that x causes y without a control."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#examples",
+    "href": "MTH_142_files_for_students/lecture_code/Homework 1/1_statistical_thinking.html#examples",
+    "title": "Statistical Thinking",
+    "section": "Examples",
+    "text": "Examples\nProblems 10 and 11 chapter 1"
   }
 ]
