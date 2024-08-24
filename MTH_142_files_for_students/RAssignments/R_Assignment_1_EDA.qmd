@@ -14,6 +14,18 @@ library(tidyverse)
 library(openintro)
 ```
 
+## Assignment: 
+
+You will do an exploratory data analysis on the yrbss survey data using R. (See the template in the MTH_142_files you uploaded to Rstudio). Click here for some documentation.
+
+
+You will turn in a pdf output of your work.
+
+Introduce the data with a summary. (50 words)
+Calculate at least two summary statistics (center, spread, count, or a table).
+Create a visualization from the data.
+Write a brief explanation of what you learned from your statistics and visualization. (50 - 100 words)
+
 ## Introduce your data
 
 

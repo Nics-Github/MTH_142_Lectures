@@ -46,7 +46,7 @@ head(loan50,2)
 mean(loan50$annual_income)
 ```
 
-## Explanatory and Response 
+## Explanatory and Response
 
 Consider the variables emp_length and annual_income.
 
@@ -61,7 +61,7 @@ ggplot(data = loan50, mapping = aes(x=emp_length, y = annual_income))+
   geom_point()
 ```
 
-## Observational study or experiment. 
+## Observational study or experiment.
 
 Experiment - Has some control or non-treatment variable.
 
@@ -71,4 +71,4 @@ It is harder to say that x causes y without a control.
 
 ## Examples
 
-[Problems 10 and 11 chapter 1](https://openintro-ims.netlify.app/data-hello#sec-chp1-exercises)
+[Problems 10 and 11 in chapter 1](https://openintro-ims.netlify.app/data-hello#sec-chp1-exercises)
