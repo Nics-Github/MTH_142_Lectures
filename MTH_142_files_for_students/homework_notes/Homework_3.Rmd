@@ -9,6 +9,10 @@ execute:
   echo: TRUE
 ---
 
+```{r}
+library(tidyverse)
+```
+
 Problem 7
 
 ```{r}

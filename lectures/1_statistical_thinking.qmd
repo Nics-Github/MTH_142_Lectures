@@ -1,0 +1,74 @@
+---
+title: "Statistical Thinking"
+author: "Schwab"
+format: 
+  revealjs: 
+    theme: beige
+editor: visual
+---
+
+## Read beforehand
+
+[Chapter 1 hello data](https://openintro-ims.netlify.app/data-hello)
+
+## The Data
+
+```{r}
+library(openintro)
+loan50
+```
+
+## Vocabulary
+
+```{r}
+head(loan50,2)
+```
+
+::: incremental
+-   Data Frame
+
+-   Observations
+
+-   Tidy Data
+
+-   Variables
+
+-   Variable Types
+:::
+
+## More on variable types:
+
+![](https://openintro-ims.netlify.app/data-hello_files/figure-html/fig-variables-1.png)
+
+## A mean
+
+```{r}
+mean(loan50$annual_income)
+```
+
+## Explanatory and Response 
+
+Consider the variables emp_length and annual_income.
+
+Does the length of someone's employment explain their income?
+
+## A scatter plot
+
+```{r}
+library(tidyverse)
+
+ggplot(data = loan50, mapping = aes(x=emp_length, y = annual_income))+
+  geom_point()
+```
+
+## Observational study or experiment. 
+
+Experiment - Has some control or non-treatment variable.
+
+Observational - No control.
+
+It is harder to say that x causes y without a control.
+
+## Examples
+
+[Problems 10 and 11 chapter 1](https://openintro-ims.netlify.app/data-hello#sec-chp1-exercises)

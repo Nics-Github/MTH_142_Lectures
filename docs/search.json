@@ -4352,5 +4352,551 @@
     "title": "MTH 142: R Assignment 3",
     "section": "Questions",
     "text": "Questions\n\nWhen CBS/NBC/The Wall Street Journal conducted this survey, who do you think they wanted to draw conclusions about? All New York City residents? All New Yorkers? All adults in the United States? Do you have any potential concerns about generalizability or non-random sampling in this context?\nUse infer to find a point estimate \\(\\widehat{p}\\) for the true proportion of New York adults who favored a mandatory 21-day quarantine period for close contacts of Ebola patients in each of the two smaller data sets NBC_survey and WSJ_survey.\nOn average (across repeated samples of the same size from the full population of all New York adults in October 2014), each of these point estimates should equal the truth. Given this, which of these three point estimates would you feel most comfortable reporting and conducting a hypothesis test with? Why?\n\nFor the rest of the following questions you will be using analyzing at data from the Youth Risk Behavior Surveillance System (YRBSS) survey. This is a data set with high schoolers that is used to help discover health patterns. The dataset is called yrbss. We will use the yrbss_survey data set below which isolates the variable of interest. A recent claim stated that 8% of teenagers texted while driving in the last 30 days, and we want to conduct a hypothesis test with significance level \\(\\alpha = 0.05\\).\n\n# This code is making a variable text_ind that has two levels: \"texted\" and \"did_not\"\nyrbss_survey &lt;- yrbss |&gt;\n  filter(!is.na(text_while_driving_30d)) |&gt;\n  transmute(text_ind = ifelse(text_while_driving_30d == \"30\", \"texted\", \"did_not\"))\n\n\nState the null and alternative hypothesis in words and symbols.\nFrom the survey how many students have and have not texted while driving within the past 30 days?\nCreate a bar graph showing the counts of students who did text and did not text while driving within the last 30 days.\nWhat is the proportion of students who texted while driving within the past 30 days.\nGenerate the null distribution in R.\n\n\n# setting seed so everyone has the same answers when working through the assignment\n# all answers will be the same in the rendered document. \nset.seed(62)\n\n\nCalculate the p-value, and generate a graph indicating the area the p-value represents.\nState the conclusion of your hypothesis test.\nDiscuss how the null distribution would change if you considered sampling students at a local high school instead."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#load-libraries",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#load-libraries",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Load Libraries",
+    "text": "Load Libraries\n\n# install.packages(\"infer\")\n\nlibrary(tidyverse)\nlibrary(infer)\nlibrary(openintro)"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#the-infer-package",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#the-infer-package",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "The infer package",
+    "text": "The infer package\nGetting to know infer\n\nvignette(\"infer\")"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#parametric-bootstrap-distribution",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#parametric-bootstrap-distribution",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Parametric Bootstrap Distribution",
+    "text": "Parametric Bootstrap Distribution\n\n\nThe Parametric Bootstrap simulation assumes the null hypothesis is true then uses the data to construct a bootstrap distribution.\nToday this means for each value in our sample R will choose a success or failure with probability p for each value of n."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#more-than-1-relationship-with-simulation",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#more-than-1-relationship-with-simulation",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "More than 1 relationship with simulation",
+    "text": "More than 1 relationship with simulation\n\nMake sample\nWrite hypothesis notation.\nCreate the simulated distribution.\nFind the probability we would get \\(\\hat{p} = 152/203 = 0.749\\) based on the null hypothesis.\nMake the conclusion."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#make-sample",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#make-sample",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Make sample",
+    "text": "Make sample\n\n# This creates a vector of 152 \"Trues\" and 51 \"Falses\"\nmore_than_1_relationship &lt;- c(\n  rep(TRUE, 152),\n  rep(FALSE, 51)\n) \n\n#This takes the vector and saves it as a data frame so we can us it. \nmore_than_1_relationship &lt;- as.data.frame(more_than_1_relationship)"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#hypothesis-notation",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#hypothesis-notation",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Hypothesis notation",
+    "text": "Hypothesis notation\nThis part is the same.\n\\[\nH_0: p = 0.5 \\\\\nH_A: p &gt; 0.5\n\\]\n\\[\n\\alpha = 0.05\n\\]"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#side-note-the-pipe",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#side-note-the-pipe",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Side note the pipe |>",
+    "text": "Side note the pipe |&gt;\nYou may have noticed the occasional symbols |&gt; or %&gt;%.\nThis is called a pipe and it is an R operator that takes the output of the previous line of code and puts it into the first argument of the next line of code.\n\nexclusive_relationship |&gt;\n  head()\n\n# A tibble: 6 × 1\n    num\n  &lt;int&gt;\n1     2\n2     4\n3     1\n4     4\n5    NA\n6     2\n\nhead(exclusive_relationship)\n\n# A tibble: 6 × 1\n    num\n  &lt;int&gt;\n1     2\n2     4\n3     1\n4     4\n5    NA\n6     2\n\n\nIt often makes code easier to read, but can be confusing for first time programmers.\nFor this reason I have been avoiding it, until now."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#create-simulated-distribution",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#create-simulated-distribution",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Create simulated distribution",
+    "text": "Create simulated distribution\n\nset.seed(2024)\n\nlibrary(infer)\n\n# Saving all the proportions we'll make\nnull_distn_one_prop &lt;- more_than_1_relationship  |&gt;\n  \n  # Here we tell specify what is a success\n  specify(response = more_than_1_relationship, success = \"TRUE\") |&gt;\n  \n  # This is where we set the null hypothesis\n  hypothesize(null = \"point\", p = 0.5) |&gt;\n  \n  # Choosing 10000 replications\n  generate(reps = 10000, type = \"draw\") |&gt;\n  \n  # This is \n  calculate(stat = \"prop\")"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#examine-the-samples.",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#examine-the-samples.",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Examine the samples.",
+    "text": "Examine the samples.\n\n#visualize is a graphing function, based on ggplot, for the infer package. \n\nvisualise(data = null_distn_one_prop)"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#calculate-the-p-value-based-on-simulation",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#calculate-the-p-value-based-on-simulation",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Calculate the p-value based on simulation",
+    "text": "Calculate the p-value based on simulation\nVisualize the pvalue\n\nvisualise(data = null_distn_one_prop) +\n  shade_p_value(obs_stat = 0.749, direction = \"greater\")"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#calculate-the-p-value",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#calculate-the-p-value",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Calculate the p-value",
+    "text": "Calculate the p-value\n\nget_p_value(x = null_distn_one_prop, \n            obs_stat = 0.749,\n            direction = 'greater')\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1       0"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#conclusion",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#conclusion",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe conclusion is the same as the first lecture from homework 6. The pvalue is much smaller than 0.05 so it is likely that a majority of students have had more than 1 exclusive relationship."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#mathematical-vs.-simulation",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#mathematical-vs.-simulation",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Mathematical vs. Simulation",
+    "text": "Mathematical vs. Simulation\nBoth methods are valid and often end at the same conclusion\nMath uses formula based on conditions which must be checked. A theoretical distribution is built and probabilities calculated.\nA simulated distribution is built from resampling the sample. Conditions can be relaxed as we can visibly verify that the distribution is normal."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#another-example",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#another-example",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Another example",
+    "text": "Another example\nSuppose it is known that nationally out of 100 people struggling with drug addiction, 40 of them will have some blood born disease.\nA doctor at a clinic decides to test this hypothesis for her locality and samples 20 of her own patients. Of the 20 patients she finds 13 of them have a blood born disease.\nIs this evidence enough to say that the locality is different than the proportion nationally?"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#write-out-hypotheses",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#write-out-hypotheses",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Write out hypotheses",
+    "text": "Write out hypotheses\n\\[\nH_0: p = 0.40 \\\\\nH_a: p \\ne 0.40\n\\]\n\\[\n\\alpha = 0.05\n\\]"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#make-some-sample-data",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#make-some-sample-data",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Make some sample data",
+    "text": "Make some sample data\n\n# This makes a 40% success sample. The rep() function repeats \"disease\" 13 times\n\nclinic_sample &lt;-  c(rep(\"disease\", 13), rep(\"no-disease\", 7))\n\n# This saves the sample as a dataframe\nclinic_sample &lt;- as.data.frame(clinic_sample)\n\n# This changes the name of the variable to \"has_disease\"\nnames(clinic_sample) &lt;-\"has_disease\"\n\nhead(clinic_sample)\n\n  has_disease\n1     disease\n2     disease\n3     disease\n4     disease\n5     disease\n6     disease"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#calculate-p-hat",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#calculate-p-hat",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Calculate p-hat",
+    "text": "Calculate p-hat\nWe can calculate \\(\\hat{p} = \\frac{13}{20} = 0.65\\). But could do this:\n\np_hat &lt;- clinic_sample  |&gt;\n  # Telling R what we care about with specify \n  specify(response = has_disease, success = \"disease\") |&gt;\n  \n  # Calculating the proportion\n  calculate(stat = \"prop\")\n\n#Notice how we saved p_hat for later use. \np_hat\n\nResponse: has_disease (factor)\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1  0.65"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#create-one-sample-from-a-bootstrap-distribution",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#create-one-sample-from-a-bootstrap-distribution",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Create one sample from a bootstrap distribution",
+    "text": "Create one sample from a bootstrap distribution\n\n# setting a seed\nset.seed(2024)\n\n# Saving the df\nclinic_sample  |&gt;\n  \n  # Here we specify() what is a success\n  specify(response = has_disease, success = \"disease\") |&gt;\n  \n  # This is where we set the null hypothesis\n  hypothesize(null = \"point\", p = 0.40) |&gt;\n  \n  # This is how many times R will sample from the clinic sample\n  # We are using draw to sample 1 value from a theoretical distribution with p = 0.40. \n  generate(reps = 1, type = \"draw\") |&gt;\n  \n  # This groups the reps together to find a proportion. \n  calculate(stat = \"prop\")\n\nResponse: has_disease (factor)\nNull Hypothesis: point\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1   0.5"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#more-replications",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#more-replications",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "More replications",
+    "text": "More replications\nWe want to do this process a lot to create the bootstrap distribution.\n\n# setting a seed\nset.seed(2024)\n\n# Saving the df\nnull_distn_one_prop &lt;- clinic_sample  |&gt;\n  \n  # Here we tell specify what is a success\n  specify(response = has_disease, success = \"disease\") |&gt;\n  \n  # This is where we set the null hypothesis\n  hypothesize(null = \"point\", p = 0.4) |&gt;\n  \n  # Choosing 10000 replications\n  generate(reps = 10000, type = \"draw\") |&gt;\n  \n  # This is calculating a proportion for each sample\n  calculate(stat = \"prop\")"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#visualize-the-bootstrap-distribution",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#visualize-the-bootstrap-distribution",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "visualize() the bootstrap distribution",
+    "text": "visualize() the bootstrap distribution\n\n# cheater function to graph, works like ggplot(), but we don't need aes()\nvisualize(data = null_distn_one_prop)"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#shade_p_value",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#shade_p_value",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "shade_p_value()",
+    "text": "shade_p_value()\n\n# shade the p value\nvisualize(data = null_distn_one_prop)+\n  shade_p_value(obs_stat = p_hat, direction = \"both\")"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#we-can-use-get_pvalue",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#we-can-use-get_pvalue",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "We can use get_pvalue()",
+    "text": "We can use get_pvalue()\n\n# get the pvalue to use. \nget_pvalue(x = null_distn_one_prop,\n             obs_stat = p_hat, \n             direction = \"both\")\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1  0.0392"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#should-we-do-this-problem-again-with-a-mathematical-model.",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#should-we-do-this-problem-again-with-a-mathematical-model.",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Should we do this problem again with a mathematical model.",
+    "text": "Should we do this problem again with a mathematical model.\nWe should be hesitant, it does not meet the success-failure criterion and the sample is small."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#last-example",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#last-example",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Last example",
+    "text": "Last example\nProblem 11, Ch 16\nStatistics and employment In a large university where 70% of the full-time students are employed at least 5 hours per week, the members of the Statistics Department wonder if a smaller proportion of their students work at least 5 hours per week. They randomly sample 25 majors and find that 15 of the students work 5 or more hours each week."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#make-sample-1",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#make-sample-1",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Make sample",
+    "text": "Make sample\nNothing wrong with copying and editing code from above.\n\n# This makes a 60% success sample. \n\nmajor_sample &lt;-   c(rep(\"yes\", 15), rep(\"no\", 10))\n\n# This saves the sample as a dataframe\nmajor_sample &lt;- as.data.frame(major_sample)\n\n# This changed the name of the variable to \"has_disease\"\nnames(major_sample) &lt;-\"work\""
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#make-hypotheses",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#make-hypotheses",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Make Hypotheses",
+    "text": "Make Hypotheses\n\\[\nH_0: p = 0.7 \\\\\nH_a: p &lt; 0.7\n\\]\n\\[\n\\alpha = 0.05\n\\]"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#make-p-hat",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#make-p-hat",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Make p-hat",
+    "text": "Make p-hat\np-hat:\n\n# There is no simulation happening here. Notice the pipes.\n# We are saving p_hat for later... It might be easier to type\n# p_hat &lt;- 15/25\np_hat &lt;- major_sample  |&gt;\n  \n  # specify which variable you are interested in, and which level is a success (our level is \"yes\")\n  specify(response = work, success = \"yes\") |&gt;\n  \n  # What is the statsitic we want calculated?\n  calculate(stat = \"prop\")"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#create-parametric-distribution-w-infer",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#create-parametric-distribution-w-infer",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Create parametric distribution w/ infer()",
+    "text": "Create parametric distribution w/ infer()\n\nset.seed(2018)\n\n\nnull_distn_one_prop &lt;- major_sample |&gt;\n  \n  specify(response = work, success = \"yes\") |&gt;\n  \n  hypothesize(null = \"point\", p = 0.70) |&gt;\n  \n  generate(reps = 10000 , type = \"draw\") |&gt;\n  \n  calculate(stat = \"prop\")"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#visualize",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#visualize",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "visualize()",
+    "text": "visualize()\n\n#|echo: true\n\n# I'm leaving off the data argument here. \nvisualise(null_distn_one_prop)"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#add-the-p-value-to-graph",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#add-the-p-value-to-graph",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Add the p-value to graph",
+    "text": "Add the p-value to graph\n\nvisualize(null_distn_one_prop) +\n  shade_p_value(obs_stat = p_hat, direction = \"less\")"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#get_pvalue",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#get_pvalue",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "get_pvalue()",
+    "text": "get_pvalue()\n\npvalue &lt;- null_distn_one_prop %&gt;%\n  get_pvalue(obs_stat = p_hat, direction = \"less\")\npvalue\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1   0.188"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#make-conclusion",
+    "href": "MTH_142_files_for_students/lecture_code/13_parametric_boot.html#make-conclusion",
+    "title": "Bootstrap Hypothesis Test",
+    "section": "Make conclusion",
+    "text": "Make conclusion\nFail to reject the null hypothesis. It seems that stats majors work the same amount as other students based on our sample.\nCould have made a type two error. We failed to reject the null hypothesis when it was incorrect."
+  },
+  {
+    "objectID": "lectures/1_statistical_thinking.html",
+    "href": "lectures/1_statistical_thinking.html",
+    "title": "Statistical Thinking",
+    "section": "",
+    "text": "Chapter 1 hello data"
+  },
+  {
+    "objectID": "lectures/1_statistical_thinking.html#read-beforehand",
+    "href": "lectures/1_statistical_thinking.html#read-beforehand",
+    "title": "Statistical Thinking",
+    "section": "",
+    "text": "Chapter 1 hello data"
+  },
+  {
+    "objectID": "lectures/1_statistical_thinking.html#the-data",
+    "href": "lectures/1_statistical_thinking.html#the-data",
+    "title": "Statistical Thinking",
+    "section": "The Data",
+    "text": "The Data\n\nlibrary(openintro)\n\nLoading required package: airports\n\n\nLoading required package: cherryblossom\n\n\nLoading required package: usdata\n\nloan50\n\n# A tibble: 50 × 18\n   state emp_length  term homeownership annual_income verified_income\n   &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;                 &lt;dbl&gt; &lt;fct&gt;          \n 1 NJ             3    60 rent                  59000 Not Verified   \n 2 CA            10    36 rent                  60000 Not Verified   \n 3 SC            NA    36 mortgage              75000 Verified       \n 4 CA             0    36 rent                  75000 Not Verified   \n 5 OH             4    60 mortgage             254000 Not Verified   \n 6 IN             6    36 mortgage              67000 Source Verified\n 7 NY             2    36 rent                  28800 Source Verified\n 8 MO            10    36 mortgage              80000 Not Verified   \n 9 FL             6    60 rent                  34000 Not Verified   \n10 FL             3    60 mortgage              80000 Source Verified\n# ℹ 40 more rows\n# ℹ 12 more variables: debt_to_income &lt;dbl&gt;, total_credit_limit &lt;int&gt;,\n#   total_credit_utilized &lt;int&gt;, num_cc_carrying_balance &lt;int&gt;,\n#   loan_purpose &lt;fct&gt;, loan_amount &lt;int&gt;, grade &lt;fct&gt;, interest_rate &lt;dbl&gt;,\n#   public_record_bankrupt &lt;int&gt;, loan_status &lt;fct&gt;, has_second_income &lt;lgl&gt;,\n#   total_income &lt;dbl&gt;"
+  },
+  {
+    "objectID": "lectures/1_statistical_thinking.html#vocabulary",
+    "href": "lectures/1_statistical_thinking.html#vocabulary",
+    "title": "Statistical Thinking",
+    "section": "Vocabulary",
+    "text": "Vocabulary\n\nhead(loan50,2)\n\n# A tibble: 2 × 18\n  state emp_length  term homeownership annual_income verified_income\n  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;                 &lt;dbl&gt; &lt;fct&gt;          \n1 NJ             3    60 rent                  59000 Not Verified   \n2 CA            10    36 rent                  60000 Not Verified   \n# ℹ 12 more variables: debt_to_income &lt;dbl&gt;, total_credit_limit &lt;int&gt;,\n#   total_credit_utilized &lt;int&gt;, num_cc_carrying_balance &lt;int&gt;,\n#   loan_purpose &lt;fct&gt;, loan_amount &lt;int&gt;, grade &lt;fct&gt;, interest_rate &lt;dbl&gt;,\n#   public_record_bankrupt &lt;int&gt;, loan_status &lt;fct&gt;, has_second_income &lt;lgl&gt;,\n#   total_income &lt;dbl&gt;\n\n\n\n\nData Frame\nObservations\nTidy Data\nVariables\nVariable Types"
+  },
+  {
+    "objectID": "lectures/1_statistical_thinking.html#more-on-variable-types",
+    "href": "lectures/1_statistical_thinking.html#more-on-variable-types",
+    "title": "Statistical Thinking",
+    "section": "More on variable types:",
+    "text": "More on variable types:"
+  },
+  {
+    "objectID": "lectures/1_statistical_thinking.html#a-mean",
+    "href": "lectures/1_statistical_thinking.html#a-mean",
+    "title": "Statistical Thinking",
+    "section": "A mean",
+    "text": "A mean\n\nmean(loan50$annual_income)\n\n[1] 86170"
+  },
+  {
+    "objectID": "lectures/1_statistical_thinking.html#explanatory-and-response",
+    "href": "lectures/1_statistical_thinking.html#explanatory-and-response",
+    "title": "Statistical Thinking",
+    "section": "Explanatory and Response",
+    "text": "Explanatory and Response\nConsider the variables emp_length and annual_income.\nDoes the length of someone’s employment explain their income?"
+  },
+  {
+    "objectID": "lectures/1_statistical_thinking.html#a-scatter-plot",
+    "href": "lectures/1_statistical_thinking.html#a-scatter-plot",
+    "title": "Statistical Thinking",
+    "section": "A scatter plot",
+    "text": "A scatter plot\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nggplot(data = loan50, mapping = aes(x=emp_length, y = annual_income))+\n  geom_point()\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+  },
+  {
+    "objectID": "lectures/1_statistical_thinking.html#observational-study-or-experiment.",
+    "href": "lectures/1_statistical_thinking.html#observational-study-or-experiment.",
+    "title": "Statistical Thinking",
+    "section": "Observational study or experiment.",
+    "text": "Observational study or experiment.\nExperiment - Has some control or non-treatment variable.\nObservational - No control.\nIt is harder to say that x causes y without a control."
+  },
+  {
+    "objectID": "lectures/1_statistical_thinking.html#examples",
+    "href": "lectures/1_statistical_thinking.html#examples",
+    "title": "Statistical Thinking",
+    "section": "Examples",
+    "text": "Examples\nProblems 10 and 11 chapter 1"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_3.html",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_3.html",
+    "title": "MTH 142: R Assignment 3",
+    "section": "",
+    "text": "In this lab, we will work with the infer package in R to conduct statistical inference on American public opinions/public health sentiment during the Ebola virus epidemic of 2013-2016. We’ll also get really into using the pipe |&gt; for doing simulation. Please see the video introducing the pipe."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_3.html#parametric-bootstrap-hypothesis-testing-for-a-single-proportion",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_3.html#parametric-bootstrap-hypothesis-testing-for-a-single-proportion",
+    "title": "MTH 142: R Assignment 3",
+    "section": "Parametric Bootstrap Hypothesis Testing for a Single Proportion",
+    "text": "Parametric Bootstrap Hypothesis Testing for a Single Proportion\nSuppose the public health bureau wants to know whether or not the true proportion of New Yorkers who support a mandatory quarantine period is equal to \\(0.80\\). The null and alternative hypotheses are stated below.\n\\[H_0: p = 0.80\\] \\[H_A: p \\neq 0.80\\]\nYou want to preform a hypothesis test, assuming a significance level of \\(\\alpha = 0.05\\). We can use the infer package to do this. The infer package uses a workflow to generate a null distribution for our data. This package uses verbs as function names that describe each step that is happening.\n\nspecify() the variables of interest in your data frame.\nhypothesize() set the null hypothesis.\ngenerate() replicates of bootstrap resamples with replacement.\ncalculate() the summary statistic of interest.\nvisualize() the resulting bootstrap distribution and confidence interval.\n\nA summary of these steps is provided in Chapter 9.3 of ModernDive. A figure from this book is provided below:\n\nWe can use the package infer to find a point estimate \\(\\widehat{p}\\) for the true proportion of New York adults who favored a mandatory 21-day quarantine period for close contacts of Ebola patients in the full data set (ebola_survey).\nWe use the specify() function to specify the variable of interest. In this case we are interested in proportion of those who selected “favor” which is listed in the column quarantine, thus we set response argument to quarantine. Since we are interested in the proportion of those who “favor” quarantining, and not the proportion who are “against”, we set the argument success to “favor”.\nThe function calculate() is used to generate an appropriate summary statistic. We are interested in the proportion so we will set the stat argument to “prop”. The output below is displaying the proportion of those that favored quarantining from the ebola_survey data.\n\n# Observed test statistic\nobs_stat &lt;- ebola_survey |&gt; \n  specify(response = quarantine, success =\"favor\") |&gt;\n  calculate(stat=\"prop\")\n\nobs_stat\n\nResponse: quarantine (factor)\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1 0.820\n\n\nIn order to conduct hypothesis tests using the infer workflow we need to provide what the hypothesized value is under \\(H_0\\). To do this we use the hypothesize() function which has two arguments. The first argument specifies what type of setting we have. In this case we are interested in a test for a single proportion (\\(\\hat{p}\\)) so we set the null argument to “point” to reflect this. The next argument \\(p\\) is were we specify what the hypothesized value is under \\(H_0\\). For us \\(H_0: p = 0.80\\), so we set the \\(p\\) argument to 0.8.\nThe next function generate() generates data sets under different settings. We set the argument type equal to “draw” to create new data sets we might expect to obtain if the \\(H_0\\) was true. The argument reps dictates how many data sets to generate. Generally 1000 or more is a good guideline.\nWe have used the function calculate() again to indicate that we want to calculate the proportion of those who “favor” for each of the generated data sets.\n\\[\\hat{p}_{sim1}, \\hat{p}_{sim2}, \\dots, \\hat{p}_{5000}\\]\nThese proportions are `what-if’ values we might expect if the true proportion of New Yorkers who support a mandatory quarantine period is equal to what we expect if \\(H_0\\) was true (i.e. \\(p = 0.8\\)).We preview these hypothetical values below.\n\n#set the seed for the generate() function, without it you will\n# not get the same pvalue below until the document is rendered. \nset.seed(62)\n\n# Generating the null distribution using a parametric bootstrap\nnull_dist &lt;- ebola_survey |&gt; specify(response = quarantine, success = \"favor\") |&gt;\n  hypothesize(null = \"point\", p = 0.8) |&gt;\n  generate(reps = 5000, type = \"draw\") |&gt;\n  calculate(stat = \"prop\")\n\nnull_dist\n\nResponse: quarantine (factor)\nNull Hypothesis: point\n# A tibble: 5,000 × 2\n   replicate  stat\n       &lt;int&gt; &lt;dbl&gt;\n 1         1 0.784\n 2         2 0.789\n 3         3 0.798\n 4         4 0.797\n 5         5 0.788\n 6         6 0.794\n 7         7 0.798\n 8         8 0.804\n 9         9 0.799\n10        10 0.795\n# ℹ 4,990 more rows\n\n\nWe next visualize our null distribution using the function visualize(). This produces a histogram of our `what-if’ values.\n\nnull_dist |&gt; visualize()\n\n\n\n\n\n\n\n\nThe method we used to generate the histogram above is called parametric bootstrap. Null distributions can be computed via a mathematical model, or by the computer using a parametric bootstrap. Null distributions represent the values for \\(\\hat{p}\\) we would see if \\(H_0\\) was true.\nFrom these null distributions we are now able to find our p-value and make a conclusion. The p-value is calculated by counting the number of simulated proportions that are more extreme then the proportion we calculated with our original data set (\\(\\hat{p} = 0.820\\)). The infer package has a function to calculate this value as well called get_p_value(). In this function you must supply the proportion for your original data set, which we named obs_stat. This function has an additional argument called direction which indicates the alternative hypothesis.\n\n# Visualizing the null distribution and finding the p-value\n\nnull_dist |&gt; get_p_value(obs_stat = obs_stat, direction = \"two-sided\")\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1   0.121\n\n\nWe can also use the visualize() and shade_p_value() functions together to visualize how the p-value was calculated.\n\nnull_dist |&gt; visualize() + \n  shade_p_value(obs_stat = obs_stat, direction = \"two-sided\")\n\n\n\n\n\n\n\n\nWe observed a p-value of 0.121 which was greater than our significance level of \\(\\alpha = 0.05\\). We fail to reject the null hypothesis; we do not have sufficient evidence to rule out that exactly 80% of all New Yorkers support a mandatory 21-day quarantine for close contacts of Ebola patients."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_3.html#questions",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_3.html#questions",
+    "title": "MTH 142: R Assignment 3",
+    "section": "Questions",
+    "text": "Questions\n\nWhen CBS/NBC/The Wall Street Journal conducted this survey, who do you think they wanted to draw conclusions about? All New York City residents? All New Yorkers? All adults in the United States? Do you have any potential concerns about generalizability or non-random sampling in this context?\nUse infer to find a point estimate \\(\\widehat{p}\\) for the true proportion of New York adults who favored a mandatory 21-day quarantine period for close contacts of Ebola patients in each of the two smaller data sets NBC_survey and WSJ_survey.\nOn average (across repeated samples of the same size from the full population of all New York adults in October 2014), each of these point estimates should equal the truth. Given this, which of these three point estimates would you feel most comfortable reporting and conducting a hypothesis test with? Why?\n\nFor the rest of the following questions you will be using analyzing at data from the Youth Risk Behavior Surveillance System (YRBSS) survey. This is a data set with high schoolers that is used to help discover health patterns. The dataset is called yrbss. We will use the yrbss_survey data set below which isolates the variable of interest. A recent claim stated that 8% of teenagers texted while driving in the last 30 days, and we want to conduct a hypothesis test with significance level \\(\\alpha = 0.05\\).\n\n# This code is making a variable text_ind that has two levels: \"texted\" and \"did_not\"\nyrbss_survey &lt;- yrbss |&gt;\n  filter(!is.na(text_while_driving_30d)) |&gt;\n  transmute(text_ind = ifelse(text_while_driving_30d == \"30\", \"texted\", \"did_not\"))\n\n\nState the null and alternative hypothesis in words and symbols.\nFrom the survey how many students have and have not texted while driving within the past 30 days?\nCreate a bar graph showing the counts of students who did text and did not text while driving within the last 30 days.\nWhat is the proportion of students who texted while driving within the past 30 days.\nGenerate the null distribution in R.\n\n\n# setting seed so everyone has the same answers when working through the assignment\n# all answers will be the same in the rendered document. \nset.seed(62)\n\n\nCalculate the p-value, and generate a graph indicating the area the p-value represents.\nState the conclusion of your hypothesis test.\nDiscuss how the null distribution would change if you considered sampling students at a local high school instead."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_1_EDA.html#calculate-two-summary-statistics",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_1_EDA.html#calculate-two-summary-statistics",
+    "title": "R Assignment 1 EDA",
+    "section": "Calculate two Summary Statistics",
+    "text": "Calculate two Summary Statistics\n\n# The code for your 1st statistic goes here\n\n\n# The code for your 2nd statistic goes here"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_1_EDA.html#make-a-plot",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_1_EDA.html#make-a-plot",
+    "title": "R Assignment 1 EDA",
+    "section": "Make a plot",
+    "text": "Make a plot\n\n# Write some ggplot() code for a plot here."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_1_EDA.html#conclusion",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_1_EDA.html#conclusion",
+    "title": "R Assignment 1 EDA",
+    "section": "Conclusion",
+    "text": "Conclusion"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_0.html",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_0.html",
+    "title": "Introduction to R and RStudio",
+    "section": "",
+    "text": "The little bit of code at the top of this document, between some hyphens - - - , is called the yaml. Add your name and the date into the yaml. They should both be strings (that means “in quotes”)."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_0.html#the-yaml",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_0.html#the-yaml",
+    "title": "Introduction to R and RStudio",
+    "section": "",
+    "text": "The little bit of code at the top of this document, between some hyphens - - - , is called the yaml. Add your name and the date into the yaml. They should both be strings (that means “in quotes”)."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_0.html#a-note-on-r-assignments",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_0.html#a-note-on-r-assignments",
+    "title": "Introduction to R and RStudio",
+    "section": "A note on R Assignments",
+    "text": "A note on R Assignments\nIn MTH 142 you will get lots of practice doing statistics through homework assignments, the final and R Assignments. You will have 6 during this course that will help you do “modern” statistics with simulation and specialized R packages. In this R Assignment the goal is to warm up with some plotting and becoming familiar with R and quarto. You will have 7 questions at the end which will be graded. Finally you will know if you have done your R Assignment correctly if you are able to render without errors. (Getting errors is normal and common. If you are unable to fix them go to office hours or tutoring.) Turn in the rendered .pdf to moodle before the due date. Late R Assignments are not accepted and one will be dropped. Good luck."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_0.html#the-rstudio-interface",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_0.html#the-rstudio-interface",
+    "title": "Introduction to R and RStudio",
+    "section": "The RStudio Interface",
+    "text": "The RStudio Interface\nBy now you have seen Rstudio and have heard words like: console, quarto, and environment pane. You know about the four main panes of RStudio.See this site for info on the panes\n\nR Packages\nR is an open-source programming language, meaning that users can contribute packages that make our lives easier, and we can use them for free. For this R Assignment, and many others in the future, we will use the following:\n\nThe tidyverse “umbrella” package which houses a suite of many different R packages: for data wrangling and data visualization\nThe openintro R package: for data and custom functions with the OpenIntro resources\n\nYou likely have the tidyverse installed already. In the lower right hand corner click on the Packages tab. Type the name of each of these packages (tidyverse, openintro) into the search box to see if they have been installed. If these packages do not appear when you type in their name, install them by running the chunk below.\n\n#install.packages(\"tidyverse\")\n#install.packages(\"openintro\")\n\nAfter running the chunk above stream of text will begin, communicating the process R is going through to install the package from the location you selected when you installed R. If you were not prompted to select a server for downloading packages when you installed R, RStudio may prompt you to select a server from which to download; any of them will work.\nYou only need to install packages once, but you need to load them each time you relaunch RStudio. We load packages with the library function. Copy and paste or type the the following two lines in your console to load the tidyverse and openintro packages into your working environment.\n\nlibrary(tidyverse)\nlibrary(openintro)\n\nWe are choosing to use the tidyverse package because it consists of a set of packages necessary for different aspects of working with data, anything from loading data to wrangling data to visualizing data to analyzing data. Additionally, these packages share common philosophies and are designed to work together. You can find more about the packages in the tidyverse at tidyverse.org. The openintro package has a lot of data we will play with through out the semester.\n\n\nCreating a reproducible lab report\nWe will be using quarto ( or the older rmarkdown) to create reproducible lab reports. The following videos give justification for rmarkdwon, which is similar to quarto.\nWhy use quarto for Lab Reports?\nUsing quarto for Lab Reports in RStudio\nYou have already opened R_Assignment_0.qmd and you are working in it now. In the future you can click File -&gt; Quarto Document to make a new .qmd file.\nGoing forward you should refrain from typing your code directly in the console, as this makes it very difficult to remember and reproduce the output you want to reference. Potentially the most important feature of quarto files is that they allow for us to nest our R code within a written report. In an quarto file, R code appears in a gray box, which we call “code chunks.” The quarto file knows that the gray box contains R code because it begins with three tick marks (```), followed by two curly braces that contain a lowercase letter r ({r}). If you do not see these code chunks you may be in Visual mode. You can switch to Source mode in the upper left.\nInstead of typing our R code into the console, we encourage you to type any code you produce (final correct answer, or anything you’re just trying out) in the R code chunk associated with each problem. You can execute the R code you type in these code chunks similar to how you typed code into the console and pressed enter/return. Within the code chunk there are two ways to execute a line of R code: (1) place your cursor on the line on code and press Ctrl-Enter or Cmd-Enter at the same time, or (2) place your cursor on the line and press the “Run” button in the upper right hand corner of the quarto file. Alternatively, if you wanted to run all of the R code in a given code chunk, you can click on the “Play” button in the upper right hand corner of the code chunk (green sideways triangle).\nIf at any point you need to start over and run all of the code chunks before a specific code chunk, you click on the “Fastforward” button in the upper right hand corner of that code chunk (gray upside down triangle with a bar below). This will run every code chunk that occurred before that code chunk, but will not execute the R code included in that code chunk."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_0.html#dr.-arbuthnots-baptism-records",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_0.html#dr.-arbuthnots-baptism-records",
+    "title": "Introduction to R and RStudio",
+    "section": "Dr. Arbuthnot’s Baptism Records",
+    "text": "Dr. Arbuthnot’s Baptism Records\nTo get started, let’s take a peek at the data.\n\narbuthnot &lt;- arbuthnot\n\nAgain, you can run the code above by:\n\nplacing your cursor on the line and pressing Ctrl-Enter or Cmd-Enter\nplacing your cursor on the line and pressing the green “Run” button in the upper right hand corner of the quarto file, or\nby clicking on the green arrow at the top right hand corner of the code chunk\n\nThe single line of code included in this code chunk instructs R to load some data: the Arbuthnot baptism counts for boys and girls. You should see that the Environment tab in the upper right hand corner of the RStudio window now lists a data set called arbuthnot that has 82 observations on 3 variables. As you interact with R, you will create objects for a variety of purposes. Sometimes you load the objects into your workspace by loading a package, as we have done here, but sometimes you create objects yourself as a byproduct of a computation process, for an analysis you have performed, or for a visualization you have created.\nThe Arbuthnot data set refers to the work of Dr. John Arbuthnot, an 18th century physician, writer, and mathematician. He was interested in the ratio of newborn boys to newborn girls, so he gathered the baptism records for children born in London for every year from 1629 to 1710. Once again, we can view the data by running the code below or by typing the name of the dataset into the console. Be careful the spelling and capitalization you use! R is case sensitive, so if you accidentally type Arbuthnot R will tell you that object cannot be found.\n\narbuthnot\n\n# A tibble: 82 × 3\n    year  boys girls\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;\n 1  1629  5218  4683\n 2  1630  4858  4457\n 3  1631  4422  4102\n 4  1632  4994  4590\n 5  1633  5158  4839\n 6  1634  5035  4820\n 7  1635  5106  4928\n 8  1636  4917  4605\n 9  1637  4703  4457\n10  1638  5359  4952\n# ℹ 72 more rows\n\n\nThis command does display the data for us, however, printing the whole dataset in the console is not that useful. One advantage of RStudio is that it comes with a built-in data viewer. The Environment tab (in the upper right pane) lists the objects in your environment. Clicking on the name arbuthnot will open up a Data Viewer tab next to your quarto file, which provides an alternative display of the data set. This display should feel similar to viewing data in Excel, where you are able to scroll through the dataset to inspect it. However, unlike Excel, you will not be able to edit the data in this tab. Once you are done viewing the data, You can close this tab by clicking on the x in the upper left hand corner.\nWhen inspecting the data, you should see four columns of numbers and 82 rows. Each row represents a different year that Arbuthnot collected data. The first entry in each row is the row number (an index we can use to access the data from individual years if we want), the second is the year, and the third and fourth are the numbers of boys and girls baptized that year, respectively. Use the scrollbar on the right side of the console window to examine the complete data set.\nNote that the row numbers in the first column are not part of Arbuthnot’s data. R adds these row numbers as part of its printout to help you make visual comparisons. You can think of them as the index that you see on the left side of a spreadsheet. In fact, the comparison of the data to a spreadsheet will generally be helpful. R has stored Arbuthnot’s data in an object similar to a spreadsheet or a table, which R calls a data frame.\nYou can see the dimensions of this data frame as well as the names of the variables and the first few observations by inserting the name of the dataset into the glimpse() function, as seen below:\n\nglimpse(arbuthnot)\n\nRows: 82\nColumns: 3\n$ year  &lt;int&gt; 1629, 1630, 1631, 1632, 1633, 1634, 1635, 1636, 1637, 1638, 1639…\n$ boys  &lt;int&gt; 5218, 4858, 4422, 4994, 5158, 5035, 5106, 4917, 4703, 5359, 5366…\n$ girls &lt;int&gt; 4683, 4457, 4102, 4590, 4839, 4820, 4928, 4605, 4457, 4952, 4784…\n\n\nAlthough we previously said that it is best practice to type all of your R code into the code chunk, it is better practice to type this command into your console. Generally, you should type all of the code that is necessary for your solution into the code chunk. Because this command is used to explore the data, it is not necessary for your solution code and should not be included in your solution file.\nThis command above should output the following:\n\n\nRows: 82\nColumns: 3\n$ year  &lt;int&gt; 1629, 1630, 1631, 1632, 1633, 1634, 1635, 1636, 1637, 1638, 1639…\n$ boys  &lt;int&gt; 5218, 4858, 4422, 4994, 5158, 5035, 5106, 4917, 4703, 5359, 5366…\n$ girls &lt;int&gt; 4683, 4457, 4102, 4590, 4839, 4820, 4928, 4605, 4457, 4952, 4784…\n\n\nWe can see that there are 82 observations and 3 variables in this dataset. The variable names are year, boys, and girls. At this point, you might notice that many of the commands in R look a lot like functions from math class; that is, invoking R commands means supplying a function with some number of inputs (what are called arguments) which the function uses to produce an output. The glimpse() command, for example, took a single argument, the name of a data frame and produced a display of the dataset as an output."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_0.html#some-exploration",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_0.html#some-exploration",
+    "title": "Introduction to R and RStudio",
+    "section": "Some Exploration",
+    "text": "Some Exploration\nLet’s start to examine the data a little more closely. We can access the data in a single column of a data frame by extracting the column with a $. For example, the code below extracts the boys column from the arbuthnot data frame.\n\narbuthnot$boys\n\n [1] 5218 4858 4422 4994 5158 5035 5106 4917 4703 5359 5366 5518 5470 5460 4793\n[16] 4107 4047 3768 3796 3363 3079 2890 3231 3220 3196 3441 3655 3668 3396 3157\n[31] 3209 3724 4748 5216 5411 6041 5114 4678 5616 6073 6506 6278 6449 6443 6073\n[46] 6113 6058 6552 6423 6568 6247 6548 6822 6909 7577 7575 7484 7575 7737 7487\n[61] 7604 7909 7662 7602 7676 6985 7263 7632 8062 8426 7911 7578 8102 8031 7765\n[76] 6113 8366 7952 8379 8239 7840 7640\n\n\nThis command will only show the number of boys baptized each year. R interprets the $ as saying “go to the data frame that comes before me, and find the variable that comes after me.”\nNotice that the way R has printed these data is different. When we looked at the complete data frame, we saw 82 rows, one on each line of the display. These data have been extracted from the data frame, so they are no longer structured in a table with other variables. Instead, these data are displayed one right after another. Objects that print out in this way are called vectors; similar to the vectors you have seen in mathematics courses, vectors represent a list of numbers. R has added numbers displayed in [brackets] along the left side of the printout to indicate each entry’s location within the vector. For example, 5218 follows [1], indicating that 5218 is the first entry in the vector. If [43] was displayed at the beginning of a line, that indicate that the first number displayed on that line would correspond to the 43rd entry in that vector.\n\nData visualization\nR has some powerful functions for making graphics. We can create a simple plot of the number of girls baptized per year with the following code:\n\nggplot(data = arbuthnot, aes(x = year, y = girls)) + \n  geom_point()\n\n\n\n\n\n\n\n\nIn this code, we use the ggplot() function to build a plot. If you run this code chunk, a plot will appear below the code chunk. The quarto document displays the plot below the code that was used to generate it, to give you an idea of what the plot would look like in a final report.\nThe command above also looks like a mathematical function. This time, however, the function requires multiple inputs (arguments), which are separated by commas.\nWith ggplot():\n\nThe first argument is always the name of the dataset you wish to use for plotting.\nNext, you provide the variables from the dataset to be assigned to different aesthetic elements of the plot, such as the x and the y axes.\n\nThese commands will build a blank plot, with the variables you assigned to the x and y axes. Next, you need to tell ggplot() what type of visualization you would like to add to the blank template. You add another layer to the ggplot() by:\n\nadding a + at the end of the line, to indicate that you are adding a layer\nthen specify the geometric object to be used to create the plot.\n\nSince we want to scatterplot, we use geom_point(). This tells ggplot() that each data point should be represented by one point on the plot. If you wanted to visualize the above plot using a line graph instead of a scatterplot, you would replace geom_point() with geom_line(). This tells ggplot() to draw a line from each observation with the next observation (sequentially).\n\nggplot(data = arbuthnot, aes(x = year, y = girls)) +\n  geom_line()\n\n\n\n\n\n\n\n\nUse the plot to address the following question:\n\nIs there an apparent trend in the number of girls baptized over the years? How would you describe it? (To ensure that your lab report is comprehensive, be sure to include the code needed to make the plot as well as your written interpretation.)\n\nYou might wonder how you are supposed to know the syntax for the ggplot() function. Thankfully, R documents all of its functions extensively. To learn what a function does and how to use it (e.g. the function’s arguments), just type in a question mark followed by the name of the function that you’re interested in into the console. Type the following in your console:\n\n?ggplot\n\nNotice that the help file comes to the forefront, replacing the plot in the lower right panel. You can toggle between the tabs by clicking on their names.\n\n\nR as a big calculator\nNow, suppose we want to plot the total number of baptisms. To compute this, we could use the fact that we can use R as a big calculator. To do this, we can type in mathematical expressions such as the below calculation into the console.\n\n5218 + 4683\n\n[1] 9901\n\n\nThis calculation would provide us with the total number of baptisms in 1629. We could then repeat this calculation once for each year. This would probably take us a while, but luckily there is a faster way! If we add the vector for baptisms for boys to that of girls, R can compute each of these sums simultaneously.\n\narbuthnot$boys + arbuthnot$girls\n\n [1]  9901  9315  8524  9584  9997  9855 10034  9522  9160 10311 10150 10850\n[13] 10670 10370  9410  8104  7966  7163  7332  6544  5825  5612  6071  6128\n[25]  6155  6620  7004  7050  6685  6170  5990  6971  8855 10019 10292 11722\n[37]  9972  8997 10938 11633 12335 11997 12510 12563 11895 11851 11775 12399\n[49] 12626 12601 12288 12847 13355 13653 14735 14702 14730 14694 14951 14588\n[61] 14771 15211 15054 14918 15159 13632 13976 14861 15829 16052 15363 14639\n[73] 15616 15687 15448 11851 16145 15369 16066 15862 15220 14928\n\n\nWhat you will see is a list of 82 numbers. These numbers appear as a list, because we are working with vectors rather than a data frame. Each number represents the sum of how many boys and girls were baptized that year. You can take a look at the first few rows of the boys and girls columns to see if the calculation is right.\n\n\nAdding a new variable to the data frame\nWe are interested in using this new vector of the total number of baptisms to generate some plots, so we’ll want to save it as a permanent column in our data frame. We can do this using the following code:\n\narbuthnot &lt;-   mutate(arbuthnot, total = boys + girls)\n\nThis code has a lot of new pieces to it, so let’s break it down. In the first line we are doing two things, (1) adding a new total column to this updated data frame, and (2) overwriting the existing arbutnot data frame with an updated data frame that includes the new total column.\n\nWhere is the new variable? When you make changes to variables in your dataset, click on the name of the dataset again to update it in the data viewer.\n\nYou’ll see that there is now a new column called total that has been tacked onto the data frame. The special symbol &lt;- performs an assignment, taking the output of the piping operations and saving it into an object in your environment. In this case, you already have an object called arbuthnot in your environment, so this command updates that data set with the new mutated column.\nYou can make a line plot of the total number of baptisms per year with the following code:\n\nggplot(data = arbuthnot, aes(x = year, y = total)) + \n  geom_line()\n\n\n\n\n\n\n\n\nIn an similar fashion, once you know the total number of baptisms for boys and girls in 1629, you can compute the ratio of the number of boys to the number of girls baptized with the following code:\n\n5218 / 4683\n\n[1] 1.114243\n\n\nAlternatively, you could calculate this ratio for every year by acting on the complete boys and girls columns, and then save those calculations into a new variable named boy_to_girl_ratio:\n\narbuthnot &lt;-  mutate(.data = arbuthnot, boy_to_girl_ratio = boys / girls)\n\nYou can also compute the proportion of newborns that are boys in 1629 with the following code:\n\n5218 / (5218 + 4683)\n\n[1] 0.5270175\n\n\nOr you can compute this for all years simultaneously and add it as a new variable named boy_ratio to the dataset:\n\narbuthnot &lt;-  mutate(.data = arbuthnot, boy_ratio = boys / total)\n\nNotice that rather than dividing by boys + girls we are using the total variable we created earlier in our calculations!\n\nTip: If you use the up and down arrow keys in the console, you can scroll through your previous commands, your so-called command history. You can also access your command history by clicking on the history tab in the upper right panel. This can save you a lot of typing in the future.\n\nFinally, in addition to simple mathematical operators like subtraction and division, you can ask R to make comparisons like greater than, &gt;, less than, &lt;, and equality, ==. For example, we can create a new variable called more_boys that tells us whether the number of births of boys outnumbered that of girls in each year with the following code:\n\narbuthnot &lt;-   mutate(.data = arbuthnot, more_boys = boys &gt; girls)\n\nThis command adds a new variable to the arbuthnot data frame containing the values of either TRUE if that year had more boys than girls, or FALSE if that year did not (the answer may surprise you). This variable contains a different kind of data than we have encountered so far. All other columns in the arbuthnot data frame have values that are numerical (the year, the number of boys and girls). Here, we’ve asked R to create logical data, data where the values are either TRUE or FALSE. In general, data analysis will involve many different kinds of data types, and one reason for using R is that it is able to represent and compute with many of them."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_0.html#more-practice",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_0.html#more-practice",
+    "title": "Introduction to R and RStudio",
+    "section": "More Practice",
+    "text": "More Practice\nIn the previous few pages, you recreated some of the displays and preliminary analysis of Arbuthnot’s baptism data. Your assignment involves repeating these steps, but for present day birth records in the United States. The data are stored in a data frame called present.\nTo find the minimum and maximum values of columns, you can use the functions min() and max() within a summarize() call, which you will learn more about in the following lab.\nHere’s an example of how to find the minimum and maximum amount of boy births in a year:\n\nsummarize(.data = arbuthnot,\n          min = min(boys),\n          max = max(boys)\n            )\n\n# A tibble: 1 × 2\n    min   max\n  &lt;int&gt; &lt;int&gt;\n1  2890  8426"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_0.html#resources-for-learning-r-and-working-in-rstudio",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_0.html#resources-for-learning-r-and-working-in-rstudio",
+    "title": "Introduction to R and RStudio",
+    "section": "Resources for learning R and working in RStudio",
+    "text": "Resources for learning R and working in RStudio\nThat was a short introduction to R and RStudio, but we will provide you with more functions and a more complete sense of the language as the course progresses.\nIn this course we will be using the suite of R packages from the tidyverse. The book R For Data Science by Grolemund and Wickham is a fantastic resource for data analysis in R with the tidyverse. If you are Goggling for R code, make sure to also include these package names in your search query. For example, instead of Goggling “scatterplot in R”, Goggle “scatterplot in R with the tidyverse”.\nThese may come in handy throughout the semester:\n\nRMarkdown cheatsheet\nData transformation cheatsheet\nData visualization cheatsheet\n\nNote that some of the code on these cheatsheets may be too advanced for this course. However the majority of it will become useful throughout the semester.\nThis lab was modified from the labs on openintro stats"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/Schwab_s_examples/R_Assignment_1_EDA.html",
+    "href": "MTH_142_files_for_students/RAssignments/Schwab_s_examples/R_Assignment_1_EDA.html",
+    "title": "R Assignment 1 EDA",
+    "section": "",
+    "text": "This data is based on EPA estimates for fuel economy for 234 cars from the years 1999 and 2008. I’m interested in the city fuel economy of these cars."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/Schwab_s_examples/R_Assignment_1_EDA.html#introduce-your-data",
+    "href": "MTH_142_files_for_students/RAssignments/Schwab_s_examples/R_Assignment_1_EDA.html#introduce-your-data",
+    "title": "R Assignment 1 EDA",
+    "section": "",
+    "text": "This data is based on EPA estimates for fuel economy for 234 cars from the years 1999 and 2008. I’m interested in the city fuel economy of these cars."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/Schwab_s_examples/R_Assignment_1_EDA.html#calculate-two-summary-statistics",
+    "href": "MTH_142_files_for_students/RAssignments/Schwab_s_examples/R_Assignment_1_EDA.html#calculate-two-summary-statistics",
+    "title": "R Assignment 1 EDA",
+    "section": "Calculate two Summary Statistics",
+    "text": "Calculate two Summary Statistics\n\n# The code for your 1st statistic goes here\nmean(mpg$cty, na.rm = TRUE)\n\n[1] 16.85897\n\n\n\n# The code for your 2nd statistic goes here\nfivenum(mpg$cty, na.rm = TRUE)\n\n[1]  9 14 17 19 35"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/Schwab_s_examples/R_Assignment_1_EDA.html#make-a-plot",
+    "href": "MTH_142_files_for_students/RAssignments/Schwab_s_examples/R_Assignment_1_EDA.html#make-a-plot",
+    "title": "R Assignment 1 EDA",
+    "section": "Make a plot",
+    "text": "Make a plot\n\n# Write some ggplot() code for a plot here. \nggplot(data = mpg, mapping = aes(x = class)) +\n  geom_bar() + \n  labs(title = \"Popular Car types\",\n       subtitle = \" From Years 1999 to 2008\",\n       x = \"Type of Car\",\n       y = \"Number of Cars \")"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/Schwab_s_examples/R_Assignment_1_EDA.html#conclusion",
+    "href": "MTH_142_files_for_students/RAssignments/Schwab_s_examples/R_Assignment_1_EDA.html#conclusion",
+    "title": "R Assignment 1 EDA",
+    "section": "Conclusion",
+    "text": "Conclusion\nThis dataset is mostly comprised of suvs. The average city fuel economy is less than 17 mpg which I feel is just ok. The max fuel economy is 35 mpg, and that car is a Volkswagon New Beetle. The worst average fuel city fuel economy is a Dodge Dakota."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_4.html",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_4.html",
+    "title": "MTH 142: R Assignment 4",
+    "section": "",
+    "text": "In this lab, we will explore and visualize the data using the tidyverse suite of packages, and perform statistical inference using infer. The data can be found in the companion package for OpenIntro resources, openintro.\nLet’s load the packages.\n\nlibrary(tidyverse)\nlibrary(infer)\nlibrary(kableExtra)\nlibrary(openintro)\nlibrary(broom)\n\ngss &lt;- gss |&gt;\n  mutate(upper_class = ifelse(class == \"upper class\", \"upper\", \"not upper\")) |&gt;\n  mutate(class = factor(class))"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_4.html#two-independent-means",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_4.html#two-independent-means",
+    "title": "MTH 142: R Assignment 4",
+    "section": "Two Independent Means",
+    "text": "Two Independent Means\nOur motivating data comes from the General Social Survey (GSS) from the openintro package. The General Social Survey is a high-quality survey which gathers data on American society and opinions, conducted since 1972. This data set is a sample of 500 entries from the GSS, spanning years 1973-2018, including demographic markers and some economic variables. The two variables of interest are hours worked the week before the survey and self-identified social class.\nThe hours variable is in whole numbers and is truncated at 89. We will only look at two social classes: upper class, and not upper class.\n\nhours: numbers range from (0 to 89)\nupper_class: self-identified social class (upper, not upper)\n\nWe’ll take a look at how many hours worked in a week by people who took the survey, and whether it is associated with their social class or not.\nThe distribution of hours worked per week is shown in this histogram. The distribution has a predominate peak around 40, and looks roughly symmetric.\n\nggplot(data = gss, aes(x = hours)) +\n  geom_histogram(binwidth = 10, color = \"black\") + \n  theme_bw()\n\n\n\n\n\n\n\n\nIn our analysis we want to evaluate if the mean hours worked in a week differs between the self-identified upper class and non-upper class groups. First, we set our hypotheses. Our null hypothesis should state the status quo, in other words, “there is nothing going on.” In context, this means no difference between the average hours worked in a week between the two groups. The alternative hypothesis says that the average hours worked in week for the two groups is different.\n\n\\(H_0: \\mu_{upper} - \\mu_{not} = 0\\)\n\\(H_A: \\mu_{upper} - \\mu_{not} \\neq 0\\)\n\nLet’s take a look at how these groups compare using a boxplot. The data live in two columns, upper_class and hours. We map upper_class to the x-axis and fill color. We also map hours to the y-axis to create the boxes. The geom_boxplot() layer specifies what type of plot we wish to create.\n\nggplot(gss, aes(x = upper_class, y = hours, fill = upper_class))+ \n  geom_boxplot()+\n  theme_bw()\n\n\n\n\n\n\n\n\nWe can also create summary statistics for the two groups to get a sense of how different they are. In the following sequence of commands we use the group_by() function to separate the data set into the two class groups. Next we use the summarize() function to calculate different summary statistics. For each group we calculated the number of observations, mean, standard deviation, minimum, and maximum.\n\ngss |&gt;\n  group_by(upper_class) |&gt;\n  summarize(n = n(), mean =mean(hours), \n            sd = sd(hours), \n            min = min(hours), max = max(hours))\n\n# A tibble: 2 × 6\n  upper_class     n  mean    sd   min   max\n  &lt;chr&gt;       &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 not upper     480  41.3  14.9     3    89\n2 upper          20  44.5  12.7    15    64\n\n\nWe can calculate the difference of these two means hypothesis test using a significance level of \\(\\alpha = 0.05\\). Just like we did with a single proportion, and two proportions we can use the infer package to do this. The infer package uses a workflow to generate a null distribution for our data. Recall that this package uses verbs as function names that describe each step that is happening.\n\nspecify() the variables of interest in your data frame.\nhypothesize() set the null hypothesis.\ngenerate() replicates of bootstrap resamples with replacement.\ncalculate() the summary statistic of interest.\nvisualize() the resulting bootstrap distribution and confidence interval.\n\nTo calculate the difference in means we will use the specify() and calculate() functions. The specify() needs both column names that we are using separated by a tilde. The outcome variable is to the left of the tilde, and the grouping variable is on the right hand side. We next use the caluclate() function. In the calculate() function we also must specify the order of how we are taking the difference. In this case we want \\(\\overline{x}_{upper} - \\overline{x}_{not}\\) to match our hypotheses set up. We use the unlist() function to store the difference in means as a simple object.\n\ndiff_mean &lt;- gss |&gt;\n  specify(hours ~ upper_class) |&gt;\n  calculate(stat = \"diff in means\", order = c(\"upper\", \"not upper\")) |&gt;\n  unlist()\n\ndiff_mean\n\n    stat \n3.247917 \n\n\nThe inference chain should also look familiar. We will take steps to generate 1000 data sets that we might see if \\(H_0\\) was true and calculate a difference in means for each hypothetical data set.\nWe use the specify() function to specify the variable of interest. We use the hypothesize() function to indicate what the hypothesized value is under \\(H_0\\). In this case we are interested in a test for a difference in means. If there was no difference in teaching method we would see that \\(\\mu_{diff} =  \\mu_{upper} - \\mu_{not} = 0\\), which is what we specified in \\(H_0\\). We set the null argument to “independence” to specify this.\nThe next function generate() generates data sets under different settings. We set the argument type equal to “permute” to create new data sets were we switch the group labels randomly. This generates data sets might expect to obtain if the \\(H_0\\) was true. The argument reps dictates how many data sets to generate. Generally 1000 or more is a good guideline.\nThe function calculate() is used to generate an appropriate summary statistic. We are interested in the difference in means so we will set the stat argument to “diff in means”. We need to use the same order of groups as before. This function returns the `what-if’ values we might expect if the true difference means for the two groups was 0.\n\\[\\mu^*_{diff,1}, \\mu^*_{diff,2}, \\dots, \\mu^*_{diff,1000}\\] We preview these hypothetical values below.\n\nset.seed(041624)\n\ndiff_ht_mean &lt;-gss |&gt;\n  specify(hours ~ upper_class) |&gt;\n  hypothesize(null = \"independence\") |&gt;  \n  generate(reps = 1000, type = \"permute\") |&gt;\n  calculate(stat = \"diff in means\", order = c(\"upper\", \"not upper\"))\n\ndiff_ht_mean\n\nResponse: hours (numeric)\nExplanatory: upper_class (factor)\nNull Hypothesis: independence\n# A tibble: 1,000 × 2\n   replicate   stat\n       &lt;int&gt;  &lt;dbl&gt;\n 1         1 -0.867\n 2         2  1.27 \n 3         3 -3.84 \n 4         4 -1.18 \n 5         5 -2.27 \n 6         6 -3.57 \n 7         7  2.47 \n 8         8 -4.30 \n 9         9  6.69 \n10        10 -0.658\n# ℹ 990 more rows\n\n\nWe next visualize our null distribution using the function visualize(). This produces a histogram of our `what-if’ values. We can add a vertical red line indicating where our actual data falls using the function geom_vline().\n\ndiff_ht_mean  |&gt; visualize() +\n  geom_vline(xintercept = diff_mean, color = \"red\")\n\n\n\n\n\n\n\n\nThe method we used to generate the histogram above is called randomization test. Null distributions can be computed via a mathematical model, or by the computer using this technique. Null distributions represent the values for \\(\\overline{x}_{diff}\\) we would see if \\(H_0\\) was true.\nFrom this null distribution we are now able to find our p-value and make a conclusion. The p-value is calculated by counting the number of simulated statistics that are more extreme then the difference in means we calculated with our original data set. The infer package has a function to calculate this value called get_p_value(). In this function you must supply the sample statistic for your original data set, which we named diff_mean. This function has an additional argument called direction which indicates the alternative hypothesis.\n\ndiff_ht_mean  |&gt; get_p_value(obs_stat = diff_mean, direction = \"two-sided\")\n\n# A tibble: 1 × 1\n  p_value\n    &lt;dbl&gt;\n1    0.35\n\n\nWe can also use the visualize() and shade_p_value() functions together to visualize how the p-value was calculated.\n\ndiff_ht_mean |&gt; visualize() + \n  shade_p_value(obs_stat = diff_mean, direction = \"two-sided\")\n\n\n\n\n\n\n\n\nWe observed a p-value of 0.35 which is greater than our significance level of \\(\\alpha = 0.05\\). We fail to reject the null hypothesis. It does not appear that there is a significant difference in average hours worked in a week between the self-identified upper class group and the rest of population."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_4.html#questions-two-independent-means",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_4.html#questions-two-independent-means",
+    "title": "MTH 142: R Assignment 4",
+    "section": "Questions: Two Independent Means",
+    "text": "Questions: Two Independent Means\nWe will continue using the gss data set. This time we are considering ages and political party affiliation. We will use the adjusted data set below.\n\ngss &lt;- gss |&gt;\n  mutate(ind_party = ifelse(partyid == \"ind\", \"ind\", \"not ind\")) |&gt;\n  mutate(partyid= factor(partyid))\n\nWe are interesting in testing if the average age of those who are registered as ‘independent’ is significantly different from the other groups. The two columns of interest are ind_party and age.\n\nType the hypotheses in symbols.\nConstruct a plot to visualize the distribution of ages between the two groups.\nCompute the difference in means for the two groups.\nSet up an infer chain to calculate 1000 differences in proportions under the null hypotheses.\n\n\nset.seed(4)\n\n\nGraph and mark the observed difference in means.\nCalculate the p-value. Using \\(\\alpha = 0.05\\), what is your conclusion?"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_2.html",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_2.html",
+    "title": "Foundations for statistical inference - Sampling distributions",
+    "section": "",
+    "text": "In this assignment, you will investigate the ways in which the statistics from a random sample of data can serve as point estimates for population parameters. We’re interested in formulating a sampling distribution of our estimate in order to learn about the properties of the estimate, such as its distribution."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_2.html#getting-started",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_2.html#getting-started",
+    "title": "Foundations for statistical inference - Sampling distributions",
+    "section": "Getting Started",
+    "text": "Getting Started\n\nLoad packages\nIn this assignment, we will explore and visualize the data using the tidyverse suite of packages. We will also use the infer package for resampling.\nLet’s load the packages.\n\nlibrary(tidyverse)\nlibrary(openintro)\nlibrary(infer)\n\n\n\nThe data\nA 2019 Gallup report states the following:\n\nThe premise that scientific progress benefits people has been embodied in discoveries throughout the ages – from the development of vaccinations to the explosion of technology in the past few decades, resulting in billions of supercomputers now resting in the hands and pockets of people worldwide. Still, not everyone around the world feels science benefits them personally.\nSource: World Science Day: Is Knowledge Power?\n\nThe Wellcome Global Monitor finds that 20% of people globally do not believe that the work scientists do benefits people like them. In this assignment, you will assume this 20% is a true population proportion and learn about how sample proportions can vary from sample to sample by taking smaller samples from the population. We will first create our population assuming a population size of 100,000. This means 20,000 (20%) of the population think the work scientists do does not benefit them personally and the remaining 80,000 think it does.\n\n# This code is making a dataframe called global monitor. \n\nglobal_monitor &lt;- tibble(\n  scientist_work = c(rep(\"Benefits\", 80000), rep(\"Doesn't benefit\", 20000))\n)\n\nThe name of the data frame is global_monitor and the name of the variable that contains responses to the question “Do you believe that the work scientists do benefit people like you?” is scientist_work.\nWe can quickly visualize the distribution of these responses using a bar plot.\n\nggplot(global_monitor, aes(x = scientist_work)) +\n  geom_bar() +\n  labs(\n    x = \"\", y = \"\",\n    title = \"Do you believe that the work scientists do benefit people like you?\"\n  ) +\n  coord_flip() \n\nWe can also obtain summary statistics to confirm we constructed the data frame correctly.\n\n# This first line counts the science work benefiet and saves it as a new data frame. the letter n is used for count\ng_monitor_count &lt;- count(x = global_monitor, scientist_work, name =\"count\")\n\n# This takes the data frame and adds a proportion variable\nmutate(g_monitor_count, proportion = count /sum(count))\n\n# A tibble: 2 × 3\n  scientist_work  count proportion\n  &lt;chr&gt;           &lt;int&gt;      &lt;dbl&gt;\n1 Benefits        80000        0.8\n2 Doesn't benefit 20000        0.2"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_2.html#the-unknown-sampling-distribution",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_2.html#the-unknown-sampling-distribution",
+    "title": "Foundations for statistical inference - Sampling distributions",
+    "section": "The unknown sampling distribution",
+    "text": "The unknown sampling distribution\nIn this assignment, you have access to the entire population, but this is rarely the case in real life. Gathering information on an entire population is often extremely costly or impossible. Because of this, we often take a sample of the population and use that to understand the properties of the population. For the remainder of this R Assignment pretend we do not have access to the entire population and are only able to create a sample.\nIf you are interested in estimating the proportion of people who don’t think the work scientists do benefits them, you can use the sample_n command to survey the population.\n\nsamp1 &lt;-  sample_n(global_monitor, 50)\n\nThis command collects a simple random sample of size 50 from the global_monitor dataset, and assigns the result to samp1. This is similar to randomly drawing names from a hat that contains the names of all in the population. Working with these 50 names is considerably simpler than working with all 100,000 people in the population.\nIf you’re interested in estimating the proportion of all people who do not believe that the work scientists do benefits them, but you do not have access to the population data, your best single guess is the sample proportion.\n\n# This first line counts the science work benefiet and saves it as a new data frame. the letter n is used for count\ng_monitor_count_samp &lt;- count(x = samp1, scientist_work, name =\"count\")\n\n# This takes the data frame and adds a proportion variable\nmutate(g_monitor_count_samp, proportion = count /sum(count))\n\n\nDescribe the distribution of responses in this sample. That is how has the proportion changed? Why does this seem reasonable?\n\nDepending on which 50 people you selected, your sample proportion (p_hat) could be a bit above or a bit below the true population proportion of 0.20. In general, though, the sample proportion turns out to be a pretty good estimate of the true population proportion, and you were able to get it by sampling less than 1% of the population.\n\nWould you expect the sample proportion to match the sample proportion of another student’s sample? Why, or why not? Post to the forum to confirm your answer.\nWrite the code to take a second sample, also of size 50, and call it samp2. How does the sample proportion of samp2 compare with that of samp1? Suppose we took two more samples, one of size 100 and one of size 1000. Which would you think would provide a more accurate estimate of the population proportion?\n\nNot surprisingly, every time you take another random sample, you might get a different sample proportion. It’s useful to get a sense of just how much variability you should expect when estimating the population proportion this way. The distribution of sample proportions, called the sampling distribution (of the proportion), can help you understand this variability. In this assignment, because you have access to the population, you can build up the sampling distribution for the sample proportion by repeating the above steps many times.\nHere, we use R to take 15,000 different samples of size 50 from the population, calculate the proportion of responses in each sample, filter for only the Doesn’t benefit responses, and store each result in a vector called sample_props50. This collection of sample statistics is called the sampling distribution.\nNote that we specify that replace = TRUE since sampling distributions are constructed by sampling with replacement.\n\n# Here was use a special operator called the pipe |&gt;, which takes the output of the previous line and puts it as the argument of the next line. More on that in a later R Assignment\n\nsample_props50 &lt;- global_monitor |&gt;\n                    rep_sample_n(size = 50, reps = 15000, replace = TRUE) |&gt;\n                    count(scientist_work) |&gt;\n                    mutate(p_hat = n /sum(n)) |&gt;\n                    filter(scientist_work == \"Doesn't benefit\")\n\nAnd we can visualize the distribution of these proportions with a histogram.\n\nggplot(data = sample_props50, aes(x = p_hat)) +\n  geom_histogram(binwidth = 0.02) +\n  labs(\n    x = \"p_hat (Doesn't benefit)\",\n    title = \"Sampling distribution of p_hat\",\n    subtitle = \"Sample size = 50, Number of samples = 15000\"\n  )\n\nNext, you will review how this set of code works.\n\nHow many elements are there in sample_props50? Describe the sampling distribution, and be sure to specifically note its center. Make sure to include a plot of the distribution in your answer. Post your answer to the forum to verify them."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_2.html#interlude-sampling-distributions",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_2.html#interlude-sampling-distributions",
+    "title": "Foundations for statistical inference - Sampling distributions",
+    "section": "Interlude: Sampling distributions",
+    "text": "Interlude: Sampling distributions\nNote that in practice one rarely gets to build true sampling distributions, because one rarely has access to data from the entire population.\nWith the rep_sample_n function, we were able to simulate 15000 samples with 15000 statistics and visualize them in the histogram above. (Yes that is 15000 samples in that graph)\nNote that for each of the 15,000 times we computed a proportion, we did so from a different sample!\nThis is similar to what happens in real life, except usually pollsters only collect one sample and statisticians do some math to guess at the population proportion, because they know it will have the normal shape above."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_2.html#sample-size-and-the-sampling-distribution",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_2.html#sample-size-and-the-sampling-distribution",
+    "title": "Foundations for statistical inference - Sampling distributions",
+    "section": "Sample size and the sampling distribution",
+    "text": "Sample size and the sampling distribution\n\nggplot(data = sample_props50, aes(x = p_hat)) +\n  geom_histogram(binwidth = 0.02)\n\nThe sampling distribution that you computed tells you much about estimating the true proportion of people who think that the work scientists do doesn’t benefit them. Because the sample proportion is an unbiased estimator, the sampling distribution is centered at the true population proportion, and the spread of the distribution indicates how much variability is incurred by sampling only 50 people at a time from the population.\nIn the remainder of this section, you will work on getting a sense of the effect that sample size has on your sampling distribution.\nIf you’re interested in estimating the proportion of all people who do not believe that the work scientists do benefits them, but you do not have access to the population data, your best single guess is the sample proportion."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_2.html#graded-questions",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_2.html#graded-questions",
+    "title": "Foundations for statistical inference - Sampling distributions",
+    "section": "Graded Questions:",
+    "text": "Graded Questions:\nThe following questions will be peer graded.\nThe code below was copied from above and will produce a histogram based on the sample size and number of samples simulated. You task is to explore what happens to the center, spread, and shape of the distribution as the sample size increases. Change the code and write your answer at the bottom. Then knit and upload this document to R_assignment.\n\n# Change this number and run the chunk. \nsample_size = 10\nrepetitions = 1000\n\nsample_props &lt;- global_monitor %&gt;%\n                    rep_sample_n(size = sample_size, reps = repetitions, replace = TRUE) %&gt;%\n                    count(scientist_work) %&gt;%\n                    mutate(p_hat = n /sum(n)) %&gt;%\n                    filter(scientist_work == \"Doesn't benefit\")\n\nggplot(data = sample_props, aes(x = p_hat)) +\n  geom_histogram(binwidth = 0.02) +\n  labs(\n    x = \"p_hat (Doesn't benefit)\",\n    title = \"Sampling distribution of p_hat\",\n    subtitle = \"Sample size = 50, Number of samples = 15000\"\n  )\n\nQuestions:\nIt is my hope that you have a sense of the central limit theorem at this point. Some of the new code can see overwhelming, but don’t worry too much about it.\nThere are only 3 questions for this R Assignment. If you are stumped post your thoughts or questions to the discussion.\n\nAs the sample size increases the center of the sampling distribution gets ____\nAs the sample size increases the variability of the sampling distribution ____\nAs the sample size increases the shape becomes ______"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_5.html",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_5.html",
+    "title": "Test for a single mean",
+    "section": "",
+    "text": "In this final R Assignment you will carry out a hypothesis test of a single mean using simulation, see the end of the videos on a single mean for the infer code.\nYou will do a hypothesis test of a single mean. Specifically you will answer the question was the unemployment rate in the US in 2017 4%? (This looks like it should be a proportion test, but you’ll be finding the average proportion across counties.)\nUse the county dataset in openintro for your data."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_5.html#assignmnet",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_5.html#assignmnet",
+    "title": "Test for a single mean",
+    "section": "",
+    "text": "In this final R Assignment you will carry out a hypothesis test of a single mean using simulation, see the end of the videos on a single mean for the infer code.\nYou will do a hypothesis test of a single mean. Specifically you will answer the question was the unemployment rate in the US in 2017 4%? (This looks like it should be a proportion test, but you’ll be finding the average proportion across counties.)\nUse the county dataset in openintro for your data."
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_5.html#introduction",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_5.html#introduction",
+    "title": "Test for a single mean",
+    "section": "Introduction",
+    "text": "Introduction"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_5.html#notation",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_5.html#notation",
+    "title": "Test for a single mean",
+    "section": "Notation",
+    "text": "Notation\n(see cheat sheet (R Assignment 0) for coding. You can also see code for past R Assignment)\n\\[H_o:   \\\\\nH_a: \\]"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_5.html#conditions",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_5.html#conditions",
+    "title": "Test for a single mean",
+    "section": "Conditions",
+    "text": "Conditions"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_5.html#the-test",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_5.html#the-test",
+    "title": "Test for a single mean",
+    "section": "The Test",
+    "text": "The Test"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_5.html#conclusion",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_5.html#conclusion",
+    "title": "Test for a single mean",
+    "section": "Conclusion",
+    "text": "Conclusion"
+  },
+  {
+    "objectID": "MTH_142_files_for_students/RAssignments/R_Assignment_5.html#errors",
+    "href": "MTH_142_files_for_students/RAssignments/R_Assignment_5.html#errors",
+    "title": "Test for a single mean",
+    "section": "Errors",
+    "text": "Errors"
   }
 ]

@@ -14,7 +14,7 @@ library(infer)
 set.seed(62)
 ```
 
-In this lab, we will work with the `infer` package in R to conduct statistical inference on American public opinions/public health sentiment during the Ebola virus epidemic of 2013-2016.
+In this lab, we will work with the `infer` package in R to conduct statistical inference on American public opinions/public health sentiment during the Ebola virus epidemic of 2013-2016. We'll also get really into using the pipe |> for doing simulation. Please see the video introducing the pipe. 
 
 # Motivation
 

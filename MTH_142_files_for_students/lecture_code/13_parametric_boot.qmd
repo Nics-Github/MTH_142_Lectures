@@ -17,6 +17,7 @@ execute:
 
 library(tidyverse)
 library(infer)
+library(openintro)
 ```
 
 ## The infer package

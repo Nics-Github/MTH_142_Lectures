@@ -5,7 +5,7 @@ author: "Nic Schwab"
 
 These are the lectures from MTH 142, you can also find the direct links via Canvas. 
 
-[Lecture 1 Statistical Thinking](lectures/day-1-statistical-thinking.html)
+[Lecture 1 Statistical Thinking](lectures/1_statistical_thinking.qmd)
 
 [Lecture 2 Study Design and Variables](lectures/2_sampling.qmd)
 

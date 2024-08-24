@@ -1,10 +1,8 @@
 ---
 title: "Introduction to R and RStudio"
-subtitle: "R_Assignment_0"
-author: "Solutions"
-date: "Last updated 8/22/2024"
-format: pdf
-editor: source
+author: "name"
+date: "`r Sys.Date()`"
+output: pdf_document
 execute: 
   echo: true
 ---
@@ -19,13 +17,9 @@ library(openintro)
 
 The little bit of code at the top of this document, between some hyphens - - - , is called the yaml. Add your name and the date into the yaml. They should both be strings (that means "in quotes").
 
-## A note on labs
+## A note on R Assignments
 
-In SDS 220 you will get lots of practice doing statistics through homework assignments, the final project and labs. You will have 7 or 8 labs during this course that will help you do "modern" statistics with simulation and specialized R packages. In this lab the goal is to warm up with some plotting and becoming familiar with R and quarto. You will have 7 questions at the end which will be graded. Finally you will know if you have done your lab correctly if you are able to render without errors. (Getting errors is normal and common. If you are unable to fix them go to office hours or tutoring.) Turn in the rendered .pdf to moodle before the due date. Late labs are not accepted and one will be dropped. Good luck.
-
-## Keep your labs organized
-
-This Lab1.qmd file should be organized into a folder on your computer, ideally in documents (Do not leave it in your downloads folder). All of your labs for this class should go in the same folder. The folders *img* and *more* should be in the same folder. This is important for rendering your work.
+In MTH 142 you will get lots of practice doing statistics through homework assignments, the final  and R Assignments. You will have 6  during this course that will help you do "modern" statistics with simulation and specialized R packages. In this R Assignment the goal is to warm up with some plotting and becoming familiar with R and quarto. You will have 7 questions at the end which will be graded. Finally you will know if you have done your R Assignment correctly if you are able to render without errors. (Getting errors is normal and common. If you are unable to fix them go to office hours or tutoring.) Turn in the rendered .pdf to moodle before the due date. Late R Assignments are not accepted and one will be dropped. Good luck.
 
 ## The RStudio Interface
 
@@ -33,7 +27,7 @@ By now you have seen Rstudio and have heard words like: **console**, **quarto**,
 
 ### R Packages
 
-`R` is an open-source programming language, meaning that users can contribute packages that make our lives easier, and we can use them for free. For this lab, and many others in the future, we will use the following:
+`R` is an open-source programming language, meaning that users can contribute packages that make our lives easier, and we can use them for free. For this R Assignment, and many others in the future, we will use the following:
 
 -   The **tidyverse** "umbrella" package which houses a suite of many different `R` packages: for data wrangling and data visualization
 -   The **openintro** `R` package: for data and custom functions with the OpenIntro resources
@@ -64,7 +58,7 @@ We will be using quarto ( or the older rmarkdown) to create reproducible lab rep
 
 [**Using quarto for Lab Reports in RStudio**](https://youtu.be/o0h-eVABe9M)
 
-You have already opened Lab_1.qmd and you are working in it now. In the future you can click File -\> Quarto Document to make a new .qmd file.
+You have already opened R_Assignment_0.qmd and you are working in it now. In the future you can click File -\> Quarto Document to make a new .qmd file.
 
 Going forward you should refrain from typing your code directly in the console, as this makes it very difficult to remember and reproduce the output you want to reference. Potentially the most important feature of quarto files is that they allow for us to nest our `R` code within a written report. In an quarto file, `R` code appears in a gray box, which we call "code chunks." The quarto file knows that the gray box contains `R` code because it begins with three tick marks (\`\`\`), followed by two curly braces that contain a lowercase letter r ({r}). If you do not see these code chunks you may be in *Visual* mode. You can switch to *Source* mode in the upper left.
 
@@ -356,6 +350,3 @@ These may come in handy throughout the semester:
 
 Note that some of the code on these cheatsheets may be too advanced for this course. However the majority of it will become useful throughout the semester.
 
-------------------------------------------------------------------------
-
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png){style="border-width:0"}</a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.

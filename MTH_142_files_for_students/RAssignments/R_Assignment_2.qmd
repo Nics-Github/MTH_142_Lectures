@@ -111,7 +111,7 @@ In general, though, the sample proportion turns out to be a pretty good estimate
 
 1.  Would you expect the sample proportion to match the sample proportion of another student's sample?
     Why, or why not?
-    Ask a student team to confirm your answer.
+    Post to the forum to confirm your answer.
 
 2.  Write the code to take a second sample, also of size 50, and call it `samp2`.
     How does the sample proportion of `samp2` compare with that of `samp1`?
@@ -128,7 +128,7 @@ Here, we use R to take 15,000 different samples of size 50 from the population, 
 Note that we specify that `replace = TRUE` since sampling distributions are constructed by sampling with replacement.
 
 ```{r iterate}
-# Here was use a special operator called the pipe |>, which takes the output of the previous line and puts it as the argument of the next line. More on that in a later Rassignment
+# Here was use a special operator called the pipe |>, which takes the output of the previous line and puts it as the argument of the next line. More on that in a later R Assignment
 
 sample_props50 <- global_monitor |>
                     rep_sample_n(size = 50, reps = 15000, replace = TRUE) |>
@@ -151,7 +151,7 @@ ggplot(data = sample_props50, aes(x = p_hat)) +
 
 Next, you will review how this set of code works.
 
-1.  How many elements are there in `sample_props50`? Describe the sampling distribution, and be sure to specifically note its center. Make sure to include a plot of the distribution in your answer.
+1.  How many elements are there in `sample_props50`? Describe the sampling distribution, and be sure to specifically note its center. Make sure to include a plot of the distribution in your answer. Post your answer to the forum to verify them. 
 
 ## Interlude: Sampling distributions
 
