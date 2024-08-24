@@ -11,7 +11,7 @@ editor: visual
 
 [Chapter 1 hello data](https://openintro-ims.netlify.app/data-hello)
 
-## The Data
+## The Data 
 
 ```{r}
 library(openintro)
@@ -71,4 +71,4 @@ It is harder to say that x causes y without a control.
 
 ## Examples
 
-[Problems 10 and 11 chapter 1](https://openintro-ims.netlify.app/data-hello#sec-chp1-exercises)
+[Problems 10 and 11 in chapter 1](https://openintro-ims.netlify.app/data-hello#sec-chp1-exercises)
