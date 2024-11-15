@@ -20,7 +20,7 @@ In 2005 the show "Myth Busters" did an experiment to see if yawning is contagiou
 
 ## An exploratory data analysis.
 
-
+Any graph that shows the number of people who yawned here should be accepted. 
 ```{r}
 ggplot(data = yawn, aes(x=result, fill= group))+
   geom_bar()
@@ -30,7 +30,13 @@ ggplot(data = yawn, aes(x=result, fill= group))+
     
 ## Check the conditions.*
 
-It seems we don't have enough people in the control group to satisfy the conditions of this test. If we treat yawning as a success then we only have 4 successes in the control group. Our sample is also small, for the control group. It only has 16 people in it. I should stop here, this test doesn't meet the conditions, but I'm carrying on anyway.  
+In this part students have to check success/failure condition and independence/ large sample size for both groups. 
+
+Success/faliure: It seems we don't have enough people in the control group to satisfy the conditions of this test. If we treat yawning as a success then we only have 4 successes in the control group. 
+
+Independence/ large sample sizes: Our sample is also small, for the control group. It only has 16 people in it. 
+
+It would be good to note that we should stop here, but I (the instructor) have asked you to continue the test. Something like: "I should stop here, this test doesn't meet the conditions, but I'm carrying on anyway."
 
 ```{r}
 count(yawn, result, group)
@@ -39,9 +45,9 @@ count(yawn, result, group)
 
 ## Write out the hypothesis notation. Include a significance level.
 
-In this part you will edit the symbols below to display the mathematical symbols for the hypothesis test. Verify your notation by looking at the preview. Note: the first null hypothesis is currently correct, edit the alternative and alpha. 
+The notation should look something like it does below. In the null we are assuming there are two proportions that are the same. in the alternative we are checking to see if they are different. Alpha should be 0.05, but can be any number less than 0.1. Alpha should not be 0.5 (not that this would be the 50% signifigance level, this is a common mistake students make).  
 
-$$H_o: p_{trmt} = p_{ctrl} \\ H_a: p_{trmt} \ne p_{ctrl} \\ \alpha = 1$$
+$$H_o: p_{trmt} = p_{ctrl} \\ H_a: p_{trmt} \ne p_{ctrl} \\ \alpha = 0.05$$
 
 ## Do the test and state your p-value.
     
@@ -57,15 +63,17 @@ note: prop.test() needs four arguments for this test.
 # This line of code turns off scientific notation, you don't need to do anything with it. 
 options(scipen = 100)
 
-prop.test(x = c() , n = c() , alternative = "two.sided", correct = FALSE)
+prop.test(x = c(4,10) , n = c(16,34) , alternative = "two.sided", correct = FALSE)
 
 ```
 
 ## Write the Conclusion.
 
-Considering your p-value and alpha. State whether there is evidence that yawning is contagious. Consider your conditions in this answer. 
+The conclusion does not have to be long. But should say something like: 
+
+With a pvalue of 0.7459 the null hypothesis should not be rejected. This data provides no evidence that yawning is contagious. Also the results of this test may be misleading, as the conditions for the test were not met. 
 
 
 ## Discuss which testing error (I or II) may be possible.
 
-Note: this does not mean your test is invalid. We are dealing with probabilities so it is always possible for for our conclusion to be incorrect. 
+We did not reject the null hypothesis. Its possible that we made a type 2 error. 
