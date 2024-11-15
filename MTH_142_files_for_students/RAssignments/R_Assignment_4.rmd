@@ -1,0 +1,69 @@
+---
+title: "MTH 142: R Assignment 4"
+author: "name"
+date: "`r Sys.Date()`"
+output: pdf_document
+execute: 
+  echo: true
+---
+
+```{r setup, include=FALSE}
+library(openintro)
+library(tidyverse)
+
+# This will put the yawn data into your environment. 
+yawn <- yawn
+```
+
+In 2005 the show "Myth Busters" did an experiment to see if yawning is contagious. In this 4th R assignment you will use data provided in the openintro package to answer that question for yourselves. We will see if the proportions of people that yawn in the treatment group is different then the proportion of people who yawn in the control group. There is a 2 minute video on canvas of that episode. In the show they did not get into statistics, but you will. You will carry out a hypothesis test similar to what you've been doing in the homework, except you will write out the test completely. This assignment is similar to R_Assignment_3, and the instructions for each part have been shortened. In the video on canvas I do this assignment for a different data set, feel free to check that out. 
+
+
+## An exploratory data analysis.
+    
+```{r}
+
+
+```
+
+    
+## Check the conditions.*
+
+This is a two proportion test so you should consult chapter 17 of IMS for the conditions. You will likely need to produce code that counts the levels  of the variable quarantine. I do this with `count()` in the video. Be sure to write out whether the conditions are met or not. Do the test even if conditions are not met. 
+
+```{r}
+count(yawn, result, group)
+```
+
+
+## Write out the hypothesis notation. Include a significance level.
+
+In this part you will edit the symbols below to display the mathematical symbols for the hypothesis test. Verify your notation by looking at the preview. Note: the first null hypothesis is currently correct, edit the alternative and alpha. 
+
+$$H_o: p_{trmt} = p_{ctrl} \\ H_a:p \ne 0 \\ \alpha = 1$$
+
+## Do the test and state your p-value.
+    
+Use prop.test() to have R calculate the p-value for you. State your p-value.
+note: prop.test() needs four arguments for this test. 
+
+-   x = number of successes in both groups. Enter as: c(success group 1, successes group 2)
+-   n = total sample size of both groups. Enter as:  c(group1, group2)
+-   alternative = the alternative hypothesis (I've set this for you). 
+-   correct = FALSE (I've done this for you)
+  
+```{r}
+# This line of code turns off scientific notation, you don't need to do anything with it. 
+options(scipen = 100)
+
+prop.test(x = c() , n = c() , alternative = "two.sided", correct = FALSE)
+
+```
+
+## Write the Conclusion.
+
+Considering your p-value and alpha. State whether there is evidence that yawning is contagious. Consider your conditions in this answer. 
+
+
+## Discuss which testing error (I or II) may be possible.
+
+Note: this does not mean your test is invalid. We are dealing with probabilities so it is always possible for for our conclusion to be incorrect. 

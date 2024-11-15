@@ -1,0 +1,111 @@
+---
+title: "Test for a single mean"
+subtitle: " R Assignment 5" 
+author: "name"
+date: "`r Sys.Date()`"
+output: pdf_document
+execute: 
+  echo: true
+---
+
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+library(tidyverse)
+library(openintro)
+
+
+
+```
+
+## Assignmnet
+
+In this final R Assignment you will carry out a hypothesis test for a single mean. The instructions are similar to that of the previous two RAssignments. You have gotten better at R so I am telling you alittle less. Reference R Assignment 3 for some details, although the tests for proportions and means are different, the outline is the same.
+
+## The data
+
+There was an episode of the Planet Money podcast in which people guessed the weight of a cow names Penelope. I'd like to know if the average of the weights guessed was statistically close to Penelope's actual weight of 1355 pounds. Type ?penelope to learn more and hear the podcast. 
+
+```{r}
+
+
+```
+
+
+## Do an exploritory analysis. 
+
+At minimum you should make a graph to check for outliers and also find the average guessed weight of the cow. Feel free to find other information that might be necessary for conditions.  
+
+```{r}
+ggplot(penelope)+
+  geom_boxplot(aes(x=weight))
+
+mean(penelope$weight)
+```
+
+## Remove outliers
+
+Some of the guesses are way too small/ large, I'd like to remove the outliers so we meet the conditions of the test. I've set up the code to do this. You need to find the upper or lower fence to filter out the outliers. You can do this in R or with pencil and paper. Change the values below to the correct fence values. 
+
+
+```{r}
+Q1 <- fivenum(penelope$weight)[2]
+Q3 <- fivenum(penelope$weight)[4]
+IQR_weight <- IQR(penelope$weight)
+
+Q1-1.5*IQR_weight
+Q3+1.5*IQR_weight
+```
+
+```{r}
+upper_fence = 2493.75 #put in the upper fence, if there is one or type 10000000 if none. "
+lower_fence = -44#put the lower fence if there is one, or 0 if none. 
+
+
+penelope <- filter(penelope, weight > lower_fence & weight < upper_fence )
+
+```
+
+## Check conditions and recalculate the mean.  
+
+```{r}
+mean(penelope$weight)
+
+```
+
+check the conditions of the test. 
+
+
+
+## Write out the hypothesis notation. Include a significance level.
+
+Edit the values below to match this test. 
+
+$$
+H_o: \mu = 1 \\ H_a: \mu \ne 0 \\ \alpha = 1
+
+$$
+
+## Do the test and state the p-value. 
+
+There is a nice function called t.test() which will run a hypothesis test for you. 
+
+x - is a vector of values, so in our case penelope$weight
+mu - is the assumed null hypothesis
+alternative - put in "less", "greater" or "two.sided" depending on what kind of test it is. 
+
+```{r}
+t.test(x= penelope$weight  , mu= 1355 , alternative = "two.sided" )
+
+```
+
+## Write the Conclusion.
+
+Considering your p-value and alpha. State whether is it likely that Penelope's true weight would have been guessed by the participants, or would their guesses have rejected the null in error. 
+
+
+## Discuss which testing error (I or II) may be possible.
+
+Note: this does not mean your test is invalid. We are dealing with probabilities so it is always possible for for our conclusion to be incorrect. 
+
+
+
