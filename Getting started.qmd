@@ -7,6 +7,16 @@ editor: visual
 
 # Tour of Rstudio
 
+I've posted a video going through this checklist you should watch it on canvas. 
+
+## Correct packages. 
+
+First let's make sure you have the following R packages. 
+
+-   tidyverse, openintro, infer, palmer penguins (see video)
+
+## Intro to the cheat sheet
+
 To help remember all of the things we need for this class, I’ve made a cheat
 sheet. 
 
@@ -39,4 +49,4 @@ Practice
 -   Knit your markdown file as .pdf.
 -   Download file
 
-Upload MTH 142 files for students.
+Upload MTH_142_files_for_students.
