@@ -38,10 +38,12 @@ Console vs. Rmarkdown
 -   R Assignments knit in markdown
 
 Grey Chunk vs white space
+
 -   Spacing in chunk
 -   Chunk titles
 
 Practice
+
 -   Make/knit second .Rmd file.
 -   Delete all the default stuff below the YAML.
 -   Add a chunk to add some numbers together.
