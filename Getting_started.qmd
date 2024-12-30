@@ -31,18 +31,18 @@ Let’s reference it to do the following:
 -   Copying and pasting plain text.
 -   Taking a screen shot
 
-Console vs. Rmarkdown
+## Console vs. Rmarkdown
 
 -   Scratch work can be done in the console
 -   Do homework calculation in an .rmd to save your work.
 -   R Assignments knit in markdown
 
-Grey Chunk vs white space
+## Grey Chunk vs white space
 
 -   Spacing in chunk
 -   Chunk titles
 
-Practice
+## Practice
 
 -   Make/knit second .Rmd file.
 -   Delete all the default stuff below the YAML.
@@ -51,4 +51,6 @@ Practice
 -   Knit your markdown file as .pdf.
 -   Download file
 
-Upload MTH_142_files_for_students.
+## Upload MTH_142_files_for_students.
+
+This zip files has your assignments for the semester. 
