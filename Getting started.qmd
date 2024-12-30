@@ -1,0 +1,42 @@
+---
+title: "Getting Started"
+author: "Schwab"
+format: html
+editor: visual
+---
+
+# Tour of Rstudio
+
+To help remember all of the things we need for this class, I’ve made a cheat
+sheet. 
+
+Let’s reference it to do the following:
+
+-   Make/knit your first .Rmd
+-   Keep yourself organized
+-   Focus on the name of the file’s spacing
+-   Renaming a file
+-   Downloading file from Rstudio.
+-   Uploading a file to Rstudio.
+-   Copying and pasting plain text.
+-   Taking a screen shot
+
+Console vs. Rmarkdown
+
+-   Scratch work can be done in the console
+-   Do homework calculation in an .rmd to save your work.
+-   R Assignments knit in markdown
+
+Grey Chunk vs white space
+-   Spacing in chunk
+-   Chunk titles
+
+Practice
+-   Make/knit second .Rmd file.
+-   Delete all the default stuff below the YAML.
+-   Add a chunk to add some numbers together.
+-   Save it as practice.rmd
+-   Knit your markdown file as .pdf.
+-   Download file
+
+Upload MTH 142 files for students.
