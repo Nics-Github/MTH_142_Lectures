@@ -1,5 +1,6 @@
 ---
-title: "MTH 142: R Assignment 4"
+title: "R Assignment 5"
+subtitle: "Hypothesis test difference of proportions"
 author: "name"
 date: "`r Sys.Date()`"
 output: pdf_document
@@ -15,10 +16,16 @@ library(tidyverse)
 yawn <- yawn
 ```
 
-In 2005 the show "Myth Busters" did an experiment to see if yawning is contagious. In this 4th R assignment you will use data provided in the openintro package to answer that question for yourselves. We will see if the proportions of people that yawn in the treatment group is different then the proportion of people who yawn in the control group. There is a 2 minute video on canvas of that episode. In the show they did not get into statistics, but you will. You will carry out a hypothesis test similar to what you've been doing in the homework, except you will write out the test completely. This assignment is similar to R_Assignment_3, and the instructions for each part have been shortened. In the video on canvas I do this assignment for a different data set, feel free to check that out. 
+## Intro/Goal:
+
+In this R Assignment you will do a hypothesis test on the difference of two proportions. You will do an EDA, check the conditions and finally write a conclusion. You will also have to consider which testing error is possible. Along the way I will introduce you to a new function called prop.test() which will make the hypothesis test very simple. I will do a similar hypothesis test and post a video to canvas. 
+
+In 2005 the show "Myth Busters" did an experiment to see if yawning is contagious. In this 4th R assignment you will use the yawn data provided in the openintro package to answer that question for yourselves. We will see if the proportions of people that yawn in the treatment group is different then the proportion of people who yawn in the control group. There is a 2 minute video on canvas of that episode. In the show they did not get into statistics, but you will. You will carry out a hypothesis test similar to what you've been doing in the homework, except you will write out the test completely. In the video on canvas I do this assignment for a different data set, feel free to check that out. 
 
 
 ## An exploratory data analysis.
+    
+Do an EDA here. Write some notes about it.     
     
 ```{r}
 
@@ -28,9 +35,10 @@ In 2005 the show "Myth Busters" did an experiment to see if yawning is contagiou
     
 ## Check the conditions.*
 
-This is a two proportion test so you should consult chapter 17 of IMS for the conditions. You will likely need to produce code that counts the levels  of the variable quarantine. I do this with `count()` in the video. Be sure to write out whether the conditions are met or not. Do the test even if conditions are not met. 
+This is a two proportion test so you should consult chapter 17 of IMS for the conditions. You will likely need to produce code that counts the levels of the variable quarantine. I do this with `count()` in the video. Be sure to write out whether the conditions are met or not. Do the test even if conditions are not met. 
 
 ```{r}
+# I've typed out the count code for you. 
 count(yawn, result, group)
 ```
 

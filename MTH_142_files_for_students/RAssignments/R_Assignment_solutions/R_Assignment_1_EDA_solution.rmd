@@ -40,11 +40,19 @@ Make a chunk below (See R assignment 0).
 Data Questions
 1. How many variables are in the data?
 
-2. List all the variables that are categorical.
+**Answer:** 13
+
+2. As listed in the documentation list the first three the variables that are categorical.
+
+**Answer:** gender, grade, hispanic, race (grade is categorized as a character varible even though it is a number. So if it is included instead of race, that's ok. ) 
 
 3. How many youth are present in this sample? 
 
+**Answer:** 13,583 youth
+
 4. Which organization collected the data? The link in the documentation doesn't work well. [This one is better](https://www.cdc.gov/yrbs/index.html)
+
+**Answer:** The cdc collects this data. 
 
 
 ## Calculate two Summary Statistics
@@ -53,12 +61,15 @@ Let us focus on one variable. Let's consider the age variable, which is numeric.
 
 ```{r statistic_1}
 # The code for the mean goes here
-
+mean(yrbss$age, na.rm = TRUE )
 ```
 
 ```{r statistic_2}
 # The code for the five number summary goes here
+fivenum(yrbss$age)
 
+# The summary function works too
+summary(yrbss$age)
 ```
 
 
@@ -67,28 +78,28 @@ Recall from the reading that the five number summary breaks data up into quartil
 Questions:
 
 5. What percent of the students are over 17?
-
+**Answer:** 25%
 
 6. What are the ages of the youngest and oldest students in our data?
+**Answer:** 12 and 18
 
+7. How many students did not report their age? (Hint: use the summary() function)
 
-7. How many students did not report their age?
-
-
+**Answer:** There were 77 students that did not report their age. 
 
 ## Make two plots
 
-age is a numeric variable. We saw how to make a histogram for a numeric variable in R Assignment 0. We will do that again below. We will also add a title and site the source of our data. The outline for a histogram is completed for you. Follow the directions in the comments
+age is a numeric variable. We saw how to make a histogram for a numeric variable in R Assignment 0. We will do that again below. We will also add a title and site the source of our data. The outline for a histogram is completed for you
 
 8. Make a histogram of age, include a title and caption. 
 ```{r}
 # Write some ggplot() code for a histogram here. 
 
-ggplot(data =    )+   # Add the data
-  geom_histogram(aes(x=   ))+   # Add the age variable
+ggplot(data =   yrbss )+   # Add the data
+  geom_histogram(aes(x=  age ))+   # Add the age variable
   labs(
-    title = "Put a title here",
-    caption = "Cite the source"
+    title = "Ages of students in yrbss survey",
+    caption = "source: https://www.cdc.gov/yrbs/index.html"
   )
 
 ```
@@ -98,7 +109,12 @@ ggplot(data =    )+   # Add the data
 ```{r}
 # Write some ggplot() code for a boxplot here. 
 
-
+ggplot(data =   yrbss )+   # Add the data
+  geom_boxplot(aes(x=  age ))+   # Add the age variable
+  labs(
+    title = "Ages of students in yrbss survey",
+    caption = "source: https://www.cdc.gov/yrbs/index.html"
+  )
 
 ```
 
@@ -106,7 +122,7 @@ ggplot(data =    )+   # Add the data
 
 10. You've explored your data and gotten a better idea of the age variable in yrbss. Describe the ages of the population included in our sample. Tell me who they are, and who they are not. What age is most represented in our sample? 
 
-
+**Answer:** These are high school age students. Some of them are 12 or 13, but most of them are over 13 and younger than 18. 17 year olds are most represented in the data. 
 
 
 Finally knit and upload this document to canvas. If your document doesn't knit correctly post a screen shot to the forums. 

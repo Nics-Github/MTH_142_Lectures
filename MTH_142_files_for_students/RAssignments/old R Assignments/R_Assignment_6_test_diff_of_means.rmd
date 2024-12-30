@@ -1,6 +1,6 @@
 ---
-title: "Test for a single mean"
-subtitle: " R Assignment 5" 
+title: " R Assignment 6"
+subtitle:  "Test for a difference of means"
 author: "name"
 date: "`r Sys.Date()`"
 output: pdf_document
@@ -13,20 +13,21 @@ knitr::opts_chunk$set(eval = TRUE)
 library(tidyverse)
 library(openintro)
 
-
-
 ```
 
 ## Assignmnet
 
-In this final R Assignment you will carry out a hypothesis test for a single mean. The instructions are similar to that of the previous two RAssignments. You have gotten better at R so I am telling you alittle less. Reference R Assignment 3 for some details, although the tests for proportions and means are different, the outline is the same.
+In this final R Assignment you will carry out a hypothesis test for a single mean. The instructions are similar to that of the previous two R Assignments. You have gotten better at R so I am telling you a little less. 
+
+
 
 ## The data
 
-There was an episode of the Planet Money podcast in which people guessed the weight of a cow names Penelope. I'd like to know if the average of the weights guessed was statistically close to Penelope's actual weight of 1355 pounds. Type ?penelope to learn more and hear the podcast. 
+There was an episode of the Planet Money podcast in which people guessed the weight of a cow named Penelope. You should recall this data from an earlier R Assignment. We know the true average I'd like to know if the average of the weights guessed was statistically close to Penelope's actual weight of 1355 pounds. Type ?penelope to learn more and hear the podcast. 
 
 ```{r}
-
+smoking |>
+  filter(smoke =="yes")
 
 ```
 
@@ -38,39 +39,22 @@ At minimum you should make a graph to check for outliers and also find the avera
 ```{r}
 ggplot(penelope)+
   geom_boxplot(aes(x=weight))
-
-mean(penelope$weight)
 ```
 
 ## Remove outliers
 
 Some of the guesses are way too small/ large, I'd like to remove the outliers so we meet the conditions of the test. I've set up the code to do this. You need to find the upper or lower fence to filter out the outliers. You can do this in R or with pencil and paper. Change the values below to the correct fence values. 
 
-
 ```{r}
-Q1 <- fivenum(penelope$weight)[2]
-Q3 <- fivenum(penelope$weight)[4]
-IQR_weight <- IQR(penelope$weight)
-
-Q1-1.5*IQR_weight
-Q3+1.5*IQR_weight
-```
-
-```{r}
-upper_fence = 2493.75 #put in the upper fence, if there is one or type 10000000 if none. "
-lower_fence = -44#put the lower fence if there is one, or 0 if none. 
+upper_fence = 1000000 #put in the upper fence, if there is one or type 10000000 if none. "
+lower_fence = 1#put the lower fence if there is one, or 0 if none. 
 
 
 penelope <- filter(penelope, weight > lower_fence & weight < upper_fence )
 
 ```
 
-## Check conditions and recalculate the mean.  
-
-```{r}
-mean(penelope$weight)
-
-```
+## Check conditions
 
 check the conditions of the test. 
 
@@ -94,7 +78,7 @@ mu - is the assumed null hypothesis
 alternative - put in "less", "greater" or "two.sided" depending on what kind of test it is. 
 
 ```{r}
-t.test(x= penelope$weight  , mu= 1355 , alternative = "two.sided" )
+?t.test(x= , mu= , alternative = )
 
 ```
 

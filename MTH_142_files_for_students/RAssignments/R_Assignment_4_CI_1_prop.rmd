@@ -1,0 +1,123 @@
+---
+title: "R Assignment 4"
+subtitle: "A confidence interval for one proportion"
+author: "optional name"
+date: "`r Sys.Date()`"
+output: pdf_document
+execute: 
+  echo: true
+---
+
+```{r setup, include=FALSE}
+library(infer)
+detach("package:infer", unload = TRUE) # This unload infer, which we used last assignment
+
+library(openintro)
+library(tidyverse)
+
+# This will bring up the documentation for the smallpox data. 
+?smallpox
+
+# This will filter for only the people who got vaccined from smallpox . 
+vaccinated = smallpox |> filter(inoculated == "yes") |> select(result)
+
+#This filters for the people who are not vaccinated. 
+not_vaccinated = smallpox |> filter(inoculated == "no") |> select(result)
+```
+
+## Intro/Goal:
+
+In this assignment you will do make a 95% confidence interval for a single proportion. You will be guided to do an exploratory data analysis (EDA), check conditions for the central limit theorem, build the confidence interval, and interpret the confidence interval and finally write a conclusion. I will make a 90% confidence interval. 
+
+Diseases are contagious. Some more so than others. I would like to know if someone is exposed to smallpox, what is the chance they will die from the disease. We will explore this together twice. Once for people who are vaccinated against smallpox and once for people are are not. I assume the people who are unvaccinated have a lower rate of survival. Really we are trying to get a handle on how effective an early vaccine against the disease is (This data is very old). We are trying to figure out the true proportion of individuals who die from smallpox after being exposed to it. 
+
+The data come from a dataset called smallpox. As part of your EDA you should look at the documentation for smallpox. Make a chunk and do that below. 
+
+However you will not use the smallpox dataframe as we want to work with vaccinated and unvaccinated people separately (we can work with them together, but that's for the next R assignment. For this assignment you will use the not_vaccinated data frame. I will demonstrate a 90% confidence interval with the vaccinated data. Both dataframes have one column called result and it shows whether the person lived or died.  
+
+## An exploratory data analysis.
+    
+You should have a look at the data, perhaps make a bar graph or table to see the current distribution of the data. 
+
+```{r}
+ggplot(vaccinated) +
+  geom_bar(aes(x=result))
+
+```
+
+    
+## Check the conditions.*
+
+We are using the Central Limit Theorem, thus we need to check conditions for a single proportion. We will do this by examining the data. This is a one proportion test so you should consult chapter 16 of IMS. I will produce code that counts the levels (lived or died) of the variable result. I do this with `count()` in the video. Be sure to type out whether the conditions are met or not and justify. Continue with the confidence interval even if conditions are not met. 
+
+```{r}
+count(vaccinated, result   )
+```
+
+My success-failure condition is questionable, as I do not have 10 successes and 10 failures. However I think its okay to relax this condition as often 5 successes and 5 failures is considered fine. 
+
+I have to assume independence of the data, and our sample size is large. 
+
+## Make the confidence interval
+
+Make a 90% confidence interval for the proportion of people who survived small pox exposure. 
+
+To find the confidence interval I'll have to do some math. First I'll find p-hat, then I'll calculate the standard error and margin of error. Finally I'll find the lower and upper bounds. See chapter 16 for the formulas. 
+
+```{r}
+p_hat = 238/244 # I got these numbers by looking at the count() above. 
+
+SE = sqrt((1-p_hat)*p_hat/244)   # This is from the standard error formula
+z_star = qnorm(p = 0.95)  # Yes that is the correct percent value for a 90% CI.
+ME = z_star*SE   # The Margin of Error is the z_star times the Standard error. 
+
+print("Lower Bound")
+p_hat - ME  # This calculate the lower bound for the confidence interval 
+
+print("Upper Bound")
+p_hat + ME # This is the upper bound. 
+```
+
+## Interprete the CI
+
+With 90% confidence we can say that the true survival rate for people who were exposed to small pox who survived the disease is between 95.9% and 99.2%. This is a high survival rate. However we may want to consider bias in the data. People who were vaccinated may have been overall heather than those who were not. 
+
+# Exercises
+
+You will make a 95% confidence interval for the proportion of people who survived exposure to smallpox and were not vaccinated. You may use and edit any code above, but you have to go through the steps. I've abbreviated the instructions slightly. 
+
+## An exploratory data analysis.
+    
+Have a look at the not_vaccinated data, perhaps make a bar graph or table. 
+
+```{r}
+
+```
+
+    
+## Check the conditions.
+
+You need to check that the conditions for this confidence interval are met by examining the data. 
+
+```{r}
+count(,    )
+```
+
+
+## Make the confidence interval
+
+Make a 95% confidence interval for the proportion of people who survived small pox exposure but were unvaccinated. Note: You may carefully copy and edit the code above. I made a 90% CI and you will make a 95% CI, also our p_hats will be different as you are working with the not_vaccinated data. 
+ 
+
+
+```{r}
+ 
+```
+
+# Interpret the CI
+
+What does your confidence interval mean for those who survived smallpox? 
+
+# Compare the confidence intervals. 
+
+Does it seem like vaccination helps the chance of survival? What other factors might be confounding our test? (Note: It might help to this of the data's provenance, ie where the data came from)
