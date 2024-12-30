@@ -23,6 +23,8 @@ website:
     right:
     - text: lectures
       href: index.qmd
+    - text: MTH_142_files_for_students
+      href: MTH_142_files_for_students.zip
   
   page-footer:
     right: 
