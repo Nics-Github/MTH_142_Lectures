@@ -18,9 +18,9 @@ yawn <- yawn
 
 ## Intro/Goal:
 
-In this R Assignment you will do a hypothesis test on the difference of two proportions. You will do an EDA, check the conditions and finally write a conclusion. You will also have to consider which testing error is possible. Along the way I will introduce you to a new function called prop.test() which will make the hypothesis test very simple. I will do a similar hypothesis test and post a video to canvas. 
+In this R Assignment you will do a hypothesis test on the difference of two proportions. You will do an EDA, check the conditions, complete the test and finally write a conclusion. You will also have to consider which testing error is possible. Along the way I will introduce you to a new function called prop.test() which will make the hypothesis test very simple. I will do a similar hypothesis test and post a video to canvas. 
 
-In 2005 the show "Myth Busters" did an experiment to see if yawning is contagious. In this 4th R assignment you will use the yawn data provided in the openintro package to answer that question for yourselves. We will see if the proportions of people that yawn in the treatment group is different then the proportion of people who yawn in the control group. There is a 2 minute video on canvas of that episode. In the show they did not get into statistics, but you will. You will carry out a hypothesis test similar to what you've been doing in the homework, except you will write out the test completely. In the video on canvas I do this assignment for a different data set, feel free to check that out. 
+In 2005 the show "Myth Busters" did an experiment to see if yawning is contagious. In this 5th R assignment you will use the yawn data provided in the openintro package to answer that question for yourselves. We will see if the proportions of people that yawn in the treatment group is different then the proportion of people who yawn in the control group. There is a 2 minute video on canvas of that episode. In the show they did not get into statistics, but you will. You will carry out a hypothesis test similar to what you've been doing in the homework, except you will write out the test completely. In the video on canvas I do this assignment for a different data set, feel free to check that out. 
 
 
 ## An exploratory data analysis.
