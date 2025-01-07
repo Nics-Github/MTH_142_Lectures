@@ -10,7 +10,7 @@ execute:
 
 ```{r global_options, include = FALSE}
 knitr::opts_chunk$set(eval = TRUE)
-# This chunk is used to load in the two main libraries we'll be using in this course. To run the chunk press the little green triangle in the upper left hand corner. 
+# This chunk is used to load in the two main libraries we'll be using in this course. To run the chunk press the little green triangle in the upper right hand corner. 
 library(tidyverse)
 library(openintro)
 ```
