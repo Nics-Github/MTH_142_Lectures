@@ -1,7 +1,7 @@
 ---
-title: "R Assignment 2"
+title: "R Assignment 2 SOLUTIONS"
 subtitle: "Saving values in R"
-author: "Put name here"
+author: "Schwab"
 date: "2024-12-26"
 output: pdf_document
 ---
@@ -93,7 +93,9 @@ Q3 = quantile(x = penelope$weight, probs = 0.75, names = FALSE)
 
 ```{r}
 # calculate and save the IQR. Save the number as IQR_penelope.
-IQR_penelope = IQR(penelope$weight)
+IQR_penelope = IQR(penelope$weight, type = 7)
+# or
+IQR_penelope = Q3-Q1
 ```
 
 4. Now we have to put it all together to find the upper and lower bounds. We'll use the * for multiplication. We do not need to save this value so we wont. We will print out the words "lower bound" and "upper bound" so the answer is easier to read. 

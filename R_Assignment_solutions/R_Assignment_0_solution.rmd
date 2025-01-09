@@ -141,7 +141,7 @@ median(cars04$msrp, na.rm=TRUE)
 
 ```
 
-The median price is $27,635.
+**Answer:** The median price is $27,635.
 
 4. Make a histogram of the msrp variable. hint: There is nothing wrong with copy and pasting the code from above then editing it for the cars04 data. 
 
@@ -201,8 +201,6 @@ tinytex::is_tinytex()
 
 
 Wooo you are warmed up to do statistics with R. 
-
-
 
 ## Resources for learning R and working in RStudio
 

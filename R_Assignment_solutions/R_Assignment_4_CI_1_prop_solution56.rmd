@@ -1,7 +1,7 @@
 ---
-title: "R Assignment 4"
+title: "R Assignment 4 SOLUTIONS"
 subtitle: "A confidence interval for one proportion"
-author: "optional name"
+author: "Schwab"
 date: "`r Sys.Date()`"
 output: pdf_document
 execute: 

@@ -1,7 +1,7 @@
 ---
-title: "R Assignment 1"
+title: "R Assignment 1 SOLUTIONS"
 subtitle: "Exploratory Data Analsys"
-author: "name"
+author: "Schwab"
 date: "`r Sys.Date()`"
 output: pdf_document
 execute: 
@@ -37,7 +37,8 @@ Make a chunk below (See R assignment 0).
 
 
 
-Data Questions
+## Data Questions
+
 1. How many variables are in the data?
 
 **Answer:** 13
@@ -75,7 +76,7 @@ summary(yrbss$age)
 
 Recall from the reading that the five number summary breaks data up into quartiles, or chunks of 25%. You may want to reread  [chapter 5.5](https://openintro-ims.netlify.app/explore-numerical#sec-boxplots).
 
-Questions:
+## Quantile Questions:
 
 5. What percent of the students are over 17?
 **Answer:** 25%

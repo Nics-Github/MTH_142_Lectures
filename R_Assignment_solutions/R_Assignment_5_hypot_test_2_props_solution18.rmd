@@ -1,6 +1,6 @@
 ---
-title: "MTH 142: R Assignment 4"
-author: "name"
+title: "MTH 142: R Assignment 5 SOUTIONS"
+author: "Schwab"
 date: "`r Sys.Date()`"
 output: pdf_document
 execute: 
@@ -15,16 +15,26 @@ library(tidyverse)
 yawn <- yawn
 ```
 
-In 2005 the show "Myth Busters" did an experiment to see if yawning is contagious. In this 4th R assignment you will use data provided in the openintro package to answer that question for yourselves. We will see if the proportions of people that yawn in the treatment group is different then the proportion of people who yawn in the control group. There is a 2 minute video on canvas of that episode. In the show they did not get into statistics, but you will. You will carry out a hypothesis test similar to what you've been doing in the homework, except you will write out the test completely. This assignment is similar to R_Assignment_3, and the instructions for each part have been shortened. In the video on canvas I do this assignment for a different data set, feel free to check that out. 
+## Intro/Goal:
+
+In this R Assignment you will do a hypothesis test on the difference of two proportions. You will do an EDA, check the conditions, complete the test and finally write a conclusion. You will also have to consider which testing error is possible. Along the way I will introduce you to a new function called prop.test() which will make the hypothesis test very simple. I will do a similar hypothesis test and post a video to canvas. 
+
+In 2005 the show "Myth Busters" did an experiment to see if yawning is contagious. In this 5th R assignment you will use the yawn data provided in the openintro package to answer that question for yourselves. We will see if the proportions of people that yawn in the treatment group is different then the proportion of people who yawn in the control group. There is a 2 minute video on canvas of that episode. In the show they did not get into statistics, but you will. You will carry out a hypothesis test similar to what you've been doing in the homework, except you will write out the test completely. In the video on canvas I do this assignment for a different data set, feel free to check that out. 
 
 
 ## An exploratory data analysis.
+    
+Do an EDA here. Write some notes about it.     
 
-Any graph that shows the number of people who yawned here should be accepted. 
+Any graph or table that shows the number of people who yawned here should be accepted. 
 ```{r}
+# A bar graph is appropriate here
+
 ggplot(data = yawn, aes(x=result, fill= group))+
   geom_bar()
 
+# A table is fine here. 
+table(yawn)
 ```
 
     
@@ -32,15 +42,16 @@ ggplot(data = yawn, aes(x=result, fill= group))+
 
 In this part students have to check success/failure condition and independence/ large sample size for both groups. 
 
-Success/faliure: It seems we don't have enough people in the control group to satisfy the conditions of this test. If we treat yawning as a success then we only have 4 successes in the control group. 
-
-Independence/ large sample sizes: Our sample is also small, for the control group. It only has 16 people in it. 
-
-It would be good to note that we should stop here, but I (the instructor) have asked you to continue the test. Something like: "I should stop here, this test doesn't meet the conditions, but I'm carrying on anyway."
-
 ```{r}
+# I've typed out the count code for you. 
 count(yawn, result, group)
 ```
+
+**ANSWER :** Success/faliure: It seems we don't have enough people in the control group to satisfy the conditions of this test. If we treat yawning as a success then we only have 4 successes in the control group. 
+
+**ANSWER:** Independence/ large sample sizes: Our sample is also small, for the control group. It only has 16 people in it. 
+
+NOTE: It would be good to note that we should stop here, but I (the instructor) have asked you to continue the test. Something like: "I should stop here, this test doesn't meet the conditions, but I'm carrying on anyway."
 
 
 ## Write out the hypothesis notation. Include a significance level.
