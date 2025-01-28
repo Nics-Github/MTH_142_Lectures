@@ -14,81 +14,67 @@ library(tidyverse)
 library(openintro)
 
 
-
 ```
 
 ## Assignmnet
 
-In this final R Assignment you will carry out a hypothesis test for a single mean. The instructions are similar to that of the previous two RAssignments. You have gotten better at R so I am telling you alittle less. Reference R Assignment 3 for some details, although the tests for proportions and means are different, the outline is the same.
+In this final R Assignment you will make a confidence interval for a single mean. We will see if the confidence would have captured the true population parameter. 
 
 ## The data
 
-There was an episode of the Planet Money podcast in which people guessed the weight of a cow names Penelope. I'd like to know if the average of the weights guessed was statistically close to Penelope's actual weight of 1355 pounds. Type ?penelope to learn more and hear the podcast. 
+There was an episode of the Planet Money podcast in which people guessed the weight of a cow named Penelope. I'd like to know if a confidence interval around the average of the weight guessed would have actually captured the population parameter, which is Penelope's actual weight of 1355 pounds. Type ?penelope to pull up the documentation to learn more and follow the link to hear the podcast. 
 
 ```{r}
-
+# note there is code to make a histogram in the documentation, feel free to use it
 
 ```
 
 
 ## Do an exploritory analysis. 
 
-At minimum you should make a graph to check for outliers and also find the average guessed weight of the cow. Feel free to find other information that might be necessary for conditions.  
+At minimum you should make a graph to look at the data, and also find the average guessed weight of the cow. This data is numeric, so you should not make a bar graph, reference RAssignment 1 for the correct graph to check for outliers. Feel free to find other information that might be necessary for conditions.  
 
 ```{r}
-ggplot(penelope)+
-  geom_boxplot(aes(x=weight))
-```
-
-## Remove outliers
-
-Some of the guesses are way too small/ large, I'd like to remove the outliers so we meet the conditions of the test. I've set up the code to do this. You need to find the upper or lower fence to filter out the outliers. You can do this in R or with pencil and paper. Change the values below to the correct fence values. 
-
-```{r}
-upper_fence = 1000000 #put in the upper fence, if there is one or type 10000000 if none. "
-lower_fence = 1#put the lower fence if there is one, or 0 if none. 
-
-
-penelope <- filter(penelope, weight > lower_fence & weight < upper_fence )
 
 ```
+
+## No outliers
+
+Some of the guesses are very small small/ large, but Planet Money already removed the outliers from this data. So the dots in a boxplot above are not actual outliers. R is calculating outliers assuming this is the original data (if you made a boxplot add the argument coef = 3 to cover them up). So we can proceed with our test.If you have questions about this please post to the discussion and I'll explain further. 
+
 
 ## Check conditions
 
-check the conditions of the test. 
+check the conditions for making a confidence interval. 
 
 
 
-## Write out the hypothesis notation. Include a significance level.
+## Make the 99% confidence interval. 
 
-Edit the values below to match this test. 
+Use t.test() to make a confidence interval ( reference the lecture from HW 8). 
 
-$$
-H_o: \mu = 1 \\ H_a: \mu \ne 0 \\ \alpha = 1
-
-$$
-
-## Do the test and state the p-value. 
-
-There is a nice function called t.test() which will run a hypothesis test for you. 
-
-x - is a vector of values, so in our case penelope$weight
-mu - is the assumed null hypothesis
-alternative - put in "less", "greater" or "two.sided" depending on what kind of test it is. 
 
 ```{r}
-?t.test(x= , mu= , alternative = )
+
 
 ```
 
-## Write the Conclusion.
+## Questions
 
-Considering your p-value and alpha. State whether is it likely that Penelope's true weight would have been guessed by the participants, or would their guesses have rejected the null in error. 
+### Question 1.
+
+99% of the time we would expect Penelope's actual weight to have fallen in the confidence interval. Did Penelope's weight fall in the range of the confidence interval? Justify by stating both your confidence interval and the population mean. 
+
+### Question 2
+
+Assuming that your work is correct, then either our conditions were not met or we just happened to get a sample that did not contain the population parameter (which happens 1% of the time). If any conditions were not met (besides outliers) speculate as to why they were not met in terms of people guessing. You may want to consider the [anchoring effect](https://en.wikipedia.org/wiki/Anchoring_effect). You may want to take a look at the actual numbers in the data by putting view(penelope) in a code chunk and running it.  
 
 
-## Discuss which testing error (I or II) may be possible.
+### Question 3
 
-Note: this does not mean your test is invalid. We are dealing with probabilities so it is always possible for for our conclusion to be incorrect. 
+The guessers were not that far off, what percent incorrect were they? To calculate this do:
 
+$$|\frac{\bar{x}-\mu}{\mu}|$$
 
+If you do the above calculation in R abs() will find the absolute value of a number. So even though statistically they were incorrect,  practically speaking they were pretty close. 
 
