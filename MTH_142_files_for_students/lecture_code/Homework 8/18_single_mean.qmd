@@ -233,7 +233,7 @@ We need to calculate the probability of getting -3.11 for a test statistic.
 Multiply by 2 for a two tailed test.
 
 ```{r}
-2 * pt(-3.11, df = 51-1)
+2 * pt(-3.11, df = 52-1)
 ```
 
 ## conclusion
@@ -254,18 +254,18 @@ $$ \bar{x} \pm t^* SE$$
 
 $\bar{x} = 3706.373$
 
-$SE = \frac{s}{n}=\frac{445.10}{51} = 8.73$
+$SE = \frac{s}{n}=\frac{445.10}{52} = 8.56$
 
 $t^*=$
 
 ```{r}
-t_star = qt(0.95 , df=50)
+t_star = qt(0.95 , df=51)
 t_star
 ```
 
 ```{r}
 x_bar = 3706.373
-SE = s_x/sqrt(51)
+SE = s_x/sqrt(52)
 
 # Lower Bound
 x_bar - t_star*SE

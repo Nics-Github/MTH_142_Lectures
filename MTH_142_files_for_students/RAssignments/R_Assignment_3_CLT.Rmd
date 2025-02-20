@@ -1,0 +1,176 @@
+---
+title: "R Assignment 3"
+author: "The central limit theorem"
+date: "`r Sys.Date()`"
+output: pdf_document
+execute: 
+  echo: true
+---
+
+## Intro/ Goals
+
+In this Assignment you will do two things. 
+
+We will look at the penelope data. The data is complete in that it has every guess made about Penelope's weight and so we can figure out the true average guess (its 1287 pounds). Another way of saying this is that we have the guesses from the entire population.  Normally we do not have population data. 
+
+With the penelope data I will demonstrate that the averages from random samples end up looking bell shaped (or normally distributed). All the averages from many samples make up the sampling distribution. This is the key take away from the central limit theorem. Its important because we use the central limit theorem to calculate probabilities that help us understand the population by taking a sample.  
+
+## Revist the penelope data
+If you have forgotten about the penelope from R Assignment 2 data you should revisit it. Also I've made a histogram of the guesses. This is called the data distribution. 
+
+```{r, warning=FALSE}
+library(tidyverse)
+library(openintro)
+?penelope
+```
+
+```{r}
+# This is a graph of all the guesses made. 
+ggplot(data = penelope, aes(x=weight))+
+  geom_histogram() +
+  labs(
+    title = " This is the data distribution",
+    x = "people's guesses",
+    y = "number of guesses"
+  )
+```
+
+## Take a sample and find its mean. 
+
+We are going to have R randomly sample 30 guesses and find the average of those guesses. Since there is a bit of randomness we have to set a seed for each chunk, this ensures we all get the same answer.
+
+```{r}
+# You don't need to edit this code, just run the chunk and make sure you understand what's happening. 
+set.seed(1)
+
+# This code randomly samples 30 guesses from the penelope weight variable. 
+sample_of_guesses = sample(penelope$weight, size = 30, replace = FALSE)
+
+# This finds the mean of those guesses. 
+mean(sample_of_guesses)
+
+```
+
+The mean of 30 guesses is close to the actual mean of the guessed value which was 1287. If you set a different seed above, by changing the 1 to another number you'll get another mean from a different 30 guesses. 
+
+The central limit theorem says if we find a lot of means of samples sized 30 (or larger), the distribution of those means will be normal. That is, if we make a histogram of a thousand means from a thousand samples it'll look bell shaped. This is because most of the means fall near the actual mean, while less fall far away from it. 
+
+Running the code above a thousand times and keeping track of the means to see this bell shaped graph would be tedious. 
+
+Fortunately there is a package called infer that has a function that can take many samples and calculate the mean of each sample.
+
+```{r}
+#load infer and tidyverse
+library(infer)
+
+```
+
+Let's start by taking 1000 samples sized 30 and finding each one of their means.
+
+```{r iterate}
+# Here we use a special operator called the pipe |>, which takes the output of the previous line and puts it as the argument of the next line. It makes the code easier to read. You do not need to reproduce this code, but you will want to know what it means for the later part of this assignment.
+
+set.seed(1)
+
+a_thousand_averages =  penelope |>      
+  specify(response = weight) |>     # <- This line tells which variable we want to find the averages.
+  rep_sample_n(size =30, reps = 1000) |>   # <- This gets 1000 samples of size 30. 
+  group_by(replicate)|>               # <- A replicate is one sample size 30, we need to group them. 
+  summarise(mean = mean(weight))     # <- This gets the mean of each sample size 30. 
+  
+```
+
+If you click on "a_thousand_averages" in the environment you'll see its got the means of 1000 samples. 
+
+Now let's visualize the distribution of these means with a histogram. Notice the bell shape. 
+
+```{r fig.show="hide"}
+ggplot(data = a_thousand_averages, aes(x = mean)) +
+  geom_histogram() +
+  labs(
+    x = "mean of sample",
+    y = "number of samples",
+    title = "Sampling distribution of the mean",
+    subtitle = "Sample size = 30, Number of samples = 1000"
+  )
+```
+
+If we do the process again with a different 1000 samples we would get a slightly different shape. You can verify this by changing the seed above and rerunning the sampling code. 
+
+Note that the graph above is a distribution of means, generally it is called the sampling distribution. The data distribution, is what the original guesses look like, scroll back to the the first graph to remind yourself the shape of the data distribution. 
+
+Note that even though the data is not normally distributed the sampling distribution is. 
+
+## Excersises
+
+I want to know what happens to the distribution when the sample size is increased or decreased. You will answer this by editing the code that we used to make the distribution
+
+Decrease the sample size to 10. What happens to the spread of the sampling distribution, when compared to 30? 
+
+```{r iterate2}
+# All you have to do here is edit the size of the sample run the sampling simulation and answer the question above. 
+
+set.seed(1)
+
+a_thousand_averages =  penelope |>      
+  specify(response = weight) |>     
+  rep_sample_n(size = , reps = 1000) |>   # <- Edit the size 
+  group_by(replicate)|>               
+  summarise(mean = mean(weight))     
+  
+```
+
+```{r fig.show="hide"}
+# You should edit the subtitle below. 
+
+ggplot(data = a_thousand_averages, aes(x = mean)) +
+  geom_histogram() +
+  labs(
+    x = "mean of sample",
+    y = "number of samples",
+    title = "Sampling distribution of the mean",
+    subtitle = "Sample size = __, Number of samples = 1000"
+  )
+```
+
+
+Increase the sample size to 90. What happens to the spread of the sampling distribution, when compared to 30? (Hint: Pay special attention to the values on the x-axis.)
+
+```{r iterate2}
+# Here we use a special operator called the pipe |>, which takes the output of the previous line and puts it as the argument of the next line. It makes the code easier to read
+
+set.seed(1)
+
+a_thousand_averages =  penelope |>      
+  specify(response = weight) |>     
+  rep_sample_n(size = , reps = 1000) |>   # <- Edit the size 
+  group_by(replicate)|>               
+  summarise(mean = mean(weight))     
+  
+```
+
+```{r fig.show="hide"}
+ggplot(data = a_thousand_averages, aes(x = mean)) +
+  geom_histogram() +
+  labs(
+    x = "mean of sample",
+    y = "number of samples",
+    title = "Sampling distribution of the mean",
+    subtitle = "Sample size = __, Number of samples = 1000"
+  )
+```
+
+Conclusion: The central limit theorem says that when we sample from a population, the sampling distribution (aka the distribution of averages) will be normally distributed. There are a few conditions we should adhere to (did you notice how a small sample of size 10 had a long right tail?). The conditions for each situation are different, in this R Assignment we were working with a single mean, you can read about these conditions in [chapter 19.2](https://openintro-ims.netlify.app/inference-one-mean#sec-one-mean-math).
+
+Its worth remembering that normally we do not have the data from the full population, so generally we trust that if conditions are met the sampling distribution is normal.  
+
+```{r}
+# You can ignore this chunk. I just need to unload infer so it doesn't mess with future assignments. Post if you want to know more about this. 
+library(infer)
+detach("package:infer", unload = TRUE) # This unload infer, which we used last assignment
+
+
+```
+
+
+

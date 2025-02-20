@@ -1,5 +1,6 @@
 ---
-title: "R Assignment 1 EDA"
+title: "R Assignment 1"
+subtitle: "Exploratory Data Analsys"
 author: "name"
 date: "`r Sys.Date()`"
 output: pdf_document
@@ -14,39 +15,101 @@ library(tidyverse)
 library(openintro)
 ```
 
+## Introduction / Goal:
+
+In this assignment you will get yourself acquainted with new data. When we study data we are unfamiliar with we need to explore it. We do this by making graphs, calculating statistics and looking at the documentation. You will do all of these things for the yrbss data. Of course you don't know the yrbss data well yet, but by the end of this assignment you will be able to tell me where it originated, and some aspects of the age variable. 
+
+If you would like you can watch me do a similar analysis on another data set by watching the video on canvas. 
+
 ## Assignment: 
 
-You will do an exploratory data analysis on the yrbss survey data using R. (See the template in the MTH_142_files you uploaded to Rstudio). Click here for some documentation.
+You will do an exploratory data analysis on the yrbss survey data, specifically focusing on the age variable.
+
+You will turn in a pdf output of your work by the due date.
+
+There are 4 parts to complete and 8 questions to answer in this assignment. These will be peer graded, I will double check your peers' grading. 
+
+## Familiarize yourself with your data. 
+
+You should make a chunk below and use the ? operator to pull up the yrbss data. Answer the questions below to introduce your data:
+
+Make a chunk below (See R assignment 0). 
 
 
-You will turn in a pdf output of your work.
 
-Introduce the data with a summary. (50 words)
-Calculate at least two summary statistics (center, spread, count, or a table).
-Create a visualization from the data.
-Write a brief explanation of what you learned from your statistics and visualization. (50 - 100 words)
+Data Questions
+1. How many variables are in the data?
 
-## Introduce your data
+2. List all the variables that are categorical.
+
+3. How many youth are present in this sample? 
+
+4. Which organization collected the data? The link in the documentation doesn't work well. [This one is better](https://www.cdc.gov/yrbs/index.html)
 
 
 ## Calculate two Summary Statistics
 
+Let us focus on one variable. Let's consider the age variable, which is numeric. Calculate the mean and the five number summary of the age variable.  If you get NA for either one, you need to add the argument na.rm=TRUE as we did in the R Assignment 0. 
+
 ```{r statistic_1}
-# The code for your 1st statistic goes here
+# The code for the mean goes here
 
 ```
 
 ```{r statistic_2}
-# The code for your 2nd statistic goes here
+# The code for the five number summary goes here
 
 ```
 
-## Make a plot
+
+Recall from the reading that the five number summary breaks data up into quartiles, or chunks of 25%. You may want to reread  [chapter 5.5](https://openintro-ims.netlify.app/explore-numerical#sec-boxplots).
+
+Questions:
+
+5. What percent of the students are over 17?
+
+
+6. What are the ages of the youngest and oldest students in our data?
+
+
+7. How many students did not report their age?
+
+
+
+## Make two plots
+
+age is a numeric variable. We saw how to make a histogram for a numeric variable in R Assignment 0. We will do that again below. We will also add a title and site the source of our data. The outline for a histogram is completed for you. Follow the directions in the comments
+
+8. Make a histogram of age, include a title and caption. 
+```{r}
+# Write some ggplot() code for a histogram here. 
+
+ggplot(data =    )+   # Add the data
+  geom_histogram(aes(x=   ))+   # Add the age variable
+  labs(
+    title = "Put a title here",
+    caption = "Cite the source"
+  )
+
+```
+
+9. Now make a bloxplot for the data. The boxplot is a visual representation of the five number summary. Hint: You can recycle the code for your histogram just change the geom from histogram to boxplot. 
 
 ```{r}
-# Write some ggplot() code for a plot here. 
+# Write some ggplot() code for a boxplot here. 
+
+
 
 ```
 
 ## Conclusion
+
+10. You've explored your data and gotten a better idea of the age variable in yrbss. Describe the ages of the population included in our sample. Tell me who they are, and who they are not. What age is most represented in our sample? 
+
+
+
+
+Finally knit and upload this document to canvas. If your document doesn't knit correctly post a screen shot to the forums. 
+
+
 

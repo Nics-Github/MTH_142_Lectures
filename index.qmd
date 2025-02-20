@@ -1,5 +1,5 @@
 ---
-title: "Lectures from MTH 142 Fall 2024"
+title: "Lectures from MTH 142"
 author: "Nic Schwab"
 ---
 

@@ -1,0 +1,90 @@
+---
+title: "MTH 142: R Assignment 5 SOUTIONS"
+author: "Schwab"
+date: "`r Sys.Date()`"
+output: pdf_document
+execute: 
+  echo: true
+---
+
+```{r setup, include=FALSE}
+library(openintro)
+library(tidyverse)
+
+# This will put the yawn data into your environment. 
+yawn <- yawn
+```
+
+## Intro/Goal:
+
+In this R Assignment you will do a hypothesis test on the difference of two proportions. You will do an EDA, check the conditions, complete the test and finally write a conclusion. You will also have to consider which testing error is possible. Along the way I will introduce you to a new function called prop.test() which will make the hypothesis test very simple. I will do a similar hypothesis test and post a video to canvas. 
+
+In 2005 the show "Myth Busters" did an experiment to see if yawning is contagious. In this 5th R assignment you will use the yawn data provided in the openintro package to answer that question for yourselves. We will see if the proportions of people that yawn in the treatment group is different then the proportion of people who yawn in the control group. There is a 2 minute video on canvas of that episode. In the show they did not get into statistics, but you will. You will carry out a hypothesis test similar to what you've been doing in the homework, except you will write out the test completely. In the video on canvas I do this assignment for a different data set, feel free to check that out. 
+
+
+## An exploratory data analysis.
+    
+Do an EDA here. Write some notes about it.     
+
+Any graph or table that shows the number of people who yawned here should be accepted. 
+```{r}
+# A bar graph is appropriate here
+
+ggplot(data = yawn, aes(x=result, fill= group))+
+  geom_bar()
+
+# A table is fine here. 
+table(yawn)
+```
+
+    
+## Check the conditions.*
+
+In this part students have to check success/failure condition and independence/ large sample size for both groups. 
+
+```{r}
+# I've typed out the count code for you. 
+count(yawn, result, group)
+```
+
+**ANSWER :** Success/faliure: It seems we don't have enough people in the control group to satisfy the conditions of this test. If we treat yawning as a success then we only have 4 successes in the control group. 
+
+**ANSWER:** Independence/ large sample sizes: Our sample is also small, for the control group. It only has 16 people in it. 
+
+NOTE: It would be good to note that we should stop here, but I (the instructor) have asked you to continue the test. Something like: "I should stop here, this test doesn't meet the conditions, but I'm carrying on anyway."
+
+
+## Write out the hypothesis notation. Include a significance level.
+
+The notation should look something like it does below. In the null we are assuming there are two proportions that are the same. in the alternative we are checking to see if they are different. Alpha should be 0.05, but can be any number less than 0.1. Alpha should not be 0.5 (not that this would be the 50% signifigance level, this is a common mistake students make).  
+
+$$H_o: p_{trmt} = p_{ctrl} \\ H_a: p_{trmt} \ne p_{ctrl} \\ \alpha = 0.05$$
+
+## Do the test and state your p-value.
+    
+Use prop.test() to have R calculate the p-value for you. State your p-value.
+note: prop.test() needs four arguments for this test. 
+
+-   x = number of successes in both groups. Enter as: c(success group 1, successes group 2)
+-   n = total sample size of both groups. Enter as:  c(group1, group2)
+-   alternative = the alternative hypothesis (I've set this for you). 
+-   correct = FALSE (I've done this for you)
+  
+```{r}
+# This line of code turns off scientific notation, you don't need to do anything with it. 
+options(scipen = 100)
+
+prop.test(x = c(4,10) , n = c(16,34) , alternative = "two.sided", correct = FALSE)
+
+```
+
+## Write the Conclusion.
+
+The conclusion does not have to be long. But should say something like: 
+
+With a pvalue of 0.7459 the null hypothesis should not be rejected. This data provides no evidence that yawning is contagious. Also the results of this test may be misleading, as the conditions for the test were not met. 
+
+
+## Discuss which testing error (I or II) may be possible.
+
+We did not reject the null hypothesis. Its possible that we made a type 2 error. 
